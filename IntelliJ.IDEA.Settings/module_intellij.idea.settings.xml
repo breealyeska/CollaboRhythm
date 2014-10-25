@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_intellij.idea.settings" default="compile.module.intellij.idea.settings">
+  <dirname property="module.intellij.idea.settings.basedir" file="${ant.file.module_intellij.idea.settings}"/>
+  
+  <property name="module.jdk.home.intellij.idea.settings" value=""/>
+  <property name="module.jdk.bin.intellij.idea.settings" value=""/>
+  <property name="module.jdk.classpath.intellij.idea.settings" value=""/>
+  
+  <property name="compiler.args.intellij.idea.settings" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="intellij.idea.settings.output.dir" value="${module.intellij.idea.settings.basedir}/../out/production/IntelliJ.IDEA.Settings"/>
+  <property name="intellij.idea.settings.testoutput.dir" value="${module.intellij.idea.settings.basedir}/../out/test/IntelliJ.IDEA.Settings"/>
+  
+  <path id="intellij.idea.settings.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="intellij.idea.settings.module.production.classpath"/>
+  
+  <path id="intellij.idea.settings.runtime.production.module.classpath">
+    <pathelement location="${intellij.idea.settings.output.dir}"/>
+  </path>
+  
+  <path id="intellij.idea.settings.module.classpath">
+    <pathelement location="${intellij.idea.settings.output.dir}"/>
+  </path>
+  
+  <path id="intellij.idea.settings.runtime.module.classpath">
+    <pathelement location="${intellij.idea.settings.testoutput.dir}"/>
+    <pathelement location="${intellij.idea.settings.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.intellij.idea.settings">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.intellij.idea.settings">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.intellij.idea.settings"/>
+  </patternset>
+  
+  
+  <target name="compile.module.intellij.idea.settings" depends="compile.module.intellij.idea.settings.production,compile.module.intellij.idea.settings.tests" description="Compile module IntelliJ.IDEA.Settings"/>
+  
+  <target name="compile.module.intellij.idea.settings.production" depends="register.custom.compilers" description="Compile module IntelliJ.IDEA.Settings; production classes"/>
+  
+  <target name="compile.module.intellij.idea.settings.tests" depends="register.custom.compilers,compile.module.intellij.idea.settings.production" description="compile module IntelliJ.IDEA.Settings; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.intellij.idea.settings" description="cleanup module">
+    <delete dir="${intellij.idea.settings.output.dir}"/>
+    <delete dir="${intellij.idea.settings.testoutput.dir}"/>
+  </target>
+</project>

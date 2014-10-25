@@ -18,13 +18,13 @@
 	<taskdef name="asdoc" classpath="${basedir}/asdoc-ant.jar" classname="org.pranaframework.ant.Asdoc"/>
 	<target name="docs">
 		<asdoc
-				docSources="${basedir}\src"
+				docSources="${basedir}/src"
 				windowTitle="CollaboRhythm Documentation"
 				mainTitle="CollaboRhythm"
 				footer="Copyright 2012 John Moore, Scott Gilroy"
 				leftFramesetWidth="200"
-				output="${basedir}\api"
-				executable="C:\Program Files (x86)\Adobe\flex\sdks\4.6.0\bin\asdoc.exe"
+				output="${basedir}/api"
+				executable="/Applications/Documents/SDKs/4.6.0/bin/asdoc.exe"
 				/>
 	</target>
 </project>

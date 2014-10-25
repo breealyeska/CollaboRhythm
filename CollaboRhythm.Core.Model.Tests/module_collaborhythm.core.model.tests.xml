@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.core.model.tests" default="compile.module.collaborhythm.core.model.tests">
+  <dirname property="module.collaborhythm.core.model.tests.basedir" file="${ant.file.module_collaborhythm.core.model.tests}"/>
+  
+  <property name="module.jdk.home.collaborhythm.core.model.tests" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.collaborhythm.core.model.tests" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.collaborhythm.core.model.tests" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.collaborhythm.core.model.tests" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.core.model.tests.output.dir" value="${module.collaborhythm.core.model.tests.basedir}/../out/production/CollaboRhythm.Core.Model.Tests"/>
+  <property name="collaborhythm.core.model.tests.testoutput.dir" value="${module.collaborhythm.core.model.tests.basedir}/../out/test/CollaboRhythm.Core.Model.Tests"/>
+  
+  <path id="collaborhythm.core.model.tests.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.core.model.tests.module.production.classpath">
+    <pathelement location="${collaborhythm.core.model.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/CollaboRhythm.Core.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <path refid="library.mobile.classpath"/>
+    <path refid="${module.jdk.classpath.collaborhythm.core.model.tests}"/>
+    <path refid="library.flexunit.classpath"/>
+  </path>
+  
+  <path id="collaborhythm.core.model.tests.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.core.model.tests.output.dir}"/>
+    <path refid="collaborhythm.core.model.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.shared.model.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.shared.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.shared.model.services.runtime.production.module.classpath"/>
+    <path refid="library.flexunit.classpath"/>
+  </path>
+  
+  <path id="collaborhythm.core.model.tests.module.classpath">
+    <pathelement location="${collaborhythm.core.model.tests.output.dir}"/>
+    <pathelement location="${collaborhythm.core.model.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/CollaboRhythm.Core.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <path refid="library.mobile.classpath"/>
+    <path refid="${module.jdk.classpath.collaborhythm.core.model.tests}"/>
+    <path refid="library.flexunit.classpath"/>
+  </path>
+  
+  <path id="collaborhythm.core.model.tests.runtime.module.classpath">
+    <pathelement location="${collaborhythm.core.model.tests.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.core.model.tests.output.dir}"/>
+    <path refid="collaborhythm.core.model.runtime.module.classpath"/>
+    <path refid="collaborhythm.shared.model.runtime.module.classpath"/>
+    <path refid="collaborhythm.shared.runtime.module.classpath"/>
+    <path refid="collaborhythm.shared.model.services.runtime.module.classpath"/>
+    <path refid="library.flexunit.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.core.model.tests">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.core.model.tests">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.core.model.tests"/>
+  </patternset>
+  
+  <path id="collaborhythm.core.model.tests.module.sourcepath">
+    <dirset dir="${module.collaborhythm.core.model.tests.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.core.model.tests" depends="compile.module.collaborhythm.core.model.tests.production,compile.module.collaborhythm.core.model.tests.tests" description="Compile module CollaboRhythm.Core.Model.Tests"/>
+  
+  <target name="compile.module.collaborhythm.core.model.tests.production" depends="register.custom.compilers,compile.module.collaborhythm.core.model,compile.module.collaborhythm.shared.model,compile.module.collaborhythm.shared,compile.module.collaborhythm.shared.model.services" description="Compile module CollaboRhythm.Core.Model.Tests; production classes">
+    <mkdir dir="${collaborhythm.core.model.tests.output.dir}"/>
+    <javac2 destdir="${collaborhythm.core.model.tests.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.core.model.tests}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.core.model.tests}"/>
+      <bootclasspath refid="collaborhythm.core.model.tests.module.bootclasspath"/>
+      <classpath refid="collaborhythm.core.model.tests.module.production.classpath"/>
+      <src refid="collaborhythm.core.model.tests.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.core.model.tests"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.core.model.tests.output.dir}">
+      <fileset dir="${module.collaborhythm.core.model.tests.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.core.model.tests"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.core.model.tests.tests" depends="register.custom.compilers,compile.module.collaborhythm.core.model.tests.production" description="compile module CollaboRhythm.Core.Model.Tests; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.core.model.tests" description="cleanup module">
+    <delete dir="${collaborhythm.core.model.tests.output.dir}"/>
+    <delete dir="${collaborhythm.core.model.tests.testoutput.dir}"/>
+  </target>
+</project>

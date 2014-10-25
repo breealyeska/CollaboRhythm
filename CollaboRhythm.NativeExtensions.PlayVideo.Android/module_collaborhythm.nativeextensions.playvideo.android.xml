@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.nativeextensions.playvideo.android" default="compile.module.collaborhythm.nativeextensions.playvideo.android">
+  <dirname property="module.collaborhythm.nativeextensions.playvideo.android.basedir" file="${ant.file.module_collaborhythm.nativeextensions.playvideo.android}"/>
+  
+  <property name="module.jdk.home.collaborhythm.nativeextensions.playvideo.android" value="${jdk.home.android_2.2_platform_(8)}"/>
+  <property name="module.jdk.bin.collaborhythm.nativeextensions.playvideo.android" value="${jdk.bin.android_2.2_platform_(8)}"/>
+  <property name="module.jdk.classpath.collaborhythm.nativeextensions.playvideo.android" value="jdk.classpath.android_2.2_platform_(8)"/>
+  
+  <property name="compiler.args.collaborhythm.nativeextensions.playvideo.android" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.nativeextensions.playvideo.android.output.dir" value="${module.collaborhythm.nativeextensions.playvideo.android.basedir}/bin"/>
+  <property name="collaborhythm.nativeextensions.playvideo.android.testoutput.dir" value="${module.collaborhythm.nativeextensions.playvideo.android.basedir}/bin"/>
+  
+  <path id="collaborhythm.nativeextensions.playvideo.android.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.nativeextensions.playvideo.android.module.production.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.nativeextensions.playvideo.android}"/>
+    <pathelement location="${path.variable.flex_sdk_home}/lib/android/FlashRuntimeExtensions.jar"/>
+  </path>
+  
+  <path id="collaborhythm.nativeextensions.playvideo.android.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.nativeextensions.playvideo.android.output.dir}"/>
+    <pathelement location="${path.variable.flex_sdk_home}/lib/android/FlashRuntimeExtensions.jar"/>
+  </path>
+  
+  <path id="collaborhythm.nativeextensions.playvideo.android.module.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.nativeextensions.playvideo.android}"/>
+    <pathelement location="${collaborhythm.nativeextensions.playvideo.android.output.dir}"/>
+    <pathelement location="${path.variable.flex_sdk_home}/lib/android/FlashRuntimeExtensions.jar"/>
+  </path>
+  
+  <path id="collaborhythm.nativeextensions.playvideo.android.runtime.module.classpath">
+    <pathelement location="${collaborhythm.nativeextensions.playvideo.android.output.dir}"/>
+    <pathelement location="${path.variable.flex_sdk_home}/lib/android/FlashRuntimeExtensions.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.nativeextensions.playvideo.android">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.nativeextensions.playvideo.android">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.nativeextensions.playvideo.android"/>
+  </patternset>
+  
+  <path id="collaborhythm.nativeextensions.playvideo.android.module.sourcepath">
+    <dirset dir="${module.collaborhythm.nativeextensions.playvideo.android.basedir}">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.nativeextensions.playvideo.android" depends="compile.module.collaborhythm.nativeextensions.playvideo.android.production,compile.module.collaborhythm.nativeextensions.playvideo.android.tests" description="Compile module CollaboRhythm.NativeExtensions.PlayVideo.Android"/>
+  
+  <target name="compile.module.collaborhythm.nativeextensions.playvideo.android.production" depends="register.custom.compilers" description="Compile module CollaboRhythm.NativeExtensions.PlayVideo.Android; production classes">
+    <mkdir dir="${collaborhythm.nativeextensions.playvideo.android.output.dir}"/>
+    <javac2 destdir="${collaborhythm.nativeextensions.playvideo.android.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.nativeextensions.playvideo.android}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.nativeextensions.playvideo.android}"/>
+      <bootclasspath refid="collaborhythm.nativeextensions.playvideo.android.module.bootclasspath"/>
+      <classpath refid="collaborhythm.nativeextensions.playvideo.android.module.production.classpath"/>
+      <src refid="collaborhythm.nativeextensions.playvideo.android.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.nativeextensions.playvideo.android"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.nativeextensions.playvideo.android.output.dir}">
+      <fileset dir="${module.collaborhythm.nativeextensions.playvideo.android.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.nativeextensions.playvideo.android"/>
+      </fileset>
+      <fileset dir="${module.collaborhythm.nativeextensions.playvideo.android.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.nativeextensions.playvideo.android"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.nativeextensions.playvideo.android.tests" depends="register.custom.compilers,compile.module.collaborhythm.nativeextensions.playvideo.android.production" description="compile module CollaboRhythm.NativeExtensions.PlayVideo.Android; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.nativeextensions.playvideo.android" description="cleanup module">
+    <delete dir="${collaborhythm.nativeextensions.playvideo.android.output.dir}"/>
+    <delete dir="${collaborhythm.nativeextensions.playvideo.android.testoutput.dir}"/>
+  </target>
+</project>

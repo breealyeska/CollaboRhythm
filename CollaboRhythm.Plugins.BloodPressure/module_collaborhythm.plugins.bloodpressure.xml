@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.plugins.bloodpressure" default="compile.module.collaborhythm.plugins.bloodpressure">
+  <dirname property="module.collaborhythm.plugins.bloodpressure.basedir" file="${ant.file.module_collaborhythm.plugins.bloodpressure}"/>
+  
+  <property name="module.jdk.home.collaborhythm.plugins.bloodpressure" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.collaborhythm.plugins.bloodpressure" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.collaborhythm.plugins.bloodpressure" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.collaborhythm.plugins.bloodpressure" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.plugins.bloodpressure.output.dir" value="${module.collaborhythm.plugins.bloodpressure.basedir}/bin-debug"/>
+  <property name="collaborhythm.plugins.bloodpressure.testoutput.dir" value="${module.collaborhythm.plugins.bloodpressure.basedir}/bin-debug"/>
+  
+  <path id="collaborhythm.plugins.bloodpressure.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.plugins.bloodpressure.module.production.classpath">
+    <pathelement location="${collaborhythm.shared.bloodsolutessimulation.output.dir}"/>
+    <pathelement location="${box2dflashas3.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.pluginssupport.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <path refid="library.mobile.classpath"/>
+    <pathelement location="${collaborhythm.plugins.schedule.shared.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${collaborhythm.shared.collaboration.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.BloodPressure/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.ui.healthcharts.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.UI.HealthCharts/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="${module.jdk.classpath.collaborhythm.plugins.bloodpressure}"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${collaborhythm.shared.model.medications.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
+  </path>
+  
+  <path id="collaborhythm.plugins.bloodpressure.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.plugins.bloodpressure.output.dir}"/>
+    <path refid="collaborhythm.shared.bloodsolutessimulation.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.shared.pluginssupport.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.plugins.schedule.shared.runtime.production.module.classpath"/>
+    <path refid="box2dflashas3.runtime.production.module.classpath"/>
+    <path refid="chartbackgroundslib.runtime.production.module.classpath"/>
+    <path refid="mccunechart.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.shared.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.view.scroll.runtime.production.module.classpath"/>
+    <path refid="indivo_client_flash.runtime.production.module.classpath"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.BloodPressure/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="collaborhythm.shared.model.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.shared.ui.healthcharts.runtime.production.module.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <path refid="collaborhythm.shared.collaboration.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.shared.model.medications.runtime.production.module.classpath"/>
+    <path refid="collaborhythm.shared.model.services.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="collaborhythm.plugins.bloodpressure.module.classpath">
+    <pathelement location="${collaborhythm.plugins.bloodpressure.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.bloodsolutessimulation.output.dir}"/>
+    <pathelement location="${box2dflashas3.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.pluginssupport.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.model.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <path refid="library.mobile.classpath"/>
+    <pathelement location="${collaborhythm.plugins.schedule.shared.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${collaborhythm.shared.collaboration.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.collaboration.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.BloodPressure/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.ui.healthcharts.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.ui.healthcharts.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.UI.HealthCharts/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="${module.jdk.classpath.collaborhythm.plugins.bloodpressure}"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${collaborhythm.shared.model.medications.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.medications.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.messages.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
+  </path>
+  
+  <path id="collaborhythm.plugins.bloodpressure.runtime.module.classpath">
+    <pathelement location="${collaborhythm.plugins.bloodpressure.output.dir}"/>
+    <path refid="collaborhythm.shared.bloodsolutessimulation.runtime.module.classpath"/>
+    <path refid="collaborhythm.shared.pluginssupport.runtime.module.classpath"/>
+    <path refid="collaborhythm.plugins.schedule.shared.runtime.module.classpath"/>
+    <path refid="box2dflashas3.runtime.module.classpath"/>
+    <path refid="chartbackgroundslib.runtime.module.classpath"/>
+    <path refid="mccunechart.runtime.module.classpath"/>
+    <path refid="collaborhythm.shared.runtime.module.classpath"/>
+    <path refid="collaborhythm.view.scroll.runtime.module.classpath"/>
+    <path refid="indivo_client_flash.runtime.module.classpath"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.BloodPressure/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="collaborhythm.shared.model.runtime.module.classpath"/>
+    <path refid="collaborhythm.shared.ui.healthcharts.runtime.module.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <path refid="collaborhythm.shared.collaboration.runtime.module.classpath"/>
+    <path refid="collaborhythm.shared.model.medications.runtime.module.classpath"/>
+    <path refid="collaborhythm.shared.model.services.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.plugins.bloodpressure">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.plugins.bloodpressure">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.plugins.bloodpressure"/>
+  </patternset>
+  
+  <path id="collaborhythm.plugins.bloodpressure.module.sourcepath">
+    <dirset dir="${module.collaborhythm.plugins.bloodpressure.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.plugins.bloodpressure" depends="compile.module.collaborhythm.plugins.bloodpressure.production,compile.module.collaborhythm.plugins.bloodpressure.tests" description="Compile module CollaboRhythm.Plugins.BloodPressure"/>
+  
+  <target name="compile.module.collaborhythm.plugins.bloodpressure.production" depends="register.custom.compilers,compile.module.collaborhythm.shared.bloodsolutessimulation,compile.module.collaborhythm.shared.pluginssupport,compile.module.collaborhythm.plugins.schedule.shared,compile.module.box2dflashas3,compile.module.chartbackgroundslib,compile.module.mccunechart,compile.module.collaborhythm.shared,compile.module.collaborhythm.view.scroll,compile.module.indivo_client_flash,compile.module.collaborhythm.shared.model,compile.module.collaborhythm.shared.ui.healthcharts,compile.module.collaborhythm.shared.collaboration,compile.module.collaborhythm.shared.model.medications,compile.module.collaborhythm.shared.model.services" description="Compile module CollaboRhythm.Plugins.BloodPressure; production classes">
+    <mkdir dir="${collaborhythm.plugins.bloodpressure.output.dir}"/>
+    <javac2 destdir="${collaborhythm.plugins.bloodpressure.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.plugins.bloodpressure}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.plugins.bloodpressure}"/>
+      <bootclasspath refid="collaborhythm.plugins.bloodpressure.module.bootclasspath"/>
+      <classpath refid="collaborhythm.plugins.bloodpressure.module.production.classpath"/>
+      <src refid="collaborhythm.plugins.bloodpressure.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.plugins.bloodpressure"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.plugins.bloodpressure.output.dir}">
+      <fileset dir="${module.collaborhythm.plugins.bloodpressure.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.plugins.bloodpressure"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.plugins.bloodpressure.tests" depends="register.custom.compilers,compile.module.collaborhythm.plugins.bloodpressure.production" description="compile module CollaboRhythm.Plugins.BloodPressure; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.plugins.bloodpressure" description="cleanup module">
+    <delete dir="${collaborhythm.plugins.bloodpressure.output.dir}"/>
+    <delete dir="${collaborhythm.plugins.bloodpressure.testoutput.dir}"/>
+  </target>
+</project>

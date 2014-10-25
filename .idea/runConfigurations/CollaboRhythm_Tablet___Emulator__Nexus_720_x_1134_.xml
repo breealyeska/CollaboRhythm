@@ -27,8 +27,8 @@
     <option name="overriddenOutputFileName" value="" />
     <option name="overrideMainClass" value="false" />
     <option name="runTrusted" value="true" />
-    <option name="screenDpi" value="0" />
-    <option name="screenHeight" value="1134" />
+    <option name="screenDpi" value="321" />
+    <option name="screenHeight" value="1280" />
     <option name="screenWidth" value="720" />
     <option name="url" value="http://" />
     <option name="usbDebugPort" value="7936" />

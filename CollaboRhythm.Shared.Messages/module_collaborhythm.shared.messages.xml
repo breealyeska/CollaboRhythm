@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.shared.messages" default="compile.module.collaborhythm.shared.messages">
+  <dirname property="module.collaborhythm.shared.messages.basedir" file="${ant.file.module_collaborhythm.shared.messages}"/>
+  
+  <property name="module.jdk.home.collaborhythm.shared.messages" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.collaborhythm.shared.messages" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.collaborhythm.shared.messages" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.collaborhythm.shared.messages" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.shared.messages.output.dir" value="${module.collaborhythm.shared.messages.basedir}/../out/production/CollaboRhythm.Shared.Messages"/>
+  <property name="collaborhythm.shared.messages.testoutput.dir" value="${module.collaborhythm.shared.messages.basedir}/../out/test/CollaboRhythm.Shared.Messages"/>
+  
+  <path id="collaborhythm.shared.messages.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.shared.messages.module.production.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.shared.messages}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="collaborhythm.shared.messages.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
+    <path refid="collaborhythm.shared.model.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="collaborhythm.shared.messages.module.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.shared.messages}"/>
+    <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="collaborhythm.shared.messages.runtime.module.classpath">
+    <pathelement location="${collaborhythm.shared.messages.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
+    <path refid="collaborhythm.shared.model.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.shared.messages">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.shared.messages">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.shared.messages"/>
+  </patternset>
+  
+  <path id="collaborhythm.shared.messages.module.sourcepath">
+    <dirset dir="${module.collaborhythm.shared.messages.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.shared.messages" depends="compile.module.collaborhythm.shared.messages.production,compile.module.collaborhythm.shared.messages.tests" description="Compile module CollaboRhythm.Shared.Messages"/>
+  
+  <target name="compile.module.collaborhythm.shared.messages.production" depends="register.custom.compilers,compile.module.collaborhythm.shared.model" description="Compile module CollaboRhythm.Shared.Messages; production classes">
+    <mkdir dir="${collaborhythm.shared.messages.output.dir}"/>
+    <javac2 destdir="${collaborhythm.shared.messages.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.shared.messages}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.shared.messages}"/>
+      <bootclasspath refid="collaborhythm.shared.messages.module.bootclasspath"/>
+      <classpath refid="collaborhythm.shared.messages.module.production.classpath"/>
+      <src refid="collaborhythm.shared.messages.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.shared.messages"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.shared.messages.output.dir}">
+      <fileset dir="${module.collaborhythm.shared.messages.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.shared.messages"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.shared.messages.tests" depends="register.custom.compilers,compile.module.collaborhythm.shared.messages.production" description="compile module CollaboRhythm.Shared.Messages; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.shared.messages" description="cleanup module">
+    <delete dir="${collaborhythm.shared.messages.output.dir}"/>
+    <delete dir="${collaborhythm.shared.messages.testoutput.dir}"/>
+  </target>
+</project>

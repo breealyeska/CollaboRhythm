@@ -209,8 +209,8 @@
 						<p>
 							$APPLICATION_STORAGE_DIRECTORY$ - resolves to the directory where the application stores
 							user
-							data. As an example, on Windows 7, this generally resolves to
-							C:\Users\{user}\AppData\Roaming\{CollaboRhythm_application}\Local Store
+							data. As an example, on Mac OS X, this generally resolves to
+							/Users/{user}/Library/Preferences/{CollaboRhythm_application}
 						</p>
 						<p>
 							$APPLICATION_DIRECTORY$ - resolves to the directory where the application is installed.
