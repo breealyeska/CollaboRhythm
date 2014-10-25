@@ -41,8 +41,8 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
-    <orderEntry type="library" exported="" name="FlexUnit" level="project" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
+    <orderEntry type="library" exported="" name="FlexUnit" level="project" />
   </component>
 </module>
 
