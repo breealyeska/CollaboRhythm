@@ -11,7 +11,7 @@
   <!-- Compiler options -->
   
   <property name="compiler.debug" value="on"/>
-  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.generate.no.warnings" value="on"/>
   <property name="compiler.args" value=""/>
   <property name="compiler.max.memory" value="700m"/>
   <patternset id="ignored.files">
@@ -66,6 +66,15 @@
   
   <!-- JDK definitions -->
   
+  <property name="jdk.bin.android_2.2_platform_(8)" value="${jdk.home.android_2.2_platform_(8)}/../../../System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin"/>
+  <path id="jdk.classpath.android_2.2_platform_(8)">
+    <fileset dir="${jdk.home.android_2.2_platform_(8)}">
+      <include name="platforms/android-8/android.jar"/>
+      <include name="platforms/android-8/data/res"/>
+      <include name="tools/support/annotations.jar"/>
+    </fileset>
+  </path>
+  
   <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"/>
   <path id="jdk.classpath.1.6">
     <fileset dir="${jdk.home.1.6}">
@@ -86,15 +95,6 @@
       <include name="lib/ext/localedata.jar"/>
       <include name="lib/ext/sunjce_provider.jar"/>
       <include name="lib/ext/sunpkcs11.jar"/>
-    </fileset>
-  </path>
-  
-  <property name="jdk.bin.android_2.2_platform_(8)" value="${jdk.home.android_2.2_platform_(8)}/../../../System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin"/>
-  <path id="jdk.classpath.android_2.2_platform_(8)">
-    <fileset dir="${jdk.home.android_2.2_platform_(8)}">
-      <include name="platforms/android-8/android.jar"/>
-      <include name="platforms/android-8/data/res"/>
-      <include name="tools/support/annotations.jar"/>
     </fileset>
   </path>
   
@@ -147,7 +147,10 @@
   
   <path id="library.desktop_libraries_for_mobile_applications.classpath">
     <pathelement location="${path.variable.project_frameworks}/libs/charts.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobile.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
     <pathelement location="${path.variable.project_frameworks}/libs/mx/mx.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/spark.swc"/>
     <pathelement location="${path.variable.project_frameworks}/libs/sparkskins.swc"/>
   </path>
   <!-- Register Custom Compiler Taskdefs -->

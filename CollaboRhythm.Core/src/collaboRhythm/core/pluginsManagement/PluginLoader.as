@@ -73,9 +73,9 @@ package collaboRhythm.core.pluginsManagement
 			_applicationPluginsDirectoryPath = File.applicationDirectory.resolvePath(PLUGINS_DIRECTORY_NAME).nativePath;
 			_userPluginsDirectoryPath = File.applicationStorageDirectory.resolvePath(PLUGINS_DIRECTORY_NAME).nativePath;
 
-			// Use /data/local instead of /data/data because attempting to write to /data/data fails with the error "failed to copy '<source>' to '<dest>': Permission denied"
-			// TODO: figure out how to write to the appropriate /data/data directory using "adb push" and avoid using /data/local
-			_userPluginsDirectoryPath = _userPluginsDirectoryPath.replace("/data/data", "/data/local");
+			// Use /storage/sdcard0 instead of /data/data because attempting to write to /data/data fails with the error "failed to copy '<source>' to '<dest>': Permission denied"
+			// TODO: figure out how to write to the appropriate /data/data directory using "adb push" and avoid using /storage/sdcard0
+			_userPluginsDirectoryPath = _userPluginsDirectoryPath.replace("/data/data", "/storage/sdcard0");
 		}
 		
 		public function get componentContainer():IComponentContainer

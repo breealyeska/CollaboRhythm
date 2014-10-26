@@ -11,7 +11,7 @@ package collaboRhythm.shared.pluginsDeployment
 		private static const ANDROID_CAPABILITIES_VERSION_PREFIX:String = "AND";
 		private static const COLLABO_RHYTHM_TABLET_DATA_DIRECTORY_NAME:String = "CollaboRhythm.Tablet.debug";
 		private static const EXTERNAL_PLUGINS_DIRECTORY_NAME:String = "external_plugins";
-		private static const collaboRhythmLocalStorePath:String = "/data/local/air.CollaboRhythm.Tablet.debug/CollaboRhythm.Tablet.debug/Local Store";
+		private static const collaboRhythmLocalStorePath:String = "/storage/sdcard0/air.CollaboRhythm.Tablet.debug/CollaboRhythm.Tablet.debug/Local Store";
 		private static const collaboRhythmLocalStorePathEmulator:String = "CollaboRhythm.Tablet.debug/Local Store";
 
 		public function PluginsDeployUtil()

@@ -45,7 +45,7 @@
 	-->
 	
 	<property environment="env"/>
-	<property name="app.data" location="${user.home}/AppData/Roaming" />
+	<property name="app.data" location="${user.home}/Library/Application Support" />
 
 <!--
 	<propertyfile
@@ -55,7 +55,7 @@
 		<entry key="sdk.dir" default="/Applications/Android Studio.app/sdk" />
 		<entry key="collaboRhythm.workstation.pluginsPath" default="${app.data}/CollaboRhythm.Workstation/Local Store/plugins" />
 		<entry key="collaboRhythm.mobile-emulator.pluginsPath" default="${app.data}/CollaboRhythm.Mobile.debug/Local Store/plugins" />
-		<entry key="collaboRhythm.mobile-device.pluginsPath" default="/data/local/air.CollaboRhythm.Mobile.debug/CollaboRhythm.Mobile.debug/Local Store/plugins" />
+		<entry key="collaboRhythm.mobile-device.pluginsPath" default="/storage/sdcard0/CollaboRhythm.Mobile.debug/Local Store/plugins" />
 	</propertyfile>
 -->
 

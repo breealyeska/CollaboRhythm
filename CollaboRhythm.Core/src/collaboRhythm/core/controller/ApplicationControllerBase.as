@@ -451,9 +451,9 @@ package collaboRhythm.core.controller
 				// The log file will be placed under applicationStorageDirectory folder
 				var oldPath:String = File.applicationStorageDirectory.resolvePath("collaboRhythm.log").nativePath;
 
-				// Use /data/local instead of /data/data because attempting to read the log from /data/data (on a non-rooted Android device) is problematic
-				// TODO: figure out how to access the appropriate /data/data directory using "adb pull" and avoid using /data/local
-//				var path:String = oldPath.replace("/data/data", "/data/local");
+				// Use /storage/sdcard0 instead of /data/data because attempting to read the log from /data/data (on a non-rooted Android device) is problematic
+				// TODO: figure out how to access the appropriate /data/data directory using "adb pull" and avoid using /storage/sdcard0
+//				var path:String = oldPath.replace("/data/data", "/storage/sdcard0");
 				var path:String = oldPath;
 				if (path.indexOf("/data/data") == 0)
 				{

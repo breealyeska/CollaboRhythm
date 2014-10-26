@@ -23,8 +23,8 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-::"%AndroidADBFolder%"\adb push %SettingsFile% "/data/local/air.CollaboRhythm.Tablet.debug/CollaboRhythm.Tablet.debug/Local Store/settings.xml"
-"%AndroidADBFolder%"\adb push plugins "/data/local/air.CollaboRhythm.Tablet.debug/CollaboRhythm.Tablet.debug/Local Store/plugins"
+::"%AndroidADBFolder%"\adb push %SettingsFile% "/storage/sdcard0/air.CollaboRhythm.Tablet.debug/CollaboRhythm.Tablet.debug/Local Store/settings.xml"
+"%AndroidADBFolder%"\adb push plugins "/storage/sdcard0/air.CollaboRhythm.Tablet.debug/CollaboRhythm.Tablet.debug/Local Store/plugins"
 
 "%AndroidADBFolder%"\adb -d uninstall air.CollaboRhythm.Tablet.debug
 "%AndroidADBFolder%"\adb -d install -r %CollaboRhythmTabletApk%
