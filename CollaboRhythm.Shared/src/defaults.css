@@ -16,6 +16,8 @@
  */
 
 @namespace "collaboRhythm.shared.view.*";
+@namespace fx "http://ns.adobe.com/mxml/2009";
+@namespace mx "library://ns.adobe.com/flex/mx";
 @namespace s "library://ns.adobe.com/flex/spark";
 
 IconButton

@@ -5,7 +5,7 @@
     <option name="adlOptions" value="" />
     <option name="airProgramParameters" value="" />
     <option name="appDescriptorForEmulator" value="Android" />
-    <option name="debugTransport" value="USB" />
+    <option name="debugTransport" value="Network" />
     <option name="debuggerSdkRaw" value="BC SDK" />
     <option name="emulator" value="SamsungGalaxyTab" />
     <option name="emulatorAdlOptions" value="" />
@@ -31,7 +31,7 @@
     <option name="screenHeight" value="0" />
     <option name="screenWidth" value="0" />
     <option name="url" value="http://" />
-    <option name="usbDebugPort" value="7936" />
+    <option name="usbDebugPort" value="5037" />
     <RunnerSettings RunnerId="FlexDebugRunner" />
     <RunnerSettings RunnerId="FlexRunner" />
     <ConfigurationWrapper RunnerId="FlexDebugRunner" />

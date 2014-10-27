@@ -56,7 +56,7 @@
 		<pluginSearchPath>$APPLICATION_DIRECTORY$/plugins</pluginSearchPath>
 	</pluginSearchPaths>
 	<demoModeEnabled>false</demoModeEnabled>
-	<debuggingToolsEnabled>false</debuggingToolsEnabled>
+	<debuggingToolsEnabled>true</debuggingToolsEnabled>
 	<adherenceVoidingEnabled>false</adherenceVoidingEnabled>
 	<includeAdherenceVoidingMenuItem>false</includeAdherenceVoidingMenuItem>
 	<deviceSimulatorEnabled>false</deviceSimulatorEnabled>

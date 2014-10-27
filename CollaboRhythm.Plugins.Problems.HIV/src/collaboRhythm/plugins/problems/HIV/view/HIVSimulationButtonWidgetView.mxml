@@ -35,9 +35,11 @@
 
 		import spark.primitives.Graphic;
 
+		[Bindable]
 		[Embed(source="/assets/images/tcell.png")]
 		public var tCellImageClass:Class;
 
+		[Bindable]
 		[Embed(source="/assets/images/hiv.png")]
 		public var virusImageClass:Class;
 

@@ -77,6 +77,7 @@
 
 		private var _animationTimer:Timer;
 
+		[Bindable]
 		[Embed(source="/assets/images/tcell.png")]
 		public var tCellImageClass:Class;
 		private var _hivSimulationView:HIVSimulationView;
@@ -203,7 +204,6 @@
 		{
 			var medicationGraphic:Graphic = new Graphic();
 			tCellGroup.addElement(medicationGraphic);
-
 
 //			var medName:String = "med" + medicationNumber.toString() + "_mc";
 //			var medication:MovieClip = this.tcell_mc.createEmptyMovieClip(medName, this.tcell_mc.getNextHighestDepth());

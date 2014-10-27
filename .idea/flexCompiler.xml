@@ -5,7 +5,9 @@
     <option name="VM_OPTIONS" value="-Xms512m -Xmx1024m" />
   </component>
   <component name="FlexIdeProjectLevelCompilerOptionsHolder">
-    <compiler-options />
+    <compiler-options>
+      <option name="additionalOptions" value="-keep-as3-metadata=Bindable -keep-as3-metadata=Managed -keep-as3-metadata=ChangeEvent -keep-as3-metadata=NonCommittingChangeEvent -keep-as3-metadata=Transient -warn-duplicate-variable-def=false -warn-missing-namespace-decl=false -warn-no-type-decl=false" />
+    </compiler-options>
   </component>
 </project>
 

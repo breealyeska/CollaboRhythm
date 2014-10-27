@@ -8,8 +8,10 @@ set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 :: Android default path used to include the word "windows", so you might need this depending on the version you have
 ::set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 ::set SettingsFile=my_settings_debug.xml
-set SettingsFile=/Users/breezy/Library/Application Support/CollaboRhythm.Tablet.debug/Local Store/settings.xml
-set CollaboRhythmTabletApk=bin-debug/CollaboRhythm.Tablet.Release.apk
+::Adjust path as necessary for local vs device installation
+set SettingsFile="/Users/breezy/Library/Application Support/CollaboRhythm.Tablet.debug/settings.xml"
+set PluginsDir="/Users/breezy/Library/Application Support/CollaboRhythm.Tablet.debug/Local Store/plugins"
+set CollaboRhythmTabletApk="bin-debug/CollaboRhythm.Tablet.apk"
 
 :: ***************************************************************************************
 
@@ -23,12 +25,12 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-"%AndroidADBFolder%"/adb push "%SettingsFile%" "/Users/breezy/Library/Application Support/CollaboRhythm.Tablet.debug/Local Store/settings.xml"
-::"%AndroidADBFolder%"/adb push plugins "/Users/breezy/Library/Application Support/CollaboRhythm.Tablet.debug/Local Store/plugins"
+adb push %SettingsFile% "/storage/sdcard0/CollaboRhythm.Tablet.debug/settings.xml"
+adb push "/Users/breezy/Library/Application Support/CollaboRhythm.Tablet.debug/Local Store/plugins" "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store"
 
-"%AndroidADBFolder%"/adb -d uninstall air.CollaboRhythm.Tablet.debug
-"%AndroidADBFolder%"/adb -d install -r %CollaboRhythmTabletApk%
-"%AndroidADBFolder%"/adb shell am start -a android.intent.action.MAIN -n air.CollaboRhythm.Tablet.debug/.AppEntry
+::adb -d uninstall CollaboRhythm.Tablet.debug
+adb -d install -r %CollaboRhythmTabletApk%
+adb shell am start -a android.intent.action.MAIN -n CollaboRhythm.Tablet.debug/.AppEntry
 
 ::"%AndroidADBFolder%"/adb -d uninstall collaboRhythm.android.deviceGateway
 ::"%AndroidADBFolder%"/adb -d install -r CollaboRhythm.Android.DeviceGateway.apk

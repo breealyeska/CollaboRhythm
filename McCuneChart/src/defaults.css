@@ -92,7 +92,7 @@ ScrubChart, TouchScrollingScrubChart
     cornerRadius: 5px;
 }
 
-controls|ScrubChart, controls|TouchScrollingMcCuneChart, .scrubChartSkinStyle
+/*controls|ScrubChart, controls|TouchScrollingMcCuneChart, .scrubChartSkinStyle
 {
     skin-class: ClassReference("com.dougmccune.controls.ScrubChartSkin");
     rangeChartVisible: true;
@@ -100,7 +100,7 @@ controls|ScrubChart, controls|TouchScrollingMcCuneChart, .scrubChartSkinStyle
     topBorderVisible: true;
     headerVisible: true;
     footerVisible: true;
-}
+}*/
 
 @namespace "mx.charts.chartClasses.*";
 

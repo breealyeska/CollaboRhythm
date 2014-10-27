@@ -21,7 +21,7 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-"%AndroidADBFolder%"\adb pull "/storage/sdcard0/air.CollaboRhythm.Tablet.debug/CollaboRhythm.Tablet.debug/Local Store/settings.xml" "%SettingsFile%"
+"%AndroidADBFolder%"\adb pull "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/settings.xml" "%SettingsFile%"
 				  
 echo.
 echo Copy complete for %SettingsFile%

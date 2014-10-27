@@ -3,6 +3,7 @@ package collaboRhythm.plugins.problems.HIV.model
 	import collaboRhythm.shared.model.healthRecord.util.MedicationName;
 	import collaboRhythm.shared.model.healthRecord.util.MedicationNameUtil;
 
+	[Bindable]
 	public class HIVMedicationChoice
 	{
 		private var _ndc:String;

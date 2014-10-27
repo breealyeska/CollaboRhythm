@@ -31,7 +31,7 @@
     <option name="screenHeight" value="0" />
     <option name="screenWidth" value="0" />
     <option name="url" value="http://" />
-    <option name="usbDebugPort" value="7936" />
+    <option name="usbDebugPort" value="5037" />
     <RunnerSettings RunnerId="FlexDebugRunner" />
     <RunnerSettings RunnerId="FlexRunner" />
     <ConfigurationWrapper RunnerId="FlexDebugRunner" />

@@ -27,7 +27,7 @@ echo.
 "%AndroidADBFolder%"/adb shell rm "/Users/breezy/Library/Application Support/CollaboRhythm.Tablet.debug/Local Store/plugins/*"
 "%AndroidADBFolder%"/adb shell rmdir "/Users/breezy/Library/Application Support/CollaboRhythm.Tablet.debug/Local Store/plugins"
 
-"%AndroidADBFolder%"/adb -d uninstall air.CollaboRhythm.Tablet.debug
+"%AndroidADBFolder%"/adb -d uninstall CollaboRhythm.Tablet.debug
 
 echo.
 echo Remove complete for %CollaboRhythmTabletApk%

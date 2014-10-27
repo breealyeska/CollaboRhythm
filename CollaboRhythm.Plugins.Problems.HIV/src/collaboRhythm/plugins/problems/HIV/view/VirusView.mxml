@@ -20,6 +20,7 @@
 	<fx:Script><![CDATA[
 		import spark.effects.Move;
 
+		[Bindable]
 		[Embed(source="/assets/images/hiv.png")]
 		public var virusImageClass:Class;
 

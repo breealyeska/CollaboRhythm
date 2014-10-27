@@ -106,7 +106,7 @@
 		<aspectRatio>landscape</aspectRatio>
 
 		<!-- Whether the app will begin auto-orienting on launch. Optional. Mobile only. Default false -->
-		<autoOrients>false</autoOrients>
+		<autoOrients>true</autoOrients>
 
 		<!-- Whether the app launches in full screen. Optional. Mobile only. Default false -->
 		<!-- <fullScreen></fullScreen> -->
@@ -237,6 +237,7 @@
 
 		<!-- See the Adobe AIR documentation for more information about setting Google Android permissions -->
 
+		<uses-permission android:name="android.permission.SET_DEBUG_APP"/>
 		<uses-permission android:name="android.permission.INTERNET"/>
 		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 		<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -248,7 +249,7 @@
 		<uses-feature android:name="android.hardware.camera"/>
 		<uses-feature android:name="android.hardware.camera.autofocus"/>
 		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
-		<application android:enabled="true">
+		<application android:enabled="true" android:process="CollaboRhythm.Tablet.debug" android:debuggable="true">
 			<activity android:excludeFromRecents="false">
 				<intent-filter>
 					<action android:name="android.intent.action.MAIN"/>
