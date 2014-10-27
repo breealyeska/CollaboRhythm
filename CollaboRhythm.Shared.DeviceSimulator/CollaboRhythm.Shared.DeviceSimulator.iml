@@ -9,7 +9,7 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="mobile" library-level="project">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />

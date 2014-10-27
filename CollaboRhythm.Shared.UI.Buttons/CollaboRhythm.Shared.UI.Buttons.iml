@@ -6,7 +6,7 @@
         <dependencies>
           <entries>
             <entry library-name="mobile" library-level="project">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />

@@ -49,7 +49,9 @@
 		[Embed('/assets/images160dpi/btn_check_off_holo_dark.png')]
 		private static var checkOffIcon160:Class;
 
+		[Bindable]
 		public static var checkOnIcon:Class;
+		[Bindable]
 		public static var checkOffIcon:Class;
 
 		private function reloadPluginsViewMenuItem_clickHandler():void

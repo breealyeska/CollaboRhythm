@@ -30,7 +30,7 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="mobile" library-level="project">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry module-name="CollaboRhythm.Shared.UI.Buttons" build-configuration-name="CollaboRhythm.Shared.UI.Buttons">
               <dependency linkage="Merged" />

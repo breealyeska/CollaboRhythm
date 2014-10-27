@@ -58,6 +58,7 @@
 		private var _messagesModel:MessagesModel;
 		private var _messagesAppController:MessagesAppController;
 		private var _videoAttachmentLocation:String;
+		[Bindable]
 		private var _collaborationLobbyNetConnectionServiceProxy:CollaborationLobbyNetConnectionServiceProxy;
 
 		override public function set data(value:Object):void

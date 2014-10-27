@@ -9,10 +9,10 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-id="3c41bb30-bf44-4a19-b27d-2cd4e6952c6f">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry library-id="8bd2fc0d-de85-45d1-8c31-34649ff4cde1">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry library-id="70800341-f3cf-4f53-80ff-408bfee75114">
               <dependency linkage="Merged" />

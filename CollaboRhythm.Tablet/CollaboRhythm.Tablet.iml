@@ -21,7 +21,7 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry library-id="73cf38ed-5aae-4e11-bfce-467f52c03bdc">
               <dependency linkage="Merged" />
@@ -75,7 +75,7 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry library-id="73cf38ed-5aae-4e11-bfce-467f52c03bdc">
               <dependency linkage="Merged" />

@@ -115,7 +115,7 @@ package collaboRhythm.simulation.view.buttons
 		[SkinPart(required="false")]
 		public var leftGroup:Group;
 
-		[SkinPart(required="false")]
+		[SkinPart(required="false")] [Bindable]
 		public var subtitleDisplay:IDisplayText;
 
 		//----------------------------------

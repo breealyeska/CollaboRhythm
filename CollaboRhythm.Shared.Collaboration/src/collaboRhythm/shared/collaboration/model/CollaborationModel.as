@@ -234,7 +234,7 @@ package collaboRhythm.shared.collaboration.model
 			{
 				collaborationState = COLLABORATION_OUT_OF_SYNC;
 			}
-			else if (_settings.mode = Settings.MODE_CLINICIAN)
+			else if (_settings.mode == Settings.MODE_CLINICIAN)
 			{
 				if (activeRecordAccount && subjectAccountId == activeRecordAccount.accountId)
 				{

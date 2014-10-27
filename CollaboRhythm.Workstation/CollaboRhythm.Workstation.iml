@@ -15,7 +15,7 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-id="41526a6e-13d4-4fd6-9a41-98276b6a4f07">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
               <dependency linkage="Merged" />

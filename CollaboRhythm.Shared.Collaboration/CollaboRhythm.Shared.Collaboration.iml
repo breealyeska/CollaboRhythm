@@ -6,10 +6,10 @@
         <dependencies>
           <entries>
             <entry library-id="6c2b03d4-29d7-4a6e-b895-f1356532eded">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry library-id="26d3ed18-c40e-427d-9606-6c2a12c3741a">
-              <dependency linkage="Merged" />
+              <dependency linkage="External" />
             </entry>
             <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
               <dependency linkage="Merged" />
