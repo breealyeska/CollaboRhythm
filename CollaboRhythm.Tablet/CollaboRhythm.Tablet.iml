@@ -56,6 +56,60 @@
         </packaging-android>
         <packaging-ios package-file-name="CollaboRhythm_Tablet" />
       </configuration>
+      <configuration name="CollaboRhythm.Tablet. Device Debug" target-platform="Mobile" main-class="CollaboRhythmTabletApplication" output-file="CollaboRhythm.Tablet.Device.debug.swf" output-folder="$MODULE_DIR$/bin-debug">
+        <dependencies>
+          <entries>
+            <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Core" build-configuration-name="CollaboRhythm.Core">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="73cf38ed-5aae-4e11-bfce-467f52c03bdc">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="092dc380-9bdb-417d-9fd6-2c5466a86dfb">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="4.6.0" />
+        </dependencies>
+        <compiler-options>
+          <map>
+            <entry key="compiler.keep-as3-metadata" value="" />
+            <entry key="compiler.keep-generated-actionscript" value="false" />
+          </map>
+        </compiler-options>
+        <packaging-air-desktop />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/CollaboRhythmTabletApplication-DebugDevice-app.xml" package-file-name="CollaboRhythm.Tablet.Device.debug">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.HealthCharts/bin-debug/HealthChartsPluginModule.swf" path-in-package="plugins/HealthChartsPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Equipment/bin-debug/EquipmentPluginModule.swf" path-in-package="plugins/EquipmentPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
+          </files-to-package>
+          <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" use-temp-certificate="false" />
+        </packaging-android>
+        <packaging-ios package-file-name="CollaboRhythm_Tablet" />
+      </configuration>
       <configuration name="CollaboRhythm.Tablet Release" target-platform="Mobile" main-class="CollaboRhythmTabletApplication" output-file="CollaboRhythm.Tablet.Release.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies>
           <entries>
@@ -143,9 +197,13 @@
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.keep-generated-actionscript" value="true" />
+          </map>
+        </compiler-options>
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/CollaboRhythmTabletApplication-Debug-app.xml" package-file-name="CollaboRhythm.Tablet.Emulator">
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/CollaboRhythmTabletApplication-Emulator-app.xml" package-file-name="CollaboRhythm.Tablet.Emulator">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
           </files-to-package>

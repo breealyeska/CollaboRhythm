@@ -31,7 +31,7 @@
 
 	<!-- A universally unique application identifier. Must be unique across all AIR applications.
 	Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-	<id>CollaboRhythm.Tablet.debug</id>
+	<id>CollaboRhythm.Tablet.release</id>
 
 	<!-- Used as the filename for the application. Required. -->
 	<filename>CollaboRhythm.Tablet</filename>
@@ -43,7 +43,7 @@
 	<!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade. 
 	Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
 	An updated version of application must have a versionNumber value higher than the previous version. Required for namespace >= 2.5 . -->
-	<versionNumber>0.8.0</versionNumber>
+	<versionNumber>0.9.0</versionNumber>
 
 	<!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
 	<!-- <versionLabel></versionLabel> -->
@@ -53,7 +53,7 @@
 	<!-- <description></description> -->
 
 	<!-- Copyright information. Optional -->
-	<copyright>Copyright 2012 John Moore, Scott Gilroy</copyright>
+	<copyright>Copyright 2014 John Moore, Scott Gilroy, Bree Alyeska</copyright>
 
 	<!-- Publisher ID. Used if you're updating an application created prior to 1.5.3 -->
 	<!-- <publisherID></publisherID> -->
@@ -232,12 +232,9 @@
 
 	<android>
 		<manifestAdditions><![CDATA[
-
+			
 	<manifest>
-
 		<!-- See the Adobe AIR documentation for more information about setting Google Android permissions -->
-
-		<uses-permission android:name="android.permission.SET_DEBUG_APP"/>
 		<uses-permission android:name="android.permission.INTERNET"/>
 		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 		<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -249,7 +246,7 @@
 		<uses-feature android:name="android.hardware.camera"/>
 		<uses-feature android:name="android.hardware.camera.autofocus"/>
 		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
-		<application android:enabled="true" android:process="CollaboRhythm.Tablet.debug" android:debuggable="true">
+		<application android:enabled="true" android:process="CollaboRhythm.Tablet.release">
 			<activity android:excludeFromRecents="false">
 				<intent-filter>
 					<action android:name="android.intent.action.MAIN"/>
