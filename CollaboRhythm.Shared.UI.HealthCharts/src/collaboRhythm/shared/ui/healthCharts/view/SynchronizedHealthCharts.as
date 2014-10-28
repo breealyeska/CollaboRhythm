@@ -875,7 +875,7 @@ package collaboRhythm.shared.ui.healthCharts.view
 		private function addListenerForCollectionChange(sourceDataCollection:ArrayCollection, chartDescriptor:IChartDescriptor):void
 		{
 			var previousListener:Function  = _collectionEventListeners[sourceDataCollection];
-			if (previousListener)
+			if (previousListener())
 				sourceDataCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE, previousListener);
 
 			// we need to declare the function inline so that we can reference the chartDescriptor

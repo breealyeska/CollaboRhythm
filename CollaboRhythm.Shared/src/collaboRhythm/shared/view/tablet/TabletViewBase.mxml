@@ -26,6 +26,7 @@
 
 		[Bindable]
 		private var _isControllerReady:Boolean;
+		[Bindable]
 		protected var _activeAccount:Account;
 		[Bindable]
 		protected var _activeRecordAccount:Account;
