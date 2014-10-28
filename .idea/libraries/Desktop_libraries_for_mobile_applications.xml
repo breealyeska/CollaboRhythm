@@ -5,6 +5,8 @@
       <root url="jar://$PROJECT_FRAMEWORKS$/libs/charts.swc!/" />
       <root url="jar://$PROJECT_FRAMEWORKS$/libs/sparkskins.swc!/" />
       <root url="jar://$PROJECT_FRAMEWORKS$/libs/advancedgrids.swc!/" />
+      <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
+      <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

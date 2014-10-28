@@ -32,6 +32,7 @@
 		[Bindable]
 		private var _hivMedicationChoice:HIVMedicationChoice;
 
+		[Bindable]
 		private var _imageCacheService:IImageCacheService;
 
 		override public function set data(value:Object):void

@@ -31,10 +31,10 @@
 
 	<!-- A universally unique application identifier. Must be unique across all AIR applications.
 	Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-	<id>CollaboRhythm.Tablet.debug</id>
+	<id>CollaboRhythm.Tablet.Debug</id>
 
 	<!-- Used as the filename for the application. Required. -->
-	<filename>CollaboRhythm.Tablet.Device.debug</filename>
+	<filename>CollaboRhythm.Tablet.Debug</filename>
 
 	<!-- The name that is displayed in the AIR application installer. 
 	May have multiple values for each language. See samples or xsd schema file. Optional. -->
@@ -61,7 +61,7 @@
 	<!-- Settings for the application's initial window. Required. -->
 	<initialWindow>
 		<!-- The main SWF or HTML file of the application. Required. -->
-		<content>CollaboRhythm.Tablet.Device.debug.swc</content>
+		<content>CollaboRhythmTabletApplicationDebug.swc</content>
 		
 		<!-- The title of the main window. Optional. -->
 		<title>CollaboRhythm</title>

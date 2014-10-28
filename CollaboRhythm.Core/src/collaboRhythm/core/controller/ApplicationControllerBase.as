@@ -1502,7 +1502,7 @@ package collaboRhythm.core.controller
 				_aboutApplicationView.visible = true;
 		}
 
-		[Bindable]
+
 		public function get fastForwardEnabled():Boolean
 		{
 			var fastForwardEnabled:Boolean;
@@ -1524,7 +1524,7 @@ package collaboRhythm.core.controller
 			}
 		}
 
-		[Bindable]
+
 		public function get backgroundProcessModel():BackgroundProcessCollectionModel
 		{
 			return _backgroundProcessModel;

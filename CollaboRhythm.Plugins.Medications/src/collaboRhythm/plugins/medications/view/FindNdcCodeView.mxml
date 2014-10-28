@@ -36,6 +36,7 @@
 
 		import spark.events.IndexChangeEvent;
 
+		[Bindable]
 		private var _rxNormConcept:RxNormConcept;
 		[Bindable]
 		private var _medicationHealthActionCreationModel:MedicationHealthActionCreationModel;
