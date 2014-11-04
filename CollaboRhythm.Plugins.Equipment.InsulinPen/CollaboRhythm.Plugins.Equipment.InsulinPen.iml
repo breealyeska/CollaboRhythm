@@ -8,12 +8,6 @@
             <entry library-id="023a734c-5f98-441f-bd2e-3c0a4dc22110">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="de46ca86-8178-4fc4-b94b-06f5f8095d61">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="7178f426-4a5c-41f4-af27-499396e3cc77">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
@@ -25,6 +19,9 @@
             </entry>
             <entry module-name="CollaboRhythm.Plugins.Schedule.Shared" build-configuration-name="CollaboRhythm.Plugins.Schedule.Shared">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -58,28 +55,9 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Plugins.Schedule.Shared" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="de46ca86-8178-4fc4-b94b-06f5f8095d61" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="7178f426-4a5c-41f4-af27-499396e3cc77" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

@@ -8,12 +8,6 @@
             <entry library-id="e92be9bf-dbef-4acc-9947-ad30e7b7df54">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="c003b210-412d-485d-ae7a-99c0baa301af">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="b45c3e8f-3c83-45a8-93ce-779cbae552e0">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
@@ -25,6 +19,9 @@
             </entry>
             <entry module-name="CollaboRhythm.Plugins.Schedule.Shared" build-configuration-name="CollaboRhythm.Plugins.Schedule.Shared">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -60,28 +57,9 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="c003b210-412d-485d-ae7a-99c0baa301af" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="b45c3e8f-3c83-45a8-93ce-779cbae552e0" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

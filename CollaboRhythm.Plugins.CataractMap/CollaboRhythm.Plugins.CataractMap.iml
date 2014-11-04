@@ -29,6 +29,9 @@
             <entry module-name="McCuneChart" build-configuration-name="McCuneChart">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -69,6 +72,7 @@
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

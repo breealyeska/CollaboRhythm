@@ -17,6 +17,9 @@
             <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -62,6 +65,7 @@
       </library>
     </orderEntry>
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

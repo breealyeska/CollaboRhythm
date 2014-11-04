@@ -8,12 +8,6 @@
             <entry library-id="9018afeb-b6ad-4a57-bf65-46048f7a1eab">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="865369ba-4653-4433-b4b9-953edf610ae0">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="9c7217cb-4635-443f-8b5a-b38468e11293">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
@@ -31,6 +25,9 @@
             </entry>
             <entry module-name="CollaboRhythm.Shared.UI.Buttons" build-configuration-name="CollaboRhythm.Shared.UI.Buttons">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -66,30 +63,11 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Plugins.Schedule.Shared" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="865369ba-4653-4433-b4b9-953edf610ae0" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="9c7217cb-4635-443f-8b5a-b38468e11293" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.UI.Buttons" exported="" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

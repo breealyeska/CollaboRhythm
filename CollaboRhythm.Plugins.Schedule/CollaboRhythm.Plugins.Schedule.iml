@@ -11,12 +11,6 @@
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="820dc2c8-fdd6-46c2-9ec6-cf4fa252df61">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="43e15f27-8048-4e6c-8202-3814af62247d">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
               <dependency linkage="Merged" />
             </entry>
@@ -37,6 +31,9 @@
             </entry>
             <entry module-name="CollaboRhythm.Shared.Model.Medications" build-configuration-name="CollaboRhythm.Shared.Model.Medications">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -75,30 +72,11 @@
     </orderEntry>
     <orderEntry type="module" module-name="McCuneChart" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="820dc2c8-fdd6-46c2-9ec6-cf4fa252df61" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="43e15f27-8048-4e6c-8202-3814af62247d" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Medications" exported="" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

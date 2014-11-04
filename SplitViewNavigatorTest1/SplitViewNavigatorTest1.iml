@@ -4,9 +4,21 @@
     <configurations>
       <configuration name="SplitViewNavigatorTest1" target-platform="Mobile" main-class="SplitViewNavigatorTest1" output-file="SplitViewNavigatorTest1.swf" output-folder="$MODULE_DIR$/../out/production/SplitViewNavigatorTest1">
         <dependencies>
+          <entries>
+            <entry library-id="73afac54-09c1-4187-994f-91a4501a476a">
+              <dependency linkage="External" />
+            </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
+          </entries>
           <sdk name="4.6.0" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
+          </map>
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android enabled="true" package-file-name="SplitViewNavigatorTest1" />
         <packaging-ios package-file-name="SplitViewNavigatorTest1" />
@@ -21,6 +33,17 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="73afac54-09c1-4187-994f-91a4501a476a" />
+        <CLASSES>
+          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

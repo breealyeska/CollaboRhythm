@@ -210,7 +210,8 @@
 							$APPLICATION_STORAGE_DIRECTORY$ - resolves to the directory where the application stores
 							user
 							data. As an example, on Mac OS X, this generally resolves to
-							/Users/{user}/Library/Preferences/{CollaboRhythm_application}
+							/Users/{user}/Library/Preferences/{CollaboRhythm_application} or
+							/Users/{user}/Library/Application Support/{CollaboRhythm_application}
 						</p>
 						<p>
 							$APPLICATION_DIRECTORY$ - resolves to the directory where the application is installed.

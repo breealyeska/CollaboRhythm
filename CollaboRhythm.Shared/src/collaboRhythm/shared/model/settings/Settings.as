@@ -100,7 +100,7 @@ package collaboRhythm.shared.model.settings
 		}
 
 		public function set logSourceIdentifier(value:String):void
-		{
+  		{
 			_logSourceIdentifier = value;
 		}
 

@@ -23,8 +23,8 @@
   
   <path id="mccunechart.runtime.production.module.classpath">
     <pathelement location="${mccunechart.output.dir}"/>
-    <path refid="collaborhythm.view.scroll.runtime.production.module.classpath"/>
-    <path refid="chartbackgroundslib.runtime.production.module.classpath"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
   </path>
   
   <path id="mccunechart.module.classpath">
@@ -36,8 +36,8 @@
   
   <path id="mccunechart.runtime.module.classpath">
     <pathelement location="${mccunechart.output.dir}"/>
-    <path refid="collaborhythm.view.scroll.runtime.module.classpath"/>
-    <path refid="chartbackgroundslib.runtime.module.classpath"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
   </path>
   
   

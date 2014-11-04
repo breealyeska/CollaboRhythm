@@ -8,12 +8,6 @@
             <entry library-id="cb855614-0520-4356-b496-33f89aad7f96">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="3d66619a-9439-46c4-a956-5a0a52cdb887">
-              <dependency linkage="External" />
-            </entry>
-            <entry library-id="ba20774e-2b7d-4a35-94bd-a45af24e4cca">
-              <dependency linkage="External" />
-            </entry>
             <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
               <dependency linkage="Merged" />
             </entry>
@@ -40,6 +34,9 @@
             </entry>
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -78,26 +75,6 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.View.Scroll" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.PluginsSupport" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="3d66619a-9439-46c4-a956-5a0a52cdb887" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="ba20774e-2b7d-4a35-94bd-a45af24e4cca" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Core.Model" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
@@ -113,6 +90,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

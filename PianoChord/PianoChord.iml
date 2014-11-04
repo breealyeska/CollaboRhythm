@@ -11,10 +11,16 @@
             <entry module-name="indivo_client_flash" build-configuration-name="indivo_client_flash">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
         <compiler-options>
+          <map>
+            <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
+          </map>
           <option name="additionalOptions" value="-locale en_US" />
         </compiler-options>
         <packaging-air-desktop package-file-name="PianoChord" />
@@ -45,6 +51,7 @@
       </library>
     </orderEntry>
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

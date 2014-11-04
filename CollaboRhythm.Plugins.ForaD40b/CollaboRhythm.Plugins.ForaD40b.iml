@@ -8,12 +8,6 @@
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="91353508-de89-487f-b61e-f23991ff7852">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="e97385d4-3001-4818-af24-4b146061024f">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-id="58a43f90-8ca1-41c2-b8f3-12456e80afd3">
               <dependency linkage="Merged" />
             </entry>
@@ -41,10 +35,18 @@
             <entry library-name="Castle.FlexBridge.Flash" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
+          </map>
+          <option name="additionalOptions" value="-locale en_US" />
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
@@ -64,26 +66,6 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared.PluginsSupport" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Plugins.Schedule.Shared" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="91353508-de89-487f-b61e-f23991ff7852" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="e97385d4-3001-4818-af24-4b146061024f" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module-library" exported="">
       <library name="libs" type="flex">
         <properties id="58a43f90-8ca1-41c2-b8f3-12456e80afd3" />
@@ -113,6 +95,7 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared.UI.Buttons" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
     <orderEntry type="library" exported="" name="Castle.FlexBridge.Flash" level="project" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

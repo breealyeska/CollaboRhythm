@@ -5,9 +5,6 @@
       <configuration name="CollaboRhythm.Plugins.PhysicalTherapy" target-platform="Desktop" output-type="RuntimeLoadedModule" main-class="collaboRhythm.plugins.physicalTherapy.controller.PhysicalTherapyPluginModule" output-file="PhysicalTherapy.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies target-player="11.1">
           <entries>
-            <entry library-name="mobile" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
@@ -31,6 +28,9 @@
             </entry>
             <entry library-id="9b368854-51e9-4cc8-aa8d-173b9ca376cb">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -69,6 +69,7 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

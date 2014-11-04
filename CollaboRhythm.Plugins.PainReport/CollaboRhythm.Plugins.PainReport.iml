@@ -8,12 +8,6 @@
             <entry library-id="b2c65a6d-2835-4c3b-a972-6761dda2b592">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="32161172-3d3d-4e20-a233-7f67f5d3ab97">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="5626c157-9070-402c-9e4c-a1e8610f9e27">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
               <dependency linkage="Merged" />
             </entry>
@@ -22,6 +16,9 @@
             </entry>
             <entry module-name="CollaboRhythm.Plugins.Schedule.Shared" build-configuration-name="CollaboRhythm.Plugins.Schedule.Shared">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -57,27 +54,8 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Plugins.Schedule.Shared" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="32161172-3d3d-4e20-a233-7f67f5d3ab97" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="5626c157-9070-402c-9e4c-a1e8610f9e27" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

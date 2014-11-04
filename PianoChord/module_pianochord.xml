@@ -28,7 +28,10 @@
   
   <path id="pianochord.runtime.production.module.classpath">
     <pathelement location="${pianochord.output.dir}"/>
-    <path refid="indivo_client_flash.runtime.production.module.classpath"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
     <fileset dir="${basedir}/PianoChord/libs">
       <patternset refid="library.patterns"/>
     </fileset>
@@ -48,7 +51,10 @@
   
   <path id="pianochord.runtime.module.classpath">
     <pathelement location="${pianochord.output.dir}"/>
-    <path refid="indivo_client_flash.runtime.module.classpath"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
     <fileset dir="${basedir}/PianoChord/libs">
       <patternset refid="library.patterns"/>
     </fileset>

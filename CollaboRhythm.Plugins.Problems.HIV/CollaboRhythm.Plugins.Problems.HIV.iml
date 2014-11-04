@@ -17,12 +17,6 @@
             <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="601f18fd-9efa-4e8c-ab3a-412cdfea16c8">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-id="732b812b-5b14-497e-929b-8a3ffa5c8676">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
@@ -41,10 +35,18 @@
             <entry module-name="ChartBackgroundsLib" build-configuration-name="ChartBackgroundsLib">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
+          </map>
+          <option name="additionalOptions" value="-locale en_US" />
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
@@ -73,32 +75,13 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared.PluginsSupport" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="601f18fd-9efa-4e8c-ab3a-412cdfea16c8" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="732b812b-5b14-497e-929b-8a3ffa5c8676" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Plugins.Schedule.Shared" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.UI.HealthCharts" exported="" />
     <orderEntry type="module" module-name="McCuneChart" exported="" />
     <orderEntry type="module" module-name="ChartBackgroundsLib" exported="" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

@@ -31,7 +31,6 @@
       <patternset refid="library.patterns"/>
     </fileset>
     <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
-    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
     <pathelement location="${mccunechart.output.dir}"/>
     <pathelement location="${chartbackgroundslib.output.dir}"/>
     <path refid="library.j2as3collections.classpath"/>
@@ -40,7 +39,7 @@
     <path refid="library.doc_logging_framework-1.0.classpath"/>
     <path refid="library.theory9.data.types.orderedmap.classpath"/>
     <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
-    <path refid="library.mobile.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
     <pathelement location="${box2dflashas3.output.dir}"/>
     <fileset dir="${basedir}/CollaboRhythm.Core/libs">
       <patternset refid="library.patterns"/>
@@ -60,6 +59,7 @@
     <fileset dir="${basedir}/CollaboRhythm.Plugins.Problems/libs">
       <patternset refid="library.patterns"/>
     </fileset>
+    <path refid="library.mobilecomponents.classpath"/>
     <pathelement location="${path.variable.project_frameworks}/libs/air/applicationupdater.swc"/>
     <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
     <pathelement location="${collaborhythm.shared.devicesimulator.output.dir}"/>
@@ -67,34 +67,66 @@
     <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
       <patternset refid="library.patterns"/>
     </fileset>
-    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
-    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
     <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="collaborhythm.core.runtime.production.module.classpath">
     <pathelement location="${collaborhythm.core.output.dir}"/>
-    <path refid="collaborhythm.shared.pluginssupport.runtime.production.module.classpath"/>
-    <path refid="indivo_client_flash.runtime.production.module.classpath"/>
-    <path refid="chartbackgroundslib.runtime.production.module.classpath"/>
-    <path refid="box2dflashas3.runtime.production.module.classpath"/>
-    <path refid="collaborhythm.shared.runtime.production.module.classpath"/>
-    <path refid="collaborhythm.view.scroll.runtime.production.module.classpath"/>
-    <path refid="mccunechart.runtime.production.module.classpath"/>
+    <pathelement location="${collaborhythm.shared.pluginssupport.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${box2dflashas3.output.dir}"/>
     <fileset dir="${basedir}/CollaboRhythm.Core/libs">
       <patternset refid="library.patterns"/>
     </fileset>
-    <path refid="collaborhythm.core.model.runtime.production.module.classpath"/>
-    <path refid="tcpsyslogtarget.runtime.production.module.classpath"/>
-    <path refid="collaborhythm.shared.model.runtime.production.module.classpath"/>
+    <pathelement location="${collaborhythm.core.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Core.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${tcpsyslogtarget.output.dir}"/>
     <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
     <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
-    <path refid="collaborhythm.shared.collaboration.runtime.production.module.classpath"/>
-    <path refid="collaborhythm.plugins.problems.runtime.production.module.classpath"/>
+    <pathelement location="${collaborhythm.shared.collaboration.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${collaborhythm.plugins.problems.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Problems/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.mobilecomponents.classpath"/>
     <pathelement location="${path.variable.project_frameworks}/libs/air/applicationupdater.swc"/>
-    <path refid="collaborhythm.shared.messages.runtime.production.module.classpath"/>
-    <path refid="collaborhythm.shared.model.services.runtime.production.module.classpath"/>
-    <path refid="collaborhythm.shared.devicesimulator.runtime.production.module.classpath"/>
+    <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.devicesimulator.output.dir}"/>
+    <pathelement location="${collaborhythm.plugins.schedule.shared.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="collaborhythm.core.module.classpath">
@@ -115,7 +147,6 @@
       <patternset refid="library.patterns"/>
     </fileset>
     <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
-    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
     <pathelement location="${mccunechart.output.dir}"/>
     <pathelement location="${chartbackgroundslib.output.dir}"/>
     <path refid="library.j2as3collections.classpath"/>
@@ -125,7 +156,7 @@
     <path refid="library.theory9.data.types.orderedmap.classpath"/>
     <pathelement location="${collaborhythm.shared.model.services.testoutput.dir}"/>
     <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
-    <path refid="library.mobile.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
     <pathelement location="${box2dflashas3.output.dir}"/>
     <fileset dir="${basedir}/CollaboRhythm.Core/libs">
       <patternset refid="library.patterns"/>
@@ -147,6 +178,7 @@
     <fileset dir="${basedir}/CollaboRhythm.Plugins.Problems/libs">
       <patternset refid="library.patterns"/>
     </fileset>
+    <path refid="library.mobilecomponents.classpath"/>
     <pathelement location="${path.variable.project_frameworks}/libs/air/applicationupdater.swc"/>
     <pathelement location="${collaborhythm.shared.messages.testoutput.dir}"/>
     <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
@@ -156,35 +188,74 @@
     <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
       <patternset refid="library.patterns"/>
     </fileset>
-    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
-    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
     <pathelement location="${collaborhythm.shared.ui.buttons.testoutput.dir}"/>
     <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="collaborhythm.core.runtime.module.classpath">
     <pathelement location="${collaborhythm.core.output.dir}"/>
-    <path refid="collaborhythm.shared.pluginssupport.runtime.module.classpath"/>
-    <path refid="indivo_client_flash.runtime.module.classpath"/>
-    <path refid="chartbackgroundslib.runtime.module.classpath"/>
-    <path refid="box2dflashas3.runtime.module.classpath"/>
-    <path refid="collaborhythm.shared.runtime.module.classpath"/>
-    <path refid="collaborhythm.view.scroll.runtime.module.classpath"/>
-    <path refid="mccunechart.runtime.module.classpath"/>
+    <pathelement location="${collaborhythm.shared.pluginssupport.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.model.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${box2dflashas3.output.dir}"/>
     <fileset dir="${basedir}/CollaboRhythm.Core/libs">
       <patternset refid="library.patterns"/>
     </fileset>
-    <path refid="collaborhythm.core.model.runtime.module.classpath"/>
-    <path refid="tcpsyslogtarget.runtime.module.classpath"/>
-    <path refid="collaborhythm.shared.model.runtime.module.classpath"/>
+    <pathelement location="${collaborhythm.core.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Core.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${tcpsyslogtarget.testoutput.dir}"/>
+    <pathelement location="${tcpsyslogtarget.output.dir}"/>
     <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
     <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
-    <path refid="collaborhythm.shared.collaboration.runtime.module.classpath"/>
-    <path refid="collaborhythm.plugins.problems.runtime.module.classpath"/>
+    <pathelement location="${collaborhythm.shared.collaboration.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.collaboration.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${collaborhythm.plugins.problems.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Problems/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.mobilecomponents.classpath"/>
     <pathelement location="${path.variable.project_frameworks}/libs/air/applicationupdater.swc"/>
-    <path refid="collaborhythm.shared.messages.runtime.module.classpath"/>
-    <path refid="collaborhythm.shared.model.services.runtime.module.classpath"/>
-    <path refid="collaborhythm.shared.devicesimulator.runtime.module.classpath"/>
+    <pathelement location="${collaborhythm.shared.messages.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.devicesimulator.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.devicesimulator.output.dir}"/>
+    <pathelement location="${collaborhythm.plugins.schedule.shared.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.ui.buttons.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   

@@ -11,12 +11,6 @@
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="1e89480e-40ae-4718-8fec-27e08945b24d">
-              <dependency linkage="External" />
-            </entry>
-            <entry library-id="76450cf8-a553-4d69-837e-7a10ebd68e16">
-              <dependency linkage="External" />
-            </entry>
             <entry module-name="CollaboRhythm.View.Scroll" build-configuration-name="CollaboRhythm.View.Scroll">
               <dependency linkage="Merged" />
             </entry>
@@ -44,10 +38,16 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
         <compiler-options>
+          <map>
+            <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
+          </map>
           <option name="additionalOptions" value="-locale en_US" />
         </compiler-options>
         <packaging-air-desktop />
@@ -81,26 +81,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="1e89480e-40ae-4718-8fec-27e08945b24d" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="76450cf8-a553-4d69-837e-7a10ebd68e16" />
-        <CLASSES>
-          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="module" module-name="McCuneChart" exported="" />
     <orderEntry type="library" exported="" name="J2AS3Collections" level="project" />
@@ -109,6 +89,7 @@
     <orderEntry type="library" exported="" name="doc_logging_framework-1.0" level="project" />
     <orderEntry type="library" exported="" name="Theory9.Data.Types.OrderedMap" level="project" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

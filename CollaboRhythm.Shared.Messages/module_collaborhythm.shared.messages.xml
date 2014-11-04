@@ -25,7 +25,10 @@
   
   <path id="collaborhythm.shared.messages.runtime.production.module.classpath">
     <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
-    <path refid="collaborhythm.shared.model.runtime.production.module.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="collaborhythm.shared.messages.module.classpath">
@@ -41,7 +44,11 @@
   <path id="collaborhythm.shared.messages.runtime.module.classpath">
     <pathelement location="${collaborhythm.shared.messages.testoutput.dir}"/>
     <pathelement location="${collaborhythm.shared.messages.output.dir}"/>
-    <path refid="collaborhythm.shared.model.runtime.module.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   

@@ -14,13 +14,17 @@
             <entry library-name="J2AS3Collections" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobile" library-level="project">
+            <entry library-name="mobilecomponents" library-level="project">
               <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
+          </map>
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
@@ -39,6 +43,7 @@
     <orderEntry type="library" exported="" name="Castle.FlexBridge.Flash" level="project" />
     <orderEntry type="library" exported="" name="J2AS3Collections" level="project" />
     <orderEntry type="library" exported="" name="mobile" level="project" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

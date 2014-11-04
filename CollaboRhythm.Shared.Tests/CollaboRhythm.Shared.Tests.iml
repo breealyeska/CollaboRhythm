@@ -11,6 +11,9 @@
             <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -31,6 +34,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared" exported="" />
     <orderEntry type="library" exported="" name="FlexUnit" level="project" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
 

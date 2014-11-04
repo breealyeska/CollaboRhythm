@@ -17,20 +17,24 @@
   
   <path id="splitviewnavigatortest1.module.production.classpath">
     <path refid="${module.jdk.classpath.splitviewnavigatortest1}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="splitviewnavigatortest1.runtime.production.module.classpath">
     <pathelement location="${splitviewnavigatortest1.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="splitviewnavigatortest1.module.classpath">
     <pathelement location="${splitviewnavigatortest1.output.dir}"/>
     <path refid="${module.jdk.classpath.splitviewnavigatortest1}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="splitviewnavigatortest1.runtime.module.classpath">
     <pathelement location="${splitviewnavigatortest1.testoutput.dir}"/>
     <pathelement location="${splitviewnavigatortest1.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   

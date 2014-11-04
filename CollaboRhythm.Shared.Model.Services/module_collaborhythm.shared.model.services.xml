@@ -20,7 +20,7 @@
     <path refid="library.as3corelib.classpath"/>
     <path refid="library.castle.flexbridge.flash.classpath"/>
     <path refid="library.j2as3collections.classpath"/>
-    <path refid="library.mobile.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="collaborhythm.shared.model.services.runtime.production.module.classpath">
@@ -28,7 +28,7 @@
     <path refid="library.as3corelib.classpath"/>
     <path refid="library.castle.flexbridge.flash.classpath"/>
     <path refid="library.j2as3collections.classpath"/>
-    <path refid="library.mobile.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="collaborhythm.shared.model.services.module.classpath">
@@ -37,7 +37,7 @@
     <path refid="library.as3corelib.classpath"/>
     <path refid="library.castle.flexbridge.flash.classpath"/>
     <path refid="library.j2as3collections.classpath"/>
-    <path refid="library.mobile.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   <path id="collaborhythm.shared.model.services.runtime.module.classpath">
@@ -46,7 +46,7 @@
     <path refid="library.as3corelib.classpath"/>
     <path refid="library.castle.flexbridge.flash.classpath"/>
     <path refid="library.j2as3collections.classpath"/>
-    <path refid="library.mobile.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
   </path>
   
   

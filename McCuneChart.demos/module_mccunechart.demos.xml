@@ -27,7 +27,9 @@
   
   <path id="mccunechart.demos.runtime.production.module.classpath">
     <pathelement location="${mccunechart.demos.output.dir}"/>
-    <path refid="mccunechart.runtime.production.module.classpath"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
     <fileset dir="${basedir}/McCuneChart.demos/libs">
       <patternset refid="library.patterns"/>
     </fileset>
@@ -46,7 +48,9 @@
   
   <path id="mccunechart.demos.runtime.module.classpath">
     <pathelement location="${mccunechart.demos.output.dir}"/>
-    <path refid="mccunechart.runtime.module.classpath"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
     <fileset dir="${basedir}/McCuneChart.demos/libs">
       <patternset refid="library.patterns"/>
     </fileset>

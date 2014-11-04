@@ -41,7 +41,7 @@
 		<!-- Your Project's script folder (where your Python Script is). -->
 		<property name="SCRIPTS_DIR" value="${basedir}/scripts"/>
 		<!-- The name of your swf file.-->
-		<property name="SWF_FILE" value="${DEBUG_DIR}/CollaboRhythm_Tablet_Emulator.swf"/>
+		<property name="SWF_FILE" value="${DEBUG_DIR}/CollaboRhythm.Tablet.Emulator.swf"/>
 
 		<exec dir="${SCRIPTS_DIR}" executable="${PYTHON_HOME}/python" failonerror="true">
 			<arg line="add-opt-in.py '${SWF_FILE}'"/>

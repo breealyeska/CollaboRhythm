@@ -22,7 +22,7 @@
   
   <path id="collaborhythm.shared.bloodsolutessimulation.runtime.production.module.classpath">
     <pathelement location="${collaborhythm.shared.bloodsolutessimulation.output.dir}"/>
-    <path refid="box2dflashas3.runtime.production.module.classpath"/>
+    <pathelement location="${box2dflashas3.output.dir}"/>
   </path>
   
   <path id="collaborhythm.shared.bloodsolutessimulation.module.classpath">
@@ -33,7 +33,7 @@
   
   <path id="collaborhythm.shared.bloodsolutessimulation.runtime.module.classpath">
     <pathelement location="${collaborhythm.shared.bloodsolutessimulation.output.dir}"/>
-    <path refid="box2dflashas3.runtime.module.classpath"/>
+    <pathelement location="${box2dflashas3.output.dir}"/>
   </path>
   
   

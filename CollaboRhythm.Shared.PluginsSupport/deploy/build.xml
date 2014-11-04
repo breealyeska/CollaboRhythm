@@ -45,7 +45,7 @@
 	-->
 	
 	<property environment="env"/>
-	<!--<property name="app.data" location="${user.home}/Library/Application Support" />-->
+	<!--<property name="app.data" location="${user.home}/Library/Preferences" />-->
 
 <!--
 	<propertyfile
@@ -174,7 +174,7 @@
 		<echo>Deployment of plugin complete. ------------------------|</echo>
 	</target>
 
-	<target name="deploy_all_plugins" description="Deploys all of the plugins." depends="delete_all_plugins">
+	<target name="deploy_all_plugins_old" description="Deploys all of the plugins (original script)." depends="delete_all_plugins">
 	    <path id="project.build.pluginBuildScripts">
 			<fileset id="project.build.pluginBuildScripts.fileset" dir="../../" casesensitive="no"
 					excludes="${project.build.pluginBuildScripts.excludes}">
@@ -197,6 +197,33 @@
 				<ant antfile="@{file}" dir="@{file}/../" target="deploy"/>
 			</sequential>
 		</for>
+	</target>
+
+	<target name="deploy_all_plugins" description="Deploys all plugins." depends="delete_all_plugins">
+	    <path id="project.build.pluginBuildScripts">
+			<fileset id="project.build.pluginBuildScripts.fileset" dir="../../" casesensitive="no"
+					excludes="${project.build.pluginBuildScripts.excludes}">
+				<include name="*CollaboRhythm.Plugins.*/build.xml"/>
+			</fileset>
+	    </path>
+
+		<echo>Found plugin build scripts: ${toString:project.build.pluginBuildScripts}</echo>
+
+		<!-- TODO: Use contributed taskdef to do a "for" loop -->
+		<!--
+		<taskdef resource="net/sf/antcontrib/antlib.xml">
+			<classpath>
+				<pathelement location="ant-contrib-1.0b3.jar"/>
+			</classpath>
+		</taskdef>
+
+		<for param="file" keepgoing="true">
+			<path refid="project.build.pluginBuildScripts"/>
+			<sequential>
+				<ant antfile="@{file}" dir="@{file}/../" target="deploy"/>
+			</sequential>
+		</for>
+		-->
 	</target>
 
 	<target name="delete_all_plugins" description="Deletes all plugins from deployment folders (local and on device)">
