@@ -17,6 +17,7 @@
 package collaboRhythm.android.deviceGateway;
 
 import android.app.Service;
+import android.app.Notification;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -119,7 +120,13 @@ public class DeviceGatewayService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		log.debug(CLASS + ": onStart");
 
-		setForeground(true);
+		Notification note = new Notification.Builder(getApplicationContext())
+		    .setContentText("Collaborhythm Service Started")
+		    .setWhen(System.currentTimeMillis())
+		    .build();
+
+
+		startForeground(9999,note);
 
 		if (mBluetoothSupported) {
 			Bundle extras = intent != null ? intent.getExtras() : null;

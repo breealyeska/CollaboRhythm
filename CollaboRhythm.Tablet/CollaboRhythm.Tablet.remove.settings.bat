@@ -8,7 +8,7 @@ set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 :: Android default path used to include the word "windows", so you might need this depending on the version you have
 ::set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 ::set SettingsFile=my_settings_debug.xml
-set SettingsFile=/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/settings.xml
+set SettingsFile=/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/settings.xml
 
 :: ***************************************************************************************
 

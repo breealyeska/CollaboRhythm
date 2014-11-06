@@ -246,7 +246,7 @@
 		<uses-feature android:name="android.hardware.camera"/>
 		<uses-feature android:name="android.hardware.camera.autofocus"/>
 		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
-		<application android:enabled="true" android:process="CollaboRhythm.Tablet">
+		<application android:enabled="true" android:process="CollaboRhythm.Tablet" android:debuggable="true">
 			<activity android:excludeFromRecents="false">
 				<intent-filter>
 					<action android:name="android.intent.action.MAIN"/>

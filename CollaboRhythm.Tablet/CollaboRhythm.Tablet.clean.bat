@@ -9,7 +9,7 @@ set AndroidADBFolder="/Applications/Android Studio.app/sdk/platform-tools"
 ::set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 ::set SettingsFile=my_settings_debug.xml
 set SettingsFile="/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/settings.xml"
-set CollaboRhythmTabletApk=CollaboRhythm.Tablet.apk
+set CollaboRhythmTabletApk="bin-debug/CollaboRhythm.Tablet.apk"
 
 :: ***************************************************************************************
 
@@ -23,11 +23,11 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-"%AndroidADBFolder%"/adb shell rm "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/settings.xml"
-"%AndroidADBFolder%"/adb shell rm "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/plugins/*"
-"%AndroidADBFolder%"/adb shell rmdir "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/plugins"
+"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/settings.xml"
+"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/plugins/*"
+"%AndroidADBFolder%"/adb shell rmdir "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/plugins"
 
-"%AndroidADBFolder%"/adb -d uninstall CollaboRhythm.Tablet.debug
+"%AndroidADBFolder%"/adb -d uninstall CollaboRhythm.Tablet
 
 echo.
 echo Remove complete for %CollaboRhythmTabletApk%

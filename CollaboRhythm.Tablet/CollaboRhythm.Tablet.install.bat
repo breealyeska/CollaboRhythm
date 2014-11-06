@@ -9,8 +9,8 @@ set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 ::set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 ::set SettingsFile=my_settings_debug.xml
 ::Adjust path as necessary for local vs device installation
-set SettingsFile="/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/settings.xml"
-set PluginsDir="/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/plugins"
+set SettingsFile="/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/settings.xml"
+set PluginsDir="/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/plugins"
 set CollaboRhythmTabletApk="bin-debug/CollaboRhythm.Tablet.apk"
 
 :: ***************************************************************************************
@@ -25,12 +25,12 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-adb push %SettingsFile% "/storage/sdcard0/CollaboRhythm.Tablet.debug/settings.xml"
+adb push %SettingsFile% "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/settings.xml"
 adb push "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/plugins" "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store"
 
-::adb -d uninstall CollaboRhythm.Tablet.debug
+::adb -d uninstall CollaboRhythm.Tablet
 adb -d install -r %CollaboRhythmTabletApk%
-adb shell am start -a android.intent.action.MAIN -n CollaboRhythm.Tablet.debug/.AppEntry
+adb shell am start -a android.intent.action.MAIN -n CollaboRhythm.Tablet/.AppEntry
 
 ::"%AndroidADBFolder%"/adb -d uninstall collaboRhythm.android.deviceGateway
 ::"%AndroidADBFolder%"/adb -d install -r CollaboRhythm.Android.DeviceGateway.apk

@@ -4,12 +4,12 @@
 :: ***************************************************************************************
 :: Note: before using this install script you should change the variables below
 
-::set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
+set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 :: Android default path used to include the word "windows", so you might need this depending on the version you have
 ::set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
 ::set SettingsFile=my_settings_debug.xml
-set SettingsFile=settings.xml
-set CollaboRhythmTabletApk=CollaboRhythm.Tablet.apk
+set SettingsFile="/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/settings.xml"
+set CollaboRhythmTabletApk="bin-debug/CollaboRhythm.Tablet.apk"
 
 :: ***************************************************************************************
 
@@ -23,12 +23,12 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-adb push %SettingsFile% "/storage/sdcard0/CollaboRhythm.Tablet.debug/settings.xml"
-adb push "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/plugins" "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store"
+adb push %SettingsFile% "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/settings.xml"
+adb push "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/plugins" "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store"
 
-::adb -d uninstall CollaboRhythm.Tablet.debug
+adb -d uninstall %CollaboRhythmTabletApk%
 adb -d install -r %CollaboRhythmTabletApk%
-adb shell am start -a android.intent.action.MAIN -n CollaboRhythm.Tablet.debug/.AppEntry
+adb shell am start -a android.intent.action.MAIN -n CollaboRhythm.Tablet/.AppEntry
 
 ::"%AndroidADBFolder%"\adb -d uninstall collaboRhythm.android.deviceGateway
 ::"%AndroidADBFolder%"\adb -d install -r CollaboRhythm.Android.DeviceGateway.apk
