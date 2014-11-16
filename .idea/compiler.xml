@@ -9,6 +9,7 @@
       <directory url="file://$PROJECT_DIR$/AndroidTest/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/AndroidTestActivity/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/CollaboRhythm.NativeExtensions.PlayVideo.Android/gen" includeSubdirectories="true" />
+	  <directory url="file://$PROJECT_DIR$/com.google.android.gms/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>

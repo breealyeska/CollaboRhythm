@@ -228,6 +228,7 @@
 	<extensions>
 		<extensionID>com.adobe.Vibration</extensionID>
 		<extensionID>CollaboRhythm.ANE.ApplicationMessaging</extensionID>
+		<extensionID>com.afterisk.shared.android.GCMPush</extensionID>
 	</extensions>
 
 	<android>
@@ -235,6 +236,7 @@
 			
 	<manifest>
 		<!-- See the Adobe AIR documentation for more information about setting Google Android permissions -->
+
 		<uses-permission android:name="android.permission.INTERNET"/>
 		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 		<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -242,16 +244,39 @@
 		<uses-permission android:name="android.permission.CAMERA"/>
 		<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+		<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+		<uses-permission android:name="android.permission.WAKE_LOCK" />
+		<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    	<permission android:name="air.CollaboRhythm.Tablet.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    	<uses-permission android:name="air.CollaboRhythm.Tablet.permission.C2D_MESSAGE" />
+
 		<uses-feature android:name="android.hardware.microphone" android:required="false"/>
 		<uses-feature android:name="android.hardware.camera"/>
 		<uses-feature android:name="android.hardware.camera.autofocus"/>
 		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
-		<application android:enabled="true" android:process="CollaboRhythm.Tablet" android:debuggable="true">
+		<uses-feature android:required="false" android:name="android.hardware.wifi"/>
+		<uses-feature android:required="false" android:name="android.hardware.usb.accessory"/>
+		<uses-feature android:required="false" android:name="android.hardware.usb.host"/>
+
+		<application android:enabled="true" android:process="CollaboRhythm.Tablet">
+
+			<service android:name="com.afterisk.shared.android.gcm.GCMIntentService" />
+			<receiver android:name="com.afterisk.shared.android.gcm.AfteriskGCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+				<intent-filter>
+					<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+					<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+					<category android:name="air.CollaboRhythm.Tablet" />
+				</intent-filter>
+			</receiver>
+
 			<activity android:excludeFromRecents="false">
 				<intent-filter>
 					<action android:name="android.intent.action.MAIN"/>
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
+
 				<intent-filter>
 					<action android:name="android.intent.action.VIEW"/>
 					<category android:name="android.intent.category.BROWSABLE"/>
@@ -259,7 +284,10 @@
 					<data android:scheme="collaborhythm"/>
 				</intent-filter>
 			</activity>
+
 		</application>
+
+
 	</manifest>
 
 ]]></manifestAdditions>

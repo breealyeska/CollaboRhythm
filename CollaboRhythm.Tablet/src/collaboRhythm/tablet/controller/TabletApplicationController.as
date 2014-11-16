@@ -37,6 +37,7 @@ package collaboRhythm.tablet.controller
 	import collaboRhythm.tablet.model.ViewNavigatorExtended;
 	import collaboRhythm.tablet.view.HealthRecordTreeView;
 	import collaboRhythm.tablet.view.SelectRecordView;
+	import collaboRhythm.tablet.view.RegisterApplicationView;
 	import collaboRhythm.tablet.view.TabletFullViewContainer;
 	import collaboRhythm.tablet.view.TabletHomeView;
 
@@ -52,6 +53,9 @@ package collaboRhythm.tablet.controller
 
 	import spark.components.ViewNavigator;
 	import spark.transitions.SlideViewTransition;
+
+	import com.afterisk.shared.ane.lib.GCMEvent;
+	import com.afterisk.shared.ane.lib.GCMPushInterface;
 
 	public class TabletApplicationController extends ApplicationControllerBase
 	{
@@ -223,11 +227,12 @@ package collaboRhythm.tablet.controller
 			view.activeRecordAccount = activeRecordAccount;
 			view.tabletApplicationController = this;
 
-			var viewModifiers:Array = WorkstationKernel.instance.resolveAll(IViewModifier);
-			for each (var viewModifier:IViewModifier in viewModifiers)
-			{
-				viewModifier.modify(view);
-			}
+			//fixme bree: Fix unresolved function error for WorkstationKernel.instance.resolveAll below, commented for now
+			//var viewModifiers:Array = WorkstationKernel.instance.resolveAll(IViewModifier);
+			//for each (var viewModifier:IViewModifier in viewModifiers)
+			//{
+			//	viewModifier.modify(view);
+			//}
 		}
 
 		private function createGoogleAnalyticsSessionIdleTimer():void
@@ -360,6 +365,11 @@ package collaboRhythm.tablet.controller
 			}
 		}
 
+		override public function showRegisterApplicationView():void
+		{
+			_tabletApplication.navigator.pushView(RegisterApplicationView);
+		}
+
 		override public function showSelectRecordView():void
 		{
 			_tabletApplication.navigator.pushView(SelectRecordView);
@@ -417,6 +427,11 @@ package collaboRhythm.tablet.controller
 		private function get tabletHomeView():TabletHomeView
 		{
 			return _tabletApplication.tabletHomeView;
+		}
+
+		private function get registerApplicationView():RegisterApplicationView
+		{
+			return _tabletApplication.registerApplicationView;
 		}
 
 		private function get selectRecordView():SelectRecordView

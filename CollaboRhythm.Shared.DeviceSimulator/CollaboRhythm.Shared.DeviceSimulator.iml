@@ -14,6 +14,9 @@
             <entry library-name="mobilecomponents" library-level="project">
               <dependency linkage="External" />
             </entry>
+            <entry library-name="gcm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -40,6 +43,6 @@
     <orderEntry type="library" exported="" name="mobile" level="project" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
     <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="gcm" level="project" />
   </component>
 </module>
-

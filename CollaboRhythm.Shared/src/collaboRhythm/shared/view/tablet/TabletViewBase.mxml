@@ -96,6 +96,11 @@
 			_isControllerReady = value;
 		}
 
+		private function registrationMenuItem_clickHandler(event:MouseEvent):void
+		{
+			_tabletApplicationController.showRegisterApplicationView();
+		}
+
 		private function selectRecordMenuItem_clickHandler(event:MouseEvent):void
 		{
 			_tabletApplicationController.showSelectRecordView();
@@ -231,6 +236,7 @@
 		}
 		]]></fx:Script>
 	<s:viewMenuItems>
+		<s:ViewMenuItem label="Register" id="registrationButton" click="registrationMenuItem_clickHandler(event)"/>
 		<s:ViewMenuItem label="{createDemoDateLabel(_isControllerReady, 0)}" includeIn="debuggingToolsEnabled"
 						click="demoDateMenuItem_clickHandler(0)"/>
 		<s:ViewMenuItem label="{createDemoDateLabel(_isControllerReady, 1)}" includeIn="debuggingToolsEnabled"
