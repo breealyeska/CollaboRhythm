@@ -9,3 +9,4 @@ out/*
 **/local.properties.idea/workspace.xml
 Ignored/**/*
 Ignored/*
+module_*.xml
