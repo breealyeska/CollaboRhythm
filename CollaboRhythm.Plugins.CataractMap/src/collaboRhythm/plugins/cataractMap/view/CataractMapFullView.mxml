@@ -692,7 +692,7 @@
 											/>
 			-->
 			<controls:TouchScrollingScrubChart id="cataractDensityMapChart" height="100%" width="100%"
-                                            skinClass="com.dougmccune.controls.ScrubChartSkin"
+                                            styleName="com.dougmccune.controls.ScrubChartSkin"
 											creationComplete="cataractDensityMapChart_creationCompleteHandler(event)"
 											initialize="cataractDensityMapChart_initializeHandler(event)"
 											sliderVisible="false"

@@ -29,13 +29,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 @namespace controls "com.dougmccune.controls.*";
 @namespace halo "mx.skins.halo.*";
 
-s|Label.componentTest2Label
-{
-    fontSize: 24pt;
-    backgroundColor: #AAFFAA;
-}
-
-ScrubChart, TouchScrollingScrubChart
+.scrubChart, .touchScrollingScrubChart
 {
     skin-class: ClassReference("com.dougmccune.controls.ScrubChartSkin");
 }
@@ -102,11 +96,13 @@ ScrubChart, TouchScrollingScrubChart
     footerVisible: true;
 }*/
 
+/*
 @namespace "mx.charts.chartClasses.*";
 
-DataTip
+.dataTip
 {
 	color: FFFFFF;
 	fontSize: 16;
 	backgroundColor: 000000;
 }
+*/

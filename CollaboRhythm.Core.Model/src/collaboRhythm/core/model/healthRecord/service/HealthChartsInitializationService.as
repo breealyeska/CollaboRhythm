@@ -28,6 +28,7 @@ package collaboRhythm.core.model.healthRecord.service
 	import collaboRhythm.shared.model.healthRecord.document.MedicationOrdersModel;
 	import collaboRhythm.shared.model.healthRecord.document.MedicationScheduleItem;
 	import collaboRhythm.shared.model.healthRecord.document.ScheduleItemOccurrence;
+	import com.theory9.data.types.OrderedMap;
 
 	import mx.binding.utils.BindingUtils;
 	import mx.collections.ArrayCollection;

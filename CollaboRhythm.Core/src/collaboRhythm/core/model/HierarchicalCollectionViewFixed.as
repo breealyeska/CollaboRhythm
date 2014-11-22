@@ -27,7 +27,7 @@ package collaboRhythm.core.model
 			for (var i:int = 0; i < sort.fields.length; i++)
 			{
 				var sf:SortField = sort.fields[i];
-				if (!sf.compareFunction && !obj.hasOwnProperty(sf.name))
+				if (!sf.compareFunction() && !obj.hasOwnProperty(sf.name))
 					return false;
 			}
 			return true;

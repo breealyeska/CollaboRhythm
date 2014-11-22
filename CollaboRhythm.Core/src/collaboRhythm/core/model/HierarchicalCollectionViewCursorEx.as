@@ -17,9 +17,10 @@ package collaboRhythm.core.model
 
 	import mx.collections.CursorBookmark;
 	import mx.collections.ICollectionView;
-	import mx.collections.IHierarchicalCollectionViewCursor;
 	import mx.collections.IHierarchicalData;
 	import mx.collections.IViewCursor;
+    import mx.collections.IHierarchicalCollectionView;
+	import mx.collections.IHierarchicalCollectionViewCursor;
 	import mx.collections.errors.ChildItemPendingError;
 	import mx.collections.errors.ItemPendingError;
 	import mx.core.mx_internal;

@@ -17,7 +17,7 @@
 
 @namespace "collaboRhythm.simulation.view.*";
 
-SimulationLevelPanel
+.simulationLevelPanel
 {
     backgroundAlpha: 0;
     borderVisible: false;
