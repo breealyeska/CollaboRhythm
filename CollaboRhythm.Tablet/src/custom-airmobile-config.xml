@@ -296,7 +296,7 @@
 		<warn-no-explicit-super-call-in-constructor>false</warn-no-explicit-super-call-in-constructor>
 
 		<!-- Missing type declaration. -->
-		<warn-no-type-decl>true</warn-no-type-decl>
+		<warn-no-type-decl>false</warn-no-type-decl>
 
 		<!-- In ActionScript 3.0, white space is ignored and '' returns 0. Number() returns -->
 		<!-- NaN in ActionScript 2.0 when the parameter is '' or contains white space.      -->

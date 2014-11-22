@@ -228,7 +228,7 @@
 	<extensions>
 		<extensionID>com.adobe.Vibration</extensionID>
 		<extensionID>CollaboRhythm.ANE.ApplicationMessaging</extensionID>
-		<extensionID>com.afterisk.shared.android.GCMPush</extensionID>
+		<!--<extensionID>com.afterisk.shared.android.GCMPush</extensionID>-->
 	</extensions>
 
 	<android>
@@ -260,7 +260,7 @@
 		<uses-feature android:required="false" android:name="android.hardware.usb.accessory"/>
 		<uses-feature android:required="false" android:name="android.hardware.usb.host"/>
 
-		<application android:enabled="true" android:process="CollaboRhythm.Tablet">
+		<application android:enabled="true" android:process="CollaboRhythm.Tablet" android:debuggable="true">
 
 			<service android:name="com.afterisk.shared.android.gcm.GCMIntentService" />
 			<receiver android:name="com.afterisk.shared.android.gcm.AfteriskGCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
