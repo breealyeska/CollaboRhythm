@@ -4,12 +4,9 @@
     <option name="DEFAULT_COMPILER" value="Javac" />
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/CollaboRhythm.Android.DeviceGateway/gen" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/CollaboRhythm.Android.NativeExtension.PlayMovieIntent/gen" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/CollaboRhythm.NativeExtensions.Android.PlayVideo/gen" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/AndroidTest/gen" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/AndroidTestActivity/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/CollaboRhythm.NativeExtensions.PlayVideo.Android/gen" includeSubdirectories="true" />
-	  <directory url="file://$PROJECT_DIR$/com.google.android.gms/gen" includeSubdirectories="true" />
+      <file url="file://$PROJECT_DIR$/CollaboRhythm.Shared/src/collaboRhythm/shared/apps/healthCharts/model/SimulationModel.as" />
+      <directory url="file://$PROJECT_DIR$/../GoogleCloudMessaging/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>
@@ -37,4 +34,3 @@
     <option name="GENERATE_NO_WARNINGS" value="true" />
   </component>
 </project>
-

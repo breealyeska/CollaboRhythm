@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="mobilecomponents" type="flex">
+  <library name="mobile" type="flex">
     <CLASSES>
       <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
       <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />

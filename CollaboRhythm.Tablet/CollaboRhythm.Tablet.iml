@@ -20,9 +20,6 @@
             <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="External" />
-            </entry>
             <entry library-id="73cf38ed-5aae-4e11-bfce-467f52c03bdc">
               <dependency linkage="Merged" />
             </entry>
@@ -32,7 +29,7 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -40,6 +37,7 @@
         </dependencies>
         <compiler-options>
           <map>
+            <entry key="compiler.debug.swf" value="true" />
             <entry key="compiler.keep-as3-metadata" value="" />
             <entry key="compiler.keep-generated-actionscript" value="false" />
           </map>
@@ -48,12 +46,6 @@
         <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/CollaboRhythmTabletApplication-app.xml" package-file-name="CollaboRhythm.Tablet">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.HealthCharts/bin-debug/HealthChartsPluginModule.swf" path-in-package="plugins/HealthChartsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Equipment/bin-debug/EquipmentPluginModule.swf" path-in-package="plugins/EquipmentPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
           </files-to-package>
           <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" />
         </packaging-android>
@@ -77,9 +69,6 @@
             <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="External" />
-            </entry>
             <entry library-id="73cf38ed-5aae-4e11-bfce-467f52c03bdc">
               <dependency linkage="Merged" />
             </entry>
@@ -89,7 +78,7 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -97,6 +86,7 @@
         </dependencies>
         <compiler-options>
           <map>
+            <entry key="compiler.debug.swf" value="true" />
             <entry key="compiler.keep-as3-metadata" value="" />
             <entry key="compiler.keep-generated-actionscript" value="false" />
           </map>
@@ -108,9 +98,9 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.HealthCharts/bin-debug/HealthChartsPluginModule.swf" path-in-package="plugins/HealthChartsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Equipment/bin-debug/EquipmentPluginModule.swf" path-in-package="plugins/EquipmentPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
           </files-to-package>
           <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" />
         </packaging-android>
@@ -134,19 +124,16 @@
             <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-id="350588ab-5c30-411a-8619-f60cf60d99f0">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="167a450b-eb6f-4e63-bba3-2d58755ec563">
+            <entry library-id="161b3ffb-4815-4606-866a-c7448d98379f">
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -154,7 +141,9 @@
         </dependencies>
         <compiler-options>
           <map>
-            <entry key="compiler.debug.swf" value="true" />
+            <entry key="compiler.debug.swf" value="false" />
+            <entry key="compiler.keep-as3-metadata" value="" />
+            <entry key="compiler.keep-generated-actionscript" value="false" />
           </map>
         </compiler-options>
         <packaging-air-desktop />
@@ -164,10 +153,9 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.HealthCharts/bin-debug/HealthChartsPluginModule.swf" path-in-package="plugins/HealthChartsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/bin-debug/CollaboRhythmTabletApplication.swf" path-in-package="CollaboRhythmTabletApplication.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
           </files-to-package>
           <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" use-temp-certificate="false" />
         </packaging-android>
@@ -191,16 +179,16 @@
             <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Desktop libraries for mobile applications" library-level="project">
+            <entry library-id="24dcc077-6012-4bbb-8151-0999e65c7580">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="24dcc077-6012-4bbb-8151-0999e65c7580">
+            <entry library-id="7d2f6881-d36e-4923-aba9-bdd68d2f8e5d">
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -208,6 +196,8 @@
         </dependencies>
         <compiler-options>
           <map>
+            <entry key="compiler.debug.swf" value="true" />
+            <entry key="compiler.keep-as3-metadata" value="" />
             <entry key="compiler.keep-generated-actionscript" value="false" />
           </map>
         </compiler-options>
@@ -220,7 +210,7 @@
         </packaging-android>
         <packaging-ios package-file-name="CollaboRhythm.Tablet.Emulator" />
       </configuration>
-      <configuration name="CollaboRhythm.Tablet Desktop" target-platform="Desktop" main-class="CollaboRhythmTabletApplication" output-file="CollaboRhythm_Tablet_Desktop.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="CollaboRhythm.Tablet Desktop" target-platform="Desktop" main-class="CollaboRhythmTabletApplication" output-file="CollaboRhythm_Tablet_Desktop.swf" output-folder="$MODULE_DIR$/bin-debug" skip-build="true">
         <dependencies>
           <entries>
             <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
@@ -238,30 +228,44 @@
             <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-id="24dcc077-6012-4bbb-8151-0999e65c7580">
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="flex mobilecomponents" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="flex mobile theme" library-level="project">
+              <dependency linkage="External" />
+            </entry>
+            <entry library-name="mobile" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
-        <compiler-options />
-        <packaging-air-desktop use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/CollaboRhythmTabletApplication-Desktop-app.xml" package-file-name="CollaboRhythm_Tablet_Desktop">
+        <compiler-options>
+          <map>
+            <entry key="compiler.debug.swf" value="true" />
+            <entry key="compiler.keep-as3-metadata" value="" />
+            <entry key="compiler.keep-generated-actionscript" value="false" />
+          </map>
+        </compiler-options>
+        <packaging-air-desktop use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/CollaboRhythmTabletApplication-Desktop-app.xml" package-file-name="CollaboRhythm.Tablet.Desktop" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/CollaboRhythmTabletApplication-Desktop-app.xml" package-file-name="CollaboRhythm_Tablet_Desktop">
           <files-to-package>
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="MedicationsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="SchedulePluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.HealthCharts/bin-debug/HealthChartsPluginModule.swf" path-in-package="HealthChartsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="HIVPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.HealthCharts/bin-debug/HealthChartsPluginModule.swf" path-in-package="plugins/HealthChartsPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
           </files-to-package>
           <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" use-temp-certificate="false" />
-        </packaging-air-desktop>
-        <packaging-android />
+        </packaging-android>
         <packaging-ios />
       </configuration>
     </configurations>
@@ -281,7 +285,6 @@
     <orderEntry type="module" module-name="CollaboRhythm.Core.Model" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
-    <orderEntry type="library" exported="" name="Desktop libraries for mobile applications" level="project" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
         <properties id="73cf38ed-5aae-4e11-bfce-467f52c03bdc" />
@@ -316,16 +319,6 @@
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="167a450b-eb6f-4e63-bba3-2d58755ec563" />
-        <CLASSES>
-          <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
         <properties id="24dcc077-6012-4bbb-8151-0999e65c7580" />
         <CLASSES>
           <root url="file://$MODULE_DIR$/libs" />
@@ -345,6 +338,30 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
-    <orderEntry type="library" exported="" name="gcm" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
+    <orderEntry type="library" exported="" name="Desktop libraries for mobile applications" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="7d2f6881-d36e-4923-aba9-bdd68d2f8e5d" />
+        <CLASSES>
+          <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="161b3ffb-4815-4606-866a-c7448d98379f" />
+        <CLASSES>
+          <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="mobile" level="project" />
   </component>
 </module>

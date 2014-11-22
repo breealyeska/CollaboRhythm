@@ -8,7 +8,10 @@
             <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobilecomponents" library-level="project">
+            <entry library-id="b7c60d78-8726-45fa-97ce-7cb47dd58414">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="cae9baaa-0575-444c-b948-d0e6817cef97">
               <dependency linkage="External" />
             </entry>
           </entries>
@@ -30,7 +33,26 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="b7c60d78-8726-45fa-97ce-7cb47dd58414" />
+        <CLASSES>
+          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="cae9baaa-0575-444c-b948-d0e6817cef97" />
+        <CLASSES>
+          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
-

@@ -1,12 +1,10 @@
 <component name="libraryTable">
   <library name="Desktop libraries for mobile applications" type="flex">
     <CLASSES>
+      <root url="jar://$PROJECT_FRAMEWORKS$/libs/advancedgrids.swc!/" />
       <root url="jar://$PROJECT_FRAMEWORKS$/libs/mx/mx.swc!/" />
       <root url="jar://$PROJECT_FRAMEWORKS$/libs/charts.swc!/" />
       <root url="jar://$PROJECT_FRAMEWORKS$/libs/sparkskins.swc!/" />
-      <root url="jar://$PROJECT_FRAMEWORKS$/libs/advancedgrids.swc!/" />
-      <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
-      <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

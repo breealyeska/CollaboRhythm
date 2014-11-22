@@ -20,7 +20,13 @@
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobilecomponents" library-level="project">
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="flex mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
+            <entry library-name="flex mobile theme" library-level="project">
               <dependency linkage="External" />
             </entry>
           </entries>
@@ -56,7 +62,9 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Plugins.Schedule.Shared" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="library" exported="" name="Desktop libraries for mobile applications" level="project" />
+    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
   </component>
 </module>
-

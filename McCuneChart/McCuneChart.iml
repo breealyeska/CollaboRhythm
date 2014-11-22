@@ -11,13 +11,20 @@
             <entry module-name="ChartBackgroundsLib" build-configuration-name="ChartBackgroundsLib">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobilecomponents" library-level="project">
+            <entry library-name="flex mobilecomponents" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="flex mobile theme" library-level="project">
               <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/libs/spark.swc" />
+          </map>
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
@@ -36,7 +43,8 @@
     <orderEntry type="module" module-name="CollaboRhythm.View.Scroll" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="module" module-name="ChartBackgroundsLib" exported="" />
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
   </component>
 </module>
-

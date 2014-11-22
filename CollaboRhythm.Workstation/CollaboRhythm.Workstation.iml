@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="CollaboRhythm.Workstation">
     <configurations>
-      <configuration name="CollaboRhythm.Workstation" target-platform="Desktop" main-class="WorkstationApplication" output-file="CollaboRhythm.Workstation.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="CollaboRhythm.Workstation" target-platform="Desktop" main-class="WorkstationApplication" output-file="CollaboRhythm.Workstation.swf" output-folder="$MODULE_DIR$/bin-debug" skip-build="true">
         <dependencies>
           <entries>
             <entry library-id="ee8c069a-4cc5-4cfd-8791-1c3a55007a8f">
@@ -32,8 +32,14 @@
             <entry module-name="CollaboRhythm.View.Scroll" build-configuration-name="CollaboRhythm.View.Scroll">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobilecomponents" library-level="project">
-              <dependency linkage="External" />
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="flex mobilecomponents" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="flex mobile theme" library-level="project">
+              <dependency linkage="Merged" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -90,7 +96,9 @@
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="library" exported="" name="Desktop libraries for mobile applications" level="project" />
+    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
   </component>
 </module>
-

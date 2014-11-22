@@ -53,9 +53,8 @@
     <resource url="http://indivo.org/vocab/xml/documents#" location="$PROJECT_DIR$/CollaboRhythm.Core.Model/src/assets/healthRecord/schemas/documents.xsd" />
     <resource url="http://indivo.org/vocab/xml/documents/healthActionPlan#" location="$PROJECT_DIR$/CollaboRhythm.Core.Model/src/assets/healthRecord/schemas/HealthActionPlan.xsd" />
     <resource url="http://collaborhythm.org/application/insulinTitrationDecisionSupportStates" location="$PROJECT_DIR$/CollaboRhythm.Plugins.InsulinTitrationSupport/src/assets/strings/insulinTitrationDecisionSupportStates.xsd" />
-    <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ProjectType">

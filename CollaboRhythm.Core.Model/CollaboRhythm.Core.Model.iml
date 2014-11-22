@@ -20,12 +20,6 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobilecomponents" library-level="project">
-              <dependency linkage="External" />
-            </entry>
-            <entry library-name="gcm" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -53,9 +47,7 @@
           <root url="file://$MODULE_DIR$/libs" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$J2AS3_COLLECTIONS_HOME$/src" />
-        </SOURCES>
+        <SOURCES />
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
@@ -63,7 +55,6 @@
     <orderEntry type="module" module-name="indivo_client_flash" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
-    <orderEntry type="library" exported="" name="gcm" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
   </component>
 </module>

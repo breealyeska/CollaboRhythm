@@ -44,9 +44,6 @@
             <entry module-name="CollaboRhythm.Plugins.Problems" build-configuration-name="CollaboRhythm.Plugins.Problems">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="36069884-1ff8-4d83-aa86-64cd52dc5be2">
-              <dependency linkage="Merged" />
-            </entry>
             <entry module-name="CollaboRhythm.Shared.Messages" build-configuration-name="CollaboRhythm.Shared.Messages">
               <dependency linkage="Merged" />
             </entry>
@@ -56,17 +53,21 @@
             <entry module-name="CollaboRhythm.Shared.DeviceSimulator" build-configuration-name="CollaboRhythm.Shared.DeviceSimulator">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobilecomponents" library-level="project">
-              <dependency linkage="External" />
-            </entry>
-            <entry library-name="gcm" library-level="project">
+            <entry library-id="d02ec6d6-881a-4b3c-84d4-32721029955d">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="2729a134-5ef9-4ace-9258-84b7ff32f774">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="72656d85-3ebd-4da3-af4c-49c1daad7a47">
+              <dependency linkage="External" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
         <compiler-options>
           <map>
+            <entry key="compiler.debug.swc" value="true" />
             <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
           </map>
           <option name="additionalOptions" value="-locale en_US" />
@@ -133,9 +134,14 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="module" module-name="CollaboRhythm.Plugins.Problems" exported="" />
+    <orderEntry type="module" module-name="CollaboRhythm.Shared.Messages" exported="" />
+    <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
+    <orderEntry type="module" module-name="CollaboRhythm.Shared.DeviceSimulator" exported="" />
+    <orderEntry type="library" exported="" name="google-play-services" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="36069884-1ff8-4d83-aa86-64cd52dc5be2" />
+        <properties id="d02ec6d6-881a-4b3c-84d4-32721029955d" />
         <CLASSES>
           <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
         </CLASSES>
@@ -143,11 +149,25 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="CollaboRhythm.Shared.Messages" exported="" />
-    <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
-    <orderEntry type="module" module-name="CollaboRhythm.Shared.DeviceSimulator" exported="" />
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
-    <orderEntry type="library" exported="" name="google-play-services" level="project" />
-    <orderEntry type="library" exported="" name="gcm" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="2729a134-5ef9-4ace-9258-84b7ff32f774" />
+        <CLASSES>
+          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="72656d85-3ebd-4da3-af4c-49c1daad7a47" />
+        <CLASSES>
+          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
