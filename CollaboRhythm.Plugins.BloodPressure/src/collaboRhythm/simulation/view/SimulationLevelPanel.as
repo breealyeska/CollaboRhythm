@@ -19,7 +19,8 @@ package collaboRhythm.simulation.view
 	import collaboRhythm.plugins.bloodPressure.view.simulation.*;
 	import castle.flexbridge.reflection.ReflectionUtils;
 
-	import collaboRhythm.plugins.bloodPressure.view.simulation.skins.SimulationLevelPanelSkin;
+	//import collaboRhythm.plugins.bloodPressure.view.simulation.skins.SimulationLevelPanelSkin;
+	import collaboRhythm.simulation.view.skins.SimulationLevelPanelSkin;
 
 	import flash.events.MouseEvent;
 

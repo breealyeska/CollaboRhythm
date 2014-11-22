@@ -46,6 +46,9 @@ package collaboRhythm.shared.ui.healthCharts.view
 	import collaboRhythm.shared.ui.healthCharts.model.modifiers.DefaultVitalSignChartModifier;
 	import collaboRhythm.shared.ui.healthCharts.model.modifiers.IChartModifier;
 	import collaboRhythm.shared.ui.healthCharts.model.modifiers.IChartModifierFactory;
+
+	import j2as3.collection.HashMap;
+
 	import collaboRhythm.view.scroll.TouchScrollerEvent;
 
 	import com.dougmccune.controls.ChartDataTipsLocation;
@@ -1316,6 +1319,7 @@ package collaboRhythm.shared.ui.healthCharts.view
 		 */
 		protected function get vitalSignChartCategories():ArrayCollection
 		{
+
 			return model.record.vitalSignsModel.vitalSignsByCategory.keys;
 		}
 
