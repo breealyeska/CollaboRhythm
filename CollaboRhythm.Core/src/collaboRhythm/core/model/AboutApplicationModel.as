@@ -172,6 +172,7 @@ package collaboRhythm.core.model
 			_appModificationDateString = value;
 		}
 
+		[Bindable]
 		public function get deviceDetails():String
 		{
 			var nativeDpiClause:String = Capabilities.screenDPI != FlexGlobals.topLevelApplication.applicationDPI ? " (native " + Capabilities.screenDPI + " DPI)" : "";
