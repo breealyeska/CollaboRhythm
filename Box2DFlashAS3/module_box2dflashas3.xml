@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_box2dflashas3" default="compile.module.box2dflashas3">
+  <dirname property="module.box2dflashas3.basedir" file="${ant.file.module_box2dflashas3}"/>
+  
+  <property name="module.jdk.home.box2dflashas3" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.box2dflashas3" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.box2dflashas3" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.box2dflashas3" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="box2dflashas3.output.dir" value="${module.box2dflashas3.basedir}/bin"/>
+  <property name="box2dflashas3.testoutput.dir" value="${module.box2dflashas3.basedir}/bin"/>
+  
+  <path id="box2dflashas3.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="box2dflashas3.module.production.classpath">
+    <path refid="${module.jdk.classpath.box2dflashas3}"/>
+  </path>
+  
+  <path id="box2dflashas3.runtime.production.module.classpath">
+    <pathelement location="${box2dflashas3.output.dir}"/>
+  </path>
+  
+  <path id="box2dflashas3.module.classpath">
+    <pathelement location="${box2dflashas3.output.dir}"/>
+    <path refid="${module.jdk.classpath.box2dflashas3}"/>
+  </path>
+  
+  <path id="box2dflashas3.runtime.module.classpath">
+    <pathelement location="${box2dflashas3.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.box2dflashas3">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.box2dflashas3">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.box2dflashas3"/>
+  </patternset>
+  
+  <path id="box2dflashas3.module.sourcepath">
+    <dirset dir="${module.box2dflashas3.basedir}">
+      <include name="Source"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.box2dflashas3" depends="compile.module.box2dflashas3.production,compile.module.box2dflashas3.tests" description="Compile module Box2DFlashAS3"/>
+  
+  <target name="compile.module.box2dflashas3.production" depends="register.custom.compilers" description="Compile module Box2DFlashAS3; production classes">
+    <mkdir dir="${box2dflashas3.output.dir}"/>
+    <javac2 destdir="${box2dflashas3.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.box2dflashas3}/javac">
+      <compilerarg line="${compiler.args.box2dflashas3}"/>
+      <bootclasspath refid="box2dflashas3.module.bootclasspath"/>
+      <classpath refid="box2dflashas3.module.production.classpath"/>
+      <src refid="box2dflashas3.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.box2dflashas3"/>
+    </javac2>
+    
+    <copy todir="${box2dflashas3.output.dir}">
+      <fileset dir="${module.box2dflashas3.basedir}/Source">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.box2dflashas3"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.box2dflashas3.tests" depends="register.custom.compilers,compile.module.box2dflashas3.production" description="compile module Box2DFlashAS3; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.box2dflashas3" description="cleanup module">
+    <delete dir="${box2dflashas3.output.dir}"/>
+    <delete dir="${box2dflashas3.testoutput.dir}"/>
+  </target>
+</project>

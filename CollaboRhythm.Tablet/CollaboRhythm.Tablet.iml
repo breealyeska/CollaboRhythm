@@ -32,9 +32,6 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -55,7 +52,7 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
           </files-to-package>
-          <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" />
+          <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" use-temp-certificate="false" />
         </packaging-android>
         <packaging-ios package-file-name="CollaboRhythm_Tablet" />
       </configuration>
@@ -89,9 +86,6 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -112,7 +106,7 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
           </files-to-package>
-          <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" />
+          <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" use-temp-certificate="false" />
         </packaging-android>
         <packaging-ios package-file-name="CollaboRhythm_Tablet" />
       </configuration>
@@ -146,9 +140,6 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -166,8 +157,8 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.HealthCharts/bin-debug/HealthChartsPluginModule.swf" path-in-package="plugins/HealthChartsPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/bin-debug/CollaboRhythmTabletApplication.swf" path-in-package="CollaboRhythmTabletApplication.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="ForaD40bPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="MessagesPluginModule.swf" />
           </files-to-package>
           <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" use-temp-certificate="false" />
         </packaging-android>
@@ -197,10 +188,10 @@
             <entry library-id="24dcc077-6012-4bbb-8151-0999e65c7580">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
+            <entry library-id="ae0ec781-f049-4ead-be1a-6a472f070eac">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
+            <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -208,7 +199,7 @@
         </dependencies>
         <compiler-options>
           <map>
-            <entry key="compiler.keep-generated-actionscript" value="false" />
+            <entry key="compiler.keep-generated-actionscript" value="true" />
           </map>
         </compiler-options>
         <packaging-air-desktop />
@@ -216,7 +207,7 @@
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
           </files-to-package>
-          <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" />
+          <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" use-temp-certificate="false" />
         </packaging-android>
         <packaging-ios package-file-name="CollaboRhythm.Tablet.Emulator" />
       </configuration>
@@ -242,6 +233,9 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-id="24dcc077-6012-4bbb-8151-0999e65c7580">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="ae0ec781-f049-4ead-be1a-6a472f070eac">
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
@@ -308,7 +302,7 @@
       <library type="flex">
         <properties id="092dc380-9bdb-417d-9fd6-2c5466a86dfb" />
         <CLASSES>
-          <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
+          <root url="jar://$PROJECT_FRAMEWORKS$/libs/air/applicationupdater.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -318,7 +312,7 @@
       <library type="flex">
         <properties id="167a450b-eb6f-4e63-bba3-2d58755ec563" />
         <CLASSES>
-          <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
+          <root url="jar://$PROJECT_FRAMEWORKS$/libs/air/applicationupdater.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -336,15 +330,16 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
-      <library>
+      <library type="flex">
+        <properties id="ae0ec781-f049-4ead-be1a-6a472f070eac" />
         <CLASSES>
-          <root url="jar://$PROJECT_DIR$/google-play-services_lib/libs/google-play-services.jar!/" />
+          <root url="jar://$PROJECT_FRAMEWORKS$/libs/air/applicationupdater.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
-    <orderEntry type="library" exported="" name="gcm" level="project" />
   </component>
 </module>
+

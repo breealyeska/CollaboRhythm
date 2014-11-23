@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_mccunechart.demos" default="compile.module.mccunechart.demos">
+  <dirname property="module.mccunechart.demos.basedir" file="${ant.file.module_mccunechart.demos}"/>
+  
+  <property name="module.jdk.home.mccunechart.demos" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.mccunechart.demos" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.mccunechart.demos" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.mccunechart.demos" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="mccunechart.demos.output.dir" value="${module.mccunechart.demos.basedir}/bin-debug"/>
+  <property name="mccunechart.demos.testoutput.dir" value="${module.mccunechart.demos.basedir}/bin-debug"/>
+  
+  <path id="mccunechart.demos.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="mccunechart.demos.module.production.classpath">
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <fileset dir="${basedir}/McCuneChart.demos/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="${module.jdk.classpath.mccunechart.demos}"/>
+  </path>
+  
+  <path id="mccunechart.demos.runtime.production.module.classpath">
+    <pathelement location="${mccunechart.demos.output.dir}"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <fileset dir="${basedir}/McCuneChart.demos/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="mccunechart.demos.module.classpath">
+    <pathelement location="${mccunechart.demos.output.dir}"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <fileset dir="${basedir}/McCuneChart.demos/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="${module.jdk.classpath.mccunechart.demos}"/>
+  </path>
+  
+  <path id="mccunechart.demos.runtime.module.classpath">
+    <pathelement location="${mccunechart.demos.output.dir}"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <fileset dir="${basedir}/McCuneChart.demos/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.mccunechart.demos">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.mccunechart.demos">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.mccunechart.demos"/>
+  </patternset>
+  
+  <path id="mccunechart.demos.module.sourcepath">
+    <dirset dir="${module.mccunechart.demos.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.mccunechart.demos" depends="compile.module.mccunechart.demos.production,compile.module.mccunechart.demos.tests" description="Compile module McCuneChart.demos"/>
+  
+  <target name="compile.module.mccunechart.demos.production" depends="register.custom.compilers,compile.module.mccunechart" description="Compile module McCuneChart.demos; production classes">
+    <mkdir dir="${mccunechart.demos.output.dir}"/>
+    <javac2 destdir="${mccunechart.demos.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mccunechart.demos}/javac">
+      <compilerarg line="${compiler.args.mccunechart.demos}"/>
+      <bootclasspath refid="mccunechart.demos.module.bootclasspath"/>
+      <classpath refid="mccunechart.demos.module.production.classpath"/>
+      <src refid="mccunechart.demos.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.mccunechart.demos"/>
+    </javac2>
+    
+    <copy todir="${mccunechart.demos.output.dir}">
+      <fileset dir="${module.mccunechart.demos.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.mccunechart.demos"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.mccunechart.demos.tests" depends="register.custom.compilers,compile.module.mccunechart.demos.production" description="compile module McCuneChart.demos; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.mccunechart.demos" description="cleanup module">
+    <delete dir="${mccunechart.demos.output.dir}"/>
+    <delete dir="${mccunechart.demos.testoutput.dir}"/>
+  </target>
+</project>

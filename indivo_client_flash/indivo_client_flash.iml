@@ -14,9 +14,6 @@
             <entry library-id="bfb01a4e-2ab1-4619-80b3-4219e59407c1">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -71,6 +68,6 @@
       </library>
     </orderEntry>
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
-    <orderEntry type="library" exported="" name="gcm" level="project" />
   </component>
 </module>
+

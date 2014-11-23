@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gaforflash" default="compile.module.gaforflash">
+  <dirname property="module.gaforflash.basedir" file="${ant.file.module_gaforflash}"/>
+  
+  <property name="module.jdk.home.gaforflash" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.gaforflash" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.gaforflash" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.gaforflash" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="gaforflash.output.dir" value="${module.gaforflash.basedir}/../out/production/GAForFlash"/>
+  <property name="gaforflash.testoutput.dir" value="${module.gaforflash.basedir}/../out/test/GAForFlash"/>
+  
+  <path id="gaforflash.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gaforflash.module.production.classpath">
+    <path refid="${module.jdk.classpath.gaforflash}"/>
+    <fileset dir="${basedir}/GAForFlash/lib-swc">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="gaforflash.runtime.production.module.classpath">
+    <pathelement location="${gaforflash.output.dir}"/>
+    <fileset dir="${basedir}/GAForFlash/lib-swc">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="gaforflash.module.classpath">
+    <path refid="${module.jdk.classpath.gaforflash}"/>
+    <pathelement location="${gaforflash.output.dir}"/>
+    <fileset dir="${basedir}/GAForFlash/lib-swc">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="gaforflash.runtime.module.classpath">
+    <pathelement location="${gaforflash.testoutput.dir}"/>
+    <pathelement location="${gaforflash.output.dir}"/>
+    <fileset dir="${basedir}/GAForFlash/lib-swc">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gaforflash">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gaforflash">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.gaforflash"/>
+  </patternset>
+  
+  <path id="gaforflash.module.sourcepath">
+    <dirset dir="${module.gaforflash.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gaforflash" depends="compile.module.gaforflash.production,compile.module.gaforflash.tests" description="Compile module GAForFlash"/>
+  
+  <target name="compile.module.gaforflash.production" depends="register.custom.compilers" description="Compile module GAForFlash; production classes">
+    <mkdir dir="${gaforflash.output.dir}"/>
+    <javac2 destdir="${gaforflash.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gaforflash}/javac">
+      <compilerarg line="${compiler.args.gaforflash}"/>
+      <bootclasspath refid="gaforflash.module.bootclasspath"/>
+      <classpath refid="gaforflash.module.production.classpath"/>
+      <src refid="gaforflash.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gaforflash"/>
+    </javac2>
+    
+    <copy todir="${gaforflash.output.dir}">
+      <fileset dir="${module.gaforflash.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.gaforflash"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gaforflash.tests" depends="register.custom.compilers,compile.module.gaforflash.production" description="compile module GAForFlash; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.gaforflash" description="cleanup module">
+    <delete dir="${gaforflash.output.dir}"/>
+    <delete dir="${gaforflash.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.shared.model" default="compile.module.collaborhythm.shared.model">
+  <dirname property="module.collaborhythm.shared.model.basedir" file="${ant.file.module_collaborhythm.shared.model}"/>
+  
+  <property name="module.jdk.home.collaborhythm.shared.model" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.collaborhythm.shared.model" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.collaborhythm.shared.model" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.collaborhythm.shared.model" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.shared.model.output.dir" value="${module.collaborhythm.shared.model.basedir}/../out/production/CollaboRhythm.Shared.Model"/>
+  <property name="collaborhythm.shared.model.testoutput.dir" value="${module.collaborhythm.shared.model.basedir}/../out/test/CollaboRhythm.Shared.Model"/>
+  
+  <path id="collaborhythm.shared.model.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.shared.model.module.production.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.shared.model}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="collaborhythm.shared.model.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="collaborhythm.shared.model.module.classpath">
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <path refid="${module.jdk.classpath.collaborhythm.shared.model}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="collaborhythm.shared.model.runtime.module.classpath">
+    <pathelement location="${collaborhythm.shared.model.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.shared.model">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.shared.model">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.shared.model"/>
+  </patternset>
+  
+  <path id="collaborhythm.shared.model.module.sourcepath">
+    <dirset dir="${module.collaborhythm.shared.model.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.shared.model" depends="compile.module.collaborhythm.shared.model.production,compile.module.collaborhythm.shared.model.tests" description="Compile module CollaboRhythm.Shared.Model"/>
+  
+  <target name="compile.module.collaborhythm.shared.model.production" depends="register.custom.compilers" description="Compile module CollaboRhythm.Shared.Model; production classes">
+    <mkdir dir="${collaborhythm.shared.model.output.dir}"/>
+    <javac2 destdir="${collaborhythm.shared.model.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.shared.model}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.shared.model}"/>
+      <bootclasspath refid="collaborhythm.shared.model.module.bootclasspath"/>
+      <classpath refid="collaborhythm.shared.model.module.production.classpath"/>
+      <src refid="collaborhythm.shared.model.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.shared.model"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.shared.model.output.dir}">
+      <fileset dir="${module.collaborhythm.shared.model.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.shared.model"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.shared.model.tests" depends="register.custom.compilers,compile.module.collaborhythm.shared.model.production" description="compile module CollaboRhythm.Shared.Model; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.shared.model" description="cleanup module">
+    <delete dir="${collaborhythm.shared.model.output.dir}"/>
+    <delete dir="${collaborhythm.shared.model.testoutput.dir}"/>
+  </target>
+</project>

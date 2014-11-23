@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_indivo_client_flash" default="compile.module.indivo_client_flash">
+  <dirname property="module.indivo_client_flash.basedir" file="${ant.file.module_indivo_client_flash}"/>
+  
+  <property name="module.jdk.home.indivo_client_flash" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.indivo_client_flash" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.indivo_client_flash" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.indivo_client_flash" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="indivo_client_flash.output.dir" value="${module.indivo_client_flash.basedir}/bin"/>
+  <property name="indivo_client_flash.testoutput.dir" value="${module.indivo_client_flash.basedir}/bin"/>
+  
+  <path id="indivo_client_flash.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="indivo_client_flash.module.production.classpath">
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <path refid="${module.jdk.classpath.indivo_client_flash}"/>
+  </path>
+  
+  <path id="indivo_client_flash.runtime.production.module.classpath">
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+  </path>
+  
+  <path id="indivo_client_flash.module.classpath">
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <path refid="${module.jdk.classpath.indivo_client_flash}"/>
+  </path>
+  
+  <path id="indivo_client_flash.runtime.module.classpath">
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.indivo_client_flash">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.indivo_client_flash">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.indivo_client_flash"/>
+  </patternset>
+  
+  <path id="indivo_client_flash.module.sourcepath">
+    <dirset dir="${module.indivo_client_flash.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.indivo_client_flash" depends="compile.module.indivo_client_flash.production,compile.module.indivo_client_flash.tests" description="Compile module indivo_client_flash"/>
+  
+  <target name="compile.module.indivo_client_flash.production" depends="register.custom.compilers" description="Compile module indivo_client_flash; production classes">
+    <mkdir dir="${indivo_client_flash.output.dir}"/>
+    <javac2 destdir="${indivo_client_flash.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.indivo_client_flash}/javac">
+      <compilerarg line="${compiler.args.indivo_client_flash}"/>
+      <bootclasspath refid="indivo_client_flash.module.bootclasspath"/>
+      <classpath refid="indivo_client_flash.module.production.classpath"/>
+      <src refid="indivo_client_flash.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.indivo_client_flash"/>
+    </javac2>
+    
+    <copy todir="${indivo_client_flash.output.dir}">
+      <fileset dir="${module.indivo_client_flash.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.indivo_client_flash"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.indivo_client_flash.tests" depends="register.custom.compilers,compile.module.indivo_client_flash.production" description="compile module indivo_client_flash; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.indivo_client_flash" description="cleanup module">
+    <delete dir="${indivo_client_flash.output.dir}"/>
+    <delete dir="${indivo_client_flash.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,20 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CollaboRhythm.Shared.Model.Medications.Tests" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" singleton="true" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Package">
+    <option name="BCName" value="CollaboRhythm.Shared.Model.Medications.Tests" />
+    <option name="launcherParameters">
+      <LauncherParameters>
+        <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+        <option name="launcherType" value="OSDefault" />
+        <option name="newPlayerInstance" value="false" />
+        <option name="playerPath" value="FlashPlayerDebugger.exe" />
+      </LauncherParameters>
+    </option>
+    <option name="moduleName" value="CollaboRhythm.Shared.Model.Medications.Tests" />
+    <option name="trusted" value="true" />
+    <RunnerSettings RunnerId="FlexDebugRunner" />
+    <RunnerSettings RunnerId="FlexRunner" />
+    <ConfigurationWrapper RunnerId="FlexDebugRunner" />
+    <ConfigurationWrapper RunnerId="FlexRunner" />
+    <method />
+  </configuration>
+</component>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.collaborationserver" default="compile.module.collaborhythm.collaborationserver">
+  <dirname property="module.collaborhythm.collaborationserver.basedir" file="${ant.file.module_collaborhythm.collaborationserver}"/>
+  
+  <property name="module.jdk.home.collaborhythm.collaborationserver" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.collaborhythm.collaborationserver" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.collaborhythm.collaborationserver" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.collaborhythm.collaborationserver" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.collaborationserver.output.dir" value="${module.collaborhythm.collaborationserver.basedir}/../../out/production/CollaboRhythm.CollaborationServer"/>
+  <property name="collaborhythm.collaborationserver.testoutput.dir" value="${module.collaborhythm.collaborationserver.basedir}/../../out/test/CollaboRhythm.CollaborationServer"/>
+  
+  <path id="collaborhythm.collaborationserver.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.collaborationserver.module.production.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.collaborationserver}"/>
+  </path>
+  
+  <path id="collaborhythm.collaborationserver.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.collaborationserver.output.dir}"/>
+  </path>
+  
+  <path id="collaborhythm.collaborationserver.module.classpath">
+    <pathelement location="${collaborhythm.collaborationserver.output.dir}"/>
+    <path refid="${module.jdk.classpath.collaborhythm.collaborationserver}"/>
+  </path>
+  
+  <path id="collaborhythm.collaborationserver.runtime.module.classpath">
+    <pathelement location="${collaborhythm.collaborationserver.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.collaborationserver.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.collaborationserver">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.collaborationserver">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.collaborationserver"/>
+  </patternset>
+  
+  <path id="collaborhythm.collaborationserver.module.sourcepath">
+    <dirset dir="${module.collaborhythm.collaborationserver.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.collaborationserver" depends="compile.module.collaborhythm.collaborationserver.production,compile.module.collaborhythm.collaborationserver.tests" description="Compile module CollaboRhythm.CollaborationServer"/>
+  
+  <target name="compile.module.collaborhythm.collaborationserver.production" depends="register.custom.compilers" description="Compile module CollaboRhythm.CollaborationServer; production classes">
+    <mkdir dir="${collaborhythm.collaborationserver.output.dir}"/>
+    <javac2 destdir="${collaborhythm.collaborationserver.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.collaborationserver}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.collaborationserver}"/>
+      <bootclasspath refid="collaborhythm.collaborationserver.module.bootclasspath"/>
+      <classpath refid="collaborhythm.collaborationserver.module.production.classpath"/>
+      <src refid="collaborhythm.collaborationserver.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.collaborationserver"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.collaborationserver.output.dir}">
+      <fileset dir="${module.collaborhythm.collaborationserver.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.collaborationserver"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.collaborationserver.tests" depends="register.custom.compilers,compile.module.collaborhythm.collaborationserver.production" description="compile module CollaboRhythm.CollaborationServer; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.collaborationserver" description="cleanup module">
+    <delete dir="${collaborhythm.collaborationserver.output.dir}"/>
+    <delete dir="${collaborhythm.collaborationserver.testoutput.dir}"/>
+  </target>
+</project>

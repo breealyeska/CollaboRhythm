@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_chartbackgroundslib" default="compile.module.chartbackgroundslib">
+  <dirname property="module.chartbackgroundslib.basedir" file="${ant.file.module_chartbackgroundslib}"/>
+  
+  <property name="module.jdk.home.chartbackgroundslib" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.chartbackgroundslib" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.chartbackgroundslib" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.chartbackgroundslib" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="chartbackgroundslib.output.dir" value="${module.chartbackgroundslib.basedir}/bin"/>
+  <property name="chartbackgroundslib.testoutput.dir" value="${module.chartbackgroundslib.basedir}/bin"/>
+  
+  <path id="chartbackgroundslib.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="chartbackgroundslib.module.production.classpath">
+    <path refid="${module.jdk.classpath.chartbackgroundslib}"/>
+  </path>
+  
+  <path id="chartbackgroundslib.runtime.production.module.classpath">
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+  </path>
+  
+  <path id="chartbackgroundslib.module.classpath">
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="${module.jdk.classpath.chartbackgroundslib}"/>
+  </path>
+  
+  <path id="chartbackgroundslib.runtime.module.classpath">
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.chartbackgroundslib">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.chartbackgroundslib">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.chartbackgroundslib"/>
+  </patternset>
+  
+  <path id="chartbackgroundslib.module.sourcepath">
+    <dirset dir="${module.chartbackgroundslib.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.chartbackgroundslib" depends="compile.module.chartbackgroundslib.production,compile.module.chartbackgroundslib.tests" description="Compile module ChartBackgroundsLib"/>
+  
+  <target name="compile.module.chartbackgroundslib.production" depends="register.custom.compilers" description="Compile module ChartBackgroundsLib; production classes">
+    <mkdir dir="${chartbackgroundslib.output.dir}"/>
+    <javac2 destdir="${chartbackgroundslib.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.chartbackgroundslib}/javac">
+      <compilerarg line="${compiler.args.chartbackgroundslib}"/>
+      <bootclasspath refid="chartbackgroundslib.module.bootclasspath"/>
+      <classpath refid="chartbackgroundslib.module.production.classpath"/>
+      <src refid="chartbackgroundslib.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.chartbackgroundslib"/>
+    </javac2>
+    
+    <copy todir="${chartbackgroundslib.output.dir}">
+      <fileset dir="${module.chartbackgroundslib.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.chartbackgroundslib"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.chartbackgroundslib.tests" depends="register.custom.compilers,compile.module.chartbackgroundslib.production" description="compile module ChartBackgroundsLib; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.chartbackgroundslib" description="cleanup module">
+    <delete dir="${chartbackgroundslib.output.dir}"/>
+    <delete dir="${chartbackgroundslib.testoutput.dir}"/>
+  </target>
+</project>

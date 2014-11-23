@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_splitviewnavigatortest1" default="compile.module.splitviewnavigatortest1">
+  <dirname property="module.splitviewnavigatortest1.basedir" file="${ant.file.module_splitviewnavigatortest1}"/>
+  
+  <property name="module.jdk.home.splitviewnavigatortest1" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.splitviewnavigatortest1" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.splitviewnavigatortest1" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.splitviewnavigatortest1" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="splitviewnavigatortest1.output.dir" value="${module.splitviewnavigatortest1.basedir}/../out/production/SplitViewNavigatorTest1"/>
+  <property name="splitviewnavigatortest1.testoutput.dir" value="${module.splitviewnavigatortest1.basedir}/../out/test/SplitViewNavigatorTest1"/>
+  
+  <path id="splitviewnavigatortest1.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="splitviewnavigatortest1.module.production.classpath">
+    <path refid="${module.jdk.classpath.splitviewnavigatortest1}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+  </path>
+  
+  <path id="splitviewnavigatortest1.runtime.production.module.classpath">
+    <pathelement location="${splitviewnavigatortest1.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+  </path>
+  
+  <path id="splitviewnavigatortest1.module.classpath">
+    <pathelement location="${splitviewnavigatortest1.output.dir}"/>
+    <path refid="${module.jdk.classpath.splitviewnavigatortest1}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+  </path>
+  
+  <path id="splitviewnavigatortest1.runtime.module.classpath">
+    <pathelement location="${splitviewnavigatortest1.testoutput.dir}"/>
+    <pathelement location="${splitviewnavigatortest1.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.splitviewnavigatortest1">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.splitviewnavigatortest1">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.splitviewnavigatortest1"/>
+  </patternset>
+  
+  <path id="splitviewnavigatortest1.module.sourcepath">
+    <dirset dir="${module.splitviewnavigatortest1.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.splitviewnavigatortest1" depends="compile.module.splitviewnavigatortest1.production,compile.module.splitviewnavigatortest1.tests" description="Compile module SplitViewNavigatorTest1"/>
+  
+  <target name="compile.module.splitviewnavigatortest1.production" depends="register.custom.compilers" description="Compile module SplitViewNavigatorTest1; production classes">
+    <mkdir dir="${splitviewnavigatortest1.output.dir}"/>
+    <javac2 destdir="${splitviewnavigatortest1.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.splitviewnavigatortest1}/javac">
+      <compilerarg line="${compiler.args.splitviewnavigatortest1}"/>
+      <bootclasspath refid="splitviewnavigatortest1.module.bootclasspath"/>
+      <classpath refid="splitviewnavigatortest1.module.production.classpath"/>
+      <src refid="splitviewnavigatortest1.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.splitviewnavigatortest1"/>
+    </javac2>
+    
+    <copy todir="${splitviewnavigatortest1.output.dir}">
+      <fileset dir="${module.splitviewnavigatortest1.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.splitviewnavigatortest1"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.splitviewnavigatortest1.tests" depends="register.custom.compilers,compile.module.splitviewnavigatortest1.production" description="compile module SplitViewNavigatorTest1; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.splitviewnavigatortest1" description="cleanup module">
+    <delete dir="${splitviewnavigatortest1.output.dir}"/>
+    <delete dir="${splitviewnavigatortest1.testoutput.dir}"/>
+  </target>
+</project>

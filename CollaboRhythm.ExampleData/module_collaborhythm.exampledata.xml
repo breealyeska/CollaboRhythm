@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.exampledata" default="compile.module.collaborhythm.exampledata">
+  <dirname property="module.collaborhythm.exampledata.basedir" file="${ant.file.module_collaborhythm.exampledata}"/>
+  
+  <property name="module.jdk.home.collaborhythm.exampledata" value="${jdk.home.1.6}"/>
+  <property name="module.jdk.bin.collaborhythm.exampledata" value="${jdk.bin.1.6}"/>
+  <property name="module.jdk.classpath.collaborhythm.exampledata" value="jdk.classpath.1.6"/>
+  
+  <property name="compiler.args.collaborhythm.exampledata" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.exampledata.output.dir" value="${module.collaborhythm.exampledata.basedir}/../out/production/CollaboRhythm.ExampleData"/>
+  <property name="collaborhythm.exampledata.testoutput.dir" value="${module.collaborhythm.exampledata.basedir}/../out/test/CollaboRhythm.ExampleData"/>
+  
+  <path id="collaborhythm.exampledata.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.exampledata.module.production.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.exampledata}"/>
+    <fileset dir="${basedir}/CollaboRhythm.ExampleData/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="collaborhythm.exampledata.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.exampledata.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.ExampleData/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="collaborhythm.exampledata.module.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.exampledata}"/>
+    <pathelement location="${collaborhythm.exampledata.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.ExampleData/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="collaborhythm.exampledata.runtime.module.classpath">
+    <pathelement location="${collaborhythm.exampledata.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.exampledata.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.ExampleData/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.exampledata">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.exampledata">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.exampledata"/>
+  </patternset>
+  
+  
+  <target name="compile.module.collaborhythm.exampledata" depends="compile.module.collaborhythm.exampledata.production,compile.module.collaborhythm.exampledata.tests" description="Compile module CollaboRhythm.ExampleData"/>
+  
+  <target name="compile.module.collaborhythm.exampledata.production" depends="register.custom.compilers" description="Compile module CollaboRhythm.ExampleData; production classes"/>
+  
+  <target name="compile.module.collaborhythm.exampledata.tests" depends="register.custom.compilers,compile.module.collaborhythm.exampledata.production" description="compile module CollaboRhythm.ExampleData; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.exampledata" description="cleanup module">
+    <delete dir="${collaborhythm.exampledata.output.dir}"/>
+    <delete dir="${collaborhythm.exampledata.testoutput.dir}"/>
+  </target>
+</project>

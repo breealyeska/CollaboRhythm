@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.plugins.forad40b" default="compile.module.collaborhythm.plugins.forad40b">
+  <dirname property="module.collaborhythm.plugins.forad40b.basedir" file="${ant.file.module_collaborhythm.plugins.forad40b}"/>
+  
+  <property name="module.jdk.home.collaborhythm.plugins.forad40b" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.collaborhythm.plugins.forad40b" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.collaborhythm.plugins.forad40b" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.collaborhythm.plugins.forad40b" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.plugins.forad40b.output.dir" value="${module.collaborhythm.plugins.forad40b.basedir}/bin-debug"/>
+  <property name="collaborhythm.plugins.forad40b.testoutput.dir" value="${module.collaborhythm.plugins.forad40b.basedir}/bin-debug"/>
+  
+  <path id="collaborhythm.plugins.forad40b.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.plugins.forad40b.module.production.classpath">
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${collaborhythm.shared.pluginssupport.output.dir}"/>
+    <pathelement location="${collaborhythm.plugins.schedule.shared.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.collaboration.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <path refid="library.mobilecomponents.classpath"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.ForaD40b/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="${module.jdk.classpath.collaborhythm.plugins.forad40b}"/>
+    <pathelement location="${basedir}/ExternalLibraries/FlextrasMobileComponents/MobileComponents45.swc"/>
+  </path>
+  
+  <path id="collaborhythm.plugins.forad40b.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.plugins.forad40b.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${collaborhythm.shared.pluginssupport.output.dir}"/>
+    <pathelement location="${collaborhythm.plugins.schedule.shared.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.collaboration.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <path refid="library.mobilecomponents.classpath"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.ForaD40b/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${basedir}/ExternalLibraries/FlextrasMobileComponents/MobileComponents45.swc"/>
+  </path>
+  
+  <path id="collaborhythm.plugins.forad40b.module.classpath">
+    <pathelement location="${collaborhythm.plugins.forad40b.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.model.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${collaborhythm.shared.pluginssupport.output.dir}"/>
+    <pathelement location="${collaborhythm.plugins.schedule.shared.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.collaboration.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.collaboration.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <path refid="library.mobilecomponents.classpath"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.ForaD40b/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="${module.jdk.classpath.collaborhythm.plugins.forad40b}"/>
+    <pathelement location="${basedir}/ExternalLibraries/FlextrasMobileComponents/MobileComponents45.swc"/>
+  </path>
+  
+  <path id="collaborhythm.plugins.forad40b.runtime.module.classpath">
+    <pathelement location="${collaborhythm.plugins.forad40b.output.dir}"/>
+    <pathelement location="${collaborhythm.shared.output.dir}"/>
+    <pathelement location="${indivo_client_flash.output.dir}"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/Crypto.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/oauth-as3.swc"/>
+    <pathelement location="${basedir}/indivo_client_flash/lib/J2AS3Collections.swc"/>
+    <pathelement location="${collaborhythm.view.scroll.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.model.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Shared.Model/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${mccunechart.output.dir}"/>
+    <pathelement location="${chartbackgroundslib.output.dir}"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.doc_logging_framework-1.0.classpath"/>
+    <path refid="library.theory9.data.types.orderedmap.classpath"/>
+    <pathelement location="${collaborhythm.shared.model.services.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${collaborhythm.shared.pluginssupport.output.dir}"/>
+    <pathelement location="${collaborhythm.plugins.schedule.shared.output.dir}"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.Schedule.Shared/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${collaborhythm.shared.collaboration.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.collaboration.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <pathelement location="${path.variable.project_frameworks}/themes/Mobile/mobile.swc"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.ui.buttons.output.dir}"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+    <path refid="library.mobilecomponents.classpath"/>
+    <fileset dir="${basedir}/CollaboRhythm.Plugins.ForaD40b/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${basedir}/ExternalLibraries/FlextrasMobileComponents/MobileComponents45.swc"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.plugins.forad40b">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.plugins.forad40b">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.plugins.forad40b"/>
+  </patternset>
+  
+  <path id="collaborhythm.plugins.forad40b.module.sourcepath">
+    <dirset dir="${module.collaborhythm.plugins.forad40b.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.plugins.forad40b" depends="compile.module.collaborhythm.plugins.forad40b.production,compile.module.collaborhythm.plugins.forad40b.tests" description="Compile module CollaboRhythm.Plugins.ForaD40b"/>
+  
+  <target name="compile.module.collaborhythm.plugins.forad40b.production" depends="register.custom.compilers,compile.module.collaborhythm.shared,compile.module.collaborhythm.shared.pluginssupport,compile.module.collaborhythm.plugins.schedule.shared,compile.module.collaborhythm.shared.model,compile.module.collaborhythm.shared.collaboration,compile.module.collaborhythm.shared.ui.buttons,compile.module.collaborhythm.shared.model.services" description="Compile module CollaboRhythm.Plugins.ForaD40b; production classes">
+    <mkdir dir="${collaborhythm.plugins.forad40b.output.dir}"/>
+    <javac2 destdir="${collaborhythm.plugins.forad40b.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.plugins.forad40b}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.plugins.forad40b}"/>
+      <bootclasspath refid="collaborhythm.plugins.forad40b.module.bootclasspath"/>
+      <classpath refid="collaborhythm.plugins.forad40b.module.production.classpath"/>
+      <src refid="collaborhythm.plugins.forad40b.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.plugins.forad40b"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.plugins.forad40b.output.dir}">
+      <fileset dir="${module.collaborhythm.plugins.forad40b.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.plugins.forad40b"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.plugins.forad40b.tests" depends="register.custom.compilers,compile.module.collaborhythm.plugins.forad40b.production" description="compile module CollaboRhythm.Plugins.ForaD40b; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.plugins.forad40b" description="cleanup module">
+    <delete dir="${collaborhythm.plugins.forad40b.output.dir}"/>
+    <delete dir="${collaborhythm.plugins.forad40b.testoutput.dir}"/>
+  </target>
+</project>

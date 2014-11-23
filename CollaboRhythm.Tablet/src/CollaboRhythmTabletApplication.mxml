@@ -112,7 +112,6 @@
 		import collaboRhythm.shared.view.tablet.TabletViewBase;
 		import collaboRhythm.tablet.controller.TabletApplicationController;
 		import collaboRhythm.tablet.view.SelectRecordView;
-		import collaboRhythm.tablet.view.RegisterApplicationView;
 		import collaboRhythm.tablet.view.TabletHomeView;
 
 		import mx.binding.utils.BindingUtils;
@@ -273,11 +272,6 @@
 			{
 				event.preventDefault();
 			}
-		}
-
-		public function get registerApplicationView():RegisterApplicationView
-		{
-			return navigator.activeView as RegisterApplicationView;
 		}
 
 		public function get selectRecordView():SelectRecordView

@@ -838,11 +838,6 @@ package collaboRhythm.core.controller
 			removePendingService(event.target);
 		}
 
-		public function showRegisterApplicationView():void
-		{
-
-		}
-
 		public function showSelectRecordView():void
 		{
 

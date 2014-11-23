@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.shared.model.services" default="compile.module.collaborhythm.shared.model.services">
+  <dirname property="module.collaborhythm.shared.model.services.basedir" file="${ant.file.module_collaborhythm.shared.model.services}"/>
+  
+  <property name="module.jdk.home.collaborhythm.shared.model.services" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.collaborhythm.shared.model.services" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.collaborhythm.shared.model.services" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.collaborhythm.shared.model.services" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.shared.model.services.output.dir" value="${module.collaborhythm.shared.model.services.basedir}/../out/production/CollaboRhythm.Shared.Model.Services"/>
+  <property name="collaborhythm.shared.model.services.testoutput.dir" value="${module.collaborhythm.shared.model.services.basedir}/../out/test/CollaboRhythm.Shared.Model.Services"/>
+  
+  <path id="collaborhythm.shared.model.services.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.shared.model.services.module.production.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.shared.model.services}"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+  </path>
+  
+  <path id="collaborhythm.shared.model.services.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+  </path>
+  
+  <path id="collaborhythm.shared.model.services.module.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.shared.model.services}"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+  </path>
+  
+  <path id="collaborhythm.shared.model.services.runtime.module.classpath">
+    <pathelement location="${collaborhythm.shared.model.services.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.model.services.output.dir}"/>
+    <path refid="library.as3corelib.classpath"/>
+    <path refid="library.castle.flexbridge.flash.classpath"/>
+    <path refid="library.j2as3collections.classpath"/>
+    <pathelement location="${path.variable.project_frameworks}/libs/mobile/mobilecomponents.swc"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.shared.model.services">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.shared.model.services">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.shared.model.services"/>
+  </patternset>
+  
+  <path id="collaborhythm.shared.model.services.module.sourcepath">
+    <dirset dir="${module.collaborhythm.shared.model.services.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.shared.model.services" depends="compile.module.collaborhythm.shared.model.services.production,compile.module.collaborhythm.shared.model.services.tests" description="Compile module CollaboRhythm.Shared.Model.Services"/>
+  
+  <target name="compile.module.collaborhythm.shared.model.services.production" depends="register.custom.compilers" description="Compile module CollaboRhythm.Shared.Model.Services; production classes">
+    <mkdir dir="${collaborhythm.shared.model.services.output.dir}"/>
+    <javac2 destdir="${collaborhythm.shared.model.services.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.shared.model.services}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.shared.model.services}"/>
+      <bootclasspath refid="collaborhythm.shared.model.services.module.bootclasspath"/>
+      <classpath refid="collaborhythm.shared.model.services.module.production.classpath"/>
+      <src refid="collaborhythm.shared.model.services.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.shared.model.services"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.shared.model.services.output.dir}">
+      <fileset dir="${module.collaborhythm.shared.model.services.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.shared.model.services"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.shared.model.services.tests" depends="register.custom.compilers,compile.module.collaborhythm.shared.model.services.production" description="compile module CollaboRhythm.Shared.Model.Services; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.shared.model.services" description="cleanup module">
+    <delete dir="${collaborhythm.shared.model.services.output.dir}"/>
+    <delete dir="${collaborhythm.shared.model.services.testoutput.dir}"/>
+  </target>
+</project>

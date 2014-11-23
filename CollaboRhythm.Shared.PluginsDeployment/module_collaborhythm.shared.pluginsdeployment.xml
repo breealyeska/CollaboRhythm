@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.shared.pluginsdeployment" default="compile.module.collaborhythm.shared.pluginsdeployment">
+  <dirname property="module.collaborhythm.shared.pluginsdeployment.basedir" file="${ant.file.module_collaborhythm.shared.pluginsdeployment}"/>
+  
+  <property name="module.jdk.home.collaborhythm.shared.pluginsdeployment" value="${jdk.home.4.6.0}"/>
+  <property name="module.jdk.bin.collaborhythm.shared.pluginsdeployment" value="${jdk.bin.4.6.0}"/>
+  <property name="module.jdk.classpath.collaborhythm.shared.pluginsdeployment" value="jdk.classpath.4.6.0"/>
+  
+  <property name="compiler.args.collaborhythm.shared.pluginsdeployment" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.shared.pluginsdeployment.output.dir" value="${module.collaborhythm.shared.pluginsdeployment.basedir}/../out/production/CollaboRhythm.Shared.PluginsDeployment"/>
+  <property name="collaborhythm.shared.pluginsdeployment.testoutput.dir" value="${module.collaborhythm.shared.pluginsdeployment.basedir}/../out/test/CollaboRhythm.Shared.PluginsDeployment"/>
+  
+  <path id="collaborhythm.shared.pluginsdeployment.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.shared.pluginsdeployment.module.production.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.shared.pluginsdeployment}"/>
+    <pathelement location="${basedir}/ExternalLibraries/CollaboRhythm.ANE.ApplicationMessaging.ane"/>
+  </path>
+  
+  <path id="collaborhythm.shared.pluginsdeployment.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.shared.pluginsdeployment.output.dir}"/>
+    <pathelement location="${basedir}/ExternalLibraries/CollaboRhythm.ANE.ApplicationMessaging.ane"/>
+  </path>
+  
+  <path id="collaborhythm.shared.pluginsdeployment.module.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.shared.pluginsdeployment}"/>
+    <pathelement location="${collaborhythm.shared.pluginsdeployment.output.dir}"/>
+    <pathelement location="${basedir}/ExternalLibraries/CollaboRhythm.ANE.ApplicationMessaging.ane"/>
+  </path>
+  
+  <path id="collaborhythm.shared.pluginsdeployment.runtime.module.classpath">
+    <pathelement location="${collaborhythm.shared.pluginsdeployment.testoutput.dir}"/>
+    <pathelement location="${collaborhythm.shared.pluginsdeployment.output.dir}"/>
+    <pathelement location="${basedir}/ExternalLibraries/CollaboRhythm.ANE.ApplicationMessaging.ane"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.shared.pluginsdeployment">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.shared.pluginsdeployment">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.shared.pluginsdeployment"/>
+  </patternset>
+  
+  <path id="collaborhythm.shared.pluginsdeployment.module.sourcepath">
+    <dirset dir="${module.collaborhythm.shared.pluginsdeployment.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.shared.pluginsdeployment" depends="compile.module.collaborhythm.shared.pluginsdeployment.production,compile.module.collaborhythm.shared.pluginsdeployment.tests" description="Compile module CollaboRhythm.Shared.PluginsDeployment"/>
+  
+  <target name="compile.module.collaborhythm.shared.pluginsdeployment.production" depends="register.custom.compilers" description="Compile module CollaboRhythm.Shared.PluginsDeployment; production classes">
+    <mkdir dir="${collaborhythm.shared.pluginsdeployment.output.dir}"/>
+    <javac2 destdir="${collaborhythm.shared.pluginsdeployment.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.shared.pluginsdeployment}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.shared.pluginsdeployment}"/>
+      <bootclasspath refid="collaborhythm.shared.pluginsdeployment.module.bootclasspath"/>
+      <classpath refid="collaborhythm.shared.pluginsdeployment.module.production.classpath"/>
+      <src refid="collaborhythm.shared.pluginsdeployment.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.shared.pluginsdeployment"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.shared.pluginsdeployment.output.dir}">
+      <fileset dir="${module.collaborhythm.shared.pluginsdeployment.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.shared.pluginsdeployment"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.shared.pluginsdeployment.tests" depends="register.custom.compilers,compile.module.collaborhythm.shared.pluginsdeployment.production" description="compile module CollaboRhythm.Shared.PluginsDeployment; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.shared.pluginsdeployment" description="cleanup module">
+    <delete dir="${collaborhythm.shared.pluginsdeployment.output.dir}"/>
+    <delete dir="${collaborhythm.shared.pluginsdeployment.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_collaborhythm.android.devicegateway" default="compile.module.collaborhythm.android.devicegateway">
+  <dirname property="module.collaborhythm.android.devicegateway.basedir" file="${ant.file.module_collaborhythm.android.devicegateway}"/>
+  
+  <property name="module.jdk.home.collaborhythm.android.devicegateway" value="${jdk.home.android_2.2_platform_(8)}"/>
+  <property name="module.jdk.bin.collaborhythm.android.devicegateway" value="${jdk.bin.android_2.2_platform_(8)}"/>
+  <property name="module.jdk.classpath.collaborhythm.android.devicegateway" value="jdk.classpath.android_2.2_platform_(8)"/>
+  
+  <property name="compiler.args.collaborhythm.android.devicegateway" value="-encoding UTF-8 -source 1.5 ${compiler.args}"/>
+  
+  <property name="collaborhythm.android.devicegateway.output.dir" value="${module.collaborhythm.android.devicegateway.basedir}/bin"/>
+  <property name="collaborhythm.android.devicegateway.testoutput.dir" value="${module.collaborhythm.android.devicegateway.basedir}/bin"/>
+  
+  <path id="collaborhythm.android.devicegateway.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="collaborhythm.android.devicegateway.module.production.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.android.devicegateway}"/>
+    <pathelement location="${basedir}/CollaboRhythm.Android.DeviceGateway/libs/microlog4android-1.1-build-21.jar"/>
+    <pathelement location="${basedir}/../../../../../Applications/Android Studio.app/sdk/extras/android/support/v4/android-support-v4.jar"/>
+  </path>
+  
+  <path id="collaborhythm.android.devicegateway.runtime.production.module.classpath">
+    <pathelement location="${collaborhythm.android.devicegateway.output.dir}"/>
+    <pathelement location="${basedir}/CollaboRhythm.Android.DeviceGateway/libs/microlog4android-1.1-build-21.jar"/>
+    <pathelement location="${basedir}/../../../../../Applications/Android Studio.app/sdk/extras/android/support/v4/android-support-v4.jar"/>
+  </path>
+  
+  <path id="collaborhythm.android.devicegateway.module.classpath">
+    <path refid="${module.jdk.classpath.collaborhythm.android.devicegateway}"/>
+    <pathelement location="${collaborhythm.android.devicegateway.output.dir}"/>
+    <pathelement location="${basedir}/CollaboRhythm.Android.DeviceGateway/libs/microlog4android-1.1-build-21.jar"/>
+    <pathelement location="${basedir}/../../../../../Applications/Android Studio.app/sdk/extras/android/support/v4/android-support-v4.jar"/>
+  </path>
+  
+  <path id="collaborhythm.android.devicegateway.runtime.module.classpath">
+    <pathelement location="${collaborhythm.android.devicegateway.output.dir}"/>
+    <pathelement location="${basedir}/CollaboRhythm.Android.DeviceGateway/libs/microlog4android-1.1-build-21.jar"/>
+    <pathelement location="${basedir}/../../../../../Applications/Android Studio.app/sdk/extras/android/support/v4/android-support-v4.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.collaborhythm.android.devicegateway">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.collaborhythm.android.devicegateway">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.collaborhythm.android.devicegateway"/>
+  </patternset>
+  
+  <path id="collaborhythm.android.devicegateway.module.sourcepath">
+    <dirset dir="${module.collaborhythm.android.devicegateway.basedir}">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.collaborhythm.android.devicegateway" depends="compile.module.collaborhythm.android.devicegateway.production,compile.module.collaborhythm.android.devicegateway.tests" description="Compile module CollaboRhythm.Android.DeviceGateway"/>
+  
+  <target name="compile.module.collaborhythm.android.devicegateway.production" depends="register.custom.compilers" description="Compile module CollaboRhythm.Android.DeviceGateway; production classes">
+    <mkdir dir="${collaborhythm.android.devicegateway.output.dir}"/>
+    <javac2 destdir="${collaborhythm.android.devicegateway.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.collaborhythm.android.devicegateway}/javac">
+      <compilerarg line="${compiler.args.collaborhythm.android.devicegateway}"/>
+      <bootclasspath refid="collaborhythm.android.devicegateway.module.bootclasspath"/>
+      <classpath refid="collaborhythm.android.devicegateway.module.production.classpath"/>
+      <src refid="collaborhythm.android.devicegateway.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.collaborhythm.android.devicegateway"/>
+    </javac2>
+    
+    <copy todir="${collaborhythm.android.devicegateway.output.dir}">
+      <fileset dir="${module.collaborhythm.android.devicegateway.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.android.devicegateway"/>
+      </fileset>
+      <fileset dir="${module.collaborhythm.android.devicegateway.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.collaborhythm.android.devicegateway"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.collaborhythm.android.devicegateway.tests" depends="register.custom.compilers,compile.module.collaborhythm.android.devicegateway.production" description="compile module CollaboRhythm.Android.DeviceGateway; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.collaborhythm.android.devicegateway" description="cleanup module">
+    <delete dir="${collaborhythm.android.devicegateway.output.dir}"/>
+    <delete dir="${collaborhythm.android.devicegateway.testoutput.dir}"/>
+  </target>
+</project>
