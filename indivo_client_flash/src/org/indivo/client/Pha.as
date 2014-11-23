@@ -44,8 +44,6 @@ package org.indivo.client
 	import mx.logging.*;
 	import mx.utils.URLUtil;
 
-	import org.iotashan.oauth.IOAuthSignatureMethod;
-
 	import org.iotashan.oauth.OAuthConsumer;
 	import org.iotashan.oauth.OAuthRequest;
 	import org.iotashan.oauth.OAuthSignatureMethod_HMAC_SHA1;
@@ -2248,7 +2246,7 @@ package org.indivo.client
 			var oauthToken:OAuthToken = new OAuthToken(accessToken, accessTokenSecret);
 			var oauthRequest:OAuthRequest = new OAuthRequest(urlRequest.method, urlRequest.url, urlRequest.data,
 					oauthConsumer, oauthToken);
-			var requestHeader:URLRequestHeader = oauthRequest.buildRequest(IOAuthSignatureMethod(new OAuthSignatureMethod_HMAC_SHA1()),
+			var requestHeader:URLRequestHeader = oauthRequest.buildRequest(new OAuthSignatureMethod_HMAC_SHA1(),
 					OAuthRequest.RESULT_TYPE_HEADER);
 
 			urlRequest.requestHeaders.push(requestHeader);

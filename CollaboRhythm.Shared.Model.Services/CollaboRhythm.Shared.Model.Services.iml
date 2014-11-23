@@ -14,7 +14,10 @@
             <entry library-name="J2AS3Collections" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobile" library-level="project">
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
+            <entry library-name="gcm" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -42,7 +45,8 @@
     <orderEntry type="library" exported="" name="as3corelib" level="project" />
     <orderEntry type="library" exported="" name="Castle.FlexBridge.Flash" level="project" />
     <orderEntry type="library" exported="" name="J2AS3Collections" level="project" />
-    <orderEntry type="library" exported="" name="mobile" level="application" />
     <orderEntry type="library" exported="" name="mobile" level="project" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="gcm" level="project" />
   </component>
 </module>

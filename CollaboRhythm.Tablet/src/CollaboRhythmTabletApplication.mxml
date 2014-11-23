@@ -12,7 +12,7 @@
 							mouseDown="mouseDownHandler(event)"
 							mouseMove="mouseMoveHandler(event)"
 							mouseUp="mouseUpHandler(event)">
-	<!-- TODO bree: Remove redundant mobile.swc references in project settings. -->
+	<!-- TODO: Remove redundant mobile.swc references in project settings. -->
 	<s:states>
 		<s:State name="uninitialized"/>
 
@@ -118,8 +118,6 @@
 		import mx.binding.utils.BindingUtils;
 		import mx.core.FlexGlobals;
 		import mx.events.FlexEvent;
-		import mx.controls.DataGrid;
-		import mx.controls.dataGridClasses.*;
 
 		import spark.primitives.Graphic;
 
@@ -469,6 +467,7 @@
 		<s:CalloutButton visible="false" includeInLayout="false"/>
 		<s:Callout visible="false" includeInLayout="false"/>
 		<s:DateSpinner visible='false' includeInLayout="false"/>
+		<mx:AdvancedDataGrid visible="false" includeInLayout="false"/>
 	</s:navigationContent>
 	<s:actionContent>
 		<s:Button id="menuButton" click="menuButton_clickHandler(event)" icon="{MenuIcon}"/>

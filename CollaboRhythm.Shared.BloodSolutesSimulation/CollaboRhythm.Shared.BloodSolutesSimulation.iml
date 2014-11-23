@@ -8,6 +8,9 @@
             <entry module-name="Box2DFlashAS3" build-configuration-name="Box2DFlashAS3">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -31,6 +34,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Box2DFlashAS3" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
-    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
+

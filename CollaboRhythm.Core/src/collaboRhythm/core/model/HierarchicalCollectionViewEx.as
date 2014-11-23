@@ -13,9 +13,6 @@ package collaboRhythm.core.model
 	import mx.collections.IHierarchicalData;
 	import mx.collections.ISort;
 	import mx.collections.IViewCursor;
-
-	import mx.collections.IHierarchicalCollectionViewCursor;
-
 	import mx.collections.SortField;
 	import mx.collections.XMLListAdapter;
 	import mx.collections.XMLListCollection;
@@ -1138,7 +1135,7 @@ package collaboRhythm.core.model
 	    private function internalRefresh(dispatch:Boolean):Boolean
 	    {
 	        var obj:Object;
-	        var coll:ICollectionView;
+	        var coll:ICollectionView
 	        var needUpdate:Boolean = false;
 	        
 	        // apply filter function to all the collections including the child collections

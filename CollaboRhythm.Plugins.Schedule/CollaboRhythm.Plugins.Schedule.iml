@@ -32,13 +32,7 @@
             <entry module-name="CollaboRhythm.Shared.Model.Medications" build-configuration-name="CollaboRhythm.Shared.Model.Medications">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="flex mobilecomponents" library-level="project">
-              <dependency linkage="External" />
-            </entry>
-            <entry library-name="flex mobile theme" library-level="project">
+            <entry library-name="mobilecomponents" library-level="project">
               <dependency linkage="External" />
             </entry>
           </entries>
@@ -82,9 +76,7 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Medications" exported="" />
-    <orderEntry type="library" exported="" name="mobile" level="application" />
-    <orderEntry type="library" exported="" name="Desktop libraries for mobile applications" level="project" />
-    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
-    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
+

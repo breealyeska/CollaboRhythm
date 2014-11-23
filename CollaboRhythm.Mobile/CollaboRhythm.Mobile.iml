@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="AIR Application">
     <configurations>
-      <configuration name="AIR Application" target-platform="Desktop" main-class="CollaboRhythmMobileApplication" output-file="CollaboRhythmMobileApplication.swf" output-folder="$MODULE_DIR$/bin-debug" skip-build="true">
+      <configuration name="AIR Application" target-platform="Desktop" main-class="CollaboRhythmMobileApplication" output-file="CollaboRhythmMobileApplication.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies>
           <entries>
             <entry library-id="cb855614-0520-4356-b496-33f89aad7f96">
@@ -13,6 +13,9 @@
             </entry>
             <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
               <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
+              <dependency linkage="External" />
             </entry>
             <entry module-name="CollaboRhythm.Core" build-configuration-name="CollaboRhythm.Core">
               <dependency linkage="Merged" />
@@ -32,13 +35,10 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="Merged" />
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
             </entry>
-            <entry library-name="flex mobilecomponents" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="flex mobile theme" library-level="project">
+            <entry library-name="gcm" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -81,6 +81,7 @@
     <orderEntry type="module" module-name="CollaboRhythm.Core.Model" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="library" exported="" name="Desktop libraries for mobile applications" level="project" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
         <properties id="8a3c5505-93da-414f-8a14-4700dff467f2" />
@@ -92,9 +93,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
-    <orderEntry type="library" exported="" name="mobile" level="application" />
-    <orderEntry type="library" exported="" name="Desktop libraries for mobile applications" level="project" />
-    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
-    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="gcm" level="project" />
   </component>
 </module>

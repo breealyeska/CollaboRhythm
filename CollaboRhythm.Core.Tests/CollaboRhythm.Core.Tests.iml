@@ -14,14 +14,8 @@
             <entry library-name="FlexUnit" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="flex mobilecomponents" library-level="project">
+            <entry library-name="mobilecomponents" library-level="project">
               <dependency linkage="External" />
-            </entry>
-            <entry library-name="flex mobile theme" library-level="project">
-              <dependency linkage="Merged" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -44,9 +38,7 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared" exported="" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="library" exported="" name="FlexUnit" level="project" />
-    <orderEntry type="library" exported="" name="mobile" level="application" />
-    <orderEntry type="library" exported="" name="Desktop libraries for mobile applications" level="project" />
-    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
-    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
   </component>
 </module>
+

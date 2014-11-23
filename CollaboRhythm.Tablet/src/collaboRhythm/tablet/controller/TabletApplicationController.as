@@ -54,8 +54,8 @@ package collaboRhythm.tablet.controller
 	import spark.components.ViewNavigator;
 	import spark.transitions.SlideViewTransition;
 
-//	import com.afterisk.shared.ane.lib.GCMEvent;
-//	import com.afterisk.shared.ane.lib.GCMPushInterface;
+	import com.afterisk.shared.ane.lib.GCMEvent;
+	import com.afterisk.shared.ane.lib.GCMPushInterface;
 
 	public class TabletApplicationController extends ApplicationControllerBase
 	{

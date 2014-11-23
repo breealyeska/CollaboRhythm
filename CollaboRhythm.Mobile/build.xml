@@ -15,7 +15,7 @@
   ~ You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
   ~ <http://www.gnu.org/licenses/>.
   -->
-<project name="CollaboRhythm.Mobile Functions" basedir="." default="deploy_user_settings">
+<project name="Deploy user settings.xml to device for CollaboRhythm.Mobile" basedir="." default="deploy_user_settings">
 	
 	<description>Build Script</description>
 	
@@ -29,22 +29,22 @@
 		<exec executable="${ADB}">
 			<arg value="shell"/>
 			<arg value="mkdir"/>
-			<arg value="${collaboRhythm.tablet-device.local-store}"/>
+			<arg value="${collaboRhythm.application-device.local-store}"/>
 		</exec>
 
-		<echo>Pushing "${app.data}/${APP_ID}/Local Store/settings.xml" to "${collaboRhythm.tablet-device.local-store}"</echo>
+		<echo>Pushing "${app.data}/${APP_ID}/Local Store/settings.xml" to "${collaboRhythm.application-device.local-store}"</echo>
 		<exec executable="${ADB}">
 			<arg value="push"/>
 			<arg value="${app.data}/${APP_ID}/Local Store/settings.xml"/>
-			<arg value="${collaboRhythm.tablet-device.local-store}/settings.xml"/>
+			<arg value="${collaboRhythm.application-device.local-store}/settings.xml"/>
 		</exec>
 	</target>
 
 	<target name="pull_collaboRhythm_log">
-		<echo>Pulling "${collaboRhythm.tablet-device.log}" to "${app.data}/${APP_ID}/Local Store/collaboRhythmCopy.log"</echo>
+		<echo>Pulling "${collaboRhythm.application-device.log}" to "${app.data}/${APP_ID}/Local Store/collaboRhythmCopy.log"</echo>
 		<exec executable="${ADB}">
 			<arg value="pull"/>
-			<arg value="${collaboRhythm.tablet-device.log}"/>
+			<arg value="${collaboRhythm.application-device.log}"/>
 			<arg value="${app.data}/${APP_ID}/Local Store/collaboRhythmCopy.log"/>
 		</exec>
 	</target>

@@ -8,6 +8,12 @@
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="mobilecomponents" library-level="project">
+              <dependency linkage="External" />
+            </entry>
+            <entry library-name="gcm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -27,6 +33,7 @@
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model" exported="" />
-    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="gcm" level="project" />
   </component>
 </module>

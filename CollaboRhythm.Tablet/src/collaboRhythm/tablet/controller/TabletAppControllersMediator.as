@@ -57,8 +57,7 @@ package collaboRhythm.tablet.controller
 
 		public function destroyWidgetViews():void
 		{
-//			for each (var app:AppControllerBase in apps.values())
-			for each (var app:AppControllerBase in apps)
+			for each (var app:AppControllerBase in apps.values())
 			{
 				app.destroyWidgetView();
 			}

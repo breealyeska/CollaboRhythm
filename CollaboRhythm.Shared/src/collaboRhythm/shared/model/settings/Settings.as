@@ -254,7 +254,6 @@ package collaboRhythm.shared.model.settings
 			_targetDate = value;
 		}
 
-		[Bindable]
 		public function get isClinicianMode():Boolean
 		{
 			return _mode == MODE_CLINICIAN;

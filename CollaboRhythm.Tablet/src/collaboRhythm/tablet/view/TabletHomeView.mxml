@@ -19,6 +19,7 @@
 		public static const RECORD_BACKGROUND_COLOR:uint = 0xE6E7E8;
 
 		private var _widgetContainers:Vector.<IVisualElementContainer> = new Vector.<IVisualElementContainer>();
+		[Bindable]
 		private var _applicationInfo:AboutApplicationModel = new AboutApplicationModel();
 		private var _tracker:AnalyticsTracker;
 
@@ -59,7 +60,6 @@
 			return _widgetContainers;
 		}
 
-		[Bindable]
 		public function get applicationInfo():AboutApplicationModel
 		{
 			return _applicationInfo;

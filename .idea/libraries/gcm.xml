@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="gcm" type="flex">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/ExternalLibraries/gcm.ane!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
