@@ -4,11 +4,9 @@
 :: ***************************************************************************************
 :: Note: before using this install script you should change the variables below
 
-set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
+set AndroidADBFolder="/Users/breezy/Development/AndroidSDK/platform-tools"
 :: Android default path used to include the word "windows", so you might need this depending on the version you have
-::set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
-::set SettingsFile=my_settings_debug.xml
-set SettingsFile=/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/settings.xml
+set SettingsFile="/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/settings.xml"
 
 :: ***************************************************************************************
 
@@ -21,7 +19,7 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-"%AndroidADBFolder%"\adb pull "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/settings.xml" "%SettingsFile%"
+"%AndroidADBFolder%"\adb pull "/storage/sdcard0/CollaboRhythm.Tablet/Local Store/pulled_settings.xml" "%SettingsFile%"
 				  
 echo.
 echo Copy complete for %SettingsFile%

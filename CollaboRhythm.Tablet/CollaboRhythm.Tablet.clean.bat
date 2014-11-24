@@ -4,10 +4,8 @@
 :: ***************************************************************************************
 :: Note: before using this install script you should change the variables below
 
-set AndroidADBFolder="/Applications/Android Studio.app/sdk/platform-tools"
+set AndroidADBFolder="/Users/breezy/Development/AndroidSDK/platform-tools"
 :: Android default path used to include the word "windows", so you might need this depending on the version you have
-::set AndroidADBFolder=/Applications/Android Studio.app/sdk/platform-tools
-::set SettingsFile=my_settings_debug.xml
 set SettingsFile="/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store/settings.xml"
 set CollaboRhythmTabletApk="bin-debug/CollaboRhythm.Tablet.apk"
 
@@ -23,9 +21,9 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/settings.xml"
-"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/plugins/*"
-"%AndroidADBFolder%"/adb shell rmdir "/storage/sdcard0/CollaboRhythm.Tablet.debug/Local Store/plugins"
+"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/CollaboRhythm.Tablet/Local Store/settings.xml"
+"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/CollaboRhythm.Tablet/Local Store/plugins/*"
+"%AndroidADBFolder%"/adb shell rmdir "/storage/sdcard0/CollaboRhythm.Tablet/Local Store/plugins"
 
 "%AndroidADBFolder%"/adb -d uninstall CollaboRhythm.Tablet
 

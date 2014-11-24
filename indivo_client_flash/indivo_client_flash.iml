@@ -14,6 +14,12 @@
             <entry library-id="bfb01a4e-2ab1-4619-80b3-4219e59407c1">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="flex mobilecomponents" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="flex mobile theme" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -68,6 +74,8 @@
       </library>
     </orderEntry>
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
   </component>
 </module>
-

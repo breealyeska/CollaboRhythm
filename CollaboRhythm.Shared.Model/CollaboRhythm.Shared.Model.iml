@@ -8,9 +8,6 @@
             <entry library-id="d4e9fa08-d5f8-427a-8742-2c9cad93b95d">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobilecomponents" library-level="project">
-              <dependency linkage="External" />
-            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -40,7 +37,6 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
   </component>
 </module>
-

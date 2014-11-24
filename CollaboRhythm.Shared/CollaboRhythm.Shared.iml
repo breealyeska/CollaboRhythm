@@ -38,7 +38,10 @@
             <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="mobilecomponents" library-level="project">
+            <entry library-id="8a1fd5ea-6273-4fe3-96b7-d860078f6334">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="d2cc59f6-57ed-4280-a4e9-651090990db6">
               <dependency linkage="External" />
             </entry>
           </entries>
@@ -74,9 +77,7 @@
           <root url="file://$MODULE_DIR$/libs" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/Downloads/as3corelib-.93/src" />
-        </SOURCES>
+        <SOURCES />
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
@@ -89,7 +90,26 @@
     <orderEntry type="library" exported="" name="doc_logging_framework-1.0" level="project" />
     <orderEntry type="library" exported="" name="Theory9.Data.Types.OrderedMap" level="project" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="8a1fd5ea-6273-4fe3-96b7-d860078f6334" />
+        <CLASSES>
+          <root url="jar://$PROJECT_FRAMEWORKS$/libs/mobile/mobilecomponents.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="d2cc59f6-57ed-4280-a4e9-651090990db6" />
+        <CLASSES>
+          <root url="jar://$PROJECT_FRAMEWORKS$/themes/Mobile/mobile.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
-

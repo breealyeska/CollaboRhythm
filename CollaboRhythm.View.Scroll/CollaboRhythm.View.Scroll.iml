@@ -5,8 +5,11 @@
       <configuration name="CollaboRhythm.View.Scroll" target-platform="Desktop" output-type="Library" output-file="CollaboRhythm_View_Scroll.swc" output-folder="$MODULE_DIR$/../out/production/CollaboRhythm.View.Scroll">
         <dependencies>
           <entries>
-            <entry library-name="mobilecomponents" library-level="project">
+            <entry library-name="flex mobilecomponents" library-level="project">
               <dependency linkage="External" />
+            </entry>
+            <entry library-name="flex mobile theme" library-level="project">
+              <dependency linkage="Merged" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
@@ -30,7 +33,8 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="4.6.0" jdkType="Flex SDK Type (new)" />
-    <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="mobile" level="application" />
+    <orderEntry type="library" exported="" name="flex mobilecomponents" level="project" />
+    <orderEntry type="library" exported="" name="flex mobile theme" level="project" />
   </component>
 </module>
-

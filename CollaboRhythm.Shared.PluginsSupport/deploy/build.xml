@@ -45,19 +45,23 @@
 	-->
 	
 	<property environment="env"/>
-	<!--<property name="app.data" location="${user.home}/Library/Preferences" />-->
+	<property name="app.data" location="${user.home}/Library/Preferences" />
 
-<!--
+
 	<propertyfile
 		file="bin-debug/local.properties"
 		comment="Local properties for CollaboRhythm plugin deployment. This file must *NOT* be checked in Version Control Systems, as it contains information specific to your local configuration.">
 		<entry key="collaboRhythm.pluginDeployment.deploymentCount" type="int" default="0" operation="+" />
-		<entry key="sdk.dir" default="/Applications/Android Studio.app/sdk" />
+		<entry key="sdk.dir" default="/Users/breezy/Development/AndroidSDK" />
 		<entry key="collaboRhythm.workstation.pluginsPath" default="${app.data}/CollaboRhythm.Workstation/Local Store/plugins" />
-		<entry key="collaboRhythm.mobile-emulator.pluginsPath" default="${app.data}/CollaboRhythm.Mobile.debug/Local Store/plugins" />
-		<entry key="collaboRhythm.mobile-device.pluginsPath" default="/storage/sdcard0/CollaboRhythm.Mobile.debug/Local Store/plugins" />
+
+		<entry key="collaboRhythm.tablet-emulator.pluginsPath" default="${app.data}/CollaboRhythm.Tablet.Emulator/Local Store/plugins" />
+		<entry key="collaboRhythm.tablet-device.pluginsPath" default="/storage/sdcard0/CollaboRhythm.Tablet/Local Store/plugins" />
+
+		<entry key="collaboRhythm.mobile-emulator.pluginsPath" default="${app.data}/CollaboRhythm.Mobile.Emulator/Local Store/plugins" />
+		<entry key="collaboRhythm.mobile-device.pluginsPath" default="/storage/sdcard0/CollaboRhythm.Mobile/Local Store/plugins" />
 	</propertyfile>
--->
+
 
 <!--		<entry key="collaboRhythm.pluginDeployment.lastDeployedDate" type="date" value="now" pattern="EEE, dd MMM yyyy HH:mm:ss z"/> -->
 
@@ -139,7 +143,13 @@
 		<copy todir="${collaboRhythm.mobile-emulator.pluginsPath}" flatten="true" verbose="true">
 			<fileset refid="project.output.modulePaths.fileset" />
 		</copy>
+		<copy todir="${collaboRhythm.mobile-device.pluginsPath}" flatten="true" verbose="true">
+			<fileset refid="project.output.modulePaths.fileset" />
+		</copy>
 		<copy todir="${collaboRhythm.tablet-emulator.pluginsPath}" flatten="true" verbose="true">
+			<fileset refid="project.output.modulePaths.fileset" />
+		</copy>
+		<copy todir="${collaboRhythm.tablet-device.pluginsPath}" flatten="true" verbose="true">
 			<fileset refid="project.output.modulePaths.fileset" />
 		</copy>
 
@@ -228,8 +238,8 @@
 
 	<target name="delete_all_plugins" description="Deletes all plugins from deployment folders (local and on device)">
 		<mkdir dir="${collaboRhythm.workstation.pluginsPath}" />
-		<mkdir dir="${collaboRhythm.mobile-emulator.pluginsPath}" />
 		<mkdir dir="${collaboRhythm.tablet-emulator.pluginsPath}" />
+		<mkdir dir="${collaboRhythm.mobile-emulator.pluginsPath}" />
 		<delete>
 			<fileset dir="${collaboRhythm.workstation.pluginsPath}" includes="*.swf"/>
 		</delete>
