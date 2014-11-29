@@ -9,9 +9,9 @@ package collaboRhythm.shared.pluginsDeployment
 	{
 		private static const SETTINGS_FILE_NAME:String = "settings.xml";
 		private static const ANDROID_CAPABILITIES_VERSION_PREFIX:String = "AND";
-		private static const COLLABO_RHYTHM_TABLET_DATA_DIRECTORY_NAME:String = "CollaboRhythm.Tablet";
+		private static const COLLABO_RHYTHM_TABLET_DATA_DIRECTORY_NAME:String = "air.CollaboRhythm.Tablet/CollaboRhythm.Tablet";
 		private static const EXTERNAL_PLUGINS_DIRECTORY_NAME:String = "external_plugins";
-		private static const collaboRhythmLocalStorePath:String = "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.Emulator/Local Store";
+		private static const collaboRhythmLocalStorePath:String = "/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/Local Store";
 		private static const collaboRhythmLocalStorePathEmulator:String = "CollaboRhythm.Tablet.Emulator/Local Store";
 
 		public function PluginsDeployUtil()
@@ -72,10 +72,12 @@ package collaboRhythm.shared.pluginsDeployment
 			trace("Capabilities.version", Capabilities.version);
 
 			var isAndroid:Boolean = Capabilities.version.substr(0, 3) == ANDROID_CAPABILITIES_VERSION_PREFIX;
+			trace("bree isandroid ",isAndroid);
 			var collaboRhythmStorageDirectory:File = isAndroid ?
 					new File(collaboRhythmLocalStorePath) :
 					new File(File.applicationStorageDirectory.nativePath).parent.parent.resolvePath(collaboRhythmLocalStorePathEmulator);
 			var settingsFile:File = collaboRhythmStorageDirectory.resolvePath(SETTINGS_FILE_NAME);
+			trace("bree settingsFile ", settingsFile.exists);
 			var defaultSettingsFile:File = File.applicationDirectory.resolvePath(SETTINGS_FILE_NAME);
 			var saveSucceeded:Boolean = false;
 

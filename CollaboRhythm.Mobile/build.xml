@@ -29,14 +29,14 @@
 		<exec executable="${ADB}">
 			<arg value="shell"/>
 			<arg value="mkdir"/>
-			<arg value="${collaboRhythm.tablet-device.local-store}"/>
+			<arg value="${collaboRhythm.mobile-device.local-store}"/>
 		</exec>
 
 		<echo>Pushing "${app.data}/${APP_ID}/Local Store/settings.xml" to "${collaboRhythm.tablet-device.local-store}"</echo>
 		<exec executable="${ADB}">
 			<arg value="push"/>
 			<arg value="${app.data}/${APP_ID}/Local Store/settings.xml"/>
-			<arg value="${collaboRhythm.tablet-device.local-store}/settings.xml"/>
+			<arg value="${collaboRhythm.mobile-device.local-store}/settings.xml"/>
 		</exec>
 	</target>
 
@@ -44,7 +44,7 @@
 		<echo>Pulling "${collaboRhythm.tablet-device.log}" to "${app.data}/${APP_ID}/Local Store/collaboRhythmCopy.log"</echo>
 		<exec executable="${ADB}">
 			<arg value="pull"/>
-			<arg value="${collaboRhythm.tablet-device.log}"/>
+			<arg value="${collaboRhythm.mobile-device.log}"/>
 			<arg value="${app.data}/${APP_ID}/Local Store/collaboRhythmCopy.log"/>
 		</exec>
 	</target>

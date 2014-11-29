@@ -114,12 +114,12 @@
 				<arg value="push"/>
 				<arg value="${collaboRhythm.config.settings-dir}/${user-type}/settings.xml"/>
 				<!--<arg value="${app.data}/${APP_ID}/Local Store/settings.xml"/>-->
-				<arg value="${collaboRhythm.tablet-device}/settings.xml"/>
+				<arg value="${collaboRhythm.tablet-device.local-store}/settings.xml"/>
 			</exec>
 		</target>
 
 		<target name="pull_collaboRhythm_log">
-			<echo>Pulling "${collaboRhythm.tablet-device.log}" to "${app.data}/${APP_ID}/Local Store/collaboRhythmCopy.log"</echo>
+			<echo>Pulling "${collaboRhythm.tablet-device.log}" to "${app.data}/${APP_ID}/collaboRhythmCopy.log"</echo>
 			<exec executable="${ADB}">
 				<arg value="pull"/>
 				<arg value="${collaboRhythm.tablet-device.log}"/>
