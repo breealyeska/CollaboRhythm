@@ -19,9 +19,85 @@
 
 	<description>Build Script</description>
 
-		<property file="${basedir}/local.properties" description="Optional user-specific properties. This file should not be version controlled."/>
-		<property file="${basedir}/build.properties" description="Properties specific to this project for builds." />
-		<property file="${basedir}/base.properties" description="Base properties for builds" />
+		<!--suppress AntResolveInspection -->
+	<property file="${basedir}/local.properties" description="Optional user-specific properties. This file should not be version controlled."/>
+	<property file="${basedir}/build.properties" description="Properties specific to this project for builds." />
+	<property file="${basedir}/base.properties" description="Base properties for builds" />
+
+	<target name="clean_and_redeploy_plugins"
+			description="Deletes current plugins on device and copies current versions to device from project folder">
+
+		<echo>Executing adbcleanplugins.sh cleanLocalPlugins to delete ${app.data} plugins</echo>
+		<exec executable="/Users/breezy/scripts/adbcleanplugins.sh">
+			<arg value="cleanLocalMain"/>
+		</exec>
+
+		<echo>Executing adbcleanplugins.sh cleanDevicePlugins to delete ${app.data} plugins</echo>
+		<exec executable="/Users/breezy/scripts/adbcleanplugins.sh">
+			<arg value="cleanDeviceMain"/>
+		</exec>
+
+		<echo>Delete ${collaboRhythm.tablet-device.pluginsPath}</echo>
+		<exec executable="${ADB}">
+			<arg value="shell"/>
+			<arg value="rm -rf"/>
+			<arg value="${collaboRhythm.tablet-device.pluginsPath}"/>
+		</exec>
+
+		<echo>Recreate ${collaboRhythm.tablet-device.pluginsPath}</echo>
+		<exec executable="${ADB}">
+			<arg value="shell"/>
+			<arg value="mkdir"/>
+			<arg value="${collaboRhythm.tablet-device.pluginsPath}"/>
+		</exec>
+
+		<!--This really should be a loop but for now just hardcoded-->
+		<echo>Deploy selected plugins from local dir</echo>
+		<exec executable="${ADB}">
+			<arg value="push"/>
+			<arg value="${APP_HOME_DIR}/CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf"/>
+			<arg value="${collaboRhythm.tablet-device.pluginsPath}"/>
+		</exec>
+
+		<exec executable="${ADB}">
+			<arg value="push"/>
+			<arg value="${APP_HOME_DIR}/CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf"/>
+			<arg value="${collaboRhythm.tablet-device.pluginsPath}"/>
+		</exec>
+
+		<exec executable="${ADB}">
+			<arg value="push"/>
+			<arg value="${APP_HOME_DIR}/CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf"/>
+			<arg value="${collaboRhythm.tablet-device.pluginsPath}"/>
+		</exec>
+
+		<exec executable="${ADB}">
+			<arg value="push"/>
+			<arg value="${APP_HOME_DIR}/CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf"/>
+			<arg value="${collaboRhythm.tablet-device.pluginsPath}"/>
+		</exec>
+
+
+
+	</target>
+
+
+	<target name="delete_projdir_plugins"
+			description="Deletes current built files (ie to clean before rebuilding">
+
+		<echo>Deleting bin-debug directories in "${APP_HOME_DIR}"</echo>
+		<exec executable="find">
+			<arg value="${APP_HOME_DIR}/."/>
+			<arg value="type d"/>
+			<arg value="iname 'bin-debug'"/>
+			<arg value="-exec rm -rf {} \;"/>
+		</exec>
+
+		<echo>Deleting ${APP_HOME_DIR}/out/production directory</echo>
+		<exec executable="/bin/bash">
+			<!--<arg value="rm -rf ${APP_HOME_DIR}/out/production"/>-->
+		</exec>
+	</target>
 
 		<target name="deploy_user_settings"
 				description="Copies the user settings file from the local (emulator) instance of the application to the device">
@@ -107,23 +183,23 @@
 			</exec>
 		</target>
 
-		<target name="install_air_on_emulator"
-			description="Installs the air runtime on the emulator.">
-			<exec executable="${ADB}">
-				<arg line="install"/>
-				<arg line="-r"/>
-				<arg line="'${EMULATOR_RUNTIME_ZIP}'"/>
-			</exec>
-		</target>
+		<!--<target name="install_air_on_emulator"-->
+			<!--description="Installs the air runtime on the emulator.">-->
+			<!--<exec executable="${ADB}">-->
+				<!--<arg line="install"/>-->
+				<!--<arg line="-r"/>-->
+				<!--<arg line="'${EMULATOR_RUNTIME_ZIP}'"/>-->
+			<!--</exec>-->
+		<!--</target>-->
 
-		<target name="install_air_on_device"
-			description="Installs the air runtime on the device.">
-			<exec executable="${ADB}">
-				<arg line="install"/>
-				<arg line="-r"/>
-				<arg line="'${DEVICE_RUNTIME_ZIP}'"/>
-			</exec>
-		</target>
+		<!--<target name="install_air_on_device"-->
+			<!--description="Installs the air runtime on the device.">-->
+			<!--<exec executable="${ADB}">-->
+				<!--<arg line="install"/>-->
+				<!--<arg line="-r"/>-->
+				<!--<arg line="'${DEVICE_RUNTIME_ZIP}'"/>-->
+			<!--</exec>-->
+		<!--</target>-->
 
 		<target name="install_app_on_emulator" depends="get_devices"
 			description="Installs the application on the emulator.">
@@ -211,21 +287,20 @@
 			<path refid="collaboRhythm.shared.libraries"/>
 		</copy>
 
-<!--
-		&lt;!&ndash; TODO: Use contributed taskdef to do a "for" loop &ndash;&gt;
-		<taskdef resource="net/sf/antcontrib/antlib.xml">
-			<classpath>
-				<pathelement location="ant-contrib-1.0b3.jar"/>
-			</classpath>
-		</taskdef>
 
-		<for param="file" keepgoing="true">
-			<path refid="collaboRhythm.shared.libraries"/>
-			<sequential>
-				<ant antfile="@{file}" dir="@{file}/../" target="deploy"/>
-			</sequential>
-		</for>
--->
+		<!-- TODO: Use contributed taskdef to do a "for" loop -->
+		<!--<taskdef resource="net/sf/antcontrib/antlib.xml">-->
+			<!--<classpath>-->
+				<!--<pathelement location="ant-contrib-1.0b3.jar"/>-->
+			<!--</classpath>-->
+		<!--</taskdef>-->
+
+		<!--<for param="file" keepgoing="true">-->
+			<!--<path refid="collaboRhythm.shared.libraries"/>-->
+			<!--<sequential>-->
+				<!--<ant antfile="@{file}" dir="@{file}/../" target="deploy"/>-->
+			<!--</sequential>-->
+		<!--</for>-->
 
 	</target>
 </project>
