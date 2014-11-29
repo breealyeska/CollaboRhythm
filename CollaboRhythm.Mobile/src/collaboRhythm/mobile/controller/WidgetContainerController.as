@@ -31,12 +31,12 @@ package collaboRhythm.mobile.controller
 	public class WidgetContainerController
 	{
 		private var _navigator:ViewNavigator;
-		private var _moblieApplicationController:MobileApplicationController;
+		private var _mobileApplicationController:MobileApplicationController;
 		
-		public function WidgetContainerController(navigator:ViewNavigator, moblieApplicationController:MobileApplicationController)
+		public function WidgetContainerController(navigator:ViewNavigator, mobileApplicationController:MobileApplicationController)
 		{
 			_navigator = navigator;
-			_moblieApplicationController = moblieApplicationController;
+			_mobileApplicationController = mobileApplicationController;
 		}
 
 		public function get widgetNavigationIndex():int
@@ -66,7 +66,7 @@ package collaboRhythm.mobile.controller
 		public function popView():Boolean
 		{
 			// TODO: fix bug where sometimes we do too many pops and there is no view left 
-			if (_moblieApplicationController.mobileAppControllersMediator && widgetNavigationIndex > 0)
+			if (_mobileApplicationController.mobileAppControllersMediator && widgetNavigationIndex > 0)
 			{
 				var slideViewTransition:SlideViewTransition = new SlideViewTransition();
 				slideViewTransition.direction = ViewTransitionDirection.RIGHT;
@@ -80,7 +80,7 @@ package collaboRhythm.mobile.controller
 
 		public function pushView():Boolean
 		{
-			if (_moblieApplicationController.mobileAppControllersMediator && widgetNavigationIndex + 1 < _moblieApplicationController.mobileAppControllersMediator.apps.length)
+			if (_mobileApplicationController.mobileAppControllersMediator && widgetNavigationIndex + 1 < _mobileApplicationController.mobileAppControllersMediator.apps.length)
 			{
 				navigator.pushView(WidgetContainerView, null,
 					new SlideViewTransition());
@@ -105,27 +105,27 @@ package collaboRhythm.mobile.controller
 					</InfoItem>
 					<InfoItem>
 						<name>Mode</name>
-						<value>{_moblieApplicationController.settings.mode}</value>
+						<value>{_mobileApplicationController.settings.mode}</value>
 					</InfoItem>
 					<InfoItem>
 						<name>Username</name>
-						<value>{_moblieApplicationController.settings.username}</value>
+						<value>{_mobileApplicationController.settings.username}</value>
 					</InfoItem>
 					<InfoItem>
 						<name>Indivo Server URL</name>
-						<value>{_moblieApplicationController.settings.indivoServerBaseURL}</value>
+						<value>{_mobileApplicationController.settings.indivoServerBaseURL}</value>
 					</InfoItem>
 					<InfoItem>
 						<name>User settings file loaded</name>
-                        <value>{_moblieApplicationController.settingsFileStore.isUserSettingsLoaded}</value>
+                        <value>{_mobileApplicationController.settingsFileStore.isUserSettingsLoaded}</value>
                     </InfoItem>
                     <InfoItem>
                         <name>User settings file location</name>
-                        <value>{_moblieApplicationController.settingsFileStore.userSettingsFile.nativePath}</value>
+                        <value>{_mobileApplicationController.settingsFileStore.userSettingsFile.nativePath}</value>
                     </InfoItem>
 					<InfoItem>
 						<name>Application settings file loaded</name>
-						<value>{_moblieApplicationController.settingsFileStore.isApplicationSettingsLoaded}</value>
+						<value>{_mobileApplicationController.settingsFileStore.isApplicationSettingsLoaded}</value>
 					</InfoItem>
 					<InfoItem>
 						<name>Num Plugin Files</name>
@@ -133,7 +133,7 @@ package collaboRhythm.mobile.controller
 					</InfoItem>
 					<InfoItem>
 						<name>Num Dynamic Apps</name>
-						<value>{_moblieApplicationController.mobileAppControllersMediator ? _moblieApplicationController.mobileAppControllersMediator.numDynamicApps : "(not loaded)"}</value>
+						<value>{_mobileApplicationController.mobileAppControllersMediator ? _mobileApplicationController.mobileAppControllersMediator.numDynamicApps : "(not loaded)"}</value>
 					</InfoItem>
 				</root>;
 
@@ -142,9 +142,9 @@ package collaboRhythm.mobile.controller
 			view.controller = this;
 			view.addEventListener(PluginEvent.RELOAD_REQUEST, view_reloadRequestHandler);
 
-			if (_moblieApplicationController.mobileAppControllersMediator && widgetNavigationIndex >= 0 && widgetNavigationIndex < _moblieApplicationController.mobileAppControllersMediator.apps.length)
+			if (_mobileApplicationController.mobileAppControllersMediator && widgetNavigationIndex >= 0 && widgetNavigationIndex < _mobileApplicationController.mobileAppControllersMediator.apps.length)
 			{
-				var app:AppControllerBase = _moblieApplicationController.mobileAppControllersMediator.apps.getValueByIndex(widgetNavigationIndex);
+				var app:AppControllerBase = _mobileApplicationController.mobileAppControllersMediator.apps.getValueByIndex(widgetNavigationIndex);
 				view.appController = app;
 				if (app)
 				{
@@ -161,14 +161,14 @@ package collaboRhythm.mobile.controller
 		private function getNumPluginFiles():int
 		{
 			var num:int;
-			var pluginLoader:PluginLoader = new PluginLoader(_moblieApplicationController.settings);
+			var pluginLoader:PluginLoader = new PluginLoader(_mobileApplicationController.settings);
 			num = pluginLoader.getNumPluginFiles();
 			return num;
 		}
 		
 		public function view_reloadRequestHandler(event:PluginEvent):void
 		{
-			_moblieApplicationController.reloadPlugins();
+			_mobileApplicationController.reloadPlugins();
 		}
 		
 		public function destroyView(view:WidgetContainerView):void
