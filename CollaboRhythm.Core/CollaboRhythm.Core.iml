@@ -124,6 +124,10 @@
         </JAVADOC>
         <SOURCES>
           <root url="file:/$NATIVE_APPLICATION_UPDATER_HOME$" />
+          <root url="file://$PROJECT_FRAMEWORKS$/projects/air/ApplicationUpdater/src/ApplicationUpdater" />
+          <root url="file://$PROJECT_FRAMEWORKS$/projects/air/ApplicationUpdater/src/ApplicationUpdaterDialogs" />
+          <root url="file://$PROJECT_FRAMEWORKS$/projects/air/Core/src" />
+          <root url="file://$PROJECT_FRAMEWORKS$/projects/air/Licensing/Android/AndroidLicensingLib/src" />
         </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
