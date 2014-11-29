@@ -64,6 +64,8 @@ package collaboRhythm.shared.model.settings
 		private var _reportForOtherRecordEnabled:Boolean;
 		private var _requireInAppPassCode:Boolean;
 		private var _inAppPassCode:String;
+		private var _gmcSenderID:String;
+		private var _iHAARTOnly:Boolean;
 
 		public function Settings()
 		{
@@ -440,6 +442,26 @@ package collaboRhythm.shared.model.settings
 		public function set inAppPassCode(value:String):void
 		{
 			_inAppPassCode = value;
+		}
+
+		public function get gmcSenderID():String
+		{
+			return _gmcSenderID;
+		}
+
+		public function set gmcSenderID(value:String):void
+		{
+			_gmcSenderID = value;
+		}
+
+		public function get iHAARTOnly():Boolean
+		{
+			return _iHAARTOnly;
+		}
+
+		public function set iHAARTOnly(value:Boolean):void
+		{
+			_iHAARTOnly = value;
 		}
 	}
 }
