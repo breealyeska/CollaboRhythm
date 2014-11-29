@@ -7,6 +7,7 @@
   <component name="FlexIdeProjectLevelCompilerOptionsHolder">
     <compiler-options>
       <map>
+        <entry key="compiler.keep-generated-actionscript" value="true" />
         <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
       </map>
       <option name="additionalOptions" value="-keep-as3-metadata=Bindable -keep-as3-metadata=Managed -keep-as3-metadata=ChangeEvent -keep-as3-metadata=NonCommittingChangeEvent -keep-as3-metadata=Transient -warn-duplicate-variable-def=false -warn-missing-namespace-decl=false -warn-no-type-decl=false" />
