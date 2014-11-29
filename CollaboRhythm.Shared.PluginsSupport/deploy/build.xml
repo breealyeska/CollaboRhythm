@@ -56,10 +56,10 @@
 		<entry key="collaboRhythm.workstation.pluginsPath" default="${app.data}/CollaboRhythm.Workstation/Local Store/plugins" />
 
 		<entry key="collaboRhythm.tablet-emulator.pluginsPath" default="${app.data}/CollaboRhythm.Tablet.Emulator/Local Store/plugins" />
-		<entry key="collaboRhythm.tablet-device.pluginsPath" default="/storage/sdcard0/CollaboRhythm.Tablet/Local Store/plugins" />
+		<entry key="collaboRhythm.tablet-device.pluginsPath" default="/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/Local Store/plugins" />
 
 		<entry key="collaboRhythm.mobile-emulator.pluginsPath" default="${app.data}/CollaboRhythm.Mobile.Emulator/Local Store/plugins" />
-		<entry key="collaboRhythm.mobile-device.pluginsPath" default="/storage/sdcard0/CollaboRhythm.Mobile/Local Store/plugins" />
+		<entry key="collaboRhythm.mobile-device.pluginsPath" default="/storage/sdcard0/air.CollaboRhythm.Mobile/CollaboRhythm.Mobile/Local Store/plugins" />
 	</propertyfile>
 
 

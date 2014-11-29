@@ -21,9 +21,9 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/CollaboRhythm.Tablet/Local Store/settings.xml"
-"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/CollaboRhythm.Tablet/Local Store/plugins/*"
-"%AndroidADBFolder%"/adb shell rmdir "/storage/sdcard0/CollaboRhythm.Tablet/Local Store/plugins"
+"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/Local Store/settings.xml"
+"%AndroidADBFolder%"/adb shell rm "/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/Local Store/plugins/*"
+"%AndroidADBFolder%"/adb shell rmdir "/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/Local Store/plugins"
 
 "%AndroidADBFolder%"/adb -d uninstall CollaboRhythm.Tablet
 

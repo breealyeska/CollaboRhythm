@@ -19,8 +19,8 @@ echo.
 echo Destination log directory: %LogDirectory%
 echo.
 
-"%AndroidADBFolder%"\adb pull "/storage/sdcard0/CollaboRhythm.Tablet/collaboRhythm.log" "%LogDirectory%/collaboRhythm.log"
-"%AndroidADBFolder%"\adb pull "/storage/sdcard0/CollaboRhythm.Tablet/old_logs" "%LogDirectory%/old_logs"
+"%AndroidADBFolder%"\adb pull "/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/collaboRhythm.log" "%LogDirectory%/collaboRhythm.log"
+"%AndroidADBFolder%"\adb pull "/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/old_logs" "%LogDirectory%/old_logs"
 				  
 echo.
 echo Copy complete for %LogDirectory%

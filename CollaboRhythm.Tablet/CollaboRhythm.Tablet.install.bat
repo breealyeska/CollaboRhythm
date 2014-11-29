@@ -23,8 +23,8 @@ echo.
 echo Settings: %SettingsFile%
 echo.
 
-adb push %SettingsFile% "/storage/sdcard0/CollaboRhythm.Tablet/Local Store/settings.xml"
-adb push "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/plugins" "/storage/sdcard0/CollaboRhythm.Tablet/Local Store"
+adb push %SettingsFile% "/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/Local Store/settings.xml"
+adb push "/Users/breezy/Library/Preferences/CollaboRhythm.Tablet.debug/Local Store/plugins" "/storage/sdcard0/air.CollaboRhythm.Tablet/CollaboRhythm.Tablet/Local Store"
 
 ::adb -d uninstall CollaboRhythm.Tablet
 adb -d install -r %CollaboRhythmTabletApk%
