@@ -12,7 +12,6 @@
 							mouseDown="mouseDownHandler(event)"
 							mouseMove="mouseMoveHandler(event)"
 							mouseUp="mouseUpHandler(event)">
-	<!-- TODO: Remove redundant mobile.swc references in project settings. -->
 	<s:states>
 		<s:State name="uninitialized"/>
 
