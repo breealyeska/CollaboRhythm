@@ -32,6 +32,9 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -83,6 +86,9 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -140,6 +146,9 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -195,6 +204,9 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -247,6 +259,9 @@
             <entry library-name="mobile" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -271,6 +286,99 @@
           <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" use-temp-certificate="false" />
         </packaging-android>
         <packaging-ios />
+      </configuration>
+      <configuration name="iHAART Device Debug" target-platform="Mobile" main-class="IHAARTApplication" output-file="iHAART.swf" output-folder="$MODULE_DIR$/bin-debug">
+        <dependencies>
+          <entries>
+            <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Core" build-configuration-name="CollaboRhythm.Core">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="eee702a1-2981-45f8-a5cf-ed362fb5efa6">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="0b392504-57e3-494d-9fb6-72cc357bb97b">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="4.6.0" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/iHAARTApplication-DebugDevice-app.xml" package-file-name="iHAART">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
+          </files-to-package>
+        </packaging-android>
+        <packaging-ios package-file-name="iHAART_Device_Debug" />
+      </configuration>
+      <configuration name="iHAART Emulator" target-platform="Mobile" main-class="IHAARTApplication" output-file="iHAART_Emulator.swf" output-folder="$MODULE_DIR$/bin-debug">
+        <dependencies>
+          <entries>
+            <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Core" build-configuration-name="CollaboRhythm.Core">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="6848ec98-4bb0-4d62-83ce-ad2009a6b48b">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="c05c95bc-b907-422a-81ad-47a00b5426a2">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="Desktop libraries for mobile applications" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.Messages" build-configuration-name="CollaboRhythm.Shared.Messages">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="4.6.0" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/iHAARTApplication-Emulator-app.xml" package-file-name="iHAART.Emulator" />
+        <packaging-ios package-file-name="iHAART_Emulator" />
       </configuration>
     </configurations>
     <compiler-options />
@@ -367,5 +475,49 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="mobile" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="eee702a1-2981-45f8-a5cf-ed362fb5efa6" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/libs" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="0b392504-57e3-494d-9fb6-72cc357bb97b" />
+        <CLASSES>
+          <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="6848ec98-4bb0-4d62-83ce-ad2009a6b48b" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/libs" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="c05c95bc-b907-422a-81ad-47a00b5426a2" />
+        <CLASSES>
+          <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="CollaboRhythm.Shared.CloudMessaging" exported="" />
+    <orderEntry type="module" module-name="CollaboRhythm.Shared.Messages" exported="" />
   </component>
 </module>
