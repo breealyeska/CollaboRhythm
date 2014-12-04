@@ -72,12 +72,10 @@ package collaboRhythm.shared.pluginsDeployment
 			trace("Capabilities.version", Capabilities.version);
 
 			var isAndroid:Boolean = Capabilities.version.substr(0, 3) == ANDROID_CAPABILITIES_VERSION_PREFIX;
-			trace("bree isandroid ",isAndroid);
 			var collaboRhythmStorageDirectory:File = isAndroid ?
 					new File(collaboRhythmLocalStorePath) :
 					new File(File.applicationStorageDirectory.nativePath).parent.parent.resolvePath(collaboRhythmLocalStorePathEmulator);
 			var settingsFile:File = collaboRhythmStorageDirectory.resolvePath(SETTINGS_FILE_NAME);
-			trace("bree settingsFile ", settingsFile.exists);
 			var defaultSettingsFile:File = File.applicationDirectory.resolvePath(SETTINGS_FILE_NAME);
 			var saveSucceeded:Boolean = false;
 
