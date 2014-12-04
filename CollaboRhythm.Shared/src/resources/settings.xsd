@@ -70,7 +70,7 @@
 			<xs:element type="xs:boolean" name="useTraceTarget" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:boolean" name="useSyslogTarget" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="syslogServerIpAddress" minOccurs="0" maxOccurs="1"/>
-			<xs:element type="xs:string" name="gmcSenderID" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:string" name="gcmSenderID" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="iHAARTOnly" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:boolean" name="useGoogleAnalytics" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="googleAnalyticsTrackingId" minOccurs="0" maxOccurs="1"/>

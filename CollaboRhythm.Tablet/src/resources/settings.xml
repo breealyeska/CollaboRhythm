@@ -27,7 +27,7 @@
 	<useFileTarget>true</useFileTarget>
 	<useTraceTarget>true</useTraceTarget>
 	<useSyslogTarget>false</useSyslogTarget>
-	<gmcSenderID>57214367303</gmcSenderID>
+	<gcmSenderID>57214367303</gcmSenderID>
 	<iHAARTOnly>true</iHAARTOnly>
 	<useGoogleAnalytics>false</useGoogleAnalytics>
 	<logSourceIdentifier>CollaboRhythmDefault</logSourceIdentifier>

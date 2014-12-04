@@ -235,6 +235,7 @@ package collaboRhythm.core.controller
 			_logger.info("  Application settings file loaded: " + _settingsFileStore.isApplicationSettingsLoaded);
 			_logger.info("  User settings file loaded: " + _settingsFileStore.isUserSettingsLoaded + " path=" +
 					_settingsFileStore.userSettingsFile.nativePath);
+			_logger.info("  iHAART: " + _settings.iHAARTOnly);
 			_logger.info("  Mode: " + _settings.mode);
 			_logger.info("  Username: " + _settings.username);
 			if (_settings.demoModeEnabled)
@@ -454,11 +455,11 @@ package collaboRhythm.core.controller
 				// Use /storage/sdcard0 instead of /data/data because attempting to read the log from /data/data (on a non-rooted Android device) is problematic
 				// TODO: figure out how to access the appropriate /data/data directory using "adb pull" and avoid using /storage/sdcard0
 				var path:String = oldPath.replace("/data/data", "/storage/sdcard0");
-				var path:String = oldPath;
-				if (path.indexOf("/data/data") == 0)
-				{
-					path = File.documentsDirectory.resolvePath(NativeApplication.nativeApplication.applicationID).resolvePath("collaboRhythm.log").nativePath;
-				}
+//				var path:String = oldPath;
+//				if (path.indexOf("/data/data") == 0)
+//				{
+//					path = File.documentsDirectory.resolvePath(NativeApplication.nativeApplication.applicationID).resolvePath("collaboRhythm.log").nativePath;
+//				}
 
 				var migrationMessage:String = copyOldLogFileToAccessiblePath(oldPath, path);
 

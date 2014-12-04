@@ -233,9 +233,9 @@ package collaboRhythm.shared.model.settings
             return _applicationSettingsEmbeddedFile;
         }
 
-        public function set applicationSettingsEmbeddedFile(applicationSettingsEmbededFile:Class):void
+        public function set applicationSettingsEmbeddedFile(applicationSettingsEmbeddedFile:Class):void
         {
-            _applicationSettingsEmbeddedFile = applicationSettingsEmbededFile;
+            _applicationSettingsEmbeddedFile = applicationSettingsEmbeddedFile;
         }
 
         public function get isApplicationSettingsLoaded():Boolean
