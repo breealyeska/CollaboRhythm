@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<!--
+Copyright 2014 Bree Alyeska (based on collaboRhythm work by John Moore and Scott Gilroy)
+
+This file is part of CollaboRhythm
+
+CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+version.
+
+CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
+
+<http://www.gnu.org/licenses/>.
+-->
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+							xmlns:s="library://ns.adobe.com/flex/spark"
+							xmlns:mx="library://ns.adobe.com/flex/mx"
+							xmlns:view="collaboRhythm.tablet.view.*"
+							xmlns:sharedView="collaboRhythm.shared.view.*"
+							firstView="collaboRhythm.tablet.view.IHAARTHomeView"
+							skinClass="collaboRhythm.tablet.view.skins.IHAARTApplicationSkin"
+							creationComplete="creationCompleteHandler(event)"
+							runtimeDPIProvider="collaboRhythm.tablet.model.EmulatorDpiProvider">
+	<fx:Style source="iHAART.css">
+	</fx:Style>
+	<fx:Script><![CDATA[
+		import collaboRhythm.core.view.AboutApplicationView;
+		import collaboRhythm.core.view.BusyView;
+		import collaboRhythm.core.view.ConnectivityView;
+		import collaboRhythm.core.view.InAppPassCodeView;
+
+		import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
+		import collaboRhythm.tablet.model.IHAARTSkinnableAlert;
+
+		import com.afterisk.shared.ane.lib.GCMEvent;
+
+		import collaboRhythm.shared.view.MenuIcon;
+		import collaboRhythm.shared.view.tablet.TabletViewBase;
+		import collaboRhythm.tablet.controller.IHAARTApplicationController;
+		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
+		import collaboRhythm.tablet.view.IHAARTHomeView;
+
+		import mx.binding.utils.BindingUtils;
+		import mx.core.FlexGlobals;
+		import mx.events.FlexEvent;
+		import mx.events.CloseEvent;
+
+		import spark.events.PopUpEvent;
+
+		import spark.primitives.Graphic;
+
+		[Bindable]
+		private var _applicationController:IHAARTApplicationController;
+		private var _gcmController:CloudMessagingController;
+		private var _gmcRegistrationResponseMsg:String;
+		private var _dbController:SQLStoreController;
+
+		[SkinPart(required="false")]
+		public var connectivityView:ConnectivityView;
+
+		[SkinPart(required="false")]
+		public var busyView:BusyView;
+		//
+		//		[SkinPart(required="false")]
+		//		public var aboutApplicationView:AboutApplicationView;
+
+		override protected function invokeHandler(event:InvokeEvent):void
+		{
+			super.invokeHandler(event);
+			if (event.arguments.length > 0)
+			{
+				trace("Arguments: " + event.arguments.concat(" "));
+			}
+		}
+
+		protected function creationCompleteHandler(event:FlexEvent):void
+		{
+//			if (actionBar)
+//			{
+//				activeRecordProfileImage.height = activeRecordProfileImage.width = actionBar.getPreferredBoundsHeight();
+//			}
+			this.addEventListener(FlexEvent.MENU_KEY_PRESSED, menuKeyPressedHandler);
+
+			main();
+		}
+
+		private function main():void
+		{
+			applicationController.main();
+
+//			aboutApplicationView.settings = applicationController.settings;
+
+			dbController = new SQLStoreController();
+			var regID:String = dbController.getRegistrationID();
+
+			gcmController = new CloudMessagingController();
+
+			if ((regID) && (regID != CloudMessagingController.REGID_NONE))
+			{
+				trace("bree in iHAART application main");
+				gcmController.isRegistered = true;
+				gcmController.registrationID = regID;
+				var payload:String = gcmController.checkPendingFromLaunchPayload();
+				var alert:IHAARTSkinnableAlert = new IHAARTSkinnableAlert();
+				IHAARTSkinnableAlert.show(regID, "Device Registration ID");
+			}
+			else
+			{
+				gmcRegistrationResponseMsg = gcmController.registerDevice();
+			}
+
+
+		}
+
+		public function get iHAARTHomeView():IHAARTHomeView
+		{
+			return navigator.activeView as IHAARTHomeView;
+		}
+
+		private function menuKeyPressedHandler(event:FlexEvent):void
+		{
+			if (connectivityView.visible)
+			{
+				event.preventDefault();
+			}
+		}
+
+		private function homeButton_clickHandler():void
+		{
+			var tabletViewBase:TabletViewBase = navigator && navigator.activeView ? navigator.activeView as
+			TabletViewBase : null;
+			if (tabletViewBase)
+			{
+				tabletViewBase.homeButton_clickHandler();
+			}
+			else if (navigator && navigator.activeView == null)
+			{
+				navigator.pushView(IHAARTHomeView);
+			}
+		}
+
+		//		private function onCloseAlert(event:PopUpEvent):void
+		//		{
+		//			trace("bree in onclosealert ");
+		//		}
+
+		public function get applicationController():IHAARTApplicationController
+		{
+			if (!_applicationController) {
+				_applicationController = new IHAARTApplicationController(this);
+			}
+			return _applicationController;
+		}
+
+		public function set applicationController(value:IHAARTApplicationController):void
+		{
+			_applicationController = value;
+		}
+
+		public function get gcmController():CloudMessagingController
+		{
+			return _gcmController;
+		}
+
+		public function set gcmController(value:CloudMessagingController):void
+		{
+			_gcmController = value;
+		}
+
+		public function get gmcRegistrationResponseMsg():String
+		{
+			return _gmcRegistrationResponseMsg;
+		}
+
+		public function set gmcRegistrationResponseMsg(value:String):void
+		{
+			_gmcRegistrationResponseMsg = value;
+		}
+
+		public function get dbController():SQLStoreController
+		{
+			return _dbController;
+		}
+
+		public function set dbController(value:SQLStoreController):void
+		{
+			_dbController = value;
+		}
+		]]></fx:Script>
+	<s:navigationContent>
+
+		<s:Button width="{backGroup.width}" height="{backGroup.height}" click="homeButton_clickHandler()"/>
+		<s:HGroup id="backGroup" verticalAlign="middle" gap="0" mouseEnabled="false"
+				  mouseChildren="false">
+			<!--<view:BackIcon id="backIcon" visible="false" visible.notHome="true"/>-->
+			<!--<s:VGroup gap="1" paddingTop="3" paddingLeft="5" paddingRight="10">-->
+				<!--<s:Label id="activeRecordGivenName"-->
+						 <!--text="{applicationController.activeRecordAccount.primaryRecord.demographics.Name.givenName}"/>-->
+				<!--<s:Label id="activeRecordFamilyName"-->
+						 <!--text="{applicationController.activeRecordAccount.primaryRecord.demographics.Name.familyName}"/>-->
+			<!--</s:VGroup>-->
+		</s:HGroup>
+
+	</s:navigationContent>
+</s:ViewNavigatorApplication>
