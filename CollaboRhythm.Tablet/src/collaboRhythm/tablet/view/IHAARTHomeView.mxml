@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--
+Copyright 2014 Bree Alyeska (based on collaboRhythm work by John Moore and Scott Gilroy)
+
+This file is part of CollaboRhythm
+
+CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+version.
+
+CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
+
+<http://www.gnu.org/licenses/>.
+-->
+
+<tablet:TabletViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:tablet="collaboRhythm.shared.view.tablet.*"
+					   xmlns:views="com.pialabs.eskimo"
+					   actionBarVisible="true"
+					   title="iHAART">
+	<fx:Style source="iHAART.css">
+	</fx:Style>
+	<fx:Script><![CDATA[
+		import collaboRhythm.core.model.AboutApplicationModel;
+		import collaboRhythm.shared.model.settings.Settings;
+
+		import mx.core.FlexGlobals;
+
+		import spark.components.supportClasses.Skin;
+
+		import collaboRhythm.tablet.controller.IHAARTApplicationController;
+		import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
+		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
+
+
+		import mx.core.IVisualElementContainer;
+		import mx.events.FlexEvent;
+		import mx.controls.Alert;
+		import mx.events.CloseEvent;
+
+		import spark.events.PopUpEvent;
+
+		import collaboRhythm.tablet.model.IHAARTSkinnableAlert;
+		import collaboRhythm.tablet.view.skins.IHAARTAlertSkin;
+
+		//import com.pialabs.eskimo.controls.SkinnableAlert;
+		//import iHAART.cloudMessaging.controller;
+
+
+		public static const RECORD_BACKGROUND_COLOR:uint = 0xE6E7E8;
+
+		private var _widgetContainers:Vector.<IVisualElementContainer> = new Vector.<IVisualElementContainer>();
+
+		[Bindable]
+		private var _applicationInfo:AboutApplicationModel = new AboutApplicationModel();
+		[Bindable]
+		private var _applicationController:IHAARTApplicationController;
+
+		override protected function createChildren():void
+		{
+			super.createChildren();
+
+//			if (_tabletApplicationController && _activeRecordAccount)
+//			{
+			init();
+//				(_tabletApplicationController as TabletApplicationController).useWidgetContainers();
+//			}
+		}
+
+		public function init():void
+		{
+			trace("bree in init ");
+
+			applicationController = this.parentApplication.applicationController;
+//			trace(" bree after application controller ", applicationController.activeRecordAccount.primaryRecord.demographics.Name.givenName);
+//			_widgetContainers.push(mainWidgetsGroup);
+//			_widgetContainers.push(buttonWidgetsGroup);
+
+//			if (_tabletApplicationController && _tabletApplicationController.settings &&
+//					_tabletApplicationController.settings.debuggingToolsEnabled)
+//			initializeVersionWatermark();
+
+
+		}
+
+		private function initializeVersionWatermark():void
+		{
+//			_applicationInfo.settings = applicationController.settings;
+			//_applicationInfo.settings = _tabletApplicationController.settings;
+//			_applicationInfo.initialize();
+//			if (_applicationInfo.appModificationDate != null)
+//			{
+//				applicationModificationLabel.visible = true;
+//			}
+//
+//			versionWatermarkGroup.visible = true;
+		}
+
+		private function checkPayload():void
+		{
+			trace("bree in checkpayload ");
+			var payload:String = FlexGlobals.topLevelApplication.gcmController.checkPendingFromLaunchPayload();
+			IHAARTSkinnableAlert.show(payload, 'Payload');
+		}
+
+		public function get applicationInfo():AboutApplicationModel
+		{
+			return _applicationInfo;
+		}
+
+		public function get applicationController():IHAARTApplicationController
+		{
+			if (!_applicationController)
+			{
+				trace("bree getting applicationcontroller   ", FlexGlobals.topLevelApplication.applicationName());
+				_applicationController = FlexGlobals.topLevelApplication.applicationController;
+			}
+			return _applicationController;
+		}
+
+		public function set applicationController(value:IHAARTApplicationController):void
+		{
+			_applicationController = value;
+		}
+		]]></fx:Script>
+
+	<s:SkinnableContainer styleName="componentContainerStyle">
+		<s:VGroup>
+			<s:Button fontSize="32" fontFamily="Arial" fontWeight="bold" label="Check Payload"
+					  click="checkPayload()"/>
+			<s:Button fontSize="32" fontFamily="Arial" fontWeight="bold" label="Show Alert OK"
+					  click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title')"/>
+			<s:Button fontSize="32" fontFamily="Arial" fontWeight="bold" label="Show Alert OK/CANCEL"
+					  click="IHAARTSkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications being tested to fight HIV and may be more potent than current first-line therapies', 'Alert Title', IHAARTSkinnableAlert.OK|IHAARTSkinnableAlert.CANCEL)"/>
+			<s:Button fontFamily="Arial" fontWeight="bold" label="Show Alert YES/NO"
+					  click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title', IHAARTSkinnableAlert.YES|IHAARTSkinnableAlert.NO)"/>
+			<s:Button fontFamily="Arial" fontWeight="bold" label="Show Alert YES/NO/CANCEL"
+					  click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title', IHAARTSkinnableAlert.YES|IHAARTSkinnableAlert.NO|IHAARTSkinnableAlert.CANCEL)"/>
+		</s:VGroup>
+		<!--<s:VGroup width="100%" height="100%">-->
+			<!--<s:HGroup width="100%" height="100%" gap="10" paddingLeft="10" paddingRight="10" paddingTop="10"-->
+					  <!--paddingBottom="10" verticalAlign="middle">-->
+				<!--<s:VGroup>-->
+					<!--<s:HGroup id="mainWidgetsGroup" width="100%" height="100%" gap="20"/>-->
+					<!--<s:VGroup id="buttonWidgetsGroup" height="110" gap="70"/>-->
+				<!--</s:VGroup>-->
+			<!--</s:HGroup>-->
+		<!--</s:VGroup>-->
+	</s:SkinnableContainer>
+</tablet:TabletViewBase>
