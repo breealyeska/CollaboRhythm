@@ -32,7 +32,7 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -88,7 +88,7 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -146,7 +146,7 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -204,7 +204,7 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -259,7 +259,7 @@
             <entry library-name="mobile" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -317,20 +317,22 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc" />
+          </map>
+          <option name="additionalOptions" value="-keep-all-type-selectors=true" />
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/iHAARTApplication-DebugDevice-app.xml" package-file-name="iHAART">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
           </files-to-package>
         </packaging-android>
@@ -369,7 +371,7 @@
             <entry module-name="CollaboRhythm.Shared.Messages" build-configuration-name="CollaboRhythm.Shared.Messages">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.Shared.CloudMessaging" build-configuration-name="CollaboRhythm.Shared.CloudMessaging">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -381,7 +383,11 @@
         <packaging-ios package-file-name="iHAART_Emulator" />
       </configuration>
     </configurations>
-    <compiler-options />
+    <compiler-options>
+      <map>
+        <entry key="compiler.theme" value="${FLEX_SDK}/frameworks/themes/Mobile/mobile.swc&#10;${FLEX_SDK}/frameworks/libs/spark.swc&#10;$MODULE_DIR$/libs/piaMobileTheme.swc" />
+      </map>
+    </compiler-options>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/bin-debug" />
@@ -517,7 +523,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="CollaboRhythm.Shared.CloudMessaging" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Messages" exported="" />
+    <orderEntry type="module" module-name="CollaboRhythm.IHAART" exported="" />
   </component>
 </module>

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- 
-Copyright (c) 2011, PIA. All rights reserved.
+<!--
+Copyright 2014 Bree Alyeska
 
-This file is part of Eskimo.
+This file is part of CollaboRhythm and is at least in part based off of the Eskimo project by PeopleInAction found at: http://github.com/People-in-action/eskimo
 
-Eskimo is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+version.
 
-Eskimo is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
+CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
 
-You should have received a copy of the GNU Lesser General Public License
-along with Eskimo.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
+
+<http://www.gnu.org/licenses/>.
 -->
+
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
         xmlns:components="com.pialabs.eskimo.components.*">
@@ -37,11 +37,11 @@ along with Eskimo.  If not, see <http://www.gnu.org/licenses/>.
   </s:states>
 
   <!-- SkinParts
-name=contentGroup, type=spark.components.Group, required=false
-name=actionBar, type=spark.components.ActionBar, required=false
--->
+  name=contentGroup, type=spark.components.Group, required=false
+  name=actionBar, type=spark.components.ActionBar, required=false
+  -->
   <s:layout>
-    <s:VerticalLayout gap="0" horizontalAlign="justify"/>
+    <s:VerticalLayout gap="10" horizontalAlign="justify"/>
   </s:layout>
 
   <s:ActionBar id="actionBar"/>

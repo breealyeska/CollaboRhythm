@@ -676,17 +676,17 @@ package collaboRhythm.core.controller
 		protected function createSession():void
 		{
 			_logger.info("Creating session in Indivo...");
-			_applicationControllerModel.createSessionStatus = ApplicationControllerModel.CREATE_SESSION_STATUS_ATTEMPTING;
-			var createSessionHealthRecordService:CreateSessionHealthRecordService = new CreateSessionHealthRecordService(_settings.oauthChromeConsumerKey,
-					_settings.oauthChromeConsumerSecret,
-					_settings.indivoServerBaseURL,
-					_activeAccount);
-			addPendingService(createSessionHealthRecordService);
-			createSessionHealthRecordService.addEventListener(HealthRecordServiceEvent.COMPLETE,
-					createSessionSucceededHandler);
-			createSessionHealthRecordService.addEventListener(HealthRecordServiceEvent.FAILED,
-					createSessionFailedHandler);
-			createSessionHealthRecordService.createSession(_settings.username, _settings.password);
+//			_applicationControllerModel.createSessionStatus = ApplicationControllerModel.CREATE_SESSION_STATUS_ATTEMPTING;
+//			var createSessionHealthRecordService:CreateSessionHealthRecordService = new CreateSessionHealthRecordService(_settings.oauthChromeConsumerKey,
+//					_settings.oauthChromeConsumerSecret,
+//					_settings.indivoServerBaseURL,
+//					_activeAccount);
+//			addPendingService(createSessionHealthRecordService);
+//			createSessionHealthRecordService.addEventListener(HealthRecordServiceEvent.COMPLETE,
+//					createSessionSucceededHandler);
+//			createSessionHealthRecordService.addEventListener(HealthRecordServiceEvent.FAILED,
+//					createSessionFailedHandler);
+//			createSessionHealthRecordService.createSession(_settings.username, _settings.password);
 		}
 
 		protected function addPendingService(service:HealthRecordServiceBase):void

@@ -1,0 +1,280 @@
+/**
+ * Copyright 2014 Bree Alyeska
+ *
+ * This file is part of CollaboRhythm and is in part based off of the Eskimo project by PeopleInAction found at: http://github.com/People-in-action/eskimo
+ *
+ * CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
+ * <http://www.gnu.org/licenses/>.
+ */
+
+/* CSS file */
+@namespace fx "http://ns.adobe.com/mxml/2009";
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace chart "mx.charts.chartClasses.*";
+/*@namespace samples "com.pialabs.eskimo.samples.*";*/
+@namespace views "com.pialabs.eskimo.views.*";
+@namespace piacomponents "com.pialabs.eskimo.components.*";
+@namespace piacontrols "com.pialabs.eskimo.controls.*";
+@namespace ihaartcontrols "collaboRhythm.tablet.model.*";
+
+global {
+	modalTransparencyBlur: 0;
+	modalTransparency: 0.5;
+	modalTransparencyColor: black;
+	modalTransparencyDuration: 250;
+	fontSize: 24pt;
+}
+
+
+.componentContainerStyle {
+	skinClass: ClassReference("collaboRhythm.tablet.view.skins.AndroidContainerSkin");
+}
+
+.parameterContainerStyle {
+	skinClass: ClassReference("collaboRhythm.tablet.view.skins.AndroidContainerSkin");
+}
+
+piacomponents|DeletableList {
+	textShadowColor: #000000;
+}
+
+mx|Image.WidgetWatermarkImage
+{
+	alpha: 0.2; /* Note: this doesn't work */
+	vertical-align: bottom;
+	horizontal-align: right;
+	right: 0;
+	bottom: 0;
+}
+
+s|Label.ActionBarLabel
+{
+	color: #5000ff;
+	fontSize: 36;
+}
+
+
+/*s|ActionBar*/
+/*{*/
+	/*paddingTop: 0;*/
+	/*paddingBottom: 5;*/
+	/*backgroundAlpha: 0;*/
+	/*color: #F3F3F3;*/
+	/*textShadowAlpha: 0;*/
+	/*textShadowColor: #000000;*/
+	/*skinClass: ClassReference("collaboRhythm.tablet.view.skins.TabletActionBarSkin");*/
+/*}*/
+
+s|ActionBar {
+	/*skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.ActionBarSkin");*/
+	chromeColor: #2f2f2f;
+	defaultButtonAppearance: beveled;
+}
+
+s|Form {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.FormSkin");
+	backgroundAlpha: 0;
+}
+
+s|FormItem {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.FormItemSkin");
+	backgroundAlpha: 0;
+}
+
+s|FormItem #errorTextDisplay {
+	fontStyle: italic;
+	fontWeight: normal;
+	color: #AAAAAA;
+	textAlign: right;
+}
+
+s|FormItem s|CheckBox {
+	iconPlacement: "left";
+}
+
+piacomponents|UniqueChoiceList {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.UniqueChoiceListSkin");
+	contentBackgroundAlpha: 0;
+}
+
+piacomponents|ContextableList {
+	alternatingItemColors: #000000;
+	color: #FFFFFF;
+	contentBackgroundColor: #000000;
+}
+
+s|NumericStepper {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.NumericStepperSkin");
+	fontSize: 30;
+	chromeColor: #FF7800;
+}
+
+s|CheckBox {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.CheckBoxSkin");
+	iconPlacement: "right";
+}
+
+s|RadioButton {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.RadioButtonSkin");
+	iconPlacement: "right";
+}
+
+piacomponents|DateChooser {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.DateChooserSkin");
+}
+
+.sectionRendererStyle {
+	textAlign: center;
+	backgroundColor: #AAAAAA;
+}
+
+
+/*piacomponents|MobileContextMenu {*/
+	/*skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.MobileContextMenuSkin");*/
+	/*headerHeight: 50;*/
+	/*contextMenuIcon: Embed(source="com/pialabs/eskimo/skins/mobile/android/assets/contextMenuIcon.png");*/
+	/*headerVisible: true;*/
+/*}*/
+
+piacomponents|MobileContextMenu s|List {
+	alternatingItemColors: #FFFFFF;
+	color: #000000;
+	contentBackgroundColor: #FFFFFF;
+}
+
+piacomponents|PopOver {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.PopOverSkin");
+	chromeColor: #10142E;
+}
+
+piacomponents|ComboBox {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.ComboBoxSkin");
+	popupSkinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.PopUpUniqueChoiceSkin");
+}
+
+piacomponents|ListWheel {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.ListWheelSkin");
+	gradientColorBegin: #5555AA;
+	gradientColorEnd: #3333AA;
+}
+
+piacomponents|ListWheel s|Label {
+	verticalAlign: middle;
+}
+
+piacomponents|PageIndicator {
+	pageItemColor: #FFFFFF;
+	pageItemAlpha: 0.5;
+	selectedPageItemColor: #FFFFFF;
+	selectedPageItemAlpha: 1;
+	pageItemSize: 15;
+	selectedPageItemSize: 15;
+	backgroundColor: #000000;
+	backgroundAlpha: 0;
+	borderAlpha: 0;
+}
+
+piacomponents|DeletableItemRenderer .deletetableItemRendererDeleteButtonStyle {
+	chromeColor: #CC2A27;
+	color: #FFFFFF
+}
+
+piacomponents|MultipleChoiceList {
+	contentBackgroundAlpha: 0;
+}
+
+piacomponents|ListStepper {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.ListStepperSkin");
+	fontSize: 30;
+	textAlign: center;
+	alternatingItemColors: #d8d8d8;
+	chromeColor: #FF7800;
+}
+
+piacomponents|ListStepper s|Label {
+	verticalAlign: middle;
+}
+
+piacomponents|CarouselList {
+	contentBackgroundAlpha: 0;
+	verticalScrollPolicy: off;
+	horizontalScrollPolicy: off;
+}
+
+piacomponents|Toast {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.ToastSkin");
+	color: #FFFFFF;
+
+	chromeColor: #424242;
+
+	marginTop: 30;
+	marginBottom: 30;
+	marginLeft: 10;
+	marginRight: 10;
+}
+
+piacomponents|SplitViewApplication {
+	backgroundColor: #000000;
+}
+
+piacomponents|SplitView {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.SplitViewSkin");
+	panelButtonStyleName: "splitViewPanelButtonStyle";
+}
+
+piacomponents|SectionList {
+	sectionRendererStyleName: "sectionRendererStyle";
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.SectionListSkin");
+}
+
+piacomponents|BreadCrumb {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.BreadCrumbSkin");
+	chromeColor: #999999;
+	fillAlpha: 1;
+	borderColor: #000000;
+	borderAlpha: 0.2;
+	color: #000000;
+	fontSize: 14;
+}
+
+piacomponents|BreadCrumb s|ButtonBarButton {
+	textShadowColor: #FFFFFF;
+
+}
+
+piacomponents|ConfirmButton {
+	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.ConfirmButtonSkin");
+	confirmChromeColor: #FF3333;
+	buttonColor: #000000;
+}
+
+/*piacomponents|SkinnableAlert {*/
+	/*skinClass: ClassReference("collaboRhythm.tablet.view.skins.IHAARTAlertSkin");*/
+	/*backgroundColor: #424242;*/
+	/*backgroundAlpha: 0.9;*/
+/*}*/
+
+ihaartcontrols|IHAARTSkinnableAlert {
+	skinClass: ClassReference("collaboRhythm.tablet.view.skins.IHAARTAlertSkin");
+	backgroundColor: #424242;
+	backgroundAlpha: 0.9;
+}
+
+s|Button {
+	chromeColor: #dedede;
+	color: #000000;
+	/*textShadowColor: #676767;*/
+	/*textShadowAlpha: 0.5;*/
+	/*fontSize: 32pt;*/
+	skinClass: ClassReference("collaboRhythm.tablet.view.skins.IHAARTButtonSkin");
+}
+

@@ -1,5 +1,5 @@
 /**
- * Copyright 2011 John Moore, Scott Gilroy
+ * Copyright 2014 John Moore, Scott Gilroy, Bree Alyeska
  *
  * This file is part of CollaboRhythm.
  *
@@ -37,7 +37,6 @@ package collaboRhythm.tablet.controller
 	import collaboRhythm.tablet.model.IHAARTViewNavigatorExtended;
 	import collaboRhythm.tablet.view.HealthRecordTreeView;
 	import collaboRhythm.tablet.view.IHAARTHomeView;
-	import collaboRhythm.tablet.view.RegisterApplicationView;
 	import collaboRhythm.tablet.view.SelectRecordView;
 	import collaboRhythm.tablet.view.TabletFullViewContainer;
 	import collaboRhythm.tablet.view.IHAARTHomeView;
@@ -94,8 +93,8 @@ package collaboRhythm.tablet.controller
 
 			settings.modality = Settings.MODALITY_TABLET;
 
-			initCollaborationController();
-			_collaborationController.viewNavigator = navigator;
+//			initCollaborationController();
+//			_collaborationController.viewNavigator = navigator;
 //			_synchronizationService = new SynchronizationService(this, _collaborationLobbyNetConnectionServiceProxy);
 
 //			BindingUtils.bindSetter(collaborationState_changeHandler, _collaborationController.collaborationModel,
@@ -111,7 +110,7 @@ package collaboRhythm.tablet.controller
 
 			initializeActiveView();
 
-			createSession();
+//			createSession();
 
 //			createGoogleAnalyticsSessionIdleTimer();
 		}
@@ -215,7 +214,6 @@ package collaboRhythm.tablet.controller
 
 		public function initializeActiveView():void
 		{
-			trace("bree in initializeactiveview ");
 			var view:TabletViewBase = _iHAARTApplication.navigator.activeView as TabletViewBase;
 			if (view)
 			{
@@ -225,7 +223,6 @@ package collaboRhythm.tablet.controller
 
 		private function initializeView(view:TabletViewBase):void
 		{
-			trace("bree in initializeview ");
 			view.activeAccount = activeAccount;
 			view.activeRecordAccount = activeRecordAccount;
 			view.tabletApplicationController = this;
@@ -347,11 +344,6 @@ package collaboRhythm.tablet.controller
 //			}
 		}
 
-		override public function showRegisterApplicationView():void
-		{
-			_iHAARTApplication.navigator.pushView(RegisterApplicationView);
-		}
-
 		override public function showSelectRecordView():void
 		{
 			_iHAARTApplication.navigator.pushView(SelectRecordView);
@@ -408,7 +400,6 @@ package collaboRhythm.tablet.controller
 
 		private function get iHAARTHomeView():IHAARTHomeView
 		{
-			trace("bree in get ihaarthomeview ");
 			return _iHAARTApplication.iHAARTHomeView;
 		}
 

@@ -18,6 +18,7 @@
 <settings xmlns="http://collaborhythm.org/application/settings">
 	<mode>patient</mode>
 	<indivoServerBaseURL>http://indivo-dev.media.mit.edu:9291</indivoServerBaseURL>
+	<gcmServerBaseURL>https://www.umassartstudy.org:8080/launchpad</gcmServerBaseURL>
 	<username>shared-csantos</username>
 	<password>shared-csantos</password>
 	<clinicianTeamMembers>
@@ -28,6 +29,9 @@
 	<useTraceTarget>true</useTraceTarget>
 	<useSyslogTarget>false</useSyslogTarget>
 	<gcmSenderID>57214367303</gcmSenderID>
+	<gcmRegistrationID>NONE</gcmRegistrationID>
+	<gcmHTTPPostKey>iyeH@@rthTtPp05tkeeee</gcmHTTPPostKey>
+	<gcmHUserAgent>CollaboRhythm</gcmHUserAgent>
 	<iHAARTOnly>true</iHAARTOnly>
 	<useGoogleAnalytics>false</useGoogleAnalytics>
 	<logSourceIdentifier>CollaboRhythmDefault</logSourceIdentifier>

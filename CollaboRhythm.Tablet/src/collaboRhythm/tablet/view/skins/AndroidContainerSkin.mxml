@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+Copyright 2014 Bree Alyeska
+
+This file is part of CollaboRhythm and is at least in part based off of the Eskimo project by PeopleInAction found at: http://github.com/People-in-action/eskimo
+
+CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+version.
+
+CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
+
+<http://www.gnu.org/licenses/>.
+-->
+
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark">
   <!-- host component -->
@@ -14,21 +32,21 @@
   </s:states>
 
   <!-- SkinParts
-name=contentGroup, type=spark.components.Group, required=false
--->
+  name=contentGroup, type=spark.components.Group, required=false
+  -->
   <!--- Defines the appearance of the SkinnableContainer class's background. -->
-  <s:Rect id="background" horizontalCenter="0"
-          radiusX="10" radiusY="10"
-          top="0" bottom="0" left="0" right="0"
-          width="95%">
+  <!--todo bree Had width=95%-->
+  <s:Rect id="background" left="0" right="0" top="0" bottom="0" radiusX="10"
+          radiusY="10">
     <s:stroke>
       <s:SolidColorStroke id="strokeFill" color="#444444" weight="1"/>
     </s:stroke>
     <s:fill>
-      <s:SolidColor id="bgFill" color="0xAAAAAA"/>
+      <s:SolidColor id="bgFill" color="#AAAAAA"/>
     </s:fill>
   </s:Rect>
 
+
   <s:Group id="contentGroup" top="20" right="10" bottom="20" left="10">
   </s:Group>
-</s:Skin>
+  </s:Skin>

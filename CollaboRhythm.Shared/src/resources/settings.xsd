@@ -71,6 +71,9 @@
 			<xs:element type="xs:boolean" name="useSyslogTarget" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="syslogServerIpAddress" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="gcmSenderID" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:string" name="gcmRegistrationID" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:string" name="gcmHTTPPostKey" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:string" name="gcmHUserAgent" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="iHAARTOnly" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:boolean" name="useGoogleAnalytics" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="googleAnalyticsTrackingId" minOccurs="0" maxOccurs="1"/>
@@ -85,6 +88,7 @@
 			</xs:element>
 			<xs:element type="xs:string" name="rtmpBaseURI" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="indivoServerBaseURL" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:string" name="gcmServerBaseURL" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:boolean" name="debuggingToolsEnabled" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation xml:lang="en">

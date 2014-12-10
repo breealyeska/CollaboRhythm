@@ -1,3 +1,20 @@
+/**
+ * Copyright 2014 Bree Alyeska
+ *
+ * This file is part of CollaboRhythm.
+ *
+ * CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
+ * <http://www.gnu.org/licenses/>.
+ */
+
 package collaboRhythm.tablet.view.skins
 {
 
@@ -16,10 +33,10 @@ package collaboRhythm.tablet.view.skins
 
 	public class IHAARTApplicationSkin extends ViewNavigatorApplicationSkin
 	{
-		public var connectivityView:ConnectivityView;
-		public var busyView:BusyView;
-		public var aboutApplicationView:AboutApplicationView;
-		public var inAppPassCodeView:InAppPassCodeView;
+//		public var connectivityView:ConnectivityView;
+//		public var busyView:BusyView;
+//		public var aboutApplicationView:AboutApplicationView;
+//		public var inAppPassCodeView:InAppPassCodeView;
 
 		public function IHAARTApplicationSkin()
 		{
@@ -33,21 +50,21 @@ package collaboRhythm.tablet.view.skins
 
 			addChild(navigator);
 
-			connectivityView = new ConnectivityView();
-			connectivityView.width = 800;
-			connectivityView.height = 600;
-			connectivityView.visible = false;
-			addChild(connectivityView);
-
-			busyView = new BusyView();
-			busyView.width = 800;
-			busyView.height = 600;
-
-			aboutApplicationView = new AboutApplicationView();
-			aboutApplicationView.width = 800;
-			aboutApplicationView.height = 600;
-			aboutApplicationView.visible = false;
-			addChild(aboutApplicationView);
+//			connectivityView = new ConnectivityView();
+//			connectivityView.width = 800;
+//			connectivityView.height = 600;
+//			connectivityView.visible = false;
+//			addChild(connectivityView);
+//
+//			busyView = new BusyView();
+//			busyView.width = 800;
+//			busyView.height = 600;
+//
+//			aboutApplicationView = new AboutApplicationView();
+//			aboutApplicationView.width = 800;
+//			aboutApplicationView.height = 600;
+//			aboutApplicationView.visible = false;
+//			addChild(aboutApplicationView);
 //
 //			patientPointer = new Graphic();
 //			patientPointer.graphics.beginFill(0x2EB5E5, 0.5);
@@ -70,18 +87,17 @@ package collaboRhythm.tablet.view.skins
 //			inAppPassCodeView.height = 600;
 //			inAppPassCodeView.visible = false;
 //			addChild(inAppPassCodeView);
-			trace("bree at end of createchildren ");
 		}
 
 		private function resizeHandler(event:Event):void
 		{
-			trace("bree in resizehandler  ");
-			connectivityView.width = width;
-			connectivityView.height = height;
-			busyView.width = width;
-			busyView.height = height;
-			aboutApplicationView.width = width;
-			aboutApplicationView.height = height;
+//			trace("bree in resizehandler  ");
+//			connectivityView.width = width;
+//			connectivityView.height = height;
+//			busyView.width = width;
+//			busyView.height = height;
+//			aboutApplicationView.width = width;
+//			aboutApplicationView.height = height;
 //			inAppPassCodeView.width = width;
 //			inAppPassCodeView.height = height;
 		}

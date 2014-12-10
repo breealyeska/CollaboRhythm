@@ -42,6 +42,7 @@ package collaboRhythm.shared.model.settings
 		private var _oauthChromeConsumerKey:String;
 		private var _oauthChromeConsumerSecret:String;
 		private var _indivoServerBaseURL:String;
+		private var _gcmServerBaseURL:String;
 		private var _logSourceIdentifier:String;
 		private var _mode:String;
 		private var _collaborationEnabled:Boolean = true;
@@ -65,6 +66,9 @@ package collaboRhythm.shared.model.settings
 		private var _requireInAppPassCode:Boolean;
 		private var _inAppPassCode:String;
 		private var _gcmSenderID:String;
+		private var _gcmRegistrationID:String;
+		private var _gcmHTTPPostKey:String;
+		private var _gcmUserAgent:String;
 		private var _iHAARTOnly:Boolean;
 
 		public function Settings()
@@ -94,6 +98,16 @@ package collaboRhythm.shared.model.settings
 		public function set indivoServerBaseURL(value:String):void
 		{
 			_indivoServerBaseURL = value;
+		}
+
+		public function get gcmServerBaseURL():String
+		{
+			return _gcmServerBaseURL;
+		}
+
+		public function set gcmServerBaseURL(value:String):void
+		{
+			_gcmServerBaseURL = value;
 		}
 
 		public function get logSourceIdentifier():String
@@ -452,6 +466,36 @@ package collaboRhythm.shared.model.settings
 		public function set gcmSenderID(value:String):void
 		{
 			_gcmSenderID = value;
+		}
+
+		public function get gcmRegistrationID():String
+		{
+			return _gcmRegistrationID;
+		}
+
+		public function set gcmRegistrationID(value:String):void
+		{
+			_gcmRegistrationID = value;
+		}
+
+		public function get gcmHTTPPostKey():String
+		{
+			return _gcmHTTPPostKey;
+		}
+
+		public function set gcmHTTPPostKey(value:String):void
+		{
+			_gcmHTTPPostKey = value;
+		}
+
+		public function get gcmUserAgent():String
+		{
+			return _gcmUserAgent;
+		}
+
+		public function set gcmUserAgent(value:String):void
+		{
+			_gcmUserAgent = value;
 		}
 
 		public function get iHAARTOnly():Boolean

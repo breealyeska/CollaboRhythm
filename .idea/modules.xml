@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Core.Model.Tests/CollaboRhythm.Core.Model.Tests.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Core.Model.Tests/CollaboRhythm.Core.Model.Tests.iml" group="CollaboRhythm/Tests" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Core.Tests/CollaboRhythm.Core.Tests.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Core.Tests/CollaboRhythm.Core.Tests.iml" group="CollaboRhythm/Tests" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.ExampleData/CollaboRhythm.ExampleData.iml" filepath="$PROJECT_DIR$/CollaboRhythm.ExampleData/CollaboRhythm.ExampleData.iml" group="CollaboRhythm/Example Data" />
+      <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.IHAART/CollaboRhythm.IHAART.iml" filepath="$PROJECT_DIR$/CollaboRhythm.IHAART/CollaboRhythm.IHAART.iml" group="CollaboRhythm/Modalities" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Mobile/CollaboRhythm.Mobile.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Mobile/CollaboRhythm.Mobile.iml" group="CollaboRhythm/Modalities" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.NativeExtensions.PlayVideo.Android/CollaboRhythm.NativeExtensions.PlayVideo.Android.iml" filepath="$PROJECT_DIR$/CollaboRhythm.NativeExtensions.PlayVideo.Android/CollaboRhythm.NativeExtensions.PlayVideo.Android.iml" group="CollaboRhythm/Other" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.NativeExtensions.PlayVideo.Flex/CollaboRhythm.NativeExtensions.PlayVideo.Flex.iml" filepath="$PROJECT_DIR$/CollaboRhythm.NativeExtensions.PlayVideo.Flex/CollaboRhythm.NativeExtensions.PlayVideo.Flex.iml" group="CollaboRhythm/Other" />
@@ -40,7 +41,6 @@
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Plugins.Schedule.Shared/CollaboRhythm.Plugins.Schedule.Shared.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Plugins.Schedule.Shared/CollaboRhythm.Plugins.Schedule.Shared.iml" group="CollaboRhythm/Plugins" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Shared/CollaboRhythm.Shared.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Shared/CollaboRhythm.Shared.iml" group="CollaboRhythm/Libraries" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Shared.BloodSolutesSimulation/CollaboRhythm.Shared.BloodSolutesSimulation.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Shared.BloodSolutesSimulation/CollaboRhythm.Shared.BloodSolutesSimulation.iml" group="CollaboRhythm/Libraries" />
-      <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Shared.CloudMessaging/CollaboRhythm.Shared.CloudMessaging.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Shared.CloudMessaging/CollaboRhythm.Shared.CloudMessaging.iml" group="CollaboRhythm/Libraries" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Shared.Collaboration/CollaboRhythm.Shared.Collaboration.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Shared.Collaboration/CollaboRhythm.Shared.Collaboration.iml" group="CollaboRhythm/Libraries" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Shared.DeviceSimulator/CollaboRhythm.Shared.DeviceSimulator.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Shared.DeviceSimulator/CollaboRhythm.Shared.DeviceSimulator.iml" group="CollaboRhythm/Libraries" />
       <module fileurl="file://$PROJECT_DIR$/CollaboRhythm.Shared.Messages/CollaboRhythm.Shared.Messages.iml" filepath="$PROJECT_DIR$/CollaboRhythm.Shared.Messages/CollaboRhythm.Shared.Messages.iml" group="CollaboRhythm/Libraries" />
@@ -70,4 +70,3 @@
     </modules>
   </component>
 </project>
-
