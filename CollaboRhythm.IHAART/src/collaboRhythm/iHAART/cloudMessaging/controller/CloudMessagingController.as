@@ -128,7 +128,7 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 			dbController.saveRegistrationID(registrationID);
 			logger.info("  Received device registrationID: " + registrationID);
 			statusText.concat("\n\nreceived device registrationID: " + registrationID);
-			updateLaunchPad();
+//			updateLaunchPad();
 
 		}
 
@@ -140,7 +140,9 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 			{
 				var nameValuePairs:Object = {};
 				nameValuePairs["key"] = settings.gcmHTTPPostKey;
-				nameValuePairs["account"] = settings.username + ACCOUNT_ID_SUFFIX;
+//				todo bree change this to pull account tag from settings file <account> tag then uncomment line below and delete testpatient1 line
+//				nameValuePairs["account"] = settings.account + ACCOUNT_ID_SUFFIX;
+				nameValuePairs["account"] = "testpatient1@example.org";
 				nameValuePairs["regid"] = registrationID;
 
 				urlRequest.userAgent = settings.gcmUserAgent;
@@ -233,6 +235,7 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 
 		private function handleHTTPResult(result:HTTPStatusEvent):void
 		{
+//			todo bree add error handling check here for status other than 200
 			logger.info("  Http result: " +
 					result.currentTarget.toString() +
 					" ---- " +

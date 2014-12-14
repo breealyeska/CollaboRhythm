@@ -28,7 +28,7 @@
     <s:fill>
       <s:LinearGradient rotation="90">
           <s:GradientEntry color="0xffffff" alpha="1"/>
-          <s:GradientEntry color="0xa3a3a3" alpha="1"/>
+          <s:GradientEntry color="0x838383" alpha="1"/>
       </s:LinearGradient>
     </s:fill>
   </s:Rect>
@@ -36,10 +36,11 @@
   <!-- label -->
   <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
   <s:Label id="labelDisplay" textAlign="center" verticalAlign="middle"
-           paddingLeft="10" paddingRight="10" paddingTop="25" paddingBottom="20"
-          color="black">
-           <!--maxDisplayedLines="1" top="2" left="10" bottom="4" right="10" horizontalCenter="0" verticalCenter="0"-->
-           <!--color.up="#A0BAA6" color.over="#F0FFF0"-->
+           paddingLeft="20" paddingRight="20" paddingTop="25" paddingBottom="20"
+          color="black"
+           color.down="0x1d2bd2"
+           color.disabled="0x5e5e5e"
+           maxDisplayedLines="1">
   </s:Label>
   
 </s:SparkSkin>

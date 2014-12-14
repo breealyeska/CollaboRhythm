@@ -41,6 +41,7 @@ You should have received a copy of the GNU General Public License along with Col
   name=actionBar, type=spark.components.ActionBar, required=false
   -->
   <s:layout>
+    <!--todo bree gap and horizontalalign doesn't do anything afaict -->
     <s:VerticalLayout gap="10" horizontalAlign="justify"/>
   </s:layout>
 

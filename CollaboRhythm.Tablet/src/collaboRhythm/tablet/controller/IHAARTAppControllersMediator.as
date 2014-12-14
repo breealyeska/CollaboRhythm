@@ -71,6 +71,7 @@ package collaboRhythm.tablet.controller
 
 		override public function hideFullView(appController:AppControllerBase):void
 		{
+			trace("bree in hidefullView");
 			var view:TabletFullViewContainer = _appControllerConstructorParams.viewNavigator.activeView as
 					TabletFullViewContainer;
 			if (_appControllerConstructorParams.viewNavigator.length > 1 && view && view.app == appController)

@@ -85,7 +85,6 @@ You should have received a copy of the GNU General Public License along with Col
 //					_tabletApplicationController.settings.debuggingToolsEnabled)
 //			initializeVersionWatermark();
 
-
 		}
 
 		private function initializeVersionWatermark():void
@@ -127,21 +126,50 @@ You should have received a copy of the GNU General Public License along with Col
 		{
 			_applicationController = value;
 		}
+
+		private function showAlertNow():void
+		{
+			trace("bree in show alertnow")
+			var strHarper:String = this.parent.parent.toString();
+			IHAARTSkinnableAlert.show(strHarper, 'Alert Title', IHAARTSkinnableAlert.OK | IHAARTSkinnableAlert.CANCEL);
+		}
 		]]></fx:Script>
 
-	<s:SkinnableContainer styleName="componentContainerStyle">
-		<s:VGroup>
-			<s:Button fontSize="32" fontFamily="Arial" fontWeight="bold" label="Check Payload"
-					  click="checkPayload()"/>
-			<s:Button fontSize="32" fontFamily="Arial" fontWeight="bold" label="Show Alert OK"
-					  click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title')"/>
-			<s:Button fontSize="32" fontFamily="Arial" fontWeight="bold" label="Show Alert OK/CANCEL"
-					  click="IHAARTSkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications being tested to fight HIV and may be more potent than current first-line therapies', 'Alert Title', IHAARTSkinnableAlert.OK|IHAARTSkinnableAlert.CANCEL)"/>
-			<s:Button fontFamily="Arial" fontWeight="bold" label="Show Alert YES/NO"
-					  click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title', IHAARTSkinnableAlert.YES|IHAARTSkinnableAlert.NO)"/>
-			<s:Button fontFamily="Arial" fontWeight="bold" label="Show Alert YES/NO/CANCEL"
-					  click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title', IHAARTSkinnableAlert.YES|IHAARTSkinnableAlert.NO|IHAARTSkinnableAlert.CANCEL)"/>
-		</s:VGroup>
+	<s:Panel width="95%" height="95%"
+			 horizontalCenter="0" verticalCenter="0"
+			 styleName="headerlessPanel">
+
+	<s:SkinnableContainer styleName="iHAARTContainerStyle"> <!--  verticalCenter="0"  -->
+		<s:Group id="myButtonBox">
+			<s:VGroup> <!-- horizontalAlign="center" -->
+				<s:Button id="tstButton" label="{tstButton.getStyle('fontFamily') + ' ' + tstButton.getStyle('color') + ' ' + tstButton.getStyle('fontSize')}"/>
+				<s:Button id="tstButton2"
+						  label="{tstButton2.getStyle('fontFamily') + ' ' + tstButton2.getStyle('fontWeight') + ' ' + tstButton2.getStyle('fontSize')}" fontStyle="italic"/>
+				<s:Button id="tstButton3"
+						  label="{tstButton3.getStyle('fontFamily') + ' ' + tstButton3.getStyle('fontWeight') + ' ' + tstButton3.getStyle('fontSize')}" fontFamily="verdana"/>
+				<s:Button label="Show Alert YES/NO"/>
+				<s:Button label="Show Alert YES/NO/CANCEL"/>
+			</s:VGroup>
+		</s:Group>
+	</s:SkinnableContainer>
+	</s:Panel>
+
+<!--<s:Group width="95%" contentBackgroundColor="0x5f9ea0">-->
+	<!--<s:VGroup gap="20">-->
+		<!--<s:SkinnableContainer styleName="blankContainerStyle"/>-->
+	<!--<s:SkinnableContainer id="myButtonBox" styleName="componentContainerStyle">-->
+		<!--<s:VGroup>-->
+			<!--<s:Button label="Show Alert OK/CANCEL"-->
+					  <!--click="showAlertNow()"/>-->
+			<!--<s:Button label="Show Alert OK"-->
+					  <!--click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title')"/>-->
+			<!--<s:Button label="Show Alert OK/CANCEL"-->
+					  <!--click="IHAARTSkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications being tested to fight HIV and may be more potent than current first-line therapies', 'Alert Title', IHAARTSkinnableAlert.OK|IHAARTSkinnableAlert.CANCEL)"/>-->
+			<!--<s:Button label="Show Alert YES/NO"-->
+					  <!--click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title', IHAARTSkinnableAlert.YES|IHAARTSkinnableAlert.NO)"/>-->
+			<!--<s:Button label="Show Alert YES/NO/CANCEL"-->
+					  <!--click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title', IHAARTSkinnableAlert.YES|IHAARTSkinnableAlert.NO|IHAARTSkinnableAlert.CANCEL)"/>-->
+		<!--</s:VGroup>-->
 		<!--<s:VGroup width="100%" height="100%">-->
 			<!--<s:HGroup width="100%" height="100%" gap="10" paddingLeft="10" paddingRight="10" paddingTop="10"-->
 					  <!--paddingBottom="10" verticalAlign="middle">-->
@@ -151,5 +179,7 @@ You should have received a copy of the GNU General Public License along with Col
 				<!--</s:VGroup>-->
 			<!--</s:HGroup>-->
 		<!--</s:VGroup>-->
-	</s:SkinnableContainer>
+	<!--</s:SkinnableContainer>-->
+	<!--</s:VGroup>-->
+<!--</s:Group>-->
 </tablet:TabletViewBase>
