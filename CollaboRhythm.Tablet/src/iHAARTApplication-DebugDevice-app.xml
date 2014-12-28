@@ -106,7 +106,7 @@
 		<aspectRatio>portrait</aspectRatio>
 
 		<!-- Whether the app will begin auto-orienting on launch. Optional. Mobile only. Default false -->
-		<autoOrients>true</autoOrients>
+		<autoOrients>false</autoOrients>
 
 		<!-- Whether the app launches in full screen. Optional. Mobile only. Default false -->
 		<!-- <fullScreen></fullScreen> -->
@@ -241,16 +241,18 @@
 		<permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 		<uses-permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" />
 
+
+		<uses-permission android:name="android.permission.FLASHLIGHT"/>
+		<uses-permission android:name="android.permission.REORDER_TASKS"/>
+		<uses-permission android:name="android.permission.SET_ALARM"/>
+		<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>  <!--TYPE_SYSTEM_ALERT-->
+		<uses-permission android:name="android.permission.VIBRATE"/>
+		<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 		<uses-permission android:name="android.permission.INTERNET"/>
 		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 		<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-		<uses-permission android:name="android.permission.RECORD_AUDIO"/>
-		<uses-permission android:name="android.permission.CAMERA"/>
 		<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-		<uses-feature android:name="android.hardware.microphone" android:required="false"/>
-		<uses-feature android:name="android.hardware.camera"/>
-		<uses-feature android:name="android.hardware.camera.autofocus"/>
 		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
 		<application android:enabled="true" android:process="CollaboRhythm.Tablet" android:debuggable="true">
 

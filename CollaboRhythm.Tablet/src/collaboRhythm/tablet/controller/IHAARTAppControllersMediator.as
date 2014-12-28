@@ -23,6 +23,7 @@ package collaboRhythm.tablet.controller
 	import collaboRhythm.shared.model.services.IComponentContainer;
 	import collaboRhythm.shared.model.settings.Settings;
 	import collaboRhythm.tablet.view.TabletFullViewContainer;
+	import collaboRhythm.tablet.controller.IHAARTApplicationController;
 
 	import mx.core.IVisualElementContainer;
 
@@ -71,7 +72,6 @@ package collaboRhythm.tablet.controller
 
 		override public function hideFullView(appController:AppControllerBase):void
 		{
-			trace("bree in hidefullView");
 			var view:TabletFullViewContainer = _appControllerConstructorParams.viewNavigator.activeView as
 					TabletFullViewContainer;
 			if (_appControllerConstructorParams.viewNavigator.length > 1 && view && view.app == appController)

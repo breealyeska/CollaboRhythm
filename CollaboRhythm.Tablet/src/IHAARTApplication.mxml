@@ -19,10 +19,9 @@ You should have received a copy of the GNU General Public License along with Col
 <s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
 							xmlns:s="library://ns.adobe.com/flex/spark"
 							xmlns:mx="library://ns.adobe.com/flex/mx"
-							xmlns:view="collaboRhythm.tablet.view.*"
 							xmlns:sharedView="collaboRhythm.shared.view.*"
 							firstView="collaboRhythm.tablet.view.IHAARTHomeView"
-							skinClass="collaboRhythm.tablet.view.skins.IHAARTApplicationSkin"
+							skinClass="collaboRhythm.iHAART.view.skins.IHAARTApplicationSkin"
 							creationComplete="creationCompleteHandler(event)"
 							runtimeDPIProvider="collaboRhythm.tablet.model.EmulatorDpiProvider">
 	<fx:Style source="iHAART.css">
@@ -31,23 +30,38 @@ You should have received a copy of the GNU General Public License along with Col
 		import collaboRhythm.core.view.AboutApplicationView;
 		import collaboRhythm.core.view.BusyView;
 		import collaboRhythm.core.view.ConnectivityView;
+		import collaboRhythm.core.view.IHAARTConnectivityView;
 		import collaboRhythm.core.view.InAppPassCodeView;
+		import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
+		import collaboRhythm.iHAART.model.events.IHAARTEvent;
 
+		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
 		import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
-		import collaboRhythm.tablet.model.IHAARTSkinnableAlert;
+		import collaboRhythm.shared.collaboration.controller.CollaborationController;
+		import collaboRhythm.shared.model.healthRecord.document.MedicationScheduleItem;
+		import collaboRhythm.tablet.controller.IHAARTApplicationController;
+		import collaboRhythm.tablet.controller.TabletApplicationController;
+		import collaboRhythm.tablet.controller.TabletApplicationController;
 
-		import com.afterisk.shared.ane.lib.GCMEvent;
+		import com.alyeska.shared.ane.GCMPushInterface;
+
+		import collaboRhythm.iHAART.model.SkinnableAlert;
+		import collaboRhythm.tablet.view.IHAARTHomeView;
+
+		import collaboRhythm.iHAART.model.Medication;
+
+		import com.alyeska.shared.ane.events.GCMEvent;
 
 		import collaboRhythm.shared.view.MenuIcon;
 		import collaboRhythm.shared.view.tablet.TabletViewBase;
-		import collaboRhythm.tablet.controller.IHAARTApplicationController;
-		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
-		import collaboRhythm.tablet.view.IHAARTHomeView;
 
 		import mx.binding.utils.BindingUtils;
+		import mx.collections.ArrayCollection;
 		import mx.core.FlexGlobals;
 		import mx.events.FlexEvent;
 		import mx.events.CloseEvent;
+		import mx.logging.ILogger;
+		import mx.logging.Log;
 
 		import spark.events.PopUpEvent;
 
@@ -55,18 +69,30 @@ You should have received a copy of the GNU General Public License along with Col
 
 		[Bindable]
 		private var _applicationController:IHAARTApplicationController;
-		private var _gcmController:CloudMessagingController;
-		private var _gmcRegistrationResponseMsg:String;
-		private var _dbController:SQLStoreController;
+		private var _logger:ILogger;
+
+		public var deviceRegistrationID:String;
 
 		[SkinPart(required="false")]
 		public var connectivityView:ConnectivityView;
 
 		[SkinPart(required="false")]
 		public var busyView:BusyView;
-		//
-		//		[SkinPart(required="false")]
-		//		public var aboutApplicationView:AboutApplicationView;
+
+		[SkinPart(required="false")]
+		public var aboutApplicationView:AboutApplicationView;
+
+		[SkinPart(required="false")]
+		public var patientPointer:Graphic;
+
+		[SkinPart(required="false")]
+		public var clinicianPointer:Graphic;
+
+		[SkinPart(required="false")]
+		public var inAppPassCodeView:InAppPassCodeView;
+
+		[Bindable]
+		private var _collaborationController:CollaborationController;
 
 		override protected function invokeHandler(event:InvokeEvent):void
 		{
@@ -79,10 +105,6 @@ You should have received a copy of the GNU General Public License along with Col
 
 		protected function creationCompleteHandler(event:FlexEvent):void
 		{
-//			if (actionBar)
-//			{
-//				activeRecordProfileImage.height = activeRecordProfileImage.width = actionBar.getPreferredBoundsHeight();
-//			}
 			this.addEventListener(FlexEvent.MENU_KEY_PRESSED, menuKeyPressedHandler);
 
 			main();
@@ -90,35 +112,138 @@ You should have received a copy of the GNU General Public License along with Col
 
 		private function main():void
 		{
-			applicationController.main();
+//			applicationController.main();
 
-//			aboutApplicationView.settings = applicationController.settings;
+			_applicationController = new IHAARTApplicationController(this);
+			_applicationController.main();
 
-			dbController = new SQLStoreController();
-			var regID:String = dbController.getRegistrationID();
+			aboutApplicationView.settings = _applicationController.settings;
 
-			gcmController = new CloudMessagingController();
+			_collaborationController = _applicationController.collaborationController;
 
-			if ((regID) && (regID != CloudMessagingController.REGID_NONE))
-			{
-				trace("bree in iHAART application main");
-				gcmController.isRegistered = true;
-				gcmController.registrationID = regID;
-				var payload:String = gcmController.checkPendingFromLaunchPayload();
-				var alert:IHAARTSkinnableAlert = new IHAARTSkinnableAlert();
-				IHAARTSkinnableAlert.show(regID, "Device Registration ID");
-			}
-			else
-			{
-				gmcRegistrationResponseMsg = gcmController.registerDevice();
-			}
+			this.addEventListener(IHAARTEvent.REGISTERED, handleRegistered, false, 0, false);
+			this.addEventListener(IHAARTEvent.UNREGISTERED, handleUnregistered, false, 0, false);
+			this.addEventListener(IHAARTEvent.INDIVO_GET, handleIndivoGet, false, 0, false);
+			this.addEventListener(IHAARTEvent.INDIVO_UPDATE, handleIndivoUpdate, false, 0, false);
+			this.addEventListener(IHAARTEvent.MESSAGE, handleIHAARTMessage, false, 0, false);
+			this.addEventListener(IHAARTEvent.FOREGROUND_MESSAGE, handleIHAARTFGMessage, false, 0, false);
+			this.addEventListener(IHAARTEvent.SCHEDULE_LOADED, handleIHAARTScheduleLoaded, false, 0, false);
+			this.addEventListener(IHAARTEvent.MEDICATION_LOADED, handleIHAARTMedicationLoaded, false, 0, false);
+			this.addEventListener(IHAARTEvent.ERROR, handleIHAARTError, false, 0, false);
 
+			applicationController.gcmController = new CloudMessagingController();
 
+			var isRegistered:Boolean = applicationController.gcmController.isRegistered;
 		}
+
+//		public function initializeMedication():void
+//		{
+//			if (!_medication)
+//			{
+//				_medication = new Medication()
+//			}
+//
+//			var result:SQLResult = dbController.getAccountData(applicationController.settings.gcmAccount);
+//
+//			var numResults:int = result.data.length;
+//
+//			if (result.data.length = 1)
+//			{
+//				medication.nameDoseAndRoute = result.data[0]['med_name_dose_route'];
+//				medication.startTime = result.data[0]['med_start_time'];
+//				medication.endTime = result.data[0]['med_end_time'];
+//				medication.instructions = result.data[0]['med_instructions'];
+//			}
+//			else
+//			{
+//				logger.info("  Cannot initialize medication, data not found...");
+//			}
+//
+//			var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+//			dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.MEDICATION_LOADED, "", false, false));
+//		}
+
+		//		SkinnableAlert.show(medication.nameDoseAndRoute,
+		//				'iHAART Reminder',
+		//				SkinnableAlert.OK |
+		//				SkinnableAlert.TAKE,
+		//				null,
+		//				handleAlertClick);
 
 		public function get iHAARTHomeView():IHAARTHomeView
 		{
 			return navigator.activeView as IHAARTHomeView;
+		}
+
+		private function handleAlertClick(event:CloseEvent):void
+		{
+			switch (event.detail)
+			{
+				case SkinnableAlert.OK:
+					break;
+				case SkinnableAlert.YES:
+					break;
+				case SkinnableAlert.NO:
+					break;
+				case SkinnableAlert.CANCEL:
+					break;
+				case SkinnableAlert.TAKE:
+					applicationController.dbController.newAdherenceEvent(applicationController.settings.gcmAccount);
+					SkinnableAlert.show("Saved", "Saving", SkinnableAlert.OK);
+					break;
+				case SkinnableAlert.SNOOZE:
+					break;
+			}
+
+		}
+
+		private function handleRegistered(event:IHAARTEvent):void
+		{
+			trace(" bree in handle Event");
+		}
+
+		private function handleUnregistered(event:IHAARTEvent):void
+		{
+		}
+
+		private function handleIndivoGet(event:IHAARTEvent):void
+		{
+			var alert:SkinnableAlert = new SkinnableAlert();
+			SkinnableAlert.show(event.message, "Indivo Response");
+		}
+
+		private function handleIndivoUpdate(event:IHAARTEvent):void
+		{
+			var alert:SkinnableAlert = new SkinnableAlert();
+			SkinnableAlert.show(event.message, "Indivo Updated");
+		}
+
+		private function handleIHAARTMessage(event:IHAARTEvent):void
+		{
+			var alert:SkinnableAlert = new SkinnableAlert();
+			SkinnableAlert.show(event.message, "Message");
+		}
+
+		private function handleIHAARTFGMessage(event:IHAARTEvent):void
+		{
+			var alert:SkinnableAlert = new SkinnableAlert();
+			SkinnableAlert.show(event.message, "FG Message");
+		}
+
+		public function handleIHAARTScheduleLoaded(event:IHAARTEvent):void
+		{
+			trace("   bree SCHEDULE_LOADED triggered");
+		}
+
+		public function handleIHAARTMedicationLoaded(event:IHAARTEvent):void
+		{
+			trace("   bree MEDICATION_LOADED triggered");
+		}
+
+		private function handleIHAARTError(event:IHAARTEvent):void
+		{
+			var alert:SkinnableAlert = new SkinnableAlert();
+			SkinnableAlert.show(event.message, "Error");
 		}
 
 		private function menuKeyPressedHandler(event:FlexEvent):void
@@ -143,16 +268,8 @@ You should have received a copy of the GNU General Public License along with Col
 			}
 		}
 
-		//		private function onCloseAlert(event:PopUpEvent):void
-		//		{
-		//			trace("bree in onclosealert ");
-		//		}
-
 		public function get applicationController():IHAARTApplicationController
 		{
-			if (!_applicationController) {
-				_applicationController = new IHAARTApplicationController(this);
-			}
 			return _applicationController;
 		}
 
@@ -161,49 +278,47 @@ You should have received a copy of the GNU General Public License along with Col
 			_applicationController = value;
 		}
 
-		public function get gcmController():CloudMessagingController
+		public function get logger():ILogger
 		{
-			return _gcmController;
+			if (!_logger)
+			{
+				_logger = Log.getLogger(getQualifiedClassName(this).replace("::", "."));
+			}
+			return _logger;
 		}
 
-		public function set gcmController(value:CloudMessagingController):void
+		public function set logger(value:ILogger):void
 		{
-			_gcmController = value;
-		}
-
-		public function get gmcRegistrationResponseMsg():String
-		{
-			return _gmcRegistrationResponseMsg;
-		}
-
-		public function set gmcRegistrationResponseMsg(value:String):void
-		{
-			_gmcRegistrationResponseMsg = value;
-		}
-
-		public function get dbController():SQLStoreController
-		{
-			return _dbController;
-		}
-
-		public function set dbController(value:SQLStoreController):void
-		{
-			_dbController = value;
+			_logger = value;
 		}
 		]]></fx:Script>
+	<s:actionContent>
+		<s:VGroup id="registeredGroup" gap="0" horizontalAlign="center">
+			<s:Label height="100%" color="#ffffff" fontSize="12" id="registeredLabel"
+					 text="Testing" verticalAlign="middle" width="100%"/>
+			<s:HGroup id="registeredHGroup" horizontalAlign="center" width="100%">
+				<s:BitmapImage id="registeredIcon" source="@Embed(source='/assets/images/icons/Registered_96x96.png')"
+							   visible="false"
+							   width="35"
+							   height="35"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:actionContent>
 	<s:navigationContent>
-
-		<s:Button width="{backGroup.width}" height="{backGroup.height}" click="homeButton_clickHandler()"/>
-		<s:HGroup id="backGroup" verticalAlign="middle" gap="0" mouseEnabled="false"
-				  mouseChildren="false">
-			<!--<view:BackIcon id="backIcon" visible="false" visible.notHome="true"/>-->
-			<!--<s:VGroup gap="1" paddingTop="3" paddingLeft="5" paddingRight="10">-->
-				<!--<s:Label id="activeRecordGivenName"-->
-						 <!--text="{applicationController.activeRecordAccount.primaryRecord.demographics.Name.givenName}"/>-->
-				<!--<s:Label id="activeRecordFamilyName"-->
-						 <!--text="{applicationController.activeRecordAccount.primaryRecord.demographics.Name.familyName}"/>-->
-			<!--</s:VGroup>-->
-		</s:HGroup>
-
+		<s:Button id="backButton" label="back" click="homeButton_clickHandler()"/>
+		<!--visible.notHome="true"-->
+		<!--<s:Group includeInLayout="{_applicationController.activeRecordAccount != null}"-->
+				 <!--visible="{_applicationController.activeRecordAccount != null}">-->
+			<!--<s:Button width="{backGroup.width}" height="{backGroup.height}" click="homeButton_clickHandler()"/>-->
+			<!--<s:HGroup id="backGroup" verticalAlign="middle" gap="0" mouseEnabled="false"-->
+					  <!--mouseChildren="false">-->
+				<!--<s:VGroup gap="1" paddingTop="3" paddingLeft="5" paddingRight="10">-->
+					<!--<s:Label id="activeRecordGivenName"-->
+							 <!--text="{_applicationController.activeRecordAccount.primaryRecord.demographics.Name.givenName}"/>-->
+					<!--<s:Label id="activeRecordFamilyName"-->
+							 <!--text="{_applicationController.activeRecordAccount.primaryRecord.demographics.Name.familyName}"/>-->
+				<!--</s:VGroup>-->
+			<!--</s:HGroup>-->
+		<!--</s:Group>-->
 	</s:navigationContent>
 </s:ViewNavigatorApplication>

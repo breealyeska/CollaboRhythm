@@ -24,7 +24,7 @@
 @namespace views "com.pialabs.eskimo.views.*";
 @namespace piacomponents "com.pialabs.eskimo.components.*";
 @namespace piacontrols "com.pialabs.eskimo.controls.*";
-@namespace ihaartcontrols "collaboRhythm.tablet.model.*";
+@namespace ihaartcontrols "collaboRhythm.iHAART.model.*";
 
 @font-face {
 	src: url("/assets/fonts/MyriadPro-Regular.otf");
@@ -91,37 +91,40 @@ global {
 	modalTransparencyDuration: 250;
 }
 
-.blankContainerStyle {
-	skinClass: ClassReference("collaboRhythm.tablet.view.skins.TestingContainerSkin");
-}
-
 .headerlessPanel {
-	skinClass: ClassReference("collaboRhythm.tablet.view.skins.HeaderlessPanelSkin");
+	skinClass: ClassReference("collaboRhythm.iHAART.model.HeaderlessPanel");
 }
 
 .iHAARTContainerStyle {
-	skinClass: ClassReference("collaboRhythm.tablet.view.skins.IHAARTContainerSkin");
+	skinClass: ClassReference("collaboRhythm.iHAART.view.skins.BasicContainerSkin");
 }
 
 .parameterContainerStyle {
-	skinClass: ClassReference("collaboRhythm.tablet.view.skins.IHAARTContainerSkin");
+	skinClass: ClassReference("collaboRhythm.iHAART.view.skins.BasicContainerSkin");
 }
 
-ihaartcontrols|IHAARTSkinnableAlert {
-	skinClass: ClassReference("collaboRhythm.tablet.view.skins.IHAARTAlertSkin");
+.gradientRectStyle {
+	skinClass: ClassReference("collaboRhythm.iHAART.view.skins.GradientRectSkin");
+}
+
+ihaartcontrols|SkinnableAlert {
+	skinClass: ClassReference("collaboRhythm.iHAART.view.skins.AlertSkin");
 	backgroundColor: #424242;
 	backgroundAlpha: 0.9;
 }
 
 s|Button {
 	/*chromeColor: #dedede;*/
-	/*textShadowColor: #676767;*/
+	textShadowColor: #676767;
 	textShadowAlpha: 0.5;
 	fontSize: 32pt;
 	fontWeight: bold;
 	fontFamily: MyriadProEmbeddedCFF;
-	color: #5000ff;
-	skinClass: ClassReference("collaboRhythm.tablet.view.skins.IHAARTButtonSkin");
+	skinClass: ClassReference("collaboRhythm.iHAART.view.skins.ButtonSkin");
+}
+
+s|Label {
+	fontFamily: MyriadProEmbeddedCFF;
 }
 
 s|Label.ActionBarLabel {
