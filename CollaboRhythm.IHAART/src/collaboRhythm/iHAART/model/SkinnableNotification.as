@@ -15,9 +15,9 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-package collaboRhythm.tablet.model
+package collaboRhythm.iHAART.model
 {
-	import collaboRhythm.tablet.view.skins.IHAARTAlertSkin;
+	import collaboRhythm.iHAART.view.skins.NotificationSkin;
 
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -41,7 +41,9 @@ package collaboRhythm.tablet.model
 	import spark.components.PopUpPosition;
 	import spark.components.supportClasses.SkinnableComponent;
 
-	import collaboRhythm.tablet.view.skins.IHAARTAlertSkin;
+	import collaboRhythm.iHAART.view.skins.NotificationSkin;
+	import collaboRhythm.iHAART.view.skins.ButtonSkin;
+	import collaboRhythm.iHAART.model.ExtendedButton;
 
 	/**
 	 * Evant dispatched when the Alert is closed
@@ -66,21 +68,6 @@ package collaboRhythm.tablet.model
 	 * @defaults "okButtonStyle"
 	 */
 	[Style(name="okButtonStyleName", inherit="no", type="String")]
-	/**
-	 * Style of the CANCEL button
-	 * @defaults "cancelButtonStyle"
-	 */
-	[Style(name="cancelButtonStyleName", inherit="no", type="String")]
-	/**
-	 * Style of the YES button
-	 * @defaults "yesButtonStyle"
-	 */
-	[Style(name="yesButtonStyleName", inherit="no", type="String")]
-	/**
-	 * Style of the NO button
-	 * @defaults "noButtonStyle"
-	 */
-	[Style(name="noButtonStyleName", inherit="no", type="String")]
 
 	/**
 	 * This component allow the user to display an Alert.
@@ -88,33 +75,22 @@ package collaboRhythm.tablet.model
 	 *
 	 * It follows the mx.controls.Alert 's behavior.
 	 */
-	public class IHAARTSkinnableAlert extends SkinnableComponent
+	public class SkinnableNotification extends SkinnableComponent
 	{
-		/**
-		 *  Value that enables a Yes button on the Alert control
-		 */
-		public static const YES:uint = 0x0001;
-		/**
-		 *  Value that enables a No button on the Alert control
-		 */
-		public static const NO:uint = 0x0002;
 		/**
 		 *  Value that enables a OK button on the Alert control
 		 */
 		public static const OK:uint = 0x0004;
-		/**
-		 *  Value that enables a Cancel button on the Alert control
-		 */
-		public static const CANCEL:uint = 0x0008;
+
 		/**
 		 *  Value that remove modal background
 		 */
 		public static const NONMODAL:uint = 0x8000;
 
 		/**
-		 *  A bitmask that contains <code>IHAARTSkinnableAlert.OK</code>, <code>IHAARTSkinnableAlert.CANCEL</code>,
-		 *  <code>IHAARTSkinnableAlert.YES</code>, and/or <code>IHAARTSkinnableAlert.NO</code> indicating
-		 *  the buttons available in the IHAARTSkinnableAlert control.
+		 *  A bitmask that contains <code>SkinnableNotification.OK</code>, <code>SkinnableNotification.CANCEL</code>,
+		 *  <code>SkinnableNotification.YES</code>, and/or <code>SkinnableNotification.NO</code> indicating
+		 *  the buttons available in the SkinnableNotification control.
 		 */
 		public var buttonFlags:uint = OK;
 
@@ -154,40 +130,17 @@ package collaboRhythm.tablet.model
 		 * @private
 		 */
 		protected var buttonOK:Button = new Button();
-		/**
-		 * @private
-		 */
-		protected var buttonCANCEL:Button = new Button();
-		/**
-		 * @private
-		 */
-		protected var buttonYES:Button = new Button();
-		/**
-		 * @private
-		 */
-		protected var buttonNO:Button = new Button();
 
 
 		/**
 		 * @private
 		 */
 		protected static var _okLabel:String = "OK";
+
 		/**
 		 * @private
 		 */
-		protected static var _cancelLabel:String = "Cancel";
-		/**
-		 * @private
-		 */
-		protected static var _yesLabel:String = "Yes";
-		/**
-		 * @private
-		 */
-		protected static var _noLabel:String = "No";
-		/**
-		 * @private
-		 */
-		protected static var _buttonHeight:Number = 100;
+		protected static var _buttonHeight:Number = 70;
 
 		protected var currentOS:String;
 
@@ -197,32 +150,17 @@ package collaboRhythm.tablet.model
 		/**
 		 * Constructor
 		 */
-		public function IHAARTSkinnableAlert()
+		public function SkinnableNotification()
 		{
 			buttonOK = new Button();
-			buttonCANCEL = new Button();
-			buttonYES = new Button();
-			buttonNO = new Button();
 
 			buttonOK.addEventListener(MouseEvent.CLICK, onOKClick);
-			buttonCANCEL.addEventListener(MouseEvent.CLICK, onCancelClick);
-			buttonYES.addEventListener(MouseEvent.CLICK, onYesClick);
-			buttonNO.addEventListener(MouseEvent.CLICK, onNoClick);
 
 			buttonOK.percentWidth = 100;
-			buttonCANCEL.percentWidth = 100;
-			buttonYES.percentWidth = 100;
-			buttonNO.percentWidth = 100;
 
 			buttonOK.percentHeight = 100;
-			buttonCANCEL.percentHeight = 100;
-			buttonYES.percentHeight = 100;
-			buttonNO.percentHeight = 100;
 
 			buttonOK.label = _okLabel;
-			buttonCANCEL.label = _cancelLabel;
-			buttonYES.label = _yesLabel;
-			buttonNO.label = _noLabel;
 
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, removeFromStage, false, 0, true);
@@ -267,21 +205,9 @@ package collaboRhythm.tablet.model
 				controlBarGroup.height = _buttonHeight;
 				controlBarGroup.removeAllElements();
 
-				if (buttonFlags & IHAARTSkinnableAlert.OK)
+				if (buttonFlags & SkinnableNotification.OK)
 				{
 					controlBarGroup.addElementAt(buttonOK, isIOS ? 0 : controlBarGroup.numChildren);
-				}
-				if (buttonFlags & IHAARTSkinnableAlert.YES)
-				{
-					controlBarGroup.addElementAt(buttonYES, isIOS ? 0 : controlBarGroup.numChildren);
-				}
-				if (buttonFlags & IHAARTSkinnableAlert.NO)
-				{
-					controlBarGroup.addElementAt(buttonNO, isIOS ? 0 : controlBarGroup.numChildren);
-				}
-				if (buttonFlags & IHAARTSkinnableAlert.CANCEL)
-				{
-					controlBarGroup.addElementAt(buttonCANCEL, isIOS ? 0 : controlBarGroup.numChildren);
 				}
 			}
 			if (instance == titleDisplay)
@@ -305,30 +231,15 @@ package collaboRhythm.tablet.model
 				if (controlBarGroup)
 				{
 					controlBarGroup.removeAllElements();
-					if (buttonFlags & IHAARTSkinnableAlert.OK)
+					if (buttonFlags & SkinnableNotification.OK)
 					{
 						controlBarGroup.addElementAt(buttonOK, isIOS ? 0 : controlBarGroup.numChildren);
-					}
-					if (buttonFlags & IHAARTSkinnableAlert.YES)
-					{
-						controlBarGroup.addElementAt(buttonYES, isIOS ? 0 : controlBarGroup.numChildren);
-					}
-					if (buttonFlags & IHAARTSkinnableAlert.NO)
-					{
-						controlBarGroup.addElementAt(buttonNO, isIOS ? 0 : controlBarGroup.numChildren);
-					}
-					if (buttonFlags & IHAARTSkinnableAlert.CANCEL)
-					{
-						controlBarGroup.addElementAt(buttonCANCEL, isIOS ? 0 : controlBarGroup.numChildren);
 					}
 				}
 
 				buttonFlagsChanged = false;
 
 				buttonOK.styleName = getStyle("okButtonStyleName");
-				buttonCANCEL.styleName = getStyle("cancelButtonStyleName");
-				buttonYES.styleName = getStyle("yesButtonStyleName");
-				buttonNO.styleName = getStyle("noButtonStyleName");
 			}
 
 			PopUpManager.centerPopUp(this);
@@ -351,9 +262,9 @@ package collaboRhythm.tablet.model
 		 * Create and show an Alert control
 		 * @param text     Text showed in the Alert control
 		 * @param title    Title of the Alert control
-		 * @param flags    A bitmask that contains <code>IHAARTSkinnableAlert.OK</code>, <code>IHAARTSkinnableAlert.CANCEL</code>,
-		 *                 <code>IHAARTSkinnableAlert.YES</code>, and/or <code>IHAARTSkinnableAlert.NO</code> indicating
-		 *                 the buttons available in the IHAARTSkinnableAlert control.
+		 * @param flags    A bitmask that contains <code>SkinnableNotification.OK</code>, <code>SkinnableNotification.CANCEL</code>,
+		 *                 <code>SkinnableNotification.YES</code>, and/or <code>SkinnableNotification.NO</code> indicating
+		 *                 the buttons available in the SkinnableNotification control.
 		 * @param closeHandler  Close function callback
 		 *
 		 */
@@ -361,9 +272,9 @@ package collaboRhythm.tablet.model
 									title:String = "",
 									flags:uint = 0x4,
 									parent:Sprite = null,
-									closeHandler:Function = null):IHAARTSkinnableAlert
+									closeHandler:Function = null):SkinnableNotification
 		{
-			var modal:Boolean = (flags & IHAARTSkinnableAlert.NONMODAL) ? false : true;
+			var modal:Boolean = (flags & SkinnableNotification.NONMODAL) ? false : true;
 
 			if (!parent)
 			{
@@ -381,17 +292,11 @@ package collaboRhythm.tablet.model
 			}
 
 
-			var alert:IHAARTSkinnableAlert = new IHAARTSkinnableAlert();
+			var alert:SkinnableNotification = new SkinnableNotification();
 
 
 			if (flags &
-					IHAARTSkinnableAlert.OK ||
-					flags &
-					IHAARTSkinnableAlert.CANCEL ||
-					flags &
-					IHAARTSkinnableAlert.YES ||
-					flags &
-					IHAARTSkinnableAlert.NO)
+					SkinnableNotification.OK)
 			{
 				alert.buttonFlags = flags;
 			}
@@ -421,7 +326,7 @@ package collaboRhythm.tablet.model
 		}
 
 		/**
-		 * Text of the IHAARTSkinnableAlert control
+		 * Text of the SkinnableNotification control
 		 */
 		public function get text():String
 		{
@@ -437,7 +342,7 @@ package collaboRhythm.tablet.model
 		}
 
 		/**
-		 * Title of the IHAARTSkinnableAlert control
+		 * Title of the SkinnableNotification control
 		 */
 		public function get title():String
 		{
@@ -469,54 +374,6 @@ package collaboRhythm.tablet.model
 		}
 
 		/**
-		 * Label of the CANCEL button
-		 */
-		public static function get cancelLabel():String
-		{
-			return _cancelLabel;
-		}
-
-		/**
-		 * @private
-		 */
-		public static function set cancelLabel(value:String):void
-		{
-			_cancelLabel = value;
-		}
-
-		/**
-		 * Label of the YES button
-		 */
-		public static function get yesLabel():String
-		{
-			return _yesLabel;
-		}
-
-		/**
-		 * @private
-		 */
-		public static function set yesLabel(value:String):void
-		{
-			_yesLabel = value;
-		}
-
-		/**
-		 * Label of the NO button
-		 */
-		public static function get noLabel():String
-		{
-			return _noLabel;
-		}
-
-		/**
-		 * @private
-		 */
-		public static function set noLabel(value:String):void
-		{
-			_noLabel = value;
-		}
-
-		/**
 		 * Buttons height
 		 */
 		public static function get buttonHeight():Number
@@ -537,34 +394,7 @@ package collaboRhythm.tablet.model
 		 */
 		protected function onOKClick(event:MouseEvent):void
 		{
-			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, false, false, IHAARTSkinnableAlert.OK));
-			PopUpManager.removePopUp(this);
-		}
-
-		/**
-		 * @private
-		 */
-		protected function onCancelClick(event:MouseEvent):void
-		{
-			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, false, false, IHAARTSkinnableAlert.CANCEL));
-			PopUpManager.removePopUp(this);
-		}
-
-		/**
-		 * @private
-		 */
-		protected function onYesClick(event:MouseEvent):void
-		{
-			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, false, false, IHAARTSkinnableAlert.YES));
-			PopUpManager.removePopUp(this);
-		}
-
-		/**
-		 * @private
-		 */
-		protected function onNoClick(event:MouseEvent):void
-		{
-			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, false, false, IHAARTSkinnableAlert.NO));
+			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, false, false, SkinnableNotification.OK));
 			PopUpManager.removePopUp(this);
 		}
 

@@ -29,6 +29,10 @@ package collaboRhythm.iHAART.sqlStore.controller
 	import flash.filesystem.File;
 	import flash.events.SQLErrorEvent;
 	import flash.events.SQLEvent;
+
+
+	import flash.globalization.DateTimeFormatter;
+	import flash.globalization.DateTimeStyle;
 	import flash.utils.getQualifiedClassName;
 
 	import mx.logging.ILogger;
@@ -40,9 +44,12 @@ package collaboRhythm.iHAART.sqlStore.controller
 
 	public class SQLStoreController
 	{
-		private static const IHAART_DB_FILE = "iHAART.db";
-		private static const SETTINGS_TABLE = "gcm_settings";
-		private static const ADHERENCE_TABLE = "user_adherence";
+		public static var IHAART_DB_FILE = "iHAART.db";
+		public static var SETTINGS_TABLE = "user_settings";
+		public static var USERS_TABLE = "users";
+		public static var ADHERENCE_TABLE = "user_adherence";
+		public static var NOTIFICATIONS_TABLE = "notifications";
+		public static var MEDICATIONS_TABLE = "medications";
 
 		protected var _sqlConnectionSync:SQLConnection;
 		private var _sqlResult:SQLResult;
@@ -61,7 +68,7 @@ package collaboRhythm.iHAART.sqlStore.controller
 
 			if (dbFile.exists)
 			{
-				if (tableExists(SETTINGS_TABLE) && tableExists(ADHERENCE_TABLE))
+				if (tableExists(USERS_TABLE) && tableExists(ADHERENCE_TABLE) && tableExists(MEDICATIONS_TABLE))
 				{
 					return;
 				}
@@ -82,9 +89,9 @@ package collaboRhythm.iHAART.sqlStore.controller
 
 			var create:SQLStatement = new SQLStatement();
 
-			if (!tableExists(SETTINGS_TABLE))
+			if (!tableExists(USERS_TABLE))
 			{
-				create.text = "CREATE TABLE " + SETTINGS_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'registration_id' VARCHAR(255))";
+				create.text = "CREATE TABLE " + USERS_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'account_string' TEXT, 'registration_id' TEXT)";
 
 				create.sqlConnection = sqlConnectionSync;
 				try
@@ -93,18 +100,39 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:SQLError)
 				{
-					logger.info("    SQLError in SQLStoreController.initialize(SETTINGS_TABLE): " +
+					logger.info("    SQLError in SQLStoreController.initialize(USERS_TABLE): " +
 					error.message +
 					" ---- " +
 					error.details);
 				}
-				logger.info("  Table " + SETTINGS_TABLE + " created: " + create.text);
+				logger.info("  Table " + USERS_TABLE + " created: " + create.text);
+			}
+
+			if (!tableExists(MEDICATIONS_TABLE))
+			{
+				create.text = "CREATE TABLE " + MEDICATIONS_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'user_id' INTEGER, 'med_name_dose_route' TEXT, 'med_start_time' TEXT, 'med_end_time' TEXT, 'med_instructions' TEXT)";
+
+				create.sqlConnection = sqlConnectionSync;
+				try
+				{
+					create.execute();
+				}
+				catch (error:SQLError)
+				{
+					logger.info("    SQLError in SQLStoreController.initialize(MEDICATIONS_TABLE): " +
+					error.message +
+					" ---- " +
+					error.details);
+				}
+				logger.info("  Table " + MEDICATIONS_TABLE + " created: " + create.text);
 			}
 
 			if (!tableExists(ADHERENCE_TABLE))
 			{
 				// DateTime format in SQLLite is ("YYYY-MM-DD HH:MM:SS.SSS")
-				create.text = "CREATE TABLE " + ADHERENCE_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'factoid_id' INT, 'timeSent' VARCHAR(64), 'timeReceived' VARCHAR(64), 'timeReported' VARCHAR(64))";
+				create.text = "CREATE TABLE " +
+				ADHERENCE_TABLE +
+				" (id INTEGER PRIMARY KEY AUTOINCREMENT, 'user_id' INTEGER, 'med_id' INTEGER, 'time_reported' TEXT)";
 
 				create.sqlConnection = sqlConnectionSync;
 				try
@@ -120,62 +148,81 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				logger.info("  Table " + ADHERENCE_TABLE + " created: " + create.text);
 			}
-		}
 
-		public function saveRegistrationID(registrationID:String):Boolean
-		{
-			clearTableData(SETTINGS_TABLE);
-			sqlResult = writeData("gcm_settings", "registration_id", registrationID.toString());
-			logger.info("  GCM Registration ID saved: " + "  " + registrationID);
-			return true;
-
-		}
-
-		public function getRegistrationID():String
-		{
-			try
+			if (!tableExists(NOTIFICATIONS_TABLE))
 			{
-				var select:SQLStatement = new SQLStatement();
-				select.sqlConnection = sqlConnectionSync;
-				select.text = "SELECT registration_id FROM gcm_settings ORDER BY id";
-				select.execute();
-			}
-			catch (error:SQLError)
-			{
-				logger.info("    SQLError in SQLStoreController.getRegistrationID(): " +
-						error.message +
-						" ---- " +
-						error.details);
-			}
+				// DateTime format in SQLLite is ("YYYY-MM-DD HH:MM:SS.SSS")
+				create.text = "CREATE TABLE " + NOTIFICATIONS_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'factoid_id' INT, 'time_sent' TEXT, 'time_received' TEXT)";
 
-			var output:String;
-			try {
-				sqlResult = select.getResult();
-
-				if (sqlResult.data)
+				create.sqlConnection = sqlConnectionSync;
+				try
 				{
-					logger.info("  Getting GCM registrationID from store: " + sqlResult.data[0]["registration_id"]);
-//					for (var columnName:String in sqlResult.data[0])
-//					{
-//						output += columnName + ": " + sqlResult.data[0][columnName] + "; ";
-//					}
-					return sqlResult.data[0]["registration_id"];
+					create.execute();
 				}
-				else
+				catch (error:SQLError)
 				{
-					logger.info("No GCM registrationID found in store");
-					return CloudMessagingController.REGID_NONE;
+					logger.info("    SQLError in SQLStoreController.initialize(NOTIFICATIONS_TABLE): " +
+					error.message +
+					" ---- " +
+					error.details);
 				}
+				logger.info("  Table " + NOTIFICATIONS_TABLE + " created: " + create.text);
 			}
-			catch (error:SQLError)
-			{
-				logger.info("    SQLError in SQLStoreController.getRegistrationID(): " +
-						error.message +
-						" ---- " +
-						error.details);
-			}
-			return CloudMessagingController.REGID_NONE;
 		}
+
+//		public function saveRegistrationID(registrationID:String):Boolean
+//		{
+////			clearTableData(USERS_TABLE);
+//			sqlResult = writeData("user_settings", "registration_id", registrationID.toString());
+//			logger.info("  GCM Registration ID saved: " + "  " + registrationID);
+//			return true;
+//		}
+
+//		public function getLocalRegistrationID():String
+//		{
+//			try
+//			{
+//				var select:SQLStatement = new SQLStatement();
+//				select.sqlConnection = sqlConnectionSync;
+//				select.text = "SELECT registration_id FROM gcm_settings ORDER BY id";
+//				select.execute();
+//			}
+//			catch (error:SQLError)
+//			{
+//				logger.info("    SQLError in SQLStoreController.getLocalRegistrationID(): " +
+//						error.message +
+//						" ---- " +
+//						error.details);
+//			}
+//
+//			var output:String;
+//			try {
+//				sqlResult = select.getResult();
+//
+//				if (sqlResult.data)
+//				{
+//					logger.info("  Getting GCM registrationID from store: " + sqlResult.data[0]["registration_id"]);
+////					for (var columnName:String in sqlResult.data[0])
+////					{
+////						output += columnName + ": " + sqlResult.data[0][columnName] + "; ";
+////					}
+//					return sqlResult.data[0]["registration_id"];
+//				}
+//				else
+//				{
+//					logger.info("No GCM registrationID found in store");
+//					return GCMPushInterface.NO_REGID;
+//				}
+//			}
+//			catch (error:SQLError)
+//			{
+//				logger.info("    SQLError in SQLStoreController.getLocalRegistrationID(): " +
+//						error.message +
+//						" ---- " +
+//						error.details);
+//			}
+//			return GCMPushInterface.NO_REGID;
+//		}
 
 		public function clearTableData(tableName:String):void
 		{
@@ -196,49 +243,224 @@ package collaboRhythm.iHAART.sqlStore.controller
 			logger.info("  Table " + tableName + " deleted");
 		}
 
-//write the data
-		private function writeData(table:String, parameter:String, value:String):SQLResult
+
+		private function getFieldValue(tableName:String, parameterColumn:String, parameterValue:String, fieldColumn:String):String
 		{
+			var queryString:String = "SELECT " + fieldColumn + " FROM " + tableName + " WHERE " + parameterColumn + " = '" + parameterValue + "'";
+			var select:SQLStatement = new SQLStatement();
+
+			select.text = queryString;
+
 			try
 			{
-				var query:String = "INSERT INTO " + table + " ('" + parameter + "') VALUES (?)";
+				select.sqlConnection = sqlConnectionSync;
+				select.execute();
+			}
+			catch (error:SQLError)
+			{
+				logger.info("    SQLError in SQLStoreController.getField(): " +
+				error.message +
+				" ---- " +
+				error.details);
+			}
+
+			var result = select.getResult();
+			if (result.data.length > 0) {
+				return result.data[0][fieldColumn];
+			}
+			else {
+				return "";
+			}
+		}
+		
+//		private function writeData(tableName:String, parameter:String, value:String):SQLResult
+//		{
+//			try
+//			{
+//				var query:String = "INSERT INTO " + tableName + " ('" + parameter + "') VALUES (?)";
+//				var insert:SQLStatement = new SQLStatement(); //create the insert statement
+//				insert.sqlConnection = sqlConnectionSync; //set the connection
+//				insert.text = query;
+//				insert.parameters[0] = value;
+//				insert.execute();
+//			}
+//			catch (error:SQLError)
+//			{
+//				logger.info("    SQLError in SQLStoreController.writeData(): " +
+//						error.message +
+//						" ---- " +
+//						error.details);
+//			}
+//
+//			logger.info("  Insert into SQL Store query:  " + insert.text);
+//			return insert.getResult();
+//		}
+
+		public function updateData(tableName:String, whereColumn:String, whereValue:String, dataObject:Object):Number
+		{
+			var colNamesStr:String = "";
+			var colValuesStr:String = "";
+			try
+			{
+				var update:SQLStatement = new SQLStatement(); //create the insert statement
+
+				var i:int = 0;
+
+				var queryString:String = "UPDATE " + tableName + " SET ";
+
+				for (var key:String in dataObject)
+				{
+					update.parameters[i] = dataObject[key].toString();
+					queryString = queryString + key + " = ?, ";
+					i++;
+				}
+
+				queryString = queryString.slice(0, -2);
+				queryString = queryString + " WHERE " + whereColumn + " = " + whereValue;
+
+				update.sqlConnection = sqlConnectionSync; //set the connection
+				update.text = queryString;
+				update.execute();
+			}
+			catch (error:SQLError)
+			{
+				logger.info("    SQLError in SQLStoreController.writeData(): " +
+				error.message +
+				" ---- " +
+				error.details);
+			}
+
+			logger.info("  Update SQL Store query:  " + update.text);
+
+			// get the primary key
+			var result:SQLResult = update.getResult();
+			return result.rowsAffected;
+			// do something with the primary key
+			//return update.getResult();
+		}
+		
+		public function insertData(tableName:String, queryData:Object):Number
+		{
+			var colNamesStr:String = "";
+			var colValuesStr:String = "";
+			try
+			{
 				var insert:SQLStatement = new SQLStatement(); //create the insert statement
+
+				var i:int = 0;
+
+				for (var key:String in queryData)
+				{
+					insert.parameters[i] = queryData[key].toString();
+					colNamesStr = colNamesStr + "'" + key + "', ";
+					colValuesStr = colValuesStr + "?, ";
+					i++;
+				}
+
+				colNamesStr = colNamesStr.slice(0, -2);
+				colValuesStr = colValuesStr.slice(0, -2);
+
+				var queryString:String = "INSERT INTO " + tableName + " ( " + colNamesStr + " ) VALUES ( " + colValuesStr + " )";
+
 				insert.sqlConnection = sqlConnectionSync; //set the connection
-				insert.text = query;
-				insert.parameters[0] = value;
+				insert.text = queryString;
 				insert.execute();
 			}
 			catch (error:SQLError)
 			{
 				logger.info("    SQLError in SQLStoreController.writeData(): " +
-						error.message +
-						" ---- " +
-						error.details);
+				error.message +
+				" ---- " +
+				error.details);
 			}
 
 			logger.info("  Insert into SQL Store query:  " + insert.text);
-			return insert.getResult();
+
+			// get the primary key
+			var result:SQLResult = insert.getResult();
+			return result.lastInsertRowID;
+			// do something with the primary key
+			//return insert.getResult();
 		}
 
-		private function readData():SQLResult
+		public function newAdherenceEvent(accountString:String):void
 		{
-			var read:SQLStatement = new SQLStatement(); //create the read statemen
-			read.sqlConnection = sqlConnectionSync; //set the connection
-//				todo bree this should be dynamic
-			read.text = "SELECT id, registration_id FROM gcm_settings ORDER BY id";
-			try
-			{
-				read.execute();
-			}
-			catch (error:SQLError)
-			{
-				logger.info("    SQLError in SQLStoreController.readData(): " +
-						error.message +
-						" ---- " +
-						error.details);
-			}
-			return read.getResult();
+			var insert:SQLStatement = new SQLStatement();
+			var userID:String = "";
+			var medID:String = "";
+			var now:Date = new Date();
+
+			var dateFormatter:DateTimeFormatter = new DateTimeFormatter(flash.globalization.LocaleID.DEFAULT);
+//			var timeFormatter:DateTimeFormatter = new DateTimeFormatter();
+			var pattern:String = "yyyy-MM-dd HH:mm:ss.SSS";
+			dateFormatter.setDateTimePattern(pattern);
+			var formattedDate:String = dateFormatter.format(now);
+			userID = getFieldValue(SQLStoreController.USERS_TABLE, "account_string", accountString, "id");
+			medID = getFieldValue(SQLStoreController.MEDICATIONS_TABLE, "user_id", userID, "id");
+
+			var adherenceData:Object = new Object();
+			adherenceData['user_id'] = userID;
+			adherenceData['med_id'] = medID;
+			adherenceData['time_reported'] = formattedDate;
+			
+			var newID:Number = insertData(SQLStoreController.ADHERENCE_TABLE, adherenceData);
+			trace("    bree newID = ", newID);
 		}
+
+		public function getMedDataForAccount(accountString:String):SQLResult
+		{
+
+			var select:SQLStatement = new SQLStatement();
+			var userID:String = "";
+
+			userID = getFieldValue(SQLStoreController.USERS_TABLE, "account_string", accountString, "id");
+
+			if (userID.length > 0) {
+				var queryString:String = "select * from " +
+						SQLStoreController.MEDICATIONS_TABLE +
+						" WHERE user_id = " +
+						userID;
+
+				select.sqlConnection = sqlConnectionSync; //set the connection
+				select.text = queryString;
+
+				try
+				{
+					select.execute();
+				}
+				catch (error:SQLError)
+				{
+					logger.info("    SQLError in SQLStoreController.getAccountData(): " +
+					error.message +
+					" ---- " +
+					error.details);
+				}
+			}
+
+			logger.info("  Select from SQL Store query:  " + select.text);
+
+			return select.getResult();
+		}
+
+//		private function readData():SQLResult
+//		{
+//			var read:SQLStatement = new SQLStatement(); //create the read statemen
+//			read.sqlConnection = sqlConnectionSync; //set the connection
+////				todo bree this should be dynamic
+//			read.text = "SELECT id, registration_id FROM gcm_settings ORDER BY id";
+//			try
+//			{
+//				read.execute();
+//			}
+//			catch (error:SQLError)
+//			{
+//				logger.info("    SQLError in SQLStoreController.readData(): " +
+//						error.message +
+//						" ---- " +
+//						error.details);
+//			}
+//			return read.getResult();
+//		}
 
 		private function tableExists(tableName:String):Boolean
 		{
