@@ -1,4 +1,4 @@
-package collaboRhythm.tablet.model
+package collaboRhythm.iHAART.model
 {
 	import collaboRhythm.shared.model.tablet.ViewNavigatorExtendedEvent;
 
