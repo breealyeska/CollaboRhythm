@@ -28,10 +28,9 @@
 	<useFileTarget>true</useFileTarget>
 	<useTraceTarget>true</useTraceTarget>
 	<useSyslogTarget>false</useSyslogTarget>
-	<gcmSenderID>57214367303</gcmSenderID>
-	<gcmRegistrationID>NONE</gcmRegistrationID>
+	<gcmSenderID>36233843899</gcmSenderID>
 	<gcmHTTPPostKey>iyeH@@rthTtPp05tkeeee</gcmHTTPPostKey>
-	<gcmHUserAgent>CollaboRhythm</gcmHUserAgent>
+	<gcmUserAgent>CollaboRhythm</gcmUserAgent>
 	<iHAARTOnly>true</iHAARTOnly>
 	<useGoogleAnalytics>false</useGoogleAnalytics>
 	<logSourceIdentifier>CollaboRhythmDefault</logSourceIdentifier>
@@ -39,28 +38,6 @@
 	<rtmpBaseURI>rtmfp://adrenaline.media.mit.edu</rtmpBaseURI>
 	<oauthChromeConsumerKey>collaboRhythmChrome</oauthChromeConsumerKey>
 	<oauthChromeConsumerSecret>collaboRhythmChrome_secret93452</oauthChromeConsumerSecret>
-	<pluginSearchPaths>
-		<pluginSearchPath>$APPLICATION_STORAGE_DIRECTORY$/plugins/SchedulePluginModule.swf</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_STORAGE_DIRECTORY$/plugins/HealthChartsPluginModule.swf</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_STORAGE_DIRECTORY$/plugins/MedicationsPluginModule.swf</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_STORAGE_DIRECTORY$/plugins/EquipmentPluginModule.swf</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_STORAGE_DIRECTORY$/plugins</pluginSearchPath>
-		<!-- The following paths are to allow the plugins to load during development without deploying them -->
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/../../CollaboRhythm.Plugins.Schedule/bin-debug</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/../../CollaboRhythm.Plugins.HealthCharts/bin-debug</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/../../CollaboRhythm.Plugins.Medications/bin-debug</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/../../CollaboRhythm.Plugins.Equipment/bin-debug</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/../../CollaboRhythm.Plugins.ForaD40b/bin-debug</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/../../CollaboRhythm.Plugins.Messages/bin-debug</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/../../CollaboRhythm.Plugins.BloodPressure/bin-debug</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/../../CollaboRhythm.Plugins.Problems.HIV/bin-debug</pluginSearchPath>
-		<!-- This path is for the plugins that are installed with the application -->
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/plugins/SchedulePluginModule.swf</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/plugins/HealthChartsPluginModule.swf</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/plugins/MedicationsPluginModule.swf</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/plugins/EquipmentPluginModule.swf</pluginSearchPath>
-		<pluginSearchPath>$APPLICATION_DIRECTORY$/plugins</pluginSearchPath>
-	</pluginSearchPaths>
 	<demoModeEnabled>false</demoModeEnabled>
 	<debuggingToolsEnabled>true</debuggingToolsEnabled>
 	<adherenceVoidingEnabled>false</adherenceVoidingEnabled>

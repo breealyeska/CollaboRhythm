@@ -30,6 +30,7 @@ package collaboRhythm.shared.model.settings
 
 		private var _username:String;
 		private var _password:String;
+		private var _gcmAccount:String;
 		private var _clinicianTeamMembers:ArrayCollection;
 		private var _primaryClinicianTeamMember:String;
 		private var _useFileTarget:Boolean;
@@ -66,7 +67,6 @@ package collaboRhythm.shared.model.settings
 		private var _requireInAppPassCode:Boolean;
 		private var _inAppPassCode:String;
 		private var _gcmSenderID:String;
-		private var _gcmRegistrationID:String;
 		private var _gcmHTTPPostKey:String;
 		private var _gcmUserAgent:String;
 		private var _iHAARTOnly:Boolean;
@@ -158,6 +158,16 @@ package collaboRhythm.shared.model.settings
 		public function set username(value:String):void
 		{
 			_username = value;
+		}
+
+		public function get gcmAccount():String
+		{
+			return _gcmAccount;
+		}
+
+		public function set gcmAccount(value:String):void
+		{
+			_gcmAccount = value;
 		}
 
 		public function get useFileTarget():Boolean
@@ -466,16 +476,6 @@ package collaboRhythm.shared.model.settings
 		public function set gcmSenderID(value:String):void
 		{
 			_gcmSenderID = value;
-		}
-
-		public function get gcmRegistrationID():String
-		{
-			return _gcmRegistrationID;
-		}
-
-		public function set gcmRegistrationID(value:String):void
-		{
-			_gcmRegistrationID = value;
 		}
 
 		public function get gcmHTTPPostKey():String

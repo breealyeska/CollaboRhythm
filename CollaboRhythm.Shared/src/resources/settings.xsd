@@ -44,6 +44,7 @@
 			</xs:element>
 			<xs:element type="xs:string" name="username" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="password" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:string" name="gcmAccount" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="clinicianTeamMembers" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation xml:lang="en">
@@ -71,9 +72,8 @@
 			<xs:element type="xs:boolean" name="useSyslogTarget" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="syslogServerIpAddress" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="gcmSenderID" minOccurs="0" maxOccurs="1"/>
-			<xs:element type="xs:string" name="gcmRegistrationID" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="gcmHTTPPostKey" minOccurs="0" maxOccurs="1"/>
-			<xs:element type="xs:string" name="gcmHUserAgent" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:string" name="gcmUserAgent" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="iHAARTOnly" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:boolean" name="useGoogleAnalytics" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="googleAnalyticsTrackingId" minOccurs="0" maxOccurs="1"/>
