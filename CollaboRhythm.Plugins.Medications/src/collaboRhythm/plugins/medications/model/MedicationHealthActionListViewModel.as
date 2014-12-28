@@ -9,6 +9,9 @@ package collaboRhythm.plugins.medications.model
 	import collaboRhythm.shared.model.healthRecord.document.ScheduleItemOccurrence;
 	import collaboRhythm.shared.model.services.ICurrentDateSource;
 	import collaboRhythm.shared.model.services.WorkstationKernel;
+	import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
+	import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
+	import collaboRhythm.shared.model.settings.Settings;
 
 	public class MedicationHealthActionListViewModel extends HealthActionListViewModelBase
 	{
@@ -27,6 +30,21 @@ package collaboRhythm.plugins.medications.model
 			{
 				_medicationScheduleItem = scheduleItemOccurrence.scheduleItem as MedicationScheduleItem;
 				_medicationOrder = _medicationScheduleItem.scheduledMedicationOrder;
+				
+				var settings:Settings = WorkstationKernel.instance.resolve(Settings) as Settings;
+				var sqlStore = new SQLStoreController();
+				var userData:Object = new Object();
+				userData['registration_id'] = CloudMessagingController.NO_IND_REGID;
+				userData['account_string'] = settings.gcmAccount.toString();
+				var insertedRowID:Number = sqlStore.insertData(SQLStoreController.USERS_TABLE, userData);
+
+				var medData:Object = new Object();
+				medData['user_id'] = insertedRowID;
+				medData['med_name_dose_route'] = _medicationOrder.name.text;
+				medData['med_start_time'] = scheduleItemOccurrence.dateStart;
+				medData['med_end_time'] = scheduleItemOccurrence.dateEnd;
+				medData['med_instructions'] = _medicationOrder.instructions;
+				sqlStore.insertData(SQLStoreController.MEDICATIONS_TABLE, medData);
 			}
 			else
 			{
