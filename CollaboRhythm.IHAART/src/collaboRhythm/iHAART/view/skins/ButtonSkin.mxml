@@ -8,7 +8,8 @@
     /**
      * @copy spark.skins.spark.ApplicationSkin#hostComponent
      */
-    [HostComponent("spark.components.Button")]
+//    [HostComponent("spark.components.Button")]
+    [HostComponent("collaboRhythm.iHAART.model.ExtendedButton")]
     ]]>
     </fx:Metadata>
 
@@ -27,18 +28,18 @@
     </s:stroke>
     <s:fill>
       <s:LinearGradient rotation="90">
-          <s:GradientEntry color="0xffffff" alpha="1"/>
+          <s:GradientEntry color="0xffffff" color.down="0x000000" alpha="1"/>
           <s:GradientEntry color="0x838383" alpha="1"/>
       </s:LinearGradient>
     </s:fill>
   </s:Rect>
 
   <!-- label -->
-  <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+  <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->  <!-- 0x1d2bd2 -->
   <s:Label id="labelDisplay" textAlign="center" verticalAlign="middle"
            paddingLeft="20" paddingRight="20" paddingTop="25" paddingBottom="20"
           color="black"
-           color.down="0x1d2bd2"
+           color.down="white"
            color.disabled="0x5e5e5e"
            maxDisplayedLines="1">
   </s:Label>

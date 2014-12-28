@@ -36,7 +36,7 @@ You should have received a copy of the GNU General Public License along with Col
   -->
   <!--- Defines the appearance of the SkinnableContainer class's background. -->
   <s:Rect id="background" left="0" right="0" top="0" bottom="0"
-          radiusX="20" radiusY="20">
+          radiusX="10" radiusY="10">
     <s:stroke>
       <s:SolidColorStroke id="strokeFill" color="#444444" weight="1"/>
     </s:stroke>

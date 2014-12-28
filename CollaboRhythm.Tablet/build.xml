@@ -24,6 +24,34 @@
 	<property file="${basedir}/build.properties" description="Properties specific to this project for builds." />
 	<property file="${basedir}/base.properties" description="Base properties for builds" />
 
+	<target name="clean_log_and_db"
+			description="Deletes log and db from device">
+
+		<echo>Deleting db...</echo>
+		<exec executable="${ADB}">
+			<arg value="shell"/>
+			<arg value="rm -rf"/>
+			<arg value="${collaboRhythm.tablet-device.local-store}/iHAART.db"/>
+		</exec>
+
+		<echo>Deleting log...</echo>
+		<exec executable="${ADB}">
+			<arg value="shell"/>
+			<arg value="rm -rf"/>
+			<arg value="${collaboRhythm.tablet-device.log}"/>
+		</exec>
+	</target>
+
+	<target name="all_in_one_ane"
+			description="Generates new ANE and deletes current log and db">
+
+		<echo>Executing ANEUtilities.sh allInOne</echo>
+		<exec executable="/Users/breezy/scripts/ANEUtilities.sh">
+			<arg value="allInOne"/>
+		</exec>
+
+	</target>
+
 	<target name="clean_and_redeploy_plugins"
 			description="Deletes current plugins on device and copies current versions to device from project folder">
 
@@ -76,8 +104,6 @@
 			<arg value="${APP_HOME_DIR}/CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf"/>
 			<arg value="${collaboRhythm.tablet-device.pluginsPath}"/>
 		</exec>
-
-
 
 	</target>
 
