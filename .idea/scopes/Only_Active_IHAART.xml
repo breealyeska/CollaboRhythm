@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Only Active IHAART" pattern="file[CollaboRhythm.IHAART]:*/||file[CollaboRhythm.Tablet]:libs/piaMobileLib.swc||file[CollaboRhythm.Tablet]:libs/piaMobileTheme.swc||file[CollaboRhythm.Tablet]:src/iHAARTApplication-DebugDevice-app.xml||file[CollaboRhythm.Tablet]:build.xml||file[CollaboRhythm.Tablet]:src/IHAARTApplication.mxml||file[CollaboRhythm.Tablet]:src/iHAART.css||file[CollaboRhythm.Tablet]:src/collaboRhythm/tablet/controller/IHAARTAppControllersMediator.as||file[CollaboRhythm.Tablet]:src/collaboRhythm/tablet/controller/IHAARTApplicationController.as||file[CollaboRhythm.Tablet]:src/collaboRhythm/tablet/view/IHAARTHomeView.mxml" />
+</component>

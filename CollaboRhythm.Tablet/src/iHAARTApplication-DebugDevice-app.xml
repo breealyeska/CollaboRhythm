@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--~
-  ~ Copyright 2012 John Moore, Scott Gilroy
-  ~
-  ~ This file is part of CollaboRhythm.
-  ~
-  ~ CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
-  ~ License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
-  ~ version.
-  ~
-  ~ CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
-  ~ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-  ~ details.
-  ~
-  ~ You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
-  ~ <http://www.gnu.org/licenses/>.
-  -->
+
+<!--
+Copyright 2014 Bree Alyeska (based on collaboRhythm work by John Moore and Scott Gilroy)
+
+This file is part of iHAART & CollaboRhythm
+
+iHAART and CollaboRhythm are free software: you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or
+(at your option) any later  version.
+
+iHAART and CollaboRhythm are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along with iHAART & CollaboRhythm. If not, see
+<http://www.gnu.org/licenses/>.
+-->
+
 <application xmlns="http://ns.adobe.com/air/application/3.1">
 
 <!-- Adobe AIR Application Descriptor File Template.
@@ -46,14 +48,14 @@
 	<versionNumber>999</versionNumber>
 
 	<!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
-	<!-- <versionLabel></versionLabel> -->
+	 <versionLabel>v2.0</versionLabel>
 
 	<!-- Description, displayed in the AIR application installer.
 	May have multiple values for each language. See samples or xsd schema file. Optional. -->
 	<!-- <description></description> -->
 
 	<!-- Copyright information. Optional -->
-	<copyright>Copyright 2014 John Moore, Scott Gilroy, Bree Alyeska</copyright>
+	<copyright>Copyright 2014 Bree Alyeska, John Moore, Scott Gilroy</copyright>
 
 	<!-- Publisher ID. Used if you're updating an application created prior to 1.5.3 -->
 	<!-- <publisherID></publisherID> -->
@@ -64,7 +66,7 @@
 		<content>iHAART.swc</content>
 		
 		<!-- The title of the main window. Optional. -->
-		<title>CollaboRhythm</title>
+		<title>iHAART</title>
 
 		<!-- The type of system chrome to use (either "standard" or "none"). Optional. Default standard. -->
 		<!-- <systemChrome></systemChrome> -->
@@ -222,26 +224,21 @@
 	<extensions>
 		<extensionID>com.adobe.Vibration</extensionID>
 		<extensionID>CollaboRhythm.ANE.ApplicationMessaging</extensionID>
-		<extensionID>com.alyeska.shared.android.GCMPush</extensionID>
+		<extensionID>com.alyeska.shared.ane.gcm.freInterface.GCMPush</extensionID>
 	</extensions>
 
 	<android>
 		<manifestAdditions><![CDATA[
 			
 	<manifest>
-		<!-- See the Adobe AIR documentation for more information about setting Google Android permissions -->
-
-		<!-- App receives GCM messages. -->
-		<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-		<!-- GCM requires a Google account. -->
-		<uses-permission android:name="android.permission.GET_ACCOUNTS" />
-		<!-- Keeps the processor from sleeping when a message is received. -->
-		<uses-permission android:name="android.permission.WAKE_LOCK" />
-
 		<permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-		<uses-permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" />
+		<uses-permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" /> <!-- Allows receipt of push notifications -->
 
+		<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+		<uses-permission android:name="android.permission.GET_ACCOUNTS" />  <!-- GCM requires a Google account. -->
+		<uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Keeps the processor from sleeping when a message is received. -->
 
+		<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 		<uses-permission android:name="android.permission.FLASHLIGHT"/>
 		<uses-permission android:name="android.permission.REORDER_TASKS"/>
 		<uses-permission android:name="android.permission.SET_ALARM"/>
@@ -253,15 +250,34 @@
 		<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 		<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
-		<application android:enabled="true" android:process="CollaboRhythm.Tablet" android:debuggable="true">
 
-			<service android:name="com.alyeska.shared.android.gcm.GCMIntentService" />
-			<receiver android:name="com.alyeska.shared.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
+
+		<application android:enabled="true"
+						android:process="CollaboRhythm.Tablet"
+						android:debuggable="true">
+
+			<service android:name="com.alyeska.shared.ane.gcm.freInterface.GCMIntentService" />
+			<receiver android:name="com.alyeska.shared.ane.gcm.freInterface.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
 				<intent-filter>
 					<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 					<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 					<category android:name="CollaboRhythm.Tablet" />
+				</intent-filter>
+			</receiver>
+
+			<service android:name="com.alyeska.shared.android.alarm.AlarmIntentService" />
+			<receiver android:name="com.alyeska.shared.android.alarm.AlarmBroadcastReceiver" >  <!-- android:permission="com.android.alarm.permission.SET_ALARM"  -->
+				<intent-filter>
+	                <action android:name="android.intent.action.SET_ALARM" />
+                	<category android:name="android.intent.category.DEFAULT" />  <!--  CollaboRhythm.Tablet as above maybe-->
+				</intent-filter>
+			</receiver>
+
+			<receiver android:name="com.alyeska.shared.android.alarm.AlarmBootReceiver" >
+				<intent-filter>
+					<action android:name="android.intent.action.BOOT_COMPLETED" />
+					<category android:name="android.intent.category.DEFAULT" />
 				</intent-filter>
 			</receiver>
 
@@ -277,6 +293,7 @@
 					<data android:scheme="collaborhythm"/>
 				</intent-filter>
 			</activity>
+
 		</application>
 	</manifest>
 

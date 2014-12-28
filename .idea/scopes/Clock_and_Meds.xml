@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Clock and Meds" pattern="file[CollaboRhythm.Plugins.Schedule]:*/||file[CollaboRhythm.Plugins.Schedule.Shared]:*/||file[CollaboRhythm.Plugins.Medications]:*/" />
+</component>
