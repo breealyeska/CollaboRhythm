@@ -222,7 +222,7 @@
 	<extensions>
 		<extensionID>com.adobe.Vibration</extensionID>
 		<extensionID>CollaboRhythm.ANE.ApplicationMessaging</extensionID>
-		<extensionID>com.afterisk.shared.android.GCMPush</extensionID>
+		<extensionID>com.alyeska.shared.android.GCMPush</extensionID>
 	</extensions>
 
 	<android>
@@ -256,8 +256,8 @@
 		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
 		<application android:enabled="true" android:process="CollaboRhythm.Tablet" android:debuggable="true">
 
-			<service android:name="com.afterisk.shared.android.gcm.GCMIntentService" />
-			<receiver android:name="com.afterisk.shared.android.gcm.AfteriskGCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+			<service android:name="com.alyeska.shared.android.gcm.GCMIntentService" />
+			<receiver android:name="com.alyeska.shared.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
 				<intent-filter>
 					<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 					<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
