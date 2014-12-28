@@ -98,6 +98,7 @@ package collaboRhythm.core.controller
 
 	import mx.binding.utils.BindingUtils;
 	import mx.collections.ArrayCollection;
+	import mx.core.FlexGlobals;
 	import mx.core.IVisualElementContainer;
 	import mx.events.PropertyChangeEvent;
 	import mx.logging.ILogger;
@@ -676,17 +677,17 @@ package collaboRhythm.core.controller
 		protected function createSession():void
 		{
 			_logger.info("Creating session in Indivo...");
-//			_applicationControllerModel.createSessionStatus = ApplicationControllerModel.CREATE_SESSION_STATUS_ATTEMPTING;
-//			var createSessionHealthRecordService:CreateSessionHealthRecordService = new CreateSessionHealthRecordService(_settings.oauthChromeConsumerKey,
-//					_settings.oauthChromeConsumerSecret,
-//					_settings.indivoServerBaseURL,
-//					_activeAccount);
-//			addPendingService(createSessionHealthRecordService);
-//			createSessionHealthRecordService.addEventListener(HealthRecordServiceEvent.COMPLETE,
-//					createSessionSucceededHandler);
-//			createSessionHealthRecordService.addEventListener(HealthRecordServiceEvent.FAILED,
-//					createSessionFailedHandler);
-//			createSessionHealthRecordService.createSession(_settings.username, _settings.password);
+			_applicationControllerModel.createSessionStatus = ApplicationControllerModel.CREATE_SESSION_STATUS_ATTEMPTING;
+			var createSessionHealthRecordService:CreateSessionHealthRecordService = new CreateSessionHealthRecordService(_settings.oauthChromeConsumerKey,
+					_settings.oauthChromeConsumerSecret,
+					_settings.indivoServerBaseURL,
+					_activeAccount);
+			addPendingService(createSessionHealthRecordService);
+			createSessionHealthRecordService.addEventListener(HealthRecordServiceEvent.COMPLETE,
+					createSessionSucceededHandler);
+			createSessionHealthRecordService.addEventListener(HealthRecordServiceEvent.FAILED,
+					createSessionFailedHandler);
+			createSessionHealthRecordService.createSession(_settings.username, _settings.password);
 		}
 
 		protected function addPendingService(service:HealthRecordServiceBase):void
@@ -946,6 +947,11 @@ package collaboRhythm.core.controller
 			_activeAccount.sharedRecordAccountsCollection.refresh();
 			_activeAccount.isInitialized = true;
 			removePendingService(event.target);
+
+			if (settings.iHAARTOnly)
+			{
+				FlexGlobals.topLevelApplication.applicationController.activeAccountLoadedHandler(_activeAccount.primaryRecord.demographics.Name.givenName, _activeAccount.primaryRecord.demographics.Name.familyName, settings.gcmAccount);
+			}
 		}
 
 		private function demographicsHealthRecordService_failedHandler(event:HealthRecordServiceEvent):void

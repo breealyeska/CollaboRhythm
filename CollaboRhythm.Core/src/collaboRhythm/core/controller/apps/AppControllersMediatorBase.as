@@ -289,6 +289,7 @@ package collaboRhythm.core.controller.apps
 
 		public function get numDynamicApps():int
 		{
+			//noinspection JSMismatchedCollectionQueryUpdate
 			var infoArray:Array = componentContainer.resolveAll(AppControllerInfo);
 			return infoArray.length;
 		}
