@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="FlexBuildConfigurationManager" active="IHAART">
+  <component name="FlexBuildConfigurationManager" active="CollaboRhythm.IHAART">
     <configurations>
-      <configuration name="IHAART" target-platform="Mobile" output-type="Library" output-file="IHAART.swc" output-folder="$MODULE_DIR$/../out/production/IHAART">
+      <configuration name="CollaboRhythm.IHAART" target-platform="Mobile" output-type="Library" output-file="CollaboRhythm_IHAART.swc" output-folder="$MODULE_DIR$/../out/production/CollaboRhythm.IHAART">
         <dependencies>
           <entries>
             <entry module-name="CollaboRhythm.Shared.Model" build-configuration-name="CollaboRhythm.Shared.Model">
@@ -33,6 +33,21 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-id="e5bcec99-147a-45f1-bb26-89636a6461dc">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Core" build-configuration-name="CollaboRhythm.Core">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="gcm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="TCPSyslogTarget" build-configuration-name="TCPSyslogTarget">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -73,5 +88,10 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="CollaboRhythm.Core.Model" exported="" />
+    <orderEntry type="module" module-name="CollaboRhythm.Core" exported="" />
+    <orderEntry type="library" exported="" name="gcm" level="project" />
+    <orderEntry type="module" module-name="TCPSyslogTarget" exported="" />
+    <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
   </component>
 </module>

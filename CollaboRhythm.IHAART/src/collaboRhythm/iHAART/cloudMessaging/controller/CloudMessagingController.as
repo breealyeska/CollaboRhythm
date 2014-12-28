@@ -18,6 +18,11 @@
 package collaboRhythm.iHAART.cloudMessaging.controller
 {
 
+	import flash.events.EventDispatcher;
+
+	import collaboRhythm.iHAART.model.events.IHAARTEvent;
+
+	import com.alyeska.shared.ane.events.GCMEvent;
 
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
@@ -29,20 +34,34 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 	import flash.text.TextField;
 	import flash.utils.getQualifiedClassName;
 
+	import flash.xml.XMLDocument;
+	import flash.xml.XMLNode;
+
+	import mx.core.FlexGlobals;
+
 	import mx.events.ResizeEvent;
 
-	import com.afterisk.shared.ane.lib.GCMPushInterface;
-	import com.afterisk.shared.ane.lib.GCMEvent;
+	import com.alyeska.shared.ane.GCMPushInterface;
+	import com.alyeska.shared.ane.events.GCMEvent;
 
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.logging.targets.TraceTarget;
+	import mx.rpc.Fault;
 	import mx.utils.ObjectUtil;
 	import mx.utils.URLUtil;
+	import mx.events.FlexEvent;
+	import mx.events.CloseEvent;
+	import mx.rpc.http.HTTPService;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.events.FaultEvent;
 
 	import collaboRhythm.shared.model.settings.Settings;
 	import collaboRhythm.shared.model.services.WorkstationKernel;
 
 	import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
+	import collaboRhythm.iHAART.model.SkinnableAlert;
+	import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
 
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -54,24 +73,32 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 
 	public class CloudMessagingController
 	{
-		public static var REGID_NONE:String = "NONE";
-		public static var STATUS_OK:String = "200";
-		private static const ACCOUNT_ID_SUFFIX:String = "@records.media.mit.edu";
+		public static var NO_IND_REGID:String="NONE";
+		public static var INDIVO_UPDATED = GCMPushInterface.REGISTERED_INFO;
 
-		private var _statusText:String;
+		public static var STATUS_OK:String = "200";
+
 		private var _gcmi:GCMPushInterface;
-		private var _registrationID:String;
+		private var _gcmRegistrationID:String;
+		private var _indivoRegistrationID:String;
 		private var _payload:String;
+		private var _parsedPayload:Object = {};
 		private var _isRegistered:Boolean;
 		private var _dbController:SQLStoreController;
 		private var _urlRequest:URLRequest;
 		private var _httpStatusEvent:HTTPStatusEvent;
 		private var _httpResponseStatusEvent:HTTPStatusEvent;
+		private var _httpService:HTTPService;
+		private var _eventDispatcher:IHAARTEventDispatcher;
+
+		public var _medicationInformation:String = "test";
 
 		private var STATUS_STR:String;
 
 		private var _settings:Settings;
 		private var _logger:ILogger;
+
+		private var _strTitle:String;
 
 		public function CloudMessagingController()
 		{
@@ -80,104 +107,72 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 
 		public function initialize():void
 		{
-			statusText = "\n\nInitializing GCMPushInterface...\n";
 			//create instance of extension interface and add appropriate listeners to it
 			gcmi = new GCMPushInterface();
 			gcmi.addEventListener(GCMEvent.REGISTERED, handleRegistered, false, 0, true);
 			gcmi.addEventListener(GCMEvent.UNREGISTERED, handleUnregistered, false, 0, true);
-			gcmi.addEventListener(GCMEvent.MESSAGE, handleMessage, false, 0, true);
-			gcmi.addEventListener(GCMEvent.ERROR, handleError, false, 0, true);
-			gcmi.addEventListener(GCMEvent.RECOVERABLE_ERROR, handleError, false, 0, true);
+			gcmi.addEventListener(GCMEvent.MESSAGE, handleMessage, false, 2, true);
+			gcmi.addEventListener(GCMEvent.ERROR, handleError, false, 2, true);
+			gcmi.addEventListener(GCMEvent.RECOVERABLE_ERROR, handleError, false, 2, true);
+			gcmi.addEventListener(GCMEvent.FOREGROUND_MESSAGE, handleForegroundMessage, false, 2, true);
+
+			var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+			dispatcher.addEventListener(IHAARTEvent.REGISTERED, handleIHAARTRegistered, false, 0, false);
+
+			//check gcm app server for device registration
+			isRegistered = gcmi.checkRegistered(settings.gcmSenderID);
+			if (isRegistered) {
+				gcmRegistrationID = gcmi.registrationID;
+			}
+			else {
+				gcmRegistrationID = GCMPushInterface.NO_REGID;
+//				var response:String = gcmi.register(settings.gcmSenderID);
+				registerDevice();
+			}
 
 			logger.info("CloudMessaging initialized");
 		}
 
-		public function registerDevice():String
+		public function registerDevice():void
 		{
-			logger.info("Registering device with GCM SenderID: " + settings.gcmSenderID);
-			statusText.concat("\n\nRegistering device with GCM...\n");
+			logger.info("  Registering device with GCM SenderID: " + settings.gcmSenderID);
 			//check if device is already registered otherwise start registration process and wait for REGISTERED event
 			var response:String = gcmi.register(settings.gcmSenderID);
-			logger.info("  GMC register response: " + response);
-
-			if (response.indexOf("registrationID:") != -1)
-			{
-				logger.info(" Device already registered: " + response);
-				statusText.concat("\n\nDevice was already registered.\n" + response);
-				registrationID = response.substr(response.indexOf(":") + 1);
-				isRegistered = true;
-
-				return response;
+			if (gcmi.isRegistered) {
+				gcmRegistrationID = response;
 			}
-
-			return response;
+			else {
+				gcmRegistrationID = GCMPushInterface.NO_REGID;
+			}
 		}
 
-//		public function unregister(e:MouseEvent = null):void
-//		{
-//			statusText.concat("\n\nUnegistering device with GCM...");
-//			gcmi.unregister();
-//		}
-
-		//on successful registration get GCM registration id for your device
-		private function handleRegistered(event:GCMEvent):void
+		public function checkDeviceRegistration():Boolean
 		{
-			//todo bree add returned deviceRegistrationID to preferences for later use
-			registrationID = event.deviceRegistrationID;
-			isRegistered = true;
-			dbController.saveRegistrationID(registrationID);
-			logger.info("  Received device registrationID: " + registrationID);
-			statusText.concat("\n\nreceived device registrationID: " + registrationID);
-//			updateLaunchPad();
+			logger.info("  Checking for device registration with GCM service SenderID: " + settings.gcmSenderID);
+			//calls ANE to 1. see if device is already registered and 2. if not start registration process (asynchronous)
+//			ANE returns "registrationID:" + regId if already registered, "GCMRegistrar: registering sender " +  senderID otherwise
 
-		}
+			isRegistered = gcmi.checkRegistered(settings.gcmSenderID);
+			logger.info(isRegistered.toString());
 
-		private function updateLaunchPad():void {
-
-			logger.info("  Updating GMC server with new registration ID: " + settings.gcmServerBaseURL);
-
-			try
+			if (isRegistered)
 			{
-				var nameValuePairs:Object = {};
-				nameValuePairs["key"] = settings.gcmHTTPPostKey;
-//				todo bree change this to pull account tag from settings file <account> tag then uncomment line below and delete testpatient1 line
-//				nameValuePairs["account"] = settings.account + ACCOUNT_ID_SUFFIX;
-				nameValuePairs["account"] = "testpatient1@example.org";
-				nameValuePairs["regid"] = registrationID;
-
-				urlRequest.userAgent = settings.gcmUserAgent;
-				urlRequest.contentType = "application/x-www-form-urlencoded";
-				urlRequest.data = nameValuePairs;
-				
-				var urlLoader:URLLoader = new URLLoader();
-				urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, handleHTTPResult);
-				urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, handleHTTPStatus);
-//			urlLoader.addEventListener(Event.COMPLETE, completeHandler);
-//			urlLoader.addEventListener(Event.OPEN, openHandler);
-//			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorEventHandler);
-//			urlLoader.addEventListener(ProgressEvent.PROGRESS, progressHandler);
-//			urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-				urlLoader.load(urlRequest);
+				gcmRegistrationID = gcmi.registrationID;
+				return true;
 			}
-			catch (error:Error)
-			{
-				logger.info("    Error in CloudMessagingController.updateLaunchPad(): " +
-				error.errorID +
-				" ---- " +
-				error.message);
+			else
+			{ //not registered
+				gcmRegistrationID = GCMPushInterface.NO_REGID;
+				return false;
 			}
-
-
 		}
 
 		public function checkPendingFromLaunchPayload():String
 		{
 			logger.info("  Checking for pending GCM payload...");
 			payload = gcmi.checkPendingPayload();
-			trace("bree in check pending from launch payload pre if:  ", payload);
 			if (payload != GCMPushInterface.NO_MESSAGE)
 			{
-				statusText.concat("\n\npending payload:" + payload);
 				logger.info("  Pending GCM messages: " + payload);
 				handlePayload();
 				return payload;
@@ -185,33 +180,221 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 			return payload.toString();
 		}
 
-		//messages are received when app is in background therefore add event for when app is resumed from notification
-		private function handleMessage(event:GCMEvent):void
+		public function unregisterDevice():void
 		{
-			//get payload
-			payload = event.message;
-			statusText.concat("\n\nGCM payload received:" + payload);
-			trace("app is in the background: adding GCM app invoke listener  ", payload);
-			NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, onInvoke, false, 0, true);
+			gcmi.unregister();
 		}
 
-		private function onInvoke(event:InvokeEvent):void
+		//on successful registration get GCM registration id for your device
+		public function handleRegistered(event:GCMEvent):void
 		{
-			trace("app was invoked by gcm notification");
-			statusText.concat("\n\napp was invoked from GCM notification");
+			gcmRegistrationID = event.deviceRegistrationID;
+			isRegistered = true;
+//			isRegistered = true;
+//			dbController.saveRegistrationID(gcmRegistrationID);
+			logger.info("  Received device gcmRegistrationID: " + gcmRegistrationID);
+
+			updateStoredIndivoRegistrationID();
+
+			FlexGlobals.topLevelApplication.applicationController.handleGCMRegistered();
+
+			var iHAARTEventDispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+			iHAARTEventDispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.REGISTERED, gcmRegistrationID));
+
+		}
+
+		private function handleIHAARTRegistered(event:IHAARTEvent):void
+		{
+			trace("   bree in testing registered handler again");
+		}
+
+		public function requestCurrentIndivoRegistrationID():void
+		{
+
+			var nameValuePairs:Object = {};
+			nameValuePairs["key"] = settings.gcmHTTPPostKey;
+			nameValuePairs["getregid"] = settings.gcmAccount;
+
+			httpService.method = "GET";
+			httpService.resultFormat = "e4x";
+			
+			httpService.addEventListener(ResultEvent.RESULT, handleCurrentIndivoRequestResult);
+			httpService.addEventListener(FaultEvent.FAULT, handleHTTPServiceFault);
+
+			try
+			{
+				httpService.send(nameValuePairs);
+				logger.info("   Get stored Indivo reg ID request sent...");
+			}
+			catch (error:Error)
+			{
+				logger.info("    Error in CloudMessagingController.updateStoredIndivoRegistrationID(): " +
+				error.errorID +
+				" ---- " +
+				error.message);
+			}
+		}
+
+		public function updateStoredIndivoRegistrationID():void
+		{
+
+			var nameValuePairs:Object = {};
+			nameValuePairs["key"] = settings.gcmHTTPPostKey;
+			nameValuePairs["account"] = settings.gcmAccount;
+			if (gcmi.isRegistered) {
+				nameValuePairs["regid"] = gcmRegistrationID;
+			}
+			else
+			{
+				// Device not registered, need to register and then handle event can call updateStoredIndivoRegistrationID with new id
+				nameValuePairs["regid"] = GCMPushInterface.NO_REGID;
+			}
+
+			if ((nameValuePairs["regid"]) && (nameValuePairs["regid"] != GCMPushInterface.NO_REGID))
+			{
+				httpService.addEventListener(ResultEvent.RESULT, handleUpdateIndivoRequestResult);
+				httpService.addEventListener(FaultEvent.FAULT, handleHTTPServiceFault);
+
+				httpService.method = "POST";
+				try
+				{
+
+					httpService.send(nameValuePairs);
+					logger.info("   Update stored Indivo reg ID request sent...");
+				}
+				catch (error:Error)
+				{
+					logger.info("    Error in CloudMessagingController.updateStoredIndivoRegistrationID(): " +
+						error.errorID +
+						" ---- " +
+						error.message);
+				}
+			}
+			else
+			{
+				logger.info("   updateStoredIndivoRegistrationID has no regID to pass, waiting for registration event to return, request not sent ");
+			}
+		}
+
+		private function handleCurrentIndivoRequestResult(event:ResultEvent):void
+		{
+			try
+			{
+				var result:XMLList = new XMLList(event.result);
+//				todo bree should validate this against schema at some point - maybe can use collaboRhythm core classes
+				indivoRegistrationID = result.regid.toString();
+			}
+			catch (error:Error)
+			{
+				logger.info("    Error in CloudMessagingController.handleCurrentIndivoRequestResult(): " +
+						error.errorID +
+						" ---- " +
+						error.message);
+			}
+
+			if (indivoRegistrationID.length > 0) {
+				logger.info("  Cloud Messaging: Current registrationID on Indivo server: " + indivoRegistrationID);
+				var strAlertBody:String = indivoRegistrationID;
+				strTitle = "Current ID in Indivo";
+				SkinnableAlert.show(strAlertBody, strTitle, SkinnableAlert.OK);
+			}
+			else {
+				logger.info("  CloudMessaging: No reg ID on Indivo server for user: " + settings.gcmAccount);
+			}
+
+//			var iHAARTEventDispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+//			iHAARTEventDispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.INDIVO_GET,
+//					indivoRegistrationID,
+//					false,
+//					false));
+		}
+
+		private function handleUpdateIndivoRequestResult(event:ResultEvent):void
+		{
+			var result:Object = event.result;
+			if (result == INDIVO_UPDATED) {
+				indivoRegistrationID = gcmRegistrationID;
+			}
+			else {
+				indivoRegistrationID = NO_IND_REGID;
+			}
+
+			logger.info("  Cloud Messaging: Indivo server updated with regID: " + indivoRegistrationID);
+
+//			var strAlertBody:String = indivoRegistrationID;
+//			strTitle = "ID Updated on Indivo";
+//			SkinnableAlert.show(strAlertBody, strTitle, SkinnableAlert.OK);
+//			var iHAARTEventDispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+//			iHAARTEventDispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.INDIVO_UPDATE,
+//					indivoRegistrationID,
+//					false,
+//					false));
+			
+		}
+
+		public function handleHTTPServiceFault(fault:FaultEvent):void
+		{
+			var faultString:String = fault.fault.faultString;
+			logger.info("    Error in CloudMessagingController HTTPServiceFault(): " +
+						"Status Code: " + fault.statusCode +
+						"     " +
+						"Type: " + fault.type +
+						"     " +
+						faultString);
+//			var strAlertBody:String = faultString;
+//			strTitle = "HTTP Service Error in CloudMessagingController";
+//			SkinnableAlert.show(strAlertBody, strTitle, SkinnableAlert.OK);
+		}
+
+		public function onInvoke(event:InvokeEvent):void
+		{
+			logger.info("    App was invoked from GCM notification");
 			NativeApplication.nativeApplication.removeEventListener(InvokeEvent.INVOKE, onInvoke);
 			handlePayload();
 		}
 
+		//messages are received when app is in background therefore add event for when app is resumed from notification
+		public function handleMessage(event:GCMEvent):void
+		{
+			payload = event.message;
+			logger.info("    GCM payload received:" + event + " event.message: " + event.message);
+						NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, onInvoke, false, 0, true);
+		}
+
+		//messages are received when app is in front therefore add event for handling message
+		public function handleForegroundMessage(event:GCMEvent):void
+		{
+			payload = event.message;
+			logger.info("    GCM foreground message received:" + event + " event.message: " + event.message);
+//			//			NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, onInvoke, false, 0, true);
+
+		}
+
 		public function handlePayload():void
 		{
-			trace("bree in handlePayload: payload = ", payload);
-			//you can parse and treat gcm payload here
-			//dispatch an event or open an appropriate view
+			logger.info("  Handle Payload: " + payload);
+
+			var pArray:Array = payload.split(",");
+
+			for (var i = 0; i < pArray.length; i++)
+			{
+				var tmpPArray = pArray[i].split(": ");
+				trace("   bree tmpPArray: ", tmpPArray[0], "   ", tmpPArray[1]);
+				parsedPayload[tmpPArray[0]] = tmpPArray[1];
+			}
+
+			for (var key:String in parsedPayload)
+			{
+				trace("    bree looping through parsedPayload key=", key, "  value=", parsedPayload[key]);
+			}
+
+			var strAlertBody:String = parsedPayload.alert;
+			var strTitle:String = parsedPayload.type;
+			SkinnableAlert.show(strAlertBody, strTitle, SkinnableAlert.OK);
 		}
 
 		//when device is unregistered on Google side, you might want to unregister it with your backend service
-		private function handleUnregistered(event:GCMEvent):void
+		public function handleUnregistered(event:GCMEvent):void
 		{
 			//
 			//unregister with yours or public backend messaging service
@@ -219,40 +402,12 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 		}
 
 		//handle variety of gcm errors
-		private function handleError(error:GCMEvent):void
+		public function handleError(error:GCMEvent):void
 		{
 			logger.info("    Error in CloudMessagingController.handleError(): " +
 					error.errorCode +
 					" ---- " +
 					error.message);
-		}
-
-		private function handleHTTPStatus(status:HTTPStatusEvent):void
-		{
-			logger.info("  Http status: " +
-					status.status);
-		}
-
-		private function handleHTTPResult(result:HTTPStatusEvent):void
-		{
-//			todo bree add error handling check here for status other than 200
-			logger.info("  Http result: " +
-					result.currentTarget.toString() +
-					" ---- " +
-					result.status +
-					" ---- " +
-					result.toString());
-		}
-
-
-		public function get statusText():String
-		{
-			return _statusText;
-		}
-
-		public function set statusText(value:String):void
-		{
-			_statusText = value;
 		}
 
 		public function get gcmi():GCMPushInterface
@@ -265,14 +420,17 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 			_gcmi = value;
 		}
 
-		public function get registrationID():String
+		public function get gcmRegistrationID():String
 		{
-			return _registrationID;
+			return _gcmRegistrationID;
 		}
 
-		public function set registrationID(value:String):void
+		public function set gcmRegistrationID(value:String):void
 		{
-			_registrationID = value;
+			if (value.indexOf(GCMPushInterface.NO_REGID) != -1) {
+				isRegistered = false;
+			}
+			_gcmRegistrationID = value;
 		}
 
 		public function get payload():String
@@ -354,6 +512,64 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 		{
 			
 			_urlRequest = value;
+		}
+
+		public function get httpService():HTTPService
+		{
+			if (!_httpService)
+			{
+				_httpService = new HTTPService();
+				_httpService.url = settings.gcmServerBaseURL;
+			}
+			return _httpService;
+		}
+
+		public function set httpService(value:HTTPService):void
+		{
+			_httpService = value;
+		}
+
+		public function get strTitle():String
+		{
+			return _strTitle;
+		}
+
+		public function set strTitle(value:String):void
+		{
+			_strTitle = value;
+		}
+
+		public function get parsedPayload():Object
+		{
+			return _parsedPayload;
+		}
+
+		public function set parsedPayload(value:Object):void
+		{
+			_parsedPayload = value;
+		}
+
+		public function get indivoRegistrationID():String
+		{
+			return _indivoRegistrationID;
+		}
+
+		public function set indivoRegistrationID(value:String):void
+		{
+			_indivoRegistrationID = value;
+		}
+
+		public function get eventDispatcher():IHAARTEventDispatcher
+		{
+			if (!_eventDispatcher) {
+				_eventDispatcher = new IHAARTEventDispatcher;
+			}
+			return _eventDispatcher;
+		}
+
+		public function set eventDispatcher(value:IHAARTEventDispatcher):void
+		{
+			_eventDispatcher = value;
 		}
 	}
 }

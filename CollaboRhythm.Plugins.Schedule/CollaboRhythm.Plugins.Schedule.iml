@@ -35,6 +35,9 @@
             <entry library-name="mobilecomponents" library-level="project">
               <dependency linkage="External" />
             </entry>
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -77,6 +80,6 @@
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Services" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Model.Medications" exported="" />
     <orderEntry type="library" exported="" name="mobilecomponents" level="project" />
+    <orderEntry type="module" module-name="CollaboRhythm.IHAART" exported="" />
   </component>
 </module>
-
