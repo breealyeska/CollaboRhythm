@@ -34,7 +34,7 @@
 	<id>CollaboRhythm.Tablet.Debug</id>
 
 	<!-- Used as the filename for the application. Required. -->
-	<filename>CollaboRhythm.Tablet.Debug</filename>
+	<filename>air.CollaboRhythm.Tablet.Debug</filename>
 
 	<!-- The name that is displayed in the AIR application installer. 
 	May have multiple values for each language. See samples or xsd schema file. Optional. -->
@@ -43,10 +43,10 @@
 	<!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade. 
 	Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
 	An updated version of application must have a versionNumber value higher than the previous version. Required for namespace >= 2.5 . -->
-	<versionNumber>999</versionNumber>
+	<versionNumber>1</versionNumber>
 
 	<!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
-	<!-- <versionLabel></versionLabel> -->
+	 <versionLabel>Version 1.0</versionLabel>
 
 	<!-- Description, displayed in the AIR application installer.
 	May have multiple values for each language. See samples or xsd schema file. Optional. -->
@@ -244,8 +244,8 @@
 		<!-- Keeps the processor from sleeping when a message is received. -->
 		<uses-permission android:name="android.permission.WAKE_LOCK" />
 
-		<permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-		<uses-permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" />
+		<permission android:name="air.collaboRhythm.tablet.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+		<uses-permission android:name="air.collaboRhythm.tablet.permission.C2D_MESSAGE" />
 
 		<uses-permission android:name="android.permission.INTERNET"/>
 		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -265,7 +265,7 @@
 				<intent-filter>
 					<action android:name="com.google.android.c2dm.intent.RECEIVE" />
 					<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-					<category android:name="CollaboRhythm.Tablet" />
+					<category android:name="air.CollaboRhythm.Tablet" />
 				</intent-filter>
 			</receiver>
 

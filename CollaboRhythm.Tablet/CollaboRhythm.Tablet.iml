@@ -32,7 +32,10 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="gcm" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -88,7 +91,7 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -146,7 +149,7 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -204,7 +207,7 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -259,7 +262,7 @@
             <entry library-name="mobile" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -317,7 +320,10 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
+            <entry library-name="gcm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -334,6 +340,8 @@
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
           </files-to-package>
         </packaging-android>
         <packaging-ios package-file-name="iHAART_Device_Debug" />
@@ -371,7 +379,10 @@
             <entry module-name="CollaboRhythm.Shared.Messages" build-configuration-name="CollaboRhythm.Shared.Messages">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="IHAART">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="gcm" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -525,5 +536,6 @@
     </orderEntry>
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Messages" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.IHAART" exported="" />
+    <orderEntry type="library" exported="" name="gcm" level="project" />
   </component>
 </module>
