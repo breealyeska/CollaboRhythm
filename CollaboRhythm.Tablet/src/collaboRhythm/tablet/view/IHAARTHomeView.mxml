@@ -20,37 +20,42 @@ You should have received a copy of the GNU General Public License along with Col
 <tablet:TabletViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 					   xmlns:s="library://ns.adobe.com/flex/spark"
 					   xmlns:tablet="collaboRhythm.shared.view.tablet.*"
+					   xmlns:core="collaboRhythm.core.view.*"
 					   xmlns:views="com.pialabs.eskimo"
 					   actionBarVisible="true"
 					   title="iHAART">
-	<fx:Style source="iHAART.css">
+	<fx:Style source="../../../iHAART.css">
 	</fx:Style>
 	<fx:Script><![CDATA[
 		import collaboRhythm.core.model.AboutApplicationModel;
+		import collaboRhythm.core.view.ConnectivityView;
+		import collaboRhythm.shared.model.services.WorkstationKernel;
 		import collaboRhythm.shared.model.settings.Settings;
 
 		import mx.core.FlexGlobals;
+		import mx.logging.Log;
+		import mx.logging.ILogger;
+
+		import spark.components.HGroup;
+
+		import spark.components.View;
 
 		import spark.components.supportClasses.Skin;
 
-		import collaboRhythm.tablet.controller.IHAARTApplicationController;
-		import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
-		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
-
-
 		import mx.core.IVisualElementContainer;
 		import mx.events.FlexEvent;
-		import mx.controls.Alert;
 		import mx.events.CloseEvent;
+		import mx.rpc.http.HTTPService;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.events.FaultEvent;
 
-		import spark.events.PopUpEvent;
-
-		import collaboRhythm.tablet.model.IHAARTSkinnableAlert;
-		import collaboRhythm.tablet.view.skins.IHAARTAlertSkin;
-
-		//import com.pialabs.eskimo.controls.SkinnableAlert;
-		//import iHAART.cloudMessaging.controller;
-
+		import collaboRhythm.tablet.controller.IHAARTApplicationController;
+		import collaboRhythm.iHAART.model.SkinnableAlert;
+		import collaboRhythm.iHAART.view.skins.AlertSkin;
+		import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
+		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
+		import collaboRhythm.iHAART.model.events.IHAARTEvent;
+		import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
 
 		public static const RECORD_BACKGROUND_COLOR:uint = 0xE6E7E8;
 
@@ -61,29 +66,36 @@ You should have received a copy of the GNU General Public License along with Col
 		[Bindable]
 		private var _applicationController:IHAARTApplicationController;
 
+		private var _httpService:HTTPService;
+		private var _logger:ILogger;
+		private var _settings:Settings;
+		private var _gcmController:CloudMessagingController;
+		private var _dbController:SQLStoreController;
+
+		private var strTitle:String;
+
 		override protected function createChildren():void
 		{
 			super.createChildren();
 
-//			if (_tabletApplicationController && _activeRecordAccount)
-//			{
-			init();
-//				(_tabletApplicationController as TabletApplicationController).useWidgetContainers();
-//			}
+			if (_tabletApplicationController && _activeAccount)
+			{
+				init();
+				(_tabletApplicationController as IHAARTApplicationController).useWidgetContainers();
+			}
 		}
 
 		public function init():void
 		{
-			trace("bree in init ");
-
-			applicationController = this.parentApplication.applicationController;
-//			trace(" bree after application controller ", applicationController.activeRecordAccount.primaryRecord.demographics.Name.givenName);
-//			_widgetContainers.push(mainWidgetsGroup);
+			var mainWidgetsGroup = new HGroup();
+			_widgetContainers.push(mainWidgetsGroup);
 //			_widgetContainers.push(buttonWidgetsGroup);
 
-//			if (_tabletApplicationController && _tabletApplicationController.settings &&
-//					_tabletApplicationController.settings.debuggingToolsEnabled)
-//			initializeVersionWatermark();
+			if (_tabletApplicationController && _tabletApplicationController.settings &&
+					_tabletApplicationController.settings.debuggingToolsEnabled)
+				initializeVersionWatermark();
+
+//		addEventListener(IHAARTEvent.SCHEDULE_LOADED, scheduleLoadedHandler, false, 0, false);
 
 		}
 
@@ -102,10 +114,31 @@ You should have received a copy of the GNU General Public License along with Col
 
 		private function checkPayload():void
 		{
-			trace("bree in checkpayload ");
 			var payload:String = FlexGlobals.topLevelApplication.gcmController.checkPendingFromLaunchPayload();
-			IHAARTSkinnableAlert.show(payload, 'Payload');
+			SkinnableAlert.show(payload, 'Payload');
 		}
+
+		private function showProgressCircle():void
+		{
+			gcmController.gcmi.startProgress();
+		}
+
+		private function  scheduleLoadedHandler(event:IHAARTEvent):void
+		{
+//			dbController.readAccountData(event.message);
+		}
+
+		function tempGetIndivoID():void
+		{
+			gcmController.requestCurrentIndivoRegistrationID();
+
+		}
+
+		//		Getters and Setters
+		//		*******************
+		//		*******************
+		//		*******************
+		//		*******************
 
 		public function get applicationInfo():AboutApplicationModel
 		{
@@ -116,70 +149,90 @@ You should have received a copy of the GNU General Public License along with Col
 		{
 			if (!_applicationController)
 			{
-				trace("bree getting applicationcontroller   ", FlexGlobals.topLevelApplication.applicationName());
 				_applicationController = FlexGlobals.topLevelApplication.applicationController;
 			}
 			return _applicationController;
 		}
 
-		public function set applicationController(value:IHAARTApplicationController):void
+		public function get widgetContainers():Vector.<IVisualElementContainer>
 		{
-			_applicationController = value;
+			return _widgetContainers;
 		}
 
-		private function showAlertNow():void
+		public function get logger():ILogger
 		{
-			trace("bree in show alertnow")
-			var strHarper:String = this.parent.parent.toString();
-			IHAARTSkinnableAlert.show(strHarper, 'Alert Title', IHAARTSkinnableAlert.OK | IHAARTSkinnableAlert.CANCEL);
+			if (!_logger)
+			{
+				_logger = FlexGlobals.topLevelApplication.logger;
+//				_logger = Log.getLogger(getQualifiedClassName(this).replace("::", "."));
+			}
+			return _logger;
+		}
+
+		public function set logger(value:ILogger):void
+		{
+			_logger = value;
+		}
+
+		public function get settings():Settings
+		{
+			if (!_settings)
+			{
+				_settings = FlexGlobals.topLevelApplication.applicationController.settings;
+			}
+			return _settings;
+		}
+
+		public function get gcmController():CloudMessagingController
+		{
+			if (!_gcmController)
+			{
+				_gcmController = FlexGlobals.topLevelApplication.gcmController;
+			}
+			return _gcmController;
+		}
+
+		public function get dbController():SQLStoreController
+		{
+			if (!_dbController)
+			{
+				_dbController = FlexGlobals.topLevelApplication.dbController;
+			}
+			return _dbController;
 		}
 		]]></fx:Script>
+	<!--<core:ConnectivityView id="_ConnectivityView" />-->
+	<!--<s:Panel id="overlayPanel" styleName="headerlessPanel" includeInLayout="true" visible="true" width="100%" height="60">-->
+		<s:Panel includeInLayout="true" visible="true"
+				 width="100%" height="60"
+				 horizontalCenter="0"
+				 styleName="headerlessPanel">
+			<s:SkinnableContainer id="userInfoContainer" includeInLayout="true" visible="false"
+								  styleName="gradientRectStyle" width="100%" height="60">
+				<s:Label id="userLabel" includeInLayout="true" visible="true"
+						 width="100%"
+						 fontFamily="MyriadProEmbeddedCFF" fontSize="36" fontWeight="bold" fontStyle="italic"
+						 textAlign="right" verticalAlign="bottom" paddingBottom="10"
+						 text="{applicationController.user.fullName}"/>
+			</s:SkinnableContainer>
+		</s:Panel>
 
-	<s:Panel width="95%" height="95%"
-			 horizontalCenter="0" verticalCenter="0"
-			 styleName="headerlessPanel">
-
-	<s:SkinnableContainer styleName="iHAARTContainerStyle"> <!--  verticalCenter="0"  -->
-		<s:Group id="myButtonBox">
-			<s:VGroup> <!-- horizontalAlign="center" -->
-				<s:Button id="tstButton" label="{tstButton.getStyle('fontFamily') + ' ' + tstButton.getStyle('color') + ' ' + tstButton.getStyle('fontSize')}"/>
-				<s:Button id="tstButton2"
-						  label="{tstButton2.getStyle('fontFamily') + ' ' + tstButton2.getStyle('fontWeight') + ' ' + tstButton2.getStyle('fontSize')}" fontStyle="italic"/>
-				<s:Button id="tstButton3"
-						  label="{tstButton3.getStyle('fontFamily') + ' ' + tstButton3.getStyle('fontWeight') + ' ' + tstButton3.getStyle('fontSize')}" fontFamily="verdana"/>
-				<s:Button label="Show Alert YES/NO"/>
-				<s:Button label="Show Alert YES/NO/CANCEL"/>
-			</s:VGroup>
-		</s:Group>
-	</s:SkinnableContainer>
-	</s:Panel>
-
-<!--<s:Group width="95%" contentBackgroundColor="0x5f9ea0">-->
-	<!--<s:VGroup gap="20">-->
-		<!--<s:SkinnableContainer styleName="blankContainerStyle"/>-->
-	<!--<s:SkinnableContainer id="myButtonBox" styleName="componentContainerStyle">-->
-		<!--<s:VGroup>-->
-			<!--<s:Button label="Show Alert OK/CANCEL"-->
-					  <!--click="showAlertNow()"/>-->
-			<!--<s:Button label="Show Alert OK"-->
-					  <!--click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title')"/>-->
-			<!--<s:Button label="Show Alert OK/CANCEL"-->
-					  <!--click="IHAARTSkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications being tested to fight HIV and may be more potent than current first-line therapies', 'Alert Title', IHAARTSkinnableAlert.OK|IHAARTSkinnableAlert.CANCEL)"/>-->
-			<!--<s:Button label="Show Alert YES/NO"-->
-					  <!--click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title', IHAARTSkinnableAlert.YES|IHAARTSkinnableAlert.NO)"/>-->
-			<!--<s:Button label="Show Alert YES/NO/CANCEL"-->
-					  <!--click="IHAARTSkinnableAlert.show('Alert content', 'Alert Title', IHAARTSkinnableAlert.YES|IHAARTSkinnableAlert.NO|IHAARTSkinnableAlert.CANCEL)"/>-->
-		<!--</s:VGroup>-->
-		<!--<s:VGroup width="100%" height="100%">-->
-			<!--<s:HGroup width="100%" height="100%" gap="10" paddingLeft="10" paddingRight="10" paddingTop="10"-->
-					  <!--paddingBottom="10" verticalAlign="middle">-->
-				<!--<s:VGroup>-->
-					<!--<s:HGroup id="mainWidgetsGroup" width="100%" height="100%" gap="20"/>-->
-					<!--<s:VGroup id="buttonWidgetsGroup" height="110" gap="70"/>-->
+		<!--<s:SkinnableContainer width="97%" height="97%" styleName="iHAARTContainerStyle"> &lt;!&ndash;  verticalCenter="0"  &ndash;&gt;-->
+				<!--<s:VGroup> &lt;!&ndash; horizontalAlign="center" &ndash;&gt;-->
+					<!--<s:Button label="Get Server Registration ID"-->
+					<!--click="gcmController.requestCurrentIndivoRegistrationID();"/>-->
+					<!--<s:Button label="Update Indivo w Reg ID"-->
+					<!--click="gcmController.updateStoredIndivoRegistrationID()"/>-->
+					<!--<s:Button label="Check Payload"-->
+							  <!--click="checkPayload()"/>-->
+					<!--<s:Button label="Progress circle..."-->
+							  <!--click="showProgressCircle();"/>-->
+					<!--<s:Button label="Show Factoid"-->
+							  <!--click="SkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications being tested to fight HIV and may be more potent than current first-line therapies.', 'Alert Title', SkinnableAlert.OK|SkinnableAlert.CANCEL)"/>-->
+					<!--<s:Button label="Show Alert YES/NO/CANCEL"-->
+					<!--click="SkinnableAlert.show('Alert content', 'Alert Title', SkinnableAlert.YES|SkinnableAlert.NO|SkinnableAlert.CANCEL)"/>-->
+					<!--<s:Label text="testing"/>-->
 				<!--</s:VGroup>-->
-			<!--</s:HGroup>-->
-		<!--</s:VGroup>-->
-	<!--</s:SkinnableContainer>-->
-	<!--</s:VGroup>-->
-<!--</s:Group>-->
+		<!--</s:SkinnableContainer>-->
+	<!--</s:Panel>-->
 </tablet:TabletViewBase>
