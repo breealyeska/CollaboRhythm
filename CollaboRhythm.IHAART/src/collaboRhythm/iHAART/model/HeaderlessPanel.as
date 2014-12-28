@@ -1,10 +1,10 @@
-package collaboRhythm.tablet.view.skins
+package collaboRhythm.iHAART.model
 {
 	import spark.skins.spark.PanelSkin;
 
-	public class HeaderlessPanelSkin extends PanelSkin
+	public class HeaderlessPanel extends PanelSkin
 	{
-		public function HeaderlessPanelSkin()
+		public function HeaderlessPanel()
 		{
 			super();
 
