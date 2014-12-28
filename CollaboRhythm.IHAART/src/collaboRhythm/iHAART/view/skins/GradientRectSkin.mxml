@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!--
+Copyright 2014 Bree Alyeska
+
+This file is part of CollaboRhythm and is at least in part based off of the Eskimo project by PeopleInAction found at: http://github.com/People-in-action/eskimo
+
+CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+version.
+
+CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
+
+<http://www.gnu.org/licenses/>.
+-->
+
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark">
+  <!-- host component -->
+  <fx:Metadata>
+    [HostComponent("spark.components.SkinnableContainer")]
+  </fx:Metadata>
+
+  <!-- states -->
+  <s:states>
+    <s:State name="disabled"/>
+    <s:State name="normal"/>
+  </s:states>
+
+  <!-- SkinParts
+  name=contentGroup, type=spark.components.Group, required=false
+  -->
+  <!--- Defines the appearance of the SkinnableContainer class's background. -->
+
+  <s:Rect left="0" right="0" top="0" bottom="0">
+    <s:fill>
+      <s:LinearGradient rotation="90">
+        <s:GradientEntry color="0xbebebe" alpha="1" ratio="0.2"/>
+        <s:GradientEntry color="white" alpha="1"/>
+      </s:LinearGradient>
+    </s:fill>
+  </s:Rect>
+
+  <!--The positioning elements relate to the items inside the container, not the container itself.-->
+  <s:Group id="contentGroup" left="20" top="20" right="20" bottom="20" textAlign="right">  <!--left="20" top="20" right="20" bottom="20" textAlign="right"-->
+  </s:Group>
+</s:Skin>
