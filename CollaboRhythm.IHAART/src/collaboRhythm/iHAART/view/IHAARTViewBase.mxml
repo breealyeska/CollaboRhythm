@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!---
+  - Copyright 2014 John Moore, Scott Gilroy, Bree Alyeska
+  -
+  - This file is part of CollaboRhythm.
+  -
+  - CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+  - License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+  - version.
+  -
+  - CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+  - warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+  - details.
+  -
+  - You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
+  - <http://www.gnu.org/licenses/>.
+  -->
+
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        creationComplete="creationCompleteHandler(event)"
+        addedToStage="addedToStageHandler()"
+        removedFromStage="removedFromStageHandler()">
+  <s:states>
+    <s:State name="debuggingToolsEnabled"/>
+    <s:State name="debuggingToolsDisabled"/>
+  </s:states>
+  <fx:Declarations>
+    <s:DateTimeFormatter id="dateFormatter" dateTimePattern="MM/dd/yyyy"/>
+  </fx:Declarations>
+  <fx:Script><![CDATA[
+    import collaboRhythm.shared.controller.IApplicationControllerBase;
+    import collaboRhythm.shared.model.Account;
+    import collaboRhythm.shared.view.MenuIcon;
+
+    import mx.core.DPIClassification;
+
+    import mx.core.FlexGlobals;
+    import mx.events.FlexEvent;
+
+    [Bindable]
+    protected var _tabletApplicationController:IApplicationControllerBase;
+
+    [Bindable]
+    private var _isControllerReady:Boolean;
+    [Bindable]
+    protected var _activeAccount:Account;
+    private var _trackingUrl:String;
+
+    private function reloadPluginsViewMenuItem_clickHandler():void
+    {
+      _tabletApplicationController.reloadPlugins();
+    }
+
+    private function demoDateMenuItem_clickHandler(index:int):void
+    {
+      _tabletApplicationController.useDemoPreset(index);
+    }
+
+    private function demoModeMenuItem_clickHandler():void
+    {
+      if (_tabletApplicationController.settings.demoModeEnabled)
+      {
+        _tabletApplicationController.targetDate = null;
+      }
+      else
+      {
+        _tabletApplicationController.useDemoPreset(0);
+      }
+    }
+
+    private function createDemoDateLabel(isControllerReady:Boolean, index:int):String
+    {
+      if (isControllerReady)
+      {
+        return dateFormatter.format(_tabletApplicationController.settings.demoDatePresets[index]);
+      }
+      return "";
+    }
+
+    public function get isControllerReady():Boolean
+    {
+      return _isControllerReady;
+    }
+
+    public function set isControllerReady(value:Boolean):void
+    {
+      _isControllerReady = value;
+    }
+
+    private function selectRecordMenuItem_clickHandler(event:MouseEvent):void
+    {
+      _tabletApplicationController.showSelectRecordView();
+    }
+
+    private function quitButton_clickHandler(event:MouseEvent):void
+    {
+      _tabletApplicationController.exitApplication("quit menu button");
+    }
+
+    private function aboutButton_clickHandler(event:MouseEvent):void
+    {
+      _tabletApplicationController.showAboutApplicationView();
+    }
+
+    private function toggleFastForwardMenuItem_clickHandler(event:MouseEvent):void
+    {
+      _tabletApplicationController.fastForwardEnabled = !_tabletApplicationController.fastForwardEnabled;
+    }
+
+    [Bindable]
+    public function get tabletApplicationController():IApplicationControllerBase
+    {
+      return _tabletApplicationController;
+    }
+
+    public function set tabletApplicationController(value:IApplicationControllerBase):void
+    {
+      _tabletApplicationController = value;
+
+      if (_tabletApplicationController)
+      {
+        if (_tabletApplicationController.settings.debuggingToolsEnabled)
+        {
+          currentState = "debuggingToolsEnabled";
+        }
+        else
+        {
+          currentState = "debuggingToolsDisabled";
+        }
+
+        isControllerReady = true;
+      }
+    }
+
+    public function set activeAccount(activeAccount:Account):void
+    {
+      _activeAccount = activeAccount;
+    }
+
+    private function menuButton_clickHandler(event:MouseEvent):void
+    {
+      FlexGlobals.topLevelApplication.viewMenuOpen = true;
+    }
+
+    public function homeButton_clickHandler():void
+    {
+      _tabletApplicationController.navigateHome();
+    }
+
+    protected function addedToStageHandler():void
+    {
+//      stage.addEventListener(KeyboardEvent.KEY_UP, stage_keyUpHandler);
+    }
+
+    protected function removedFromStageHandler():void
+    {
+//      stage.removeEventListener(KeyboardEvent.KEY_UP, stage_keyUpHandler);
+    }
+
+    public function get trackingUrl():String
+    {
+      return _trackingUrl;
+    }
+
+    public function set trackingUrl(value:String):void
+    {
+      _trackingUrl = value;
+    }
+
+    private function creationCompleteHandler(event:FlexEvent):void
+    {
+
+    }
+
+    ]]></fx:Script>
+  <s:viewMenuItems>
+    <!--<s:ViewMenuItem label="Demo Mode" includeIn="debuggingToolsEnabled"-->
+                    <!--icon="{_tabletApplicationController.settings.demoModeEnabled ? checkOnIcon : checkOffIcon}"-->
+                    <!--iconPlacement="right"-->
+                    <!--click="demoModeMenuItem_clickHandler()"/>-->
+    <s:ViewMenuItem label="Select Record" id="selectRecordMenuItem" click="selectRecordMenuItem_clickHandler(event)"
+                    visible="{_tabletApplicationController.settings.isClinicianMode}"
+                    includeInLayout="{_tabletApplicationController.settings.isClinicianMode}"/>
+    <s:ViewMenuItem label="About" id="aboutButton" click="aboutButton_clickHandler(event)"/>
+    <s:ViewMenuItem label="Quit" id="quitButton" click="quitButton_clickHandler(event)"/>
+  </s:viewMenuItems>
+  <!--<s:actionContent>-->
+    <!--<s:Button id="menuButton" click="menuButton_clickHandler(event)" label="menu"/>-->
+  <!--</s:actionContent>-->
+</s:View>
+
