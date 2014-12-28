@@ -16,6 +16,14 @@
 		import collaboRhythm.plugins.schedule.shared.model.IHealthActionListViewAdapter;
 		import collaboRhythm.shared.model.healthRecord.document.ScheduleItemOccurrence;
 
+		import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
+		import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
+		import collaboRhythm.iHAART.model.events.IHAARTEvent;
+		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
+		import collaboRhythm.shared.model.settings.Settings;
+
+		import mx.core.FlexGlobals;
+
 		import mx.core.IVisualElement;
 
 		import spark.components.Image;
@@ -23,6 +31,8 @@
 
 		[Bindable]
 		private var _scheduleItemOccurrence:ScheduleItemOccurrence;
+		private var _dbController:SQLStoreController;
+		private var _settings:Settings;
 
 		public function init(scheduleItemOccurrence:ScheduleItemOccurrence, scheduleModel:ScheduleModel):void
 		{
@@ -30,6 +40,9 @@
 
 			var scheduleItemOccurrenceReportingViewAdapter:IHealthActionListViewAdapter = scheduleModel.healthActionListViewAdapterFactory.createScheduledHealthActionViewAdapter(_scheduleItemOccurrence,
 					scheduleModel);
+
+			var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+			dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.SCHEDULE_LOADED, settings.gcmAccount, false, false));
 
 			if (scheduleItemOccurrenceReportingViewAdapter)
 			{
@@ -140,6 +153,11 @@
 				richText.setStyle("fontSize", defaultFontSize);
 				richText.clearStyle("lineHeight");
 			}
+		}
+
+		public function get settings():Settings
+		{
+			return FlexGlobals.topLevelApplication.applicationController.settings;
 		}
 		]]>
     </fx:Script>
