@@ -18,11 +18,14 @@
 package collaboRhythm.iHAART.cloudMessaging.controller
 {
 
+	import com.alyeska.shared.ane.alarm.libInterface.AlarmInterface;
+
 	import flash.events.EventDispatcher;
 
 	import collaboRhythm.iHAART.model.events.IHAARTEvent;
 
 	import com.alyeska.shared.ane.gcm.libInterface.events.GCMEvent;
+	import com.alyeska.shared.ane.alarm.libInterface.events.AlarmEvent;
 
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
@@ -30,6 +33,7 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	import flash.events.SecurityErrorEvent;
+	import flash.globalization.DateTimeFormatter;
 	import flash.net.URLRequestHeader;
 	import flash.text.TextField;
 	import flash.utils.getQualifiedClassName;
@@ -79,6 +83,7 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 		public static var STATUS_OK:String = "200";
 
 		private var _gcmi:GCMPushInterface;
+		private var _alarmi:AlarmInterface;
 		private var _gcmRegistrationID:String;
 		private var _indivoRegistrationID:String;
 		private var _payload:String;
@@ -115,6 +120,14 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 			gcmi.addEventListener(GCMEvent.ERROR, handleError, false, 2, true);
 			gcmi.addEventListener(GCMEvent.RECOVERABLE_ERROR, handleError, false, 2, true);
 			gcmi.addEventListener(GCMEvent.FOREGROUND_MESSAGE, handleForegroundMessage, false, 2, true);
+
+			alarmi = new AlarmInterface();
+			alarmi.addEventListener(AlarmEvent.ADDED, handleAlarmAdded, false, 2, true);
+			alarmi.addEventListener(AlarmEvent.TRIGGERED, handleAlarmTriggered, false, 2, true);
+			alarmi.addEventListener(AlarmEvent.CANCELLED, handleAlarmCancelled, false, 2, true);
+
+			var testing:Boolean = alarmi.initAlarm("testing");
+
 
 			var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
 			dispatcher.addEventListener(IHAARTEvent.REGISTERED, handleIHAARTRegistered, false, 0, false);
@@ -183,6 +196,34 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 		public function unregisterDevice():void
 		{
 			gcmi.unregister();
+		}
+
+		public function setAlarm():void
+		{
+			var now:Date = new Date();
+
+			var dateFormatter:DateTimeFormatter = new DateTimeFormatter(flash.globalization.LocaleID.DEFAULT);
+//			var timeFormatter:DateTimeFormatter = new DateTimeFormatter();
+			var pattern:String = "yyyy-MM-dd HH:mm:ss.SSS";
+			dateFormatter.setDateTimePattern(pattern);
+			var formattedDate:String = dateFormatter.format(now);
+
+			alarmi.newAlarm(formattedDate, "");
+		}
+
+		private function handleAlarmAdded(event:AlarmEvent):void
+		{
+			trace("  bree in handleAlarmAdded");
+		}
+
+		private function handleAlarmTriggered(event:AlarmEvent):void
+		{
+			trace("  bree in handleAlarmTriggered");
+		}
+
+		private function handleAlarmCancelled(event:AlarmEvent):void
+		{
+			trace("  bree in handleAlarmCancelled");
 		}
 
 		//on successful registration get GCM registration id for your device
@@ -570,6 +611,19 @@ package collaboRhythm.iHAART.cloudMessaging.controller
 		public function set eventDispatcher(value:IHAARTEventDispatcher):void
 		{
 			_eventDispatcher = value;
+		}
+
+		public function get alarmi():AlarmInterface
+		{
+			if (!_alarmi) {
+				_alarmi = new AlarmInterface();
+			}
+			return _alarmi;
+		}
+
+		public function set alarmi(value:AlarmInterface):void
+		{
+			_alarmi = value;
 		}
 	}
 }

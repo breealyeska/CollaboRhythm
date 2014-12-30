@@ -224,15 +224,17 @@ You should have received a copy of the GNU General Public License along with iHA
 	<extensions>
 		<extensionID>com.adobe.Vibration</extensionID>
 		<extensionID>CollaboRhythm.ANE.ApplicationMessaging</extensionID>
-		<extensionID>com.alyeska.shared.ane.gcm.freInterface.GCMPush</extensionID>
+		<extensionID>com.alyeska.shared.ane.gcm.GCMPush</extensionID>
+		<extensionID>com.alyeska.shared.ane.alarm.Alarm</extensionID>
 	</extensions>
 
 	<android>
 		<manifestAdditions><![CDATA[
 			
 	<manifest>
-		<permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-		<uses-permission android:name="collaboRhythm.tablet.permission.C2D_MESSAGE" /> <!-- Allows receipt of push notifications -->
+		<permission android:name="air.collaboRhythm.tablet.permission.C2D_MESSAGE"
+			android:protectionLevel="signature"/>
+		<uses-permission android:name="air.collaboRhythm.tablet.permission.C2D_MESSAGE" /> <!-- Allows receipt of push notifications -->
 
 		<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 		<uses-permission android:name="android.permission.GET_ACCOUNTS" />  <!-- GCM requires a Google account. -->
@@ -241,6 +243,9 @@ You should have received a copy of the GNU General Public License along with iHA
 		<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 		<uses-permission android:name="android.permission.FLASHLIGHT"/>
 		<uses-permission android:name="android.permission.REORDER_TASKS"/>
+
+		<!--<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>-->
+
 		<uses-permission android:name="android.permission.SET_ALARM"/>
 		<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>  <!--TYPE_SYSTEM_ALERT-->
 		<uses-permission android:name="android.permission.VIBRATE"/>
@@ -255,6 +260,7 @@ You should have received a copy of the GNU General Public License along with iHA
 
 		<application android:enabled="true"
 						android:process="CollaboRhythm.Tablet"
+						android:hardwareAccelerated="true"
 						android:debuggable="true">
 
 			<service android:name="com.alyeska.shared.ane.gcm.freInterface.GCMIntentService" />
@@ -266,18 +272,18 @@ You should have received a copy of the GNU General Public License along with iHA
 				</intent-filter>
 			</receiver>
 
-			<service android:name="com.alyeska.shared.android.alarm.AlarmIntentService" />
-			<receiver android:name="com.alyeska.shared.android.alarm.AlarmBroadcastReceiver" >  <!-- android:permission="com.android.alarm.permission.SET_ALARM"  -->
+			<service android:name="com.alyeska.shared.ane.alarm.freInterface.AlarmIntentService" />
+			<receiver android:name="com.alyeska.shared.ane.alarm.freInterface.AlarmBroadcastReceiver">
 				<intent-filter>
+					<action android:name="android.intent.action.NOTIFY" />
 	                <action android:name="android.intent.action.SET_ALARM" />
-                	<category android:name="android.intent.category.DEFAULT" />  <!--  CollaboRhythm.Tablet as above maybe-->
+                	<category android:name="CollaboRhythm.Tablet" />  <!--  android.intent.category.DEFAULT as above maybe-->
 				</intent-filter>
 			</receiver>
 
-			<receiver android:name="com.alyeska.shared.android.alarm.AlarmBootReceiver" >
+			<receiver android:name="com.alyeska.shared.ane.alarm.freInterface.AlarmBootReceiver" >
 				<intent-filter>
 					<action android:name="android.intent.action.BOOT_COMPLETED" />
-					<category android:name="android.intent.category.DEFAULT" />
 				</intent-filter>
 			</receiver>
 
