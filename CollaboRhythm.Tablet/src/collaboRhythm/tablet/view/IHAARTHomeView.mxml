@@ -2,18 +2,17 @@
 <!--
 Copyright 2014 Bree Alyeska (based on collaboRhythm work by John Moore and Scott Gilroy)
 
-This file is part of CollaboRhythm
+This file is part of iHAART & CollaboRhythm
 
-CollaboRhythm is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
-License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
-version.
+iHAART and CollaboRhythm are free software: you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or
+(at your option) any later  version.
 
-CollaboRhythm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-details.
+iHAART and CollaboRhythm are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
 
-You should have received a copy of the GNU General Public License along with CollaboRhythm.  If not, see
-
+You should have received a copy of the GNU General Public License along with iHAART & CollaboRhythm. If not, see
 <http://www.gnu.org/licenses/>.
 -->
 
@@ -114,7 +113,7 @@ You should have received a copy of the GNU General Public License along with Col
 
 		private function checkPayload():void
 		{
-			var payload:String = FlexGlobals.topLevelApplication.gcmController.checkPendingFromLaunchPayload();
+			var payload:String = FlexGlobals.topLevelApplication.applicationController.gcmController.checkPendingFromLaunchPayload();
 			SkinnableAlert.show(payload, 'Payload');
 		}
 
@@ -187,7 +186,7 @@ You should have received a copy of the GNU General Public License along with Col
 		{
 			if (!_gcmController)
 			{
-				_gcmController = FlexGlobals.topLevelApplication.gcmController;
+				_gcmController = FlexGlobals.topLevelApplication.applicationController.gcmController;
 			}
 			return _gcmController;
 		}
@@ -202,22 +201,30 @@ You should have received a copy of the GNU General Public License along with Col
 		}
 		]]></fx:Script>
 	<!--<core:ConnectivityView id="_ConnectivityView" />-->
-	<!--<s:Panel id="overlayPanel" styleName="headerlessPanel" includeInLayout="true" visible="true" width="100%" height="60">-->
-		<s:Panel includeInLayout="true" visible="true"
-				 width="100%" height="60"
-				 horizontalCenter="0"
-				 styleName="headerlessPanel">
+	<s:Panel id="overlayPanel" styleName="headerlessPanel" includeInLayout="true" visible="true"
+			 		width="100%" height="100" horizontalCenter="0">
+		<s:VGroup id="homeVGroup" includeInLayout="true" visible="true"
+				  width="100%" height="100%" gap="10" horizontalCenter="0">
 			<s:SkinnableContainer id="userInfoContainer" includeInLayout="true" visible="false"
-								  styleName="gradientRectStyle" width="100%" height="60">
-				<s:Label id="userLabel" includeInLayout="true" visible="true"
-						 width="100%"
-						 fontFamily="MyriadProEmbeddedCFF" fontSize="36" fontWeight="bold" fontStyle="italic"
-						 textAlign="right" verticalAlign="bottom" paddingBottom="10"
-						 text="{applicationController.user.fullName}"/>
+								  width="100%" height="80"
+								  styleName="gradientContainerStyle">
+				<s:VGroup width="100%" height="100%">
+					<s:Label id="userLabel" includeInLayout="true" visible="true"
+							 width="100%" height="100%"
+							 textAlign="right" verticalCenter="0"
+							 fontFamily="MyriadProEmbeddedCFF" fontSize="36" fontWeight="bold" fontStyle="italic"/>  <!-- alignmentBaseline="ideographicBottom"  -->
+				</s:VGroup>
 			</s:SkinnableContainer>
-		</s:Panel>
+			<s:SkinnableContainer id="mainContainer" styleName="iHAARTContainerStyle" width="95%" height="100%" horizontalCenter="0">
+				<s:VGroup horizontalCenter="0">
+					<s:Button label="Set Alarm for 90 sec from now" click="gcmController.setAlarm();"/>
+					<s:Button label="Get Server Registration ID" click="gcmController.requestCurrentIndivoRegistrationID();"/>
+				</s:VGroup>
+			</s:SkinnableContainer>
+		</s:VGroup>
+	</s:Panel>
 
-		<!--<s:SkinnableContainer width="97%" height="97%" styleName="iHAARTContainerStyle"> &lt;!&ndash;  verticalCenter="0"  &ndash;&gt;-->
+<!--<s:SkinnableContainer width="97%" height="97%" styleName="iHAARTContainerStyle"> &lt;!&ndash;  verticalCenter="0"  &ndash;&gt;-->
 				<!--<s:VGroup> &lt;!&ndash; horizontalAlign="center" &ndash;&gt;-->
 					<!--<s:Button label="Get Server Registration ID"-->
 					<!--click="gcmController.requestCurrentIndivoRegistrationID();"/>-->
