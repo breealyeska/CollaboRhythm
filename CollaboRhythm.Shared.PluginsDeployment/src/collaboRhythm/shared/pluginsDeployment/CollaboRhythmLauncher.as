@@ -4,7 +4,7 @@ package collaboRhythm.shared.pluginsDeployment
 
 	public class CollaboRhythmLauncher
 	{
-		public static const COLLABORHYTHM_TABLET_ANDROID_PACKAGE:String = "CollaboRhythm.Tablet.debug";
+		public static const COLLABORHYTHM_TABLET_ANDROID_PACKAGE:String = "air.CollaboRhythm.Tablet";
 
 		public function CollaboRhythmLauncher()
 		{
