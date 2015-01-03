@@ -23,6 +23,7 @@ package collaboRhythm.tablet.controller
 	import collaboRhythm.core.model.HealthRecordTreeModel;
 	import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
 	import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
+	import collaboRhythm.iHAART.model.DebuggingTools;
 	import collaboRhythm.iHAART.model.IHAARTViewNavigatorExtended;
 	import collaboRhythm.iHAART.model.Medication;
 	import collaboRhythm.iHAART.model.SkinnableAlert;
@@ -44,6 +45,11 @@ package collaboRhythm.tablet.controller
 	import collaboRhythm.shared.model.tablet.ViewNavigatorExtendedEvent;
 	import collaboRhythm.shared.view.tablet.TabletViewBase;
 
+	import collaboRhythm.tablet.view.HealthRecordTreeView;
+	import collaboRhythm.tablet.view.IHAARTHomeView;
+	import collaboRhythm.tablet.view.SelectRecordView;
+	import collaboRhythm.tablet.view.TabletFullViewContainer;
+
 	import flash.display.Bitmap;
 
 	import mx.collections.ArrayCollection;
@@ -55,13 +61,6 @@ package collaboRhythm.tablet.controller
 	import spark.components.SkinnableContainer;
 	import spark.components.VGroup;
 	import spark.primitives.BitmapImage;
-
-//	import collaboRhythm.iHAART.model.IHAARTViewNavigatorExtended;
-//	import collaboRhythm.tablet.controller.IHAARTAppControllersMediator;
-	import collaboRhythm.tablet.view.HealthRecordTreeView;
-	import collaboRhythm.tablet.view.IHAARTHomeView;
-	import collaboRhythm.tablet.view.SelectRecordView;
-	import collaboRhythm.tablet.view.TabletFullViewContainer;
 
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -111,6 +110,7 @@ package collaboRhythm.tablet.controller
 		private var _registeredGroup:VGroup;
 
 		private var _userInfoContainer:SkinnableContainer;
+		private var _mainContainer:SkinnableContainer;
 
 		private var _gcmController:CloudMessagingController;
 		private var _dbController:SQLStoreController;
@@ -130,6 +130,7 @@ package collaboRhythm.tablet.controller
 			_registeredGroup = iHAARTApplication.registeredGroup;
 
 			_userInfoContainer = iHAARTApplication.iHAARTHomeView.userInfoContainer;
+			_mainContainer = iHAARTApplication.iHAARTHomeView.mainContainer;
 
 			initializeConnectivityView();
 			initializeInAppPassCodeView();
@@ -156,9 +157,7 @@ package collaboRhythm.tablet.controller
 			navigator.addEventListener(ViewNavigatorExtendedEvent.VIEW_POPPED, viewNavigator_viewPopped);
 			navigator.addEventListener(Event.ADDED, viewNavigator_addedHandler);
 
-			BindingUtils.bindSetter(user_changeHandler, user, "givenName");
-
-
+//			BindingUtils.bindSetter(user_changeHandler, user, "givenName");
 			initializeActiveView();
 
 			createSession();
@@ -166,27 +165,41 @@ package collaboRhythm.tablet.controller
 //			createGoogleAnalyticsSessionIdleTimer();
 		}
 
-		public function handleGCMRegistered():void
+		public function gcmState_registeredHandler():void
 		{
 			registeredIcon.visible = true;
 		}
 
-		public function user_changeHandler(value:String):void
+		public function gcmState_unregisteredHandler():void
 		{
-			trace("    bree in testing binding  ", value);
+			registeredIcon.visible = false;
 		}
 
-		public function activeAccountLoadedHandler(givenName:String, familyName:String, account:String):void
+		public function user_changeHandler(value:String):void
 		{
-			trace("   bree in activeAccountLoadedHandler");
+//			trace("    bree in testing binding  ", value);
+		}
+
+		public function activeAccount_loadedHandler(givenName:String, familyName:String, account:String):void
+		{
+
+			var userData:Object = new Object();
+			userData['registration_id'] = CloudMessagingController.NO_IND_REGID;
+			userData['account_string'] = settings.gcmAccount.toString();
+			var insertedRowID:Number = dbController.insertData(SQLStoreController.USERS_TABLE, userData);
+
+			trace("   bree in activeAccount_loadedHandler, new ID:", insertedRowID);
+
 			user = new User();
 			user.initialize(givenName, familyName, account);
 			userInfoContainer.visible = true;
 			userLabel.text = user.fullName;
 			userLabel.visible = true;
+
+			mainContainer.visible = true;
 		}
 
-		public function scheduleLoadedHandler(message:String):void
+		public function schedule_loadedHandler(message:String):void
 		{
 			medication = new Medication();
 			medication.initialize(dbController, settings.gcmAccount);
@@ -309,7 +322,6 @@ package collaboRhythm.tablet.controller
 				viewModifier.modify(view);
 			}
 		}
-
 
 		private function application_mouseDownHandler(event:MouseEvent):void
 		{
@@ -474,17 +486,7 @@ package collaboRhythm.tablet.controller
 			(navigator as IHAARTViewNavigatorExtended).popViewRemote();
 		}
 
-		private function get iHAARTHomeView():IHAARTHomeView
-		{
-			return _iHAARTApplication.iHAARTHomeView;
-		}
-
-//		private function get selectRecordView():SelectRecordView
-//		{
-//			return _iHAARTApplication.selectRecordView;
-//		}
-
-//		the apps are not actually loaded immediately when a record is opened
+		//		the apps are not actually loaded immediately when a record is opened
 //		only after the active record view has been made visible are they loaded, this makes the UI more responsive
 		public function showWidgets(recordAccount:Account):void
 		{
@@ -497,6 +499,11 @@ package collaboRhythm.tablet.controller
 						_fullContainer, _componentContainer, settings, appControllerConstructorParams, this);
 			}
 			_appControllersMediator.createAndStartApps(activeAccount, recordAccount);
+		}
+
+		private function get iHAARTHomeView():IHAARTHomeView
+		{
+			return _iHAARTApplication.iHAARTHomeView;
 		}
 
 		public override function get fullContainer():IVisualElementContainer
@@ -705,5 +712,14 @@ package collaboRhythm.tablet.controller
 			_userInfoContainer = value;
 		}
 
+		public function get mainContainer():SkinnableContainer
+		{
+			return _mainContainer;
+		}
+
+		public function set mainContainer(value:SkinnableContainer):void
+		{
+			_mainContainer = value;
+		}
 	}
 }
