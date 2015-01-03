@@ -26,7 +26,7 @@ package collaboRhythm.iHAART.model
 			super();
 
 			topGroup.includeInLayout = false;
-			border.includeInLayout = true;
+			border.includeInLayout = false;
 		}
 	}
 }
