@@ -26,8 +26,6 @@
   <fx:Script><![CDATA[
     import collaboRhythm.iHAART.model.SkinnableConfirmation;
 
-    ;
-
     import collaboRhythm.iHAART.model.SkinnableAlert;
     import collaboRhythm.tablet.view.TestView;
 
