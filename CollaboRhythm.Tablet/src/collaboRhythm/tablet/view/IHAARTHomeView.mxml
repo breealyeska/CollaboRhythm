@@ -21,6 +21,7 @@ You should have received a copy of the GNU General Public License along with iHA
 					   xmlns:tablet="collaboRhythm.shared.view.tablet.*"
 					   xmlns:core="collaboRhythm.core.view.*"
 					   xmlns:views="com.pialabs.eskimo"
+					   xmlns:ihaart="collaboRhythm.iHAART.model.*"
 					   actionBarVisible="true"
 					   title="iHAART">
 	<fx:Style source="../../../iHAART.css">
@@ -28,8 +29,11 @@ You should have received a copy of the GNU General Public License along with iHA
 	<fx:Script><![CDATA[
 		import collaboRhythm.core.model.AboutApplicationModel;
 		import collaboRhythm.core.view.ConnectivityView;
+		import collaboRhythm.iHAART.model.SkinnableConfirmation;
 		import collaboRhythm.shared.model.services.WorkstationKernel;
 		import collaboRhythm.shared.model.settings.Settings;
+
+		import mx.collections.ArrayCollection;
 
 		import mx.core.FlexGlobals;
 		import mx.logging.Log;
@@ -55,6 +59,13 @@ You should have received a copy of the GNU General Public License along with iHA
 		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
 		import collaboRhythm.iHAART.model.events.IHAARTEvent;
 		import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
+
+		import collaboRhythm.iHAART.model.events.ContextableListEvent;
+
+
+		[Bindable]
+		private var contextDataProvider:ArrayCollection = new ArrayCollection(["Jean Dupont", "John Doe", "Mike Smith",
+			"Jing Ming", "Esteban Garcia", "Eva Shlinberg", "Cecilia Grant", "Pat Bracken"]);
 
 		public static const RECORD_BACKGROUND_COLOR:uint = 0xE6E7E8;
 
@@ -86,29 +97,53 @@ You should have received a copy of the GNU General Public License along with iHA
 
 		public function init():void
 		{
-			var mainWidgetsGroup = new HGroup();
+//			var mainWidgetsGroup = new HGroup();
 			_widgetContainers.push(mainWidgetsGroup);
-//			_widgetContainers.push(buttonWidgetsGroup);
 
 			if (_tabletApplicationController && _tabletApplicationController.settings &&
 					_tabletApplicationController.settings.debuggingToolsEnabled)
 				initializeVersionWatermark();
 
-//		addEventListener(IHAARTEvent.SCHEDULE_LOADED, scheduleLoadedHandler, false, 0, false);
+		}
 
+		private function handleAlertClick(event:CloseEvent):void
+		{
+			switch (event.detail)
+			{
+				case SkinnableAlert.OK:
+					break;
+				case SkinnableAlert.YES:
+					break;
+				case SkinnableAlert.NO:
+					break;
+				case SkinnableAlert.CANCEL:
+					break;
+				case SkinnableAlert.TAKE:
+					SkinnableConfirmation.show("Are you sure? You won't be able to change this later.", "Confirm", SkinnableConfirmation.YES|SkinnableConfirmation.CANCEL, null, handleConfirmationClick);
+					break;
+				case SkinnableAlert.SNOOZE:
+					break;
+			}
+		}
+
+		private function handleConfirmationClick(event:CloseEvent):void
+		{
+			switch (event.detail)
+			{
+				case SkinnableConfirmation.OK:
+					break;
+				case SkinnableConfirmation.YES:
+					applicationController.dbController.newAdherenceEvent(applicationController.settings.gcmAccount);
+					SkinnableConfirmation.show("Saved", "Saved", SkinnableConfirmation.OK);
+					break;
+				case SkinnableConfirmation.CANCEL:
+					break;
+			}
 		}
 
 		private function initializeVersionWatermark():void
 		{
-//			_applicationInfo.settings = applicationController.settings;
-			//_applicationInfo.settings = _tabletApplicationController.settings;
-//			_applicationInfo.initialize();
-//			if (_applicationInfo.appModificationDate != null)
-//			{
-//				applicationModificationLabel.visible = true;
-//			}
-//
-//			versionWatermarkGroup.visible = true;
+
 		}
 
 		private function checkPayload():void
@@ -117,12 +152,7 @@ You should have received a copy of the GNU General Public License along with iHA
 			SkinnableAlert.show(payload, 'Payload');
 		}
 
-		private function showProgressCircle():void
-		{
-			gcmController.gcmi.startProgress();
-		}
-
-		private function  scheduleLoadedHandler(event:IHAARTEvent):void
+		private function schedule_loadedHandler(event:IHAARTEvent):void
 		{
 //			dbController.readAccountData(event.message);
 		}
@@ -199,12 +229,31 @@ You should have received a copy of the GNU General Public License along with iHA
 			}
 			return _dbController;
 		}
+
+		protected function list_contextMenuItemClickHandler(event:ContextableListEvent):void
+		{
+			trace("bree in contextMenuClickHandler  ");
+			if (event.menuItem.label == "Delete")
+			{
+				list.dataProvider.removeItemAt(event.itemIndex)
+			}
+		}
+
+		private function toggleTools()
+		{
+			if (toolContainer.visible == true) {
+				toolContainer.visible = false;
+			} else {
+				toolContainer.visible = true;
+			}
+		}
+
 		]]></fx:Script>
 	<!--<core:ConnectivityView id="_ConnectivityView" />-->
 	<s:Panel id="overlayPanel" styleName="headerlessPanel" includeInLayout="true" visible="true"
 			 		width="100%" height="100" horizontalCenter="0">
 		<s:VGroup id="homeVGroup" includeInLayout="true" visible="true"
-				  width="100%" height="100%" gap="10" horizontalCenter="0">
+				  width="100%" height="100%" gap="10" horizontalCenter="0" horizontalAlign="center">
 			<s:SkinnableContainer id="userInfoContainer" includeInLayout="true" visible="false"
 								  width="100%" height="80"
 								  styleName="gradientContainerStyle">
@@ -215,10 +264,34 @@ You should have received a copy of the GNU General Public License along with iHA
 							 fontFamily="MyriadProEmbeddedCFF" fontSize="36" fontWeight="bold" fontStyle="italic"/>  <!-- alignmentBaseline="ideographicBottom"  -->
 				</s:VGroup>
 			</s:SkinnableContainer>
-			<s:SkinnableContainer id="mainContainer" styleName="iHAARTContainerStyle" width="95%" height="100%" horizontalCenter="0">
-				<s:VGroup horizontalCenter="0">
-					<s:Button label="Set Alarm for 90 sec from now" click="gcmController.setAlarm();"/>
-					<s:Button label="Get Server Registration ID" click="gcmController.requestCurrentIndivoRegistrationID();"/>
+			<s:SkinnableContainer id="mainContainer" includeInLayout="true" visible="false"
+								  styleName="iHAARTContainerStyle" width="95%" height="100%" horizontalCenter="0">
+				<s:VGroup horizontalCenter="0" horizontalAlign="center">
+					<s:Button label="Toggle Tools" click="toggleTools();"/>
+					<ihaart:ContextableList id="list" width="100%" height="100%"
+										 contextMenuItemClick="list_contextMenuItemClickHandler(event)"
+										 dataProvider="{contextDataProvider}">
+						<ihaart:contextMenuItems>
+							<fx:Object label="Delete"/>
+							<fx:Object label="Cancel"/>
+						</ihaart:contextMenuItems>
+					</ihaart:ContextableList>
+					<s:HGroup id="mainWidgetsGroup" includeInLayout="true" visible="false" width="10" height="10" gap="20"/>
+				</s:VGroup>
+			</s:SkinnableContainer>
+			<s:SkinnableContainer id="toolContainer" includeInLayout="true" visible="false"
+								  styleName="iHAARTContainerStyle" width="95%" height="100%" horizontalCenter="0">
+				<s:VGroup horizontalCenter="0" horizontalAlign="center">
+					<s:Button label="Set Alarm for 10 sec from now" click="gcmController.setAlarm();"/>
+					<s:Button label="Get Server Registration ID"
+							  click="gcmController.requestCurrentIndivoRegistrationID();"/>
+					<s:Button label="Get Server Registration ID"
+							  click="gcmController.requestCurrentIndivoRegistrationID();"/>
+					<s:Button label="Test Alert Longer"
+							  click="SkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications being tested to fight HIV and may be more potent than current first-line therapies.', 'Taller', SkinnableAlert.TAKE|SkinnableAlert.CANCEL, null, handleAlertClick)"/>
+					<s:Button label="Test Alert Shorter"
+							  click="SkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications', 'Shorter', SkinnableAlert.TAKE|SkinnableAlert.CANCEL, null, handleAlertClick)"/>
+					<s:Button label="Check Payload" click="checkPayload()"/>
 				</s:VGroup>
 			</s:SkinnableContainer>
 		</s:VGroup>
