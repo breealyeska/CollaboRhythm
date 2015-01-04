@@ -17,7 +17,7 @@
 
 package collaboRhythm.iHAART.sqlStore.controller
 {
-	import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
+	import collaboRhythm.iHAART.model.DebuggingTools;
 
 	import flash.data.SQLConnection;
 	import flash.data.SQLMode;
@@ -27,20 +27,16 @@ package collaboRhythm.iHAART.sqlStore.controller
 	import flash.data.SQLTableSchema;
 	import flash.errors.SQLError;
 	import flash.filesystem.File;
-	import flash.events.SQLErrorEvent;
-	import flash.events.SQLEvent;
-
-
 	import flash.globalization.DateTimeFormatter;
 	import flash.globalization.DateTimeStyle;
 	import flash.utils.getQualifiedClassName;
 
+	import mx.collections.ArrayCollection;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 
 // todo bree need to encryptdb
 // todo bree need to make store and read functions more generic
-// todo bree needtocreate adherence data table along with user_settings
 
 	public class SQLStoreController
 	{
@@ -72,6 +68,10 @@ package collaboRhythm.iHAART.sqlStore.controller
 				{
 					return;
 				}
+			}
+			else
+			{
+				logger.info("    Error opening local SQLStore file: " + dbFilePath);
 			}
 
 			initialize();
@@ -152,7 +152,7 @@ package collaboRhythm.iHAART.sqlStore.controller
 			if (!tableExists(NOTIFICATIONS_TABLE))
 			{
 				// DateTime format in SQLLite is ("YYYY-MM-DD HH:MM:SS.SSS")
-				create.text = "CREATE TABLE " + NOTIFICATIONS_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'factoid_id' INT, 'time_sent' TEXT, 'time_received' TEXT)";
+				create.text = "CREATE TABLE " + NOTIFICATIONS_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'user_id' INT, 'notification_type' TEXT, 'indivo_id' TEXT, 'server_timestamp' TEXT, 'app_timestamp' TEXT)";
 
 				create.sqlConnection = sqlConnectionSync;
 				try
@@ -170,217 +170,56 @@ package collaboRhythm.iHAART.sqlStore.controller
 			}
 		}
 
-//		public function saveRegistrationID(registrationID:String):Boolean
-//		{
-////			clearTableData(USERS_TABLE);
-//			sqlResult = writeData("user_settings", "registration_id", registrationID.toString());
-//			logger.info("  GCM Registration ID saved: " + "  " + registrationID);
-//			return true;
-//		}
-
-//		public function getLocalRegistrationID():String
-//		{
-//			try
-//			{
-//				var select:SQLStatement = new SQLStatement();
-//				select.sqlConnection = sqlConnectionSync;
-//				select.text = "SELECT registration_id FROM gcm_settings ORDER BY id";
-//				select.execute();
-//			}
-//			catch (error:SQLError)
-//			{
-//				logger.info("    SQLError in SQLStoreController.getLocalRegistrationID(): " +
-//						error.message +
-//						" ---- " +
-//						error.details);
-//			}
-//
-//			var output:String;
-//			try {
-//				sqlResult = select.getResult();
-//
-//				if (sqlResult.data)
-//				{
-//					logger.info("  Getting GCM registrationID from store: " + sqlResult.data[0]["registration_id"]);
-////					for (var columnName:String in sqlResult.data[0])
-////					{
-////						output += columnName + ": " + sqlResult.data[0][columnName] + "; ";
-////					}
-//					return sqlResult.data[0]["registration_id"];
-//				}
-//				else
-//				{
-//					logger.info("No GCM registrationID found in store");
-//					return GCMPushInterface.NO_REGID;
-//				}
-//			}
-//			catch (error:SQLError)
-//			{
-//				logger.info("    SQLError in SQLStoreController.getLocalRegistrationID(): " +
-//						error.message +
-//						" ---- " +
-//						error.details);
-//			}
-//			return GCMPushInterface.NO_REGID;
-//		}
-
-		public function clearTableData(tableName:String):void
+		public function syncMeds(accountString:String, medData:Object):Number
 		{
-			var select:SQLStatement = new SQLStatement();
-			select.sqlConnection = sqlConnectionSync;
-			select.text = "DELETE FROM '" + tableName + "'";
-			try
-			{
-				select.execute();
-			}
-			catch (error:SQLError)
-			{
-				logger.info("    SQLError in SQLStoreController.clearTableData(" + tableName + "): " +
-				error.message +
-				" ---- " +
-				error.details);
-			}
-			logger.info("  Table " + tableName + " deleted");
+			var userID:String = getFieldValue(SQLStoreController.USERS_TABLE, "account_string", accountString, "id");
+
+			medData['user_id'] = userID;
+			deleteData(SQLStoreController.MEDICATIONS_TABLE, "user_id", userID);
+			var newID:Number = insertData(SQLStoreController.MEDICATIONS_TABLE, medData);
+			DebuggingTools.myTraceFunction("syncMeds with newID = " + newID);
+			return newID;
 		}
 
-
-		private function getFieldValue(tableName:String, parameterColumn:String, parameterValue:String, fieldColumn:String):String
+		public function dateTimeTest(inputString:String):void
 		{
-			var queryString:String = "SELECT " + fieldColumn + " FROM " + tableName + " WHERE " + parameterColumn + " = '" + parameterValue + "'";
 			var select:SQLStatement = new SQLStatement();
+			var now:Date = new Date();
 
+			var queryString:String = "SELECT datetime('" + inputString + "');";
+//			var queryString:String = "SELECT datetime('" + inputString + "', 'utc');"; //goes from local time to utc
+//			var queryString:String = "SELECT datetime('" + inputString + "', 'localtime');"; // utc to local time
+
+			select.sqlConnection = sqlConnectionSync; //set the connection
 			select.text = queryString;
 
 			try
 			{
-				select.sqlConnection = sqlConnectionSync;
 				select.execute();
 			}
 			catch (error:SQLError)
 			{
-				logger.info("    SQLError in SQLStoreController.getField(): " +
+				logger.info("    SQLError in SQLStoreController.getMedDataForUserAccount: " +
 				error.message +
 				" ---- " +
 				error.details);
 			}
 
-			var result = select.getResult();
-			if (result.data.length > 0) {
-				return result.data[0][fieldColumn];
-			}
-			else {
-				return "";
-			}
-		}
-		
-//		private function writeData(tableName:String, parameter:String, value:String):SQLResult
-//		{
-//			try
-//			{
-//				var query:String = "INSERT INTO " + tableName + " ('" + parameter + "') VALUES (?)";
-//				var insert:SQLStatement = new SQLStatement(); //create the insert statement
-//				insert.sqlConnection = sqlConnectionSync; //set the connection
-//				insert.text = query;
-//				insert.parameters[0] = value;
-//				insert.execute();
-//			}
-//			catch (error:SQLError)
-//			{
-//				logger.info("    SQLError in SQLStoreController.writeData(): " +
-//						error.message +
-//						" ---- " +
-//						error.details);
-//			}
-//
-//			logger.info("  Insert into SQL Store query:  " + insert.text);
-//			return insert.getResult();
-//		}
+			logger.info("  Select from SQL Store query:  " + select.text);
 
-		public function updateData(tableName:String, whereColumn:String, whereValue:String, dataObject:Object):Number
-		{
-			var colNamesStr:String = "";
-			var colValuesStr:String = "";
-			try
+			var result:SQLResult = select.getResult();
+
+			if (result)
 			{
-				var update:SQLStatement = new SQLStatement(); //create the insert statement
-
-				var i:int = 0;
-
-				var queryString:String = "UPDATE " + tableName + " SET ";
-
-				for (var key:String in dataObject)
+				for (var rowInd:int = 0; rowInd < result.data.length; rowInd++)
 				{
-					update.parameters[i] = dataObject[key].toString();
-					queryString = queryString + key + " = ?, ";
-					i++;
+					for (var key:String in result.data[rowInd])
+					{
+						DebuggingTools.myTraceFunction(key);
+						DebuggingTools.myTraceFunction(result.data[rowInd][key].toString());
+					}
 				}
-
-				queryString = queryString.slice(0, -2);
-				queryString = queryString + " WHERE " + whereColumn + " = " + whereValue;
-
-				update.sqlConnection = sqlConnectionSync; //set the connection
-				update.text = queryString;
-				update.execute();
 			}
-			catch (error:SQLError)
-			{
-				logger.info("    SQLError in SQLStoreController.writeData(): " +
-				error.message +
-				" ---- " +
-				error.details);
-			}
-
-			logger.info("  Update SQL Store query:  " + update.text);
-
-			// get the primary key
-			var result:SQLResult = update.getResult();
-			return result.rowsAffected;
-			// do something with the primary key
-			//return update.getResult();
-		}
-		
-		public function insertData(tableName:String, queryData:Object):Number
-		{
-			var colNamesStr:String = "";
-			var colValuesStr:String = "";
-			try
-			{
-				var insert:SQLStatement = new SQLStatement(); //create the insert statement
-
-				var i:int = 0;
-
-				for (var key:String in queryData)
-				{
-					insert.parameters[i] = queryData[key].toString();
-					colNamesStr = colNamesStr + "'" + key + "', ";
-					colValuesStr = colValuesStr + "?, ";
-					i++;
-				}
-
-				colNamesStr = colNamesStr.slice(0, -2);
-				colValuesStr = colValuesStr.slice(0, -2);
-
-				var queryString:String = "INSERT INTO " + tableName + " ( " + colNamesStr + " ) VALUES ( " + colValuesStr + " )";
-
-				insert.sqlConnection = sqlConnectionSync; //set the connection
-				insert.text = queryString;
-				insert.execute();
-			}
-			catch (error:SQLError)
-			{
-				logger.info("    SQLError in SQLStoreController.writeData(): " +
-				error.message +
-				" ---- " +
-				error.details);
-			}
-
-			logger.info("  Insert into SQL Store query:  " + insert.text);
-
-			// get the primary key
-			var result:SQLResult = insert.getResult();
-			return result.lastInsertRowID;
-			// do something with the primary key
-			//return insert.getResult();
 		}
 
 		public function newAdherenceEvent(accountString:String):void
@@ -404,18 +243,51 @@ package collaboRhythm.iHAART.sqlStore.controller
 			adherenceData['time_reported'] = formattedDate;
 			
 			var newID:Number = insertData(SQLStoreController.ADHERENCE_TABLE, adherenceData);
-			trace("    bree newID = ", newID);
+
 		}
 
-		public function getMedDataForAccount(accountString:String):SQLResult
+		public function newNotificationEvent(accountString:String, indivoID:String, notificationType:String, sentTimestamp:Date):void
 		{
+			var insert:SQLStatement = new SQLStatement();
+			var userID:String = "";
+
+			trace("   bree in newNotificationEvent:   ", accountString, "  ", indivoID, "   ", notificationType, "   ", sentTimestamp.toString());
+
+//			var dateFormatter:DateTimeFormatter = new DateTimeFormatter(flash.globalization.LocaleID.DEFAULT);
+//			var pattern:String = "yyyy-MM-dd HH:mm:ss.SSS";
+//			dateFormatter.setDateTimePattern(pattern);
+//			var formattedSentTimestamp:String = dateFormatter.format(sentTimestamp);
+//			var formattedReceivedDate:String = dateFormatter.format(new Date());
+
+			var formattedSentTimestamp:String = formatDateForSQLLite(sentTimestamp);
+			var formattedReceivedDate:String = formatDateForSQLLite(new Date());
+			
+			trace("   bree in newNotification Event serverTimestamp & current time:   ",
+					formattedSentTimestamp, "    ", formattedReceivedDate);
+			userID = getFieldValue(SQLStoreController.USERS_TABLE, "account_string", accountString, "id");
+
+			var notificationData:Object = new Object();
+			notificationData['user_id'] = userID;
+			notificationData['indivo_id'] = indivoID;
+			notificationData['notification_type'] = notificationType;
+			notificationData['server_timestamp'] = formattedSentTimestamp;
+			notificationData['app_timestamp'] = formattedReceivedDate;
+
+			var newID:Number = insertData(SQLStoreController.NOTIFICATIONS_TABLE, notificationData);
+		}
+
+//		todo bree would be better if returned an arraycollection for event handling or an object
+		public function getMedDataForUserAccount(accountString:String):SQLResult
+		{
+			var resultArray:Array;
 
 			var select:SQLStatement = new SQLStatement();
 			var userID:String = "";
 
 			userID = getFieldValue(SQLStoreController.USERS_TABLE, "account_string", accountString, "id");
 
-			if (userID.length > 0) {
+			if (userID.length > 0)
+			{
 				var queryString:String = "select * from " +
 						SQLStoreController.MEDICATIONS_TABLE +
 						" WHERE user_id = " +
@@ -430,37 +302,232 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:SQLError)
 				{
-					logger.info("    SQLError in SQLStoreController.getAccountData(): " +
+					logger.info("    SQLError in SQLStoreController.getMedDataForUserAccount: " +
 					error.message +
 					" ---- " +
 					error.details);
 				}
+
+				logger.info("  Select from SQL Store query:  " + select.text);
+
+				var result:SQLResult = select.getResult();
+
+			}
+			else {
+				logger.info("    Error in SQLStoreController.getMedDataForUserAccount: no user found for account " + accountString);
 			}
 
-			logger.info("  Select from SQL Store query:  " + select.text);
-
-			return select.getResult();
+			return result;
 		}
 
-//		private function readData():SQLResult
-//		{
-//			var read:SQLStatement = new SQLStatement(); //create the read statemen
-//			read.sqlConnection = sqlConnectionSync; //set the connection
-////				todo bree this should be dynamic
-//			read.text = "SELECT id, registration_id FROM gcm_settings ORDER BY id";
-//			try
-//			{
-//				read.execute();
-//			}
-//			catch (error:SQLError)
-//			{
-//				logger.info("    SQLError in SQLStoreController.readData(): " +
-//						error.message +
-//						" ---- " +
-//						error.details);
-//			}
-//			return read.getResult();
-//		}
+		public function resultToArrayCollection(result:SQLResult):ArrayCollection
+		{
+			var resultArray:ArrayCollection;
+			for (var rowInd:int = 0; rowInd < result.data.length; rowInd++)
+			{
+				var row:Object;
+				for (var key:String in result.data[rowInd])
+				{
+					row[key] = result.data[rowInd][key].toString();
+					resultArray.addItem(row);
+				}
+			}
+			return resultArray;
+		}
+
+		public function clearAllDataFromTable(tableName:String):void
+		{
+			var select:SQLStatement = new SQLStatement();
+			select.sqlConnection = sqlConnectionSync;
+			select.text = "DELETE FROM '" + tableName + "'";
+			try
+			{
+				select.execute();
+			}
+			catch (error:SQLError)
+			{
+				logger.info("    SQLError in SQLStoreController.clearAllDataFromTable(" + tableName + "): " +
+				error.message +
+				" ---- " +
+				error.details);
+			}
+			logger.info("  Table " + tableName + " deleted");
+		}
+
+		private function getFieldValue(tableName:String,
+									   parameterColumn:String,
+									   parameterValue:String,
+									   fieldColumn:String):String
+		{
+			var queryString:String = "SELECT " +
+					fieldColumn +
+					" FROM " +
+					tableName +
+					" WHERE " +
+					parameterColumn +
+					" = '" +
+					parameterValue +
+					"'";
+			var select:SQLStatement = new SQLStatement();
+
+			select.text = queryString;
+
+			trace("   bree in getFieldValue: ", queryString);
+			try
+			{
+				select.sqlConnection = sqlConnectionSync;
+				select.execute();
+			}
+			catch (error:SQLError)
+			{
+				logger.info("    SQLError in SQLStoreController.getField(): " +
+				error.message +
+				" ---- " +
+				error.details);
+			}
+
+			var result = select.getResult();
+			if (result != null)
+			{
+				return result.data[0][fieldColumn];
+			}
+			else
+			{
+				return "";
+			}
+		}
+
+		public function updateData(tableName:String, whereColumn:String, whereValue:String, dataObject:Object):Number
+		{
+			var colNamesStr:String = "";
+			var colValuesStr:String = "";
+
+			var update:SQLStatement = new SQLStatement(); //create the insert statement
+
+			var i:int = 0;
+
+			var queryString:String = "UPDATE " + tableName + " SET ";
+
+			for (var key:String in dataObject)
+			{
+				update.parameters[i] = dataObject[key].toString();
+				queryString = queryString + key + " = ?, ";
+				i++;
+			}
+
+			queryString = queryString.slice(0, -2);
+			queryString = queryString + " WHERE " + whereColumn + " = " + whereValue;
+
+			try
+			{
+				update.sqlConnection = sqlConnectionSync; //set the connection
+				update.text = queryString;
+				update.execute();
+			}
+			catch (error:SQLError)
+			{
+				logger.info("    SQLError in SQLStoreController.updateData(): " +
+				error.message +
+				" ---- " +
+				error.details);
+			}
+
+			// get the primary key
+			var result:SQLResult = update.getResult();
+			logger.info("  Update SQL Store query:  " + update.text + "\n  Rows affected: " + result.rowsAffected);
+			return result.rowsAffected;
+		}
+
+		public function insertData(tableName:String, queryData:Object):Number
+		{
+			var colNamesStr:String = "";
+			var colValuesStr:String = "";
+			var colRealValues:String = "";
+			try
+			{
+				var insert:SQLStatement = new SQLStatement(); //create the insert statement
+
+				var i:int = 0;
+
+				for (var key:String in queryData)
+				{
+					insert.parameters[i] = queryData[key].toString();
+					colNamesStr = colNamesStr + "'" + key + "', ";
+					colValuesStr = colValuesStr + "?, ";
+					colRealValues = colRealValues + "'" + queryData[key].toString() + "' ";
+					i++;
+				}
+
+				colNamesStr = colNamesStr.slice(0, -2);
+				colValuesStr = colValuesStr.slice(0, -2);
+
+				var queryString:String = "INSERT INTO " +
+						tableName +
+						" ( " +
+						colNamesStr +
+						" ) VALUES ( " +
+						colValuesStr +
+						" )";
+
+				insert.sqlConnection = sqlConnectionSync; //set the connection
+				insert.text = queryString;
+				insert.execute();
+			}
+			catch (error:SQLError)
+			{
+				logger.info("    SQLError in SQLStoreController.insertData(): " +
+				error.message +
+				" ---- " +
+				error.details);
+			}
+
+			// get the primary key
+			var result:SQLResult = insert.getResult();
+			logger.info("  Insert into SQL Store query:  " + insert.text + "\n  Rows affected: " + result.rowsAffected);
+			return result.lastInsertRowID;
+		}
+
+		public function deleteData(tableName:String, columnName:String, columnValue:String):void
+		{
+			if (tableExists(tableName))
+			{
+				var deleteStmt:SQLStatement = new SQLStatement();
+				var result:SQLResult = new SQLResult();
+
+				deleteStmt.parameters[0] = columnValue;
+
+				var queryString:String = "DELETE FROM " +
+						tableName +
+						" WHERE " +
+						columnName +
+						" = ?";
+
+				try
+				{
+					deleteStmt.sqlConnection = sqlConnectionSync; //set the connection
+					deleteStmt.text = queryString;
+					deleteStmt.execute();
+					result = deleteStmt.getResult();
+				}
+				catch (error:SQLError)
+				{
+					logger.info("    SQLError in SQLStoreController.deleteData(): " +
+					error.message +
+					" ---- " +
+					error.details);
+				}
+				logger.info("  Delete SQL Store query: " + deleteStmt.text + "\n  Rows affected: " + result.rowsAffected);
+			}
+		}
+
+		private function formatDateForSQLLite(dateObj:Date):String
+		{
+			var dateFormatter:DateTimeFormatter = new DateTimeFormatter(flash.globalization.LocaleID.DEFAULT);
+			var pattern:String = "yyyy-MM-dd HH:mm:ss.SSS"; //sqlite datetime stored in strings with this format
+			dateFormatter.setDateTimePattern(pattern);
+
+			return dateFormatter.format(dateObj);
+		}
 
 		private function tableExists(tableName:String):Boolean
 		{

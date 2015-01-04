@@ -27,7 +27,7 @@ You should have received a copy of the GNU General Public License along with iHA
     /**
      * @copy spark.skins.spark.ApplicationSkin#hostComponent
      */
-    [HostComponent("collaboRhythm.iHAART.model.SkinnableNotification")]
+    [HostComponent("collaboRhythm.iHAART.model.SkinnableConfirmation")]
     ]]>
   </fx:Metadata>
 
@@ -70,7 +70,7 @@ You should have received a copy of the GNU General Public License along with iHA
     <s:BasicLayout/>
   </s:layout>
   <!--- Background fill -->
-  <s:Rect id="background" left="1" top="1" right="1" bottom="0" radiusX="10">
+  <s:Rect id="background" left="1" top="1" right="1" bottom="1" radiusX="10" height="125">
     <s:fill>
       <s:SolidColor id="backgroundFill" color="#424242" alpha="0.9"/>
     </s:fill>
@@ -106,20 +106,18 @@ You should have received a copy of the GNU General Public License along with iHA
     <s:layout>
       <s:VerticalLayout gap="5" paddingTop="5" horizontalAlign="center"/>
     </s:layout>
-    <!--- Title display skin part.
-   @see com.piaction.controls.SkinnableNotification#titleDisplay
-    -->
-    <s:Label id="titleDisplay" maxDisplayedLines="1" color="#FFFFFF" left="10"
-             right="10" minHeight="30" fontSize="42"
-             textAlign="center" fontWeight="bold" fontFamily="MyriadProEmbeddedCFF" paddingTop="20"/>
-    <s:Label id="textDisplay" width="100%" color="#FFFFFF"
+
+    <s:Label id="titleDisplay" maxDisplayedLines="1" color="white" left="10"
+             right="10" minHeight="30" fontSize="30" verticalAlign="middle"
+             textAlign="center" fontWeight="bold" fontFamily="MyriadProEmbeddedCFF" paddingTop="
+				 10" paddingBottom="10"/>
+    <s:Label id="textDisplay" width="100%" color="white" paddingTop="10" paddingBottom="10" height="125"
              paddingLeft="20" paddingRight="20" fontSize="38" fontFamily="MyriadProEmbeddedCFF"/>
-    <s:Group id="controlBarGroup" width="100%" height="90" horizontalCenter="0">
+    <s:Group id="controlBarGroup" width="100%"> <!-- height="90" horizontalCenter="0" -->
       <s:layout>
         <s:HorizontalLayout paddingLeft="5" paddingRight="5" paddingTop="7"
                             paddingBottom="7" gap="10" horizontalAlign="center"/>
       </s:layout>
-
     </s:Group>
   </s:Group>
 </s:SparkSkin>

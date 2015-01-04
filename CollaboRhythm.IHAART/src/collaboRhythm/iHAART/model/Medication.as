@@ -24,8 +24,12 @@ package collaboRhythm.iHAART.model
 	import flash.data.SQLResult;
 	import flash.utils.getQualifiedClassName;
 
+	import mx.collections.ArrayCollection;
+
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+
+	import collaboRhythm.iHAART.model.DebuggingTools;
 
 	[Bindable]
 	public class Medication
@@ -46,24 +50,31 @@ package collaboRhythm.iHAART.model
 		public function initialize(dbController:SQLStoreController, gcmAccount:String):void
 		{
 
-			var result:SQLResult = dbController.getMedDataForAccount(gcmAccount);
+			var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+			var result:SQLResult = dbController.getMedDataForUserAccount(gcmAccount);
 
-			var numResults:int = result.data.length;
-
-			if (numResults == 1)
+			if (result != null)
 			{
 				this.nameDoseAndRoute = result.data[0]['med_name_dose_route'];
 				this.startTime = result.data[0]['med_start_time'];
 				this.endTime = result.data[0]['med_end_time'];
 				this.instructions = result.data[0]['med_instructions'];
+
+				dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.MEDICATION_LOADED, "success", false, false));
 			}
 			else
 			{
 				logger.info("  Cannot initialize medication, data not found...");
+				dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.MEDICATION_LOADED, "failure", false, false));
 			}
+		}
 
-			var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
-			dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.MEDICATION_LOADED, "", false, false));
+		public function isDue():Boolean
+		{
+			var now:Date = new Date();
+			DebuggingTools.myTraceFunction("medication.isDue now = " + now.toString());
+			return true;
+
 		}
 
 		public function get nameDoseAndRoute():String
