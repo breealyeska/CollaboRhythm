@@ -74,7 +74,7 @@
 			<xs:element type="xs:string" name="gcmSenderID" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="gcmHTTPPostKey" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="gcmUserAgent" minOccurs="0" maxOccurs="1"/>
-			<xs:element type="xs:string" name="iHAARTOnly" minOccurs="0" maxOccurs="1"/>
+			<xs:element type="xs:boolean" name="iHAARTOnly" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:boolean" name="useGoogleAnalytics" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="googleAnalyticsTrackingId" minOccurs="0" maxOccurs="1"/>
 			<xs:element type="xs:string" name="logSourceIdentifier" minOccurs="0" maxOccurs="1"/>

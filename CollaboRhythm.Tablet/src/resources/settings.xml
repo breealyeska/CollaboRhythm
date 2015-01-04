@@ -17,39 +17,24 @@
   -->
 <settings xmlns="http://collaborhythm.org/application/settings">
 	<mode>patient</mode>
-	<indivoServerBaseURL>http://indivo-dev.media.mit.edu:9291</indivoServerBaseURL>
-	<gcmServerBaseURL>https://www.umassartstudy.org:8080/launchpad</gcmServerBaseURL>
-	<username>shared-csantos</username>
-	<password>shared-csantos</password>
-	<clinicianTeamMembers>
-		<clinicianTeamMember>shared-jking@records.media.mit.edu</clinicianTeamMember>
-	</clinicianTeamMembers>
-	<primaryClinicianTeamMember>shared-jking@records.media.mit.edu</primaryClinicianTeamMember>
 	<useFileTarget>true</useFileTarget>
 	<useTraceTarget>true</useTraceTarget>
 	<useSyslogTarget>false</useSyslogTarget>
-	<gcmSenderID>36233843899</gcmSenderID>
-	<gcmHTTPPostKey>iyeH@@rthTtPp05tkeeee</gcmHTTPPostKey>
-	<gcmUserAgent>CollaboRhythm</gcmUserAgent>
-	<iHAARTOnly>true</iHAARTOnly>
 	<useGoogleAnalytics>false</useGoogleAnalytics>
 	<logSourceIdentifier>CollaboRhythmDefault</logSourceIdentifier>
 	<collaborationEnabled>false</collaborationEnabled>
+	<iHAARTOnly>true</iHAARTOnly>
 	<rtmpBaseURI>rtmfp://adrenaline.media.mit.edu</rtmpBaseURI>
-	<oauthChromeConsumerKey>collaboRhythmChrome</oauthChromeConsumerKey>
-	<oauthChromeConsumerSecret>collaboRhythmChrome_secret93452</oauthChromeConsumerSecret>
-	<demoModeEnabled>false</demoModeEnabled>
-	<debuggingToolsEnabled>true</debuggingToolsEnabled>
 	<adherenceVoidingEnabled>false</adherenceVoidingEnabled>
 	<includeAdherenceVoidingMenuItem>false</includeAdherenceVoidingMenuItem>
 	<deviceSimulatorEnabled>false</deviceSimulatorEnabled>
 	<targetDate>2011-08-13T10:40:00-5:00</targetDate>
-	<demoDatePresets>
-		<demoDatePreset>2011-07-14T09:10:00-5:00</demoDatePreset>
-		<demoDatePreset>2011-07-17T00:20:00Z</demoDatePreset>
-		<demoDatePreset>2011-07-26T09:20:00-5:00</demoDatePreset>
-		<demoDatePreset>2011-08-13T10:40:00-5:00</demoDatePreset>
-	</demoDatePresets>
+
+	<pluginSearchPaths>
+		<pluginSearchPath>$APPLICATION_STORAGE_DIRECTORY$/plugins</pluginSearchPath>
+		<pluginSearchPath>$APPLICATION_DIRECTORY$/plugins</pluginSearchPath>
+	</pluginSearchPaths>
+
 	<appGroups>
 		<appGroup id="mainWidgets">
 			<appDescriptors>
