@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!---
+  - Copyright 2015 Bree Alyeska, John Moore, Scott Gilroy
+  -
+  - This file is part of iHAART and CollaboRhythm.
+  -
+  - iHAART and CollaboRhythm are free software: you can redistribute them and/or modify them under the terms of the GNU General Public
+  - License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+  - version.
+  -
+  - iHAART and CollaboRhythm are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied
+  - warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+  - details.
+  -
+  - You should have received a copy of the GNU General Public License along with iHAART and CollaboRhythm.  If not, see
+  - <http://www.gnu.org/licenses/>.
+  -->
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                            xmlns:s="library://ns.adobe.com/flex/spark"
+                            xmlns:mx="library://ns.adobe.com/flex/mx"
+                            firstView="collaboRhythm.tablet.view.TestView"
+                            creationComplete="creationCompleteHandler(event)"
+                            runtimeDPIProvider="collaboRhythm.tablet.model.EmulatorDpiProvider">
+  <fx:Style source="iHAART.css">
+  </fx:Style>
+  <fx:Script><![CDATA[
+    import collaboRhythm.iHAART.model.SkinnableConfirmation;
+
+    ;
+
+    import collaboRhythm.iHAART.model.SkinnableAlert;
+    import collaboRhythm.tablet.view.TestView;
+
+    import collaboRhythm.iHAART.model.DebuggingTools;
+
+    import mx.binding.utils.BindingUtils;
+    import mx.collections.ArrayCollection;
+    import mx.core.FlexGlobals;
+    import mx.events.FlexEvent;
+    import mx.events.CloseEvent;
+    import mx.logging.ILogger;
+    import mx.logging.Log;
+
+    import spark.primitives.Graphic;
+
+    private var _logger:ILogger;
+
+
+    override protected function invokeHandler(event:InvokeEvent):void
+    {
+      super.invokeHandler(event);
+      if (event.arguments.length > 0)
+      {
+        trace("Arguments: " + event.arguments.concat(" "));
+      }
+    }
+
+    protected function creationCompleteHandler(event:FlexEvent):void
+    {
+      main();
+    }
+
+    private function main():void
+    {
+
+    }
+
+    private function handleAlertClick(event:CloseEvent):void
+    {
+      switch (event.detail)
+      {
+        case SkinnableAlert.OK:
+          break;
+        case SkinnableAlert.YES:
+          break;
+        case SkinnableAlert.NO:
+          break;
+        case SkinnableAlert.CANCEL:
+          break;
+        case SkinnableAlert.TAKE:
+          trace("   bree in here now...");
+          SkinnableConfirmation.show("Are you sure? You won't be able to change this later.", "Confirm", SkinnableConfirmation.YES|SkinnableConfirmation.CANCEL);
+          break;
+        case SkinnableAlert.SNOOZE:
+          break;
+      }
+
+    }
+
+  private function handleConfirmationClick(event:CloseEvent):void
+  {
+    switch (event.detail)
+    {
+      case SkinnableAlert.YES:
+        break;
+      case SkinnableAlert.CANCEL:
+        break;
+    }
+
+  }
+
+    public function get logger():ILogger
+    {
+      if (!_logger)
+      {
+        _logger = Log.getLogger(getQualifiedClassName(this).replace("::", "."));
+      }
+      return _logger;
+    }
+
+    public function set logger(value:ILogger):void
+    {
+      _logger = value;
+    }
+    ]]></fx:Script>
+  <s:actionContent>
+    <s:VGroup id="registeredGroup" gap="0" horizontalAlign="center" includeInLayout="true" visible="true">
+      <s:HGroup id="registeredHGroup" includeInLayout="true" visible="true"
+                width="100%" horizontalAlign="center">
+        <s:BitmapImage id="registeredIcon" includeInLayout="true" visible="false"
+                       source="@Embed(source='/assets/images/icons/Registered_32x32.png')"
+                       width="48" height="48"/>
+      </s:HGroup>
+    </s:VGroup>
+  </s:actionContent>
+  <s:navigationContent>
+    <s:Button id="backButtonNow" label="backer"/>
+  </s:navigationContent>
+</s:ViewNavigatorApplication>
