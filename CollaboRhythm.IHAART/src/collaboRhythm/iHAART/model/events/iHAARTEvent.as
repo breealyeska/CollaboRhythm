@@ -1,9 +1,27 @@
+/**
+ * Copyright 2014 Bree Alyeska
+ *
+ * This file is part of iHAART & CollaboRhythm.
+ *
+ * iHAART and CollaboRhythm are free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later  version.
+ *
+ * iHAART and CollaboRhythm are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with iHAART & CollaboRhythm. If not, see
+ * <http://www.gnu.org/licenses/>.
+ */
+
 package collaboRhythm.iHAART.model.events
 {
+
 	import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
 	import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
 
-	import com.alyeska.shared.ane.GCMPushInterface;
+	import com.alyeska.shared.ane.gcm.libInterface.GCMPushInterface;
 
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
@@ -43,7 +61,11 @@ package collaboRhythm.iHAART.model.events
 		 * @param bubbles Whether or not the event bubbles.
 		 * @param cancelable Whether or not the event is cancelable.
 		 */
-		public function IHAARTEvent(eventType:String, message:String, bubbles:Boolean = false, cancelable:Boolean = false)
+
+		public function IHAARTEvent(eventType:String,
+									message:String,
+									bubbles:Boolean = false,
+									cancelable:Boolean = false)
 		{
 			super(eventType, bubbles, cancelable);
 			logger.info("  CM Event: " + eventType + "  " + message);
@@ -70,15 +92,14 @@ package collaboRhythm.iHAART.model.events
 					break;
 				case ACTIVE_ACCOUNT_LOADED :
 					this.message = message;
-					FlexGlobals.topLevelApplication.applicationController.activeAccountLoadedHandler(this.message);
+					FlexGlobals.topLevelApplication.applicationController.activeAccount_loadedHandler(this.message);
 					break;
 				case SCHEDULE_LOADED :
 					this.message = message;
-					FlexGlobals.topLevelApplication.applicationController.scheduleLoadedHandler(this.message);
+					FlexGlobals.topLevelApplication.applicationController.schedule_loadedHandler(this.message);
 					break;
-				case MEDICATION_LOADED :
+				case MEDICATION_LOADED :   //message = 'success' or 'failure' based on whether object was initialized
 					this.message = message;
-//					FlexGlobals.topLevelApplication.applicationController.medicationLoadedHandler();
 					break;
 				default :
 					this.statusCode = "-1";
@@ -86,10 +107,15 @@ package collaboRhythm.iHAART.model.events
 			}
 		}
 
-//		public override function clone():Event
-//		{
-//
-//		}
+		/**
+		 * Creates and returns a copy of the current instance.
+		 * @return A copy of the current instance.
+		 */
+		public override function clone():Event
+		{
+			return new IHAARTEvent(this.type, this.message, this.bubbles, this.cancelable);
+		}
+
 		public function get logger():ILogger
 		{
 			if (!_logger)
