@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!---
+  - Copyright 2015 Bree Alyeska, John Moore, Scott Gilroy
+  -
+  - This file is part of iHAART and CollaboRhythm.
+  -
+  - iHAART and CollaboRhythm are free software: you can redistribute them and/or modify them under the terms of the GNU General Public
+  - License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later
+  - version.
+  -
+  - iHAART and CollaboRhythm are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied
+  - warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+  - details.
+  -
+  - You should have received a copy of the GNU General Public License along with iHAART and CollaboRhythm.  If not, see
+  - <http://www.gnu.org/licenses/>.
+  -->
+
+<!--
+  Created by breezy on 1/1/15.
+-->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:tablet="collaboRhythm.shared.view.tablet.*"
+        xmlns:core="collaboRhythm.core.view.*"
+        xmlns:views="com.pialabs.eskimo"
+        xmlns:ihaart="collaboRhythm.iHAART.model.*"
+        actionBarVisible="true"
+        title="Testing">
+  <fx:Style source="../../../iHAART.css">
+  </fx:Style>
+  <fx:Script><![CDATA[
+      import collaboRhythm.iHAART.model.DebuggingTools;
+      import collaboRhythm.shared.model.services.WorkstationKernel;
+      import collaboRhythm.shared.model.settings.Settings;
+
+      import com.alyeska.shared.ane.alarm.libInterface.AlarmInterface;
+
+      import mx.collections.ArrayCollection;
+
+      import mx.core.FlexGlobals;
+      import mx.logging.Log;
+      import mx.logging.ILogger;
+
+      import flash.globalization.DateTimeFormatter;
+      import mx.formatters.DateFormatter;
+
+      import spark.components.HGroup;
+
+      import spark.components.View;
+
+      import spark.components.supportClasses.Skin;
+
+      import mx.core.IVisualElementContainer;
+      import mx.events.FlexEvent;
+      import mx.events.CloseEvent;
+      import mx.rpc.http.HTTPService;
+      import mx.rpc.events.ResultEvent;
+      import mx.rpc.events.FaultEvent;
+
+      import collaboRhythm.tablet.controller.IHAARTApplicationController;
+      import collaboRhythm.iHAART.model.SkinnableAlert;
+      import collaboRhythm.iHAART.view.skins.AlertSkin;
+      import collaboRhythm.iHAART.cloudMessaging.controller.CloudMessagingController;
+      import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
+      import collaboRhythm.iHAART.model.events.IHAARTEvent;
+      import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
+
+      import collaboRhythm.iHAART.model.events.ContextableListEvent;
+
+      private function showAlert(message:String, title:String):void
+      {
+          SkinnableAlert.show(message, title, SkinnableAlert.TAKE | SkinnableAlert.CANCEL)
+      }
+
+      private function indivoTimestampToDate():void
+      {
+          var testString:String = "2015-01-03T13:35:34.298Z";
+          var sqlStore:SQLStoreController = new SQLStoreController();
+          sqlStore.dateTimeTest(testString);
+      }
+
+      public function toggleRegistered()
+      {
+          if (this.parentApplication.registeredIcon.visible == true) {
+              this.parentApplication.registeredIcon.visible = false;
+          }
+          else {
+              this.parentApplication.registeredIcon.visible = true;
+          }
+      }
+       public function showProgress():void
+       {
+           DebuggingTools.myTraceFunction("  in showProgress function");
+           var alarmi:AlarmInterface = new AlarmInterface();
+           alarmi.showProgress();
+       }
+
+      ]]></fx:Script>
+
+  <s:Panel id="overlayPanel" styleName="headerlessPanel" includeInLayout="true" visible="true"
+           width="100%" height="100" horizontalCenter="0">
+    <s:VGroup id="homeVGroup" includeInLayout="true" visible="true"
+              width="100%" height="100%" gap="10" horizontalCenter="0" horizontalAlign="center">
+      <s:SkinnableContainer id="userInfoContainer" includeInLayout="true" visible="true"
+                            width="100%" height="80"
+                            styleName="gradientContainerStyle">
+        <s:VGroup width="100%" height="100%">
+          <s:Label id="userLabel" includeInLayout="true" visible="true"
+                   width="100%" height="100%"
+                   textAlign="right" verticalCenter="0"
+                   fontFamily="MyriadProEmbeddedCFF" fontSize="36" fontWeight="bold" fontStyle="italic"/>
+        </s:VGroup>
+      </s:SkinnableContainer>
+      <s:SkinnableContainer id="mainContainer" includeInLayout="true" visible="true"
+                            styleName="iHAARTContainerStyle" width="95%" height="100%" horizontalCenter="0">
+        <s:VGroup horizontalCenter="0" horizontalAlign="center">
+          <s:Button label="Test Alert Longer"
+                    click="showAlert('A substance related to a flavor enhancer in soy sauce is among the next generation of medications being tested to fight HIV and may be more potent than current first-line therapies.', 'Longer')"/>
+            <s:Button label="Test Alert Shorter"
+                      click="showAlert('A substance related to a flavor enhancer in soy sauce is among the next generation of medications.', 'Shorter')"/>
+            <s:Button label="Test Date Formatting"
+                      click="indivoTimestampToDate()"/>
+            <s:Button label="Toggle Registered"
+                      click="toggleRegistered()"/>
+            <s:Button label="Show Progress"
+                      click="showProgress()"/>
+        </s:VGroup>
+      </s:SkinnableContainer>
+    </s:VGroup>
+  </s:Panel>
+
+</s:View>
