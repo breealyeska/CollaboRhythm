@@ -20,6 +20,7 @@
 		import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
 		import collaboRhythm.iHAART.model.events.IHAARTEvent;
 		import collaboRhythm.iHAART.sqlStore.controller.SQLStoreController;
+		import collaboRhythm.shared.model.services.WorkstationKernel;
 		import collaboRhythm.shared.model.settings.Settings;
 
 		import mx.core.FlexGlobals;
@@ -41,8 +42,14 @@
 			var scheduleItemOccurrenceReportingViewAdapter:IHealthActionListViewAdapter = scheduleModel.healthActionListViewAdapterFactory.createScheduledHealthActionViewAdapter(_scheduleItemOccurrence,
 					scheduleModel);
 
-			var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
-			dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.SCHEDULE_LOADED, settings.gcmAccount, false, false));
+			if (settings.iHAARTOnly)
+			{
+				var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+				dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.SCHEDULE_LOADED,
+						settings.gcmAccount,
+						false,
+						false));
+			}
 
 			if (scheduleItemOccurrenceReportingViewAdapter)
 			{
@@ -157,7 +164,11 @@
 
 		public function get settings():Settings
 		{
-			return FlexGlobals.topLevelApplication.applicationController.settings;
+			if (!_settings)
+			{
+				_settings = WorkstationKernel.instance.resolve(Settings) as Settings;
+			}
+			return _settings;
 		}
 		]]>
     </fx:Script>
