@@ -102,7 +102,12 @@ package collaboRhythm.shared.model.settings
 			nativePath = nativePath.replace("/data/data", "/storage/sdcard0");
 			var file:File = new File(nativePath);
 			if (!file.exists)
-				file = File.documentsDirectory.resolvePath(NativeApplication.nativeApplication.applicationID).resolvePath(SETTINGS_FILE_NAME);
+			{
+				var docPath:String = File.documentsDirectory.resolvePath(NativeApplication.nativeApplication.applicationID).resolvePath(SETTINGS_FILE_NAME).nativePath;
+				var fullDir:String = "air." + NativeApplication.nativeApplication.applicationID + "/" + NativeApplication.nativeApplication.applicationID + "/Local Store";
+				docPath = docPath.replace(NativeApplication.nativeApplication.applicationID, fullDir);
+				file.nativePath = docPath;
+			}
 			return file;
 		}
 
