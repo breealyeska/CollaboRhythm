@@ -113,13 +113,25 @@ ihaartcontrols|SkinnableAlert {
 	backgroundAlpha: 0.9;
 }
 
+ihaartcontrols|SkinnableConfirmation {
+	skinClass: ClassReference("collaboRhythm.iHAART.view.skins.ConfirmationSkin");
+	backgroundColor: #424242;
+	backgroundAlpha: 0.9;
+}
+
+ihaartcontrols|MobileContextMenu s|List {
+	alternatingItemColors: #FFFFFF;
+	color: #000000;
+	contentBackgroundColor: #FFFFFF;
+}
+
 s|Button {
 	/*chromeColor: #dedede;*/
 	textShadowColor: #676767;
 	textShadowAlpha: 0.5;
 	fontSize: 32pt;
 	fontWeight: bold;
-	fontFamily: MyriadProEmbeddedCFF;
+	fontFamily: MyriadProEmbedded;
 	skinClass: ClassReference("collaboRhythm.iHAART.view.skins.ButtonSkin");
 }
 
@@ -130,6 +142,7 @@ s|Label {
 s|Label.ActionBarLabel {
 	color: #5000ff;
 	fontSize: 36;
+	fontFamily: MyriadProEmbedded;
 }
 
 s|ActionBar {
@@ -138,6 +151,9 @@ s|ActionBar {
 	defaultButtonAppearance: beveled;
 }
 
+s|Button {
+	fontFamily: MyriadProEmbedded;
+}
 /*piacomponents|DeletableList {*/
 	/*textShadowColor: #000000;*/
 /*}*/
@@ -233,15 +249,15 @@ piacomponents|MobileContextMenu s|List {
 	contentBackgroundColor: #FFFFFF;
 }
 
-piacomponents|PopOver {
-	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.PopOverSkin");
-	chromeColor: #10142E;
-}
+/*piacomponents|PopOver {*/
+	/*skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.PopOverSkin");*/
+	/*chromeColor: #10142E;*/
+/*}*/
 
-piacomponents|ComboBox {
-	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.ComboBoxSkin");
-	popupSkinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.PopUpUniqueChoiceSkin");
-}
+/*piacomponents|ComboBox {*/
+	/*skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.ComboBoxSkin");*/
+	/*popupSkinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.PopUpUniqueChoiceSkin");*/
+/*}*/
 
 /*piacomponents|ListWheel {*/
 	/*skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.ListWheelSkin");*/
@@ -318,20 +334,20 @@ piacomponents|ComboBox {
 	/*skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.SectionListSkin");*/
 /*}*/
 
-piacomponents|BreadCrumb {
-	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.BreadCrumbSkin");
-	chromeColor: #999999;
-	fillAlpha: 1;
-	borderColor: #000000;
-	borderAlpha: 0.2;
-	color: #000000;
-	fontSize: 14;
-}
+/*piacomponents|BreadCrumb {*/
+	/*skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.BreadCrumbSkin");*/
+	/*chromeColor: #999999;*/
+	/*fillAlpha: 1;*/
+	/*borderColor: #000000;*/
+	/*borderAlpha: 0.2;*/
+	/*color: #000000;*/
+	/*fontSize: 14;*/
+/*}*/
 
-piacomponents|BreadCrumb s|ButtonBarButton {
-	textShadowColor: #FFFFFF;
+/*piacomponents|BreadCrumb s|ButtonBarButton {*/
+	/*textShadowColor: #FFFFFF;*/
 
-}
+/*}*/
 
 piacomponents|ConfirmButton {
 	skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.ConfirmButtonSkin");
