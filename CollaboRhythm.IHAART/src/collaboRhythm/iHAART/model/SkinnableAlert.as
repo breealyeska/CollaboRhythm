@@ -693,11 +693,8 @@ package collaboRhythm.iHAART.model
 		{
 			super.measure();
 
-//			measuredMinWidth = 300;
-//			measuredMinHeight = 150;
-
-			explicitMinWidth = 300;
-			explicitMinHeight= 150;
+			explicitMinWidth = 580;
+			explicitMinHeight= 350;
 
 			var parentWidth = this.parentDocument.width;
 			var parentHeight = this.parentDocument.height;
