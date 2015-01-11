@@ -136,7 +136,7 @@ You should have received a copy of the GNU General Public License along with iHA
 	<!-- The icon the system uses for the application. For at least one resolution,
 	specify the path to a PNG file included in the AIR package. Optional. -->
 	<icon>
-		<image128x128>assets/images/icons/iHAART_icon_rev2_128x128.png</image128x128>
+		<image128x128>assets/images/icons/ihaart_icon_rev2_128x128.png</image128x128>
 	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
@@ -223,9 +223,9 @@ You should have received a copy of the GNU General Public License along with iHA
 
 	<extensions>
 		<extensionID>com.adobe.Vibration</extensionID>
-		<extensionID>CollaboRhythm.ANE.ApplicationMessaging</extensionID>
-		<extensionID>com.alyeska.shared.ane.gcm.GCMPush</extensionID>
-		<extensionID>com.alyeska.shared.ane.alarm.Alarm</extensionID>
+		<extensionID>com.alyeska.shared.ane.GCMPush</extensionID>
+		<extensionID>com.alyeska.shared.ane.AlarmExt</extensionID>
+		<extensionID>com.alyeska.shared.ane.UtilitiesExt</extensionID>
 	</extensions>
 
 	<android>
@@ -283,7 +283,7 @@ You should have received a copy of the GNU General Public License along with iHA
 
 			<receiver android:name="com.alyeska.shared.ane.alarm.freInterface.AlarmBootReceiver" >
 				<intent-filter>
-					<action android:name="android.intent.action.BOOT_COMPLETED" />
+					<action android:name="android.intent.action.BOOT_COMPLETED"/>
 				</intent-filter>
 			</receiver>
 
@@ -299,6 +299,10 @@ You should have received a copy of the GNU General Public License along with iHA
 					<data android:scheme="collaborhythm"/>
 				</intent-filter>
 			</activity>
+
+			<activity android:name="com.alyeska.shared.ane.utilities.freInterface.ProgressActivity"/> <!-- android:theme="@android:style/Theme.Translucent" -->
+			<activity android:name="com.alyeska.shared.ane.utilities.freInterface.PasscodeActivity" android:theme="@style/IHAARTTheme"/> <!-- android:theme="@android:style/Theme.Translucent" -->
+			<activity android:name="com.alyeska.shared.ane.utilities.freInterface.TimerActivity"/>
 
 		</application>
 	</manifest>
