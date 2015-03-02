@@ -23,7 +23,7 @@
 	<useGoogleAnalytics>false</useGoogleAnalytics>
 	<logSourceIdentifier>CollaboRhythmDefault</logSourceIdentifier>
 	<collaborationEnabled>false</collaborationEnabled>
-	<iHAARTOnly>false</iHAARTOnly>
+	<iHAARTOnly>true</iHAARTOnly>
 	<rtmpBaseURI>rtmfp://adrenaline.media.mit.edu</rtmpBaseURI>
 	<adherenceVoidingEnabled>false</adherenceVoidingEnabled>
 	<includeAdherenceVoidingMenuItem>false</includeAdherenceVoidingMenuItem>
