@@ -38,6 +38,9 @@
     <ConfigurationWrapper RunnerId="FlexRunner" />
     <method>
       <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Clear Device Log and DB" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_GCM All-In-One" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_IHAART All-In-One" />
+      <option name="Make" enabled="true" />
     </method>
   </configuration>
 </component>
