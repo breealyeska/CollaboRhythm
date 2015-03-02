@@ -1,5 +1,7 @@
 package collaboRhythm.plugins.medications.model
 {
+	import collaboRhythm.iHAART.controller.IHAARTEventDispatcher;
+	import collaboRhythm.iHAART.model.events.IHAARTEvent;
 	import collaboRhythm.plugins.medications.view.MedicationImage;
 	import collaboRhythm.plugins.schedule.shared.controller.HealthActionListViewControllerBase;
 	import collaboRhythm.plugins.schedule.shared.model.HealthActionBase;
@@ -17,6 +19,7 @@ package collaboRhythm.plugins.medications.model
 	import collaboRhythm.shared.model.services.IImageCacheService;
 	import collaboRhythm.shared.model.services.IMedicationColorSource;
 	import collaboRhythm.shared.model.services.WorkstationKernel;
+	import collaboRhythm.shared.model.settings.Settings;
 
 	import mx.core.IVisualElement;
 
@@ -38,6 +41,8 @@ package collaboRhythm.plugins.medications.model
 
 		private var _imageCacheService:IImageCacheService;
 		private var _medicationCode:String;
+
+		private var _settings:Settings;
 
 		public function MedicationHealthActionListViewAdapter(scheduleItemOccurrence:ScheduleItemOccurrence,
 															  healthActionModelDetailsProvider:IHealthActionModelDetailsProvider,
@@ -87,6 +92,15 @@ package collaboRhythm.plugins.medications.model
 				medicationImage.setStyle("loadingImageColor",
 										 _medicationColorSource.getMedicationColor(_medicationOrder.medicationFill.ndc.text));
 				medicationImage.source = _imageCacheService.getImage(medicationImage, MedicationFillsModel.MEDICATION_API_URL_BASE + _medicationOrder.medicationFill.ndc.text + "-front.png");
+				if (settings.iHAARTOnly)
+				{
+					var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
+					dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.MEDICATION_IMAGE_LOADED,
+							medicationImage.source.toString(),
+							null,
+							false,
+							false));
+				}
 			}
 			return medicationImage;
 		}
@@ -197,6 +211,15 @@ package collaboRhythm.plugins.medications.model
 		public function createCommandButtons():Vector.<Button>
 		{
 			return null;
+		}
+
+		public function get settings():Settings
+		{
+			if (!_settings)
+			{
+				_settings = WorkstationKernel.instance.resolve(Settings) as Settings;
+			}
+			return _settings;
 		}
 	}
 }
