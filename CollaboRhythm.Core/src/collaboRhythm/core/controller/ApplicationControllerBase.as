@@ -962,7 +962,7 @@ package collaboRhythm.core.controller
 
 			if (settings.iHAARTOnly)
 			{
-				FlexGlobals.topLevelApplication.applicationController.activeAccountLoadedHandler(_activeAccount.primaryRecord.demographics.Name.givenName, _activeAccount.primaryRecord.demographics.Name.familyName, settings.gcmAccount);
+				FlexGlobals.topLevelApplication.applicationController.activeAccount_loadedHandler(_activeAccount.primaryRecord.demographics.Name.givenName, _activeAccount.primaryRecord.demographics.Name.familyName, settings.gcmAccount);
 			}
 		}
 
