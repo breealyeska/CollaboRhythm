@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ihaart" type="flex">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ExternalLibraries/ihaart.ane!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
