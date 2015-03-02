@@ -38,6 +38,12 @@
             <entry library-name="gcm" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="alarm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="ihaart" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -53,7 +59,6 @@
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
           </files-to-package>
@@ -94,6 +99,12 @@
             <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="alarm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="ihaart" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -110,16 +121,13 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Schedule/bin-debug/SchedulePluginModule.swf" path-in-package="plugins/SchedulePluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Medications/bin-debug/MedicationsPluginModule.swf" path-in-package="plugins/MedicationsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.HealthCharts/bin-debug/HealthChartsPluginModule.swf" path-in-package="plugins/HealthChartsPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.ForaD40b/bin-debug/ForaD40bPluginModule.swf" path-in-package="plugins/ForaD40bPluginModule.swf" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Messages/bin-debug/MessagesPluginModule.swf" path-in-package="plugins/MessagesPluginModule.swf" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/../CollaboRhythm.Plugins.Problems.HIV/bin-debug/HIVPluginModule.swf" path-in-package="plugins/HIVPluginModule.swf" />
           </files-to-package>
           <AirSigningOptions keystore-path="$MODULE_DIR$/../../Keystores/CollaborhythmKey.jks" keystore-type="JKS" />
         </packaging-android>
         <packaging-ios package-file-name="CollaboRhythm_Tablet" />
       </configuration>
-      <configuration name="CollaboRhythm.Tablet Release" target-platform="Mobile" main-class="CollaboRhythmTabletApplication" output-file="CollaboRhythm.Tablet.Release.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="CollaboRhythm.Tablet Release" target-platform="Mobile" main-class="CollaboRhythmTabletApplication" output-file="CollaboRhythm.Tablet.Release.swf" output-folder="$MODULE_DIR$/bin-debug" skip-build="true">
         <dependencies>
           <entries>
             <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
@@ -152,6 +160,12 @@
             <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="alarm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="ihaart" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -177,7 +191,7 @@
         </packaging-android>
         <packaging-ios package-file-name="CollaboRhythm_Tablet_Release" />
       </configuration>
-      <configuration name="CollaboRhythm.Tablet Emulator" target-platform="Mobile" main-class="CollaboRhythmTabletApplication" output-file="CollaboRhythm.Tablet.Emulator.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="CollaboRhythm.Tablet Emulator" target-platform="Mobile" main-class="CollaboRhythmTabletApplication" output-file="CollaboRhythm.Tablet.Emulator.swf" output-folder="$MODULE_DIR$/bin-debug" skip-build="true">
         <dependencies>
           <entries>
             <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
@@ -208,6 +222,12 @@
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="alarm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="ihaart" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -265,6 +285,12 @@
             <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="alarm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="ihaart" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -320,10 +346,22 @@
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="gcm" library-level="project">
+            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
               <dependency linkage="Merged" />
             </entry>
-            <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
+            <entry library-id="f56cbfec-114b-4a69-bcfa-2ccd80151f10">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="c969426d-5243-4460-a766-020fa7f81dc5">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="9ad47d5b-9387-4bb4-931b-88b15b939fb5">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="alarm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="ihaart" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -346,37 +384,13 @@
         </packaging-android>
         <packaging-ios package-file-name="iHAART_Device_Debug" />
       </configuration>
-      <configuration name="iHAART Emulator" target-platform="Mobile" main-class="IHAARTApplication" output-file="iHAART_Emulator.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="iHAART Test" target-platform="Mobile" main-class="TestApplication" output-file="iHAART_Test.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies>
           <entries>
-            <entry module-name="CollaboRhythm.Core.Model" build-configuration-name="CollaboRhythm.Core.Model">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry module-name="CollaboRhythm.Core" build-configuration-name="CollaboRhythm.Core">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry module-name="CollaboRhythm.Shared.PluginsSupport" build-configuration-name="CollaboRhythm.Shared.PluginsSupport">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-id="6848ec98-4bb0-4d62-83ce-ad2009a6b48b">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="c05c95bc-b907-422a-81ad-47a00b5426a2">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry module-name="CollaboRhythm.Shared.Model.Services" build-configuration-name="CollaboRhythm.Shared.Model.Services">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="Desktop libraries for mobile applications" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry module-name="CollaboRhythm.Shared.Messages" build-configuration-name="CollaboRhythm.Shared.Messages">
               <dependency linkage="Merged" />
             </entry>
             <entry module-name="CollaboRhythm.IHAART" build-configuration-name="CollaboRhythm.IHAART">
@@ -385,12 +399,31 @@
             <entry library-name="gcm" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry module-name="CollaboRhythm.Core" build-configuration-name="CollaboRhythm.Core">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry module-name="CollaboRhythm.Shared" build-configuration-name="CollaboRhythm.Shared">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="alarm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="a018d934-ae14-4503-ae8e-61f0d2f454b2">
+              <dependency linkage="External" />
+            </entry>
+            <entry library-name="ihaart" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/iHAARTApplication-Emulator-app.xml" package-file-name="iHAART.Emulator" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/iHAARTApplication-Test-app.xml" package-file-name="iHAART.Test">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/assets/images/icons" path-in-package="assets/images/icons" />
+          </files-to-package>
+        </packaging-android>
         <packaging-ios package-file-name="iHAART_Emulator" />
       </configuration>
     </configurations>
@@ -524,18 +557,50 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="CollaboRhythm.IHAART" exported="" />
+    <orderEntry type="library" exported="" name="gcm" level="project" />
+    <orderEntry type="library" exported="" name="alarm" level="project" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="c05c95bc-b907-422a-81ad-47a00b5426a2" />
+        <properties id="f56cbfec-114b-4a69-bcfa-2ccd80151f10" />
         <CLASSES>
-          <root url="jar://$NATIVE_APPLICATION_UPDATER_HOME$/applicationupdater.swc!/" />
+          <root url="jar://$MODULE_DIR$/../ExternalLibraries/alarm.ane!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="CollaboRhythm.Shared.Messages" exported="" />
-    <orderEntry type="module" module-name="CollaboRhythm.IHAART" exported="" />
-    <orderEntry type="library" exported="" name="gcm" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="c969426d-5243-4460-a766-020fa7f81dc5" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../ExternalLibraries/gcm.ane!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="9ad47d5b-9387-4bb4-931b-88b15b939fb5" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../ExternalLibraries/utilities.ane!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="UtilitiesJAR" type="flex">
+        <properties id="a018d934-ae14-4503-ae8e-61f0d2f454b2" />
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../UtilitiesExtension/UtilitiesJAR/bin/utilities.jar!/" />
+        </SOURCES>
+        <jarDirectory url="jar://$MODULE_DIR$/../../UtilitiesExtension/UtilitiesJAR/bin/utilities.jar!/" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="ihaart" level="project" />
   </component>
 </module>

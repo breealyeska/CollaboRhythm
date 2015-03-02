@@ -50,6 +50,12 @@
             <entry module-name="CollaboRhythm.Shared.Collaboration" build-configuration-name="CollaboRhythm.Shared.Collaboration">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="alarm" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="ihaart" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.6.0" />
         </dependencies>
@@ -93,5 +99,7 @@
     <orderEntry type="library" exported="" name="gcm" level="project" />
     <orderEntry type="module" module-name="TCPSyslogTarget" exported="" />
     <orderEntry type="module" module-name="CollaboRhythm.Shared.Collaboration" exported="" />
+    <orderEntry type="library" exported="" name="alarm" level="project" />
+    <orderEntry type="library" exported="" name="ihaart" level="project" />
   </component>
 </module>
