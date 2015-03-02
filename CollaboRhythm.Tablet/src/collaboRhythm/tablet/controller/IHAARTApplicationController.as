@@ -50,6 +50,8 @@ package collaboRhythm.tablet.controller
 	import collaboRhythm.tablet.view.SelectRecordView;
 	import collaboRhythm.tablet.view.TabletFullViewContainer;
 
+	import com.alyeska.shared.ane.iHAART.libInterface.IHAARTInterface;
+
 	import flash.display.Bitmap;
 
 	import mx.collections.ArrayCollection;
@@ -126,8 +128,8 @@ package collaboRhythm.tablet.controller
 			_inAppPassCodeView = iHAARTApplication.inAppPassCodeView;
 
 			_userLabel = iHAARTApplication.iHAARTHomeView.userLabel;
-			_registeredIcon = iHAARTApplication.registeredIcon;
-			_registeredGroup = iHAARTApplication.registeredGroup;
+//			_registeredIcon = iHAARTApplication.registeredIcon;
+//			_registeredGroup = iHAARTApplication.registeredGroup;
 
 			_userInfoContainer = iHAARTApplication.iHAARTHomeView.userInfoContainer;
 			_mainContainer = iHAARTApplication.iHAARTHomeView.mainContainer;
@@ -139,6 +141,8 @@ package collaboRhythm.tablet.controller
 		override public function main():void
 		{
 			super.main();
+
+			gcmController.initialize();
 
 			settings.modality = Settings.MODALITY_TABLET;
 
@@ -199,10 +203,25 @@ package collaboRhythm.tablet.controller
 			mainContainer.visible = true;
 		}
 
-		public function schedule_loadedHandler(message:String):void
+		public function schedule_loadedHandler(medData:Object):void
 		{
-			medication = new Medication();
-			medication.initialize(dbController, settings.gcmAccount);
+			medication = new Medication(medData);
+		}
+
+		public function medicationImage_loadedHandler(medSource:String):void
+		{
+			medication.setImgSource(medSource);
+
+//			var jsonString:String = {"nameText":medication.nameText, "doseAmount":medication.doseAmount, "doseUnit":medication.doseUnit, "indication":medication.indication, "instructions":medication.instructions, "startTime":medication.startTime, "endTime": medication.endTime, "imgSource":medication.imgSource};
+			var jsonString = JSON.stringify(medication);
+			DebuggingTools.taggedTrace("  entering startClockActivity function: " + jsonString);
+			var utili:IHAARTInterface = new IHAARTInterface();
+			utili.startClockActivity(jsonString);
+		}
+
+		public function settings_loadedHandler(message:String):void
+		{
+			gcmController.initialize();
 		}
 
 		private function collaborationState_changeHandler(collaborationState:String):void

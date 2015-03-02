@@ -49,9 +49,13 @@ You should have received a copy of the GNU General Public License along with iHA
 		import collaboRhythm.tablet.view.IHAARTHomeView;
 
 		import collaboRhythm.iHAART.model.Medication;
+		import collaboRhythm.iHAART.model.DebuggingTools;
 
 		import collaboRhythm.shared.view.MenuIcon;
 		import collaboRhythm.shared.view.tablet.TabletViewBase;
+
+		import com.alyeska.shared.ane.iHAART.libInterface.IHAARTInterface;
+		import com.alyeska.shared.ane.iHAART.libInterface.IHAARTInterface;
 
 		import mx.binding.utils.BindingUtils;
 		import mx.collections.ArrayCollection;
@@ -103,6 +107,7 @@ You should have received a copy of the GNU General Public License along with iHA
 
 		protected function creationCompleteHandler(event:FlexEvent):void
 		{
+
 			this.addEventListener(FlexEvent.MENU_KEY_PRESSED, menuKeyPressedHandler);
 
 			main();
@@ -119,130 +124,57 @@ You should have received a copy of the GNU General Public License along with iHA
 
 			_collaborationController = _applicationController.collaborationController;
 
-			this.addEventListener(IHAARTEvent.REGISTERED, handleRegistered, false, 0, false);
-			this.addEventListener(IHAARTEvent.UNREGISTERED, handleUnregistered, false, 0, false);
-			this.addEventListener(IHAARTEvent.INDIVO_GET, handleIndivoGet, false, 0, false);
-			this.addEventListener(IHAARTEvent.INDIVO_UPDATE, handleIndivoUpdate, false, 0, false);
-			this.addEventListener(IHAARTEvent.MESSAGE, handleIHAARTMessage, false, 0, false);
-			this.addEventListener(IHAARTEvent.FOREGROUND_MESSAGE, handleIHAARTFGMessage, false, 0, false);
-			this.addEventListener(IHAARTEvent.SCHEDULE_LOADED, handleIHAARTScheduleLoaded, false, 0, false);
-			this.addEventListener(IHAARTEvent.MEDICATION_LOADED, handleIHAARTMedicationLoaded, false, 0, false);
-			this.addEventListener(IHAARTEvent.ERROR, handleIHAARTError, false, 0, false);
-
-			applicationController.gcmController = new CloudMessagingController();
-
-			var isRegistered:Boolean = applicationController.gcmController.isRegistered;
+//			this.addEventListener(IHAARTEvent.REGISTERED, gcmEvent_registeredHandler, false, 0, false);
+//			this.addEventListener(IHAARTEvent.UNREGISTERED, gcmEvent_unregisteredHandler, false, 0, false);
+//			this.addEventListener(IHAARTEvent.MESSAGE, handleIHAARTMessage, false, 0, false);
+//			this.addEventListener(IHAARTEvent.FOREGROUND_MESSAGE, handleIHAARTFGMessage, false, 0, false);
+//			this.addEventListener(IHAARTEvent.SCHEDULE_LOADED, handleIHAARTScheduleLoaded, false, 0, false);
+//			this.addEventListener(IHAARTEvent.MEDICATION_IMAGE_LOADED, handleIHAARTMedicationImageLoaded, false, 0, false);
+//			this.addEventListener(IHAARTEvent.ERROR, handleIHAARTError, false, 0, false);
 		}
-
-//		public function initializeMedication():void
-//		{
-//			if (!_medication)
-//			{
-//				_medication = new Medication()
-//			}
-//
-//			var result:SQLResult = dbController.getAccountData(applicationController.settings.gcmAccount);
-//
-//			var numResults:int = result.data.length;
-//
-//			if (result.data.length = 1)
-//			{
-//				medication.nameDoseAndRoute = result.data[0]['med_name_dose_route'];
-//				medication.startTime = result.data[0]['med_start_time'];
-//				medication.endTime = result.data[0]['med_end_time'];
-//				medication.instructions = result.data[0]['med_instructions'];
-//			}
-//			else
-//			{
-//				logger.info("  Cannot initialize medication, data not found...");
-//			}
-//
-//			var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
-//			dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.MEDICATION_LOADED, "", false, false));
-//		}
-
-		//		SkinnableAlert.show(medication.nameDoseAndRoute,
-		//				'iHAART Reminder',
-		//				SkinnableAlert.OK |
-		//				SkinnableAlert.TAKE,
-		//				null,
-		//				handleAlertClick);
 
 		public function get iHAARTHomeView():IHAARTHomeView
 		{
 			return navigator.activeView as IHAARTHomeView;
 		}
 
-		private function handleAlertClick(event:CloseEvent):void
-		{
-			switch (event.detail)
-			{
-				case SkinnableAlert.OK:
-					break;
-				case SkinnableAlert.YES:
-					break;
-				case SkinnableAlert.NO:
-					break;
-				case SkinnableAlert.CANCEL:
-					break;
-				case SkinnableAlert.TAKE:
-					applicationController.dbController.newAdherenceEvent(applicationController.settings.gcmAccount);
-					SkinnableAlert.show("Saved", "Saving", SkinnableAlert.OK);
-					break;
-				case SkinnableAlert.SNOOZE:
-					break;
-			}
+		//		private function gcmEvent_registeredHandler(event:IHAARTEvent):void
+		//		{
+		//			DebuggingTools.taggedTrace("iHAARTApplication.handleRegistered event: " + event.message);
+		//		}
+		//
+		//		private function gcmEvent_unregisteredHandler(event:IHAARTEvent):void
+		//		{
+		//			DebuggingTools.taggedTrace("iHAARTApplication.gcmEvent_unregisteredHandler event: " + event.message);
+		//		}
 
-		}
-
-		private function handleRegistered(event:IHAARTEvent):void
+		//		private function handleIHAARTMessage(event:IHAARTEvent):void
+		//		{
+		//			var alert:SkinnableAlert = new SkinnableAlert();
+		//			SkinnableAlert.show(event.message, "Message");
+		//		}
+		//
+		//		private function handleIHAARTFGMessage(event:IHAARTEvent):void
+		//		{
+		//			var alert:SkinnableAlert = new SkinnableAlert();
+		//			SkinnableAlert.show(event.message, "FG Message");
+		//		}
+		//
+		//		public function handleIHAARTScheduleLoaded(event:IHAARTEvent):void
+		//		{
+		//			DebuggingTools.taggedTrace("iHAARTApplication.handleIHAARTScheduleLoaded event: " + event.message);
+		//		}
+		//
+		public function handleIHAARTMedicationImageLoaded(event:IHAARTEvent):void
 		{
-			trace(" bree in handle Event");
+			DebuggingTools.taggedTrace("iHAARTApplication.handleIHAARTMedicationImageLoaded event: " + event.message);
 		}
-
-		private function handleUnregistered(event:IHAARTEvent):void
-		{
-		}
-
-		private function handleIndivoGet(event:IHAARTEvent):void
-		{
-			var alert:SkinnableAlert = new SkinnableAlert();
-			SkinnableAlert.show(event.message, "Indivo Response");
-		}
-
-		private function handleIndivoUpdate(event:IHAARTEvent):void
-		{
-			var alert:SkinnableAlert = new SkinnableAlert();
-			SkinnableAlert.show(event.message, "Indivo Updated");
-		}
-
-		private function handleIHAARTMessage(event:IHAARTEvent):void
-		{
-			var alert:SkinnableAlert = new SkinnableAlert();
-			SkinnableAlert.show(event.message, "Message");
-		}
-
-		private function handleIHAARTFGMessage(event:IHAARTEvent):void
-		{
-			var alert:SkinnableAlert = new SkinnableAlert();
-			SkinnableAlert.show(event.message, "FG Message");
-		}
-
-		public function handleIHAARTScheduleLoaded(event:IHAARTEvent):void
-		{
-			trace("   bree SCHEDULE_LOADED triggered");
-		}
-
-		public function handleIHAARTMedicationLoaded(event:IHAARTEvent):void
-		{
-			trace("   bree MEDICATION_LOADED triggered");
-		}
-
-		private function handleIHAARTError(event:IHAARTEvent):void
-		{
-			var alert:SkinnableAlert = new SkinnableAlert();
-			SkinnableAlert.show(event.message, "Error");
-		}
+		//
+		//		private function handleIHAARTError(event:IHAARTEvent):void
+		//		{
+		//			var alert:SkinnableAlert = new SkinnableAlert();
+		//			SkinnableAlert.show(event.message, "Error");
+		//		}
 
 		private function menuKeyPressedHandler(event:FlexEvent):void
 		{
@@ -290,33 +222,20 @@ You should have received a copy of the GNU General Public License along with iHA
 			_logger = value;
 		}
 		]]></fx:Script>
-	<s:actionContent>
-		<s:VGroup id="registeredGroup" gap="0" horizontalAlign="center">
-			<s:Label height="100%" color="#ffffff" fontSize="12" id="registeredLabel"
-					 text="Testing" verticalAlign="middle" width="100%"/>
-			<s:HGroup id="registeredHGroup" horizontalAlign="center" width="100%">
-				<s:BitmapImage id="registeredIcon" source="@Embed(source='/assets/images/icons/Registered_96x96.png')"
-							   visible="false"
-							   width="35"
-							   height="35"/>
-			</s:HGroup>
-		</s:VGroup>
-	</s:actionContent>
-	<s:navigationContent>
-		<s:Button id="backButton" label="back" click="homeButton_clickHandler()"/>
-		<!--visible.notHome="true"-->
-		<!--<s:Group includeInLayout="{_applicationController.activeRecordAccount != null}"-->
-				 <!--visible="{_applicationController.activeRecordAccount != null}">-->
-			<!--<s:Button width="{backGroup.width}" height="{backGroup.height}" click="homeButton_clickHandler()"/>-->
-			<!--<s:HGroup id="backGroup" verticalAlign="middle" gap="0" mouseEnabled="false"-->
-					  <!--mouseChildren="false">-->
-				<!--<s:VGroup gap="1" paddingTop="3" paddingLeft="5" paddingRight="10">-->
-					<!--<s:Label id="activeRecordGivenName"-->
-							 <!--text="{_applicationController.activeRecordAccount.primaryRecord.demographics.Name.givenName}"/>-->
-					<!--<s:Label id="activeRecordFamilyName"-->
-							 <!--text="{_applicationController.activeRecordAccount.primaryRecord.demographics.Name.familyName}"/>-->
-				<!--</s:VGroup>-->
+	<!--<s:actionContent>-->
+		<!--<s:VGroup id="registeredGroup" gap="0" horizontalAlign="center" includeInLayout="true" visible="true">-->
+			<!--<s:Label id="registeredLabel" includeInLayout="true" visible="true"-->
+					 <!--height="100%" width="100%" color="#ffffff" fontSize="12"-->
+					 <!--text="Registered" verticalAlign="middle"/>-->
+			<!--<s:HGroup id="registeredHGroup" includeInLayout="true" visible="true"-->
+					  <!--width="100%" horizontalAlign="center">-->
+				<!--<s:BitmapImage id="registeredIcon" includeInLayout="true" visible="false"-->
+							   <!--source="@Embed(source='/assets/images/icons/Registered_96x96.png')"-->
+							   <!--width="30" height="30"/>-->
 			<!--</s:HGroup>-->
-		<!--</s:Group>-->
-	</s:navigationContent>
+		<!--</s:VGroup>-->
+	<!--</s:actionContent>-->
+	<!--<s:navigationContent>-->
+		<!--<s:Button id="backButton" label="back" click="homeButton_clickHandler()"/>-->
+	<!--</s:navigationContent>-->
 </s:ViewNavigatorApplication>

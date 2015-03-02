@@ -29,9 +29,12 @@ You should have received a copy of the GNU General Public License along with iHA
 	<fx:Script><![CDATA[
 		import collaboRhythm.core.model.AboutApplicationModel;
 		import collaboRhythm.core.view.ConnectivityView;
+		import collaboRhythm.iHAART.model.DebuggingTools;
 		import collaboRhythm.iHAART.model.SkinnableConfirmation;
 		import collaboRhythm.shared.model.services.WorkstationKernel;
 		import collaboRhythm.shared.model.settings.Settings;
+
+		import com.alyeska.shared.ane.iHAART.libInterface.IHAARTInterface;
 
 		import mx.collections.ArrayCollection;
 
@@ -119,7 +122,12 @@ You should have received a copy of the GNU General Public License along with iHA
 				case SkinnableAlert.CANCEL:
 					break;
 				case SkinnableAlert.TAKE:
-					SkinnableConfirmation.show("Are you sure? You won't be able to change this later.", "Confirm", SkinnableConfirmation.YES|SkinnableConfirmation.CANCEL, null, handleConfirmationClick);
+					SkinnableConfirmation.show("Are you sure? You won't be able to change this later.",
+							"Confirm",
+							SkinnableConfirmation.YES |
+							SkinnableConfirmation.CANCEL,
+							null,
+							handleConfirmationClick);
 					break;
 				case SkinnableAlert.SNOOZE:
 					break;
@@ -241,11 +249,29 @@ You should have received a copy of the GNU General Public License along with iHA
 
 		private function toggleTools()
 		{
-			if (toolContainer.visible == true) {
+			if (toolContainer.visible)
+			{
 				toolContainer.visible = false;
-			} else {
+			} else
+			{
 				toolContainer.visible = true;
 			}
+		}
+
+		private function alertGCMDeviceID()
+		{
+			var deviceID:String = gcmController.gcmi.registrationID;
+			SkinnableAlert.show(deviceID,
+					"GCM Device ID",
+					SkinnableAlert.TAKE|SkinnableAlert.CANCEL);
+
+		}
+
+		private function enterPasscode() {
+//			var jsonString = JSON.stringify(this.parentApplication.appController().);
+//			DebuggingTools.taggedTrace("  in enterPasscode function");
+//			var utili:IHAARTInterface = new IHAARTInterface();
+//			utili.enterPasscode();
 		}
 
 		]]></fx:Script>
@@ -276,21 +302,21 @@ You should have received a copy of the GNU General Public License along with iHA
 							<fx:Object label="Cancel"/>
 						</ihaart:contextMenuItems>
 					</ihaart:ContextableList>
-					<s:HGroup id="mainWidgetsGroup" includeInLayout="true" visible="false" width="10" height="10" gap="20"/>
+					<s:HGroup id="mainWidgetsGroup" includeInLayout="true" visible="true" width="100" height="100" gap="20"/>
 				</s:VGroup>
 			</s:SkinnableContainer>
 			<s:SkinnableContainer id="toolContainer" includeInLayout="true" visible="false"
 								  styleName="iHAARTContainerStyle" width="95%" height="100%" horizontalCenter="0">
 				<s:VGroup horizontalCenter="0" horizontalAlign="center">
 					<s:Button label="Set Alarm for 10 sec from now" click="gcmController.setAlarm();"/>
+					<s:Button label="Get GCM Server Registration ID"
+							  click="alertGCMDeviceID()"/>
 					<s:Button label="Get Server Registration ID"
 							  click="gcmController.requestCurrentIndivoRegistrationID();"/>
-					<s:Button label="Get Server Registration ID"
-							  click="gcmController.requestCurrentIndivoRegistrationID();"/>
-					<s:Button label="Test Alert Longer"
-							  click="SkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications being tested to fight HIV and may be more potent than current first-line therapies.', 'Taller', SkinnableAlert.TAKE|SkinnableAlert.CANCEL, null, handleAlertClick)"/>
-					<s:Button label="Test Alert Shorter"
-							  click="SkinnableAlert.show('A substance related to a flavor enhancer in soy sauce is among the next generation of medications', 'Shorter', SkinnableAlert.TAKE|SkinnableAlert.CANCEL, null, handleAlertClick)"/>
+					<s:Button label="Synchronize IDs"
+							  click="gcmController.syncDeviceIDBetweenServers();"/>
+					<s:Button label="Enter Passcode Activity"
+							  click="enterPasscode();"/>
 					<s:Button label="Check Payload" click="checkPayload()"/>
 				</s:VGroup>
 			</s:SkinnableContainer>

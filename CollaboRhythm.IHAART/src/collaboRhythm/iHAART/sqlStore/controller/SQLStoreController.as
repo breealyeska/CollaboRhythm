@@ -40,12 +40,14 @@ package collaboRhythm.iHAART.sqlStore.controller
 
 	public class SQLStoreController
 	{
-		public static var IHAART_DB_FILE = "iHAART.db";
-		public static var SETTINGS_TABLE = "user_settings";
-		public static var USERS_TABLE = "users";
-		public static var ADHERENCE_TABLE = "user_adherence";
-		public static var NOTIFICATIONS_TABLE = "notifications";
-		public static var MEDICATIONS_TABLE = "medications";
+		public static var IHAART_DB_FILE:String = "iHAART.db";
+		public static var SETTINGS_TABLE:String = "user_settings";
+		public static var USERS_TABLE:String = "users";
+		public static var ADHERENCE_TABLE:String = "user_adherence";
+		public static var NOTIFICATIONS_TABLE:String = "notifications";
+		public static var MEDICATIONS_TABLE:String = "medications";
+
+		private var LOG_QUERIES:Boolean = false;
 
 		protected var _sqlConnectionSync:SQLConnection;
 		private var _sqlResult:SQLResult;
@@ -60,6 +62,18 @@ package collaboRhythm.iHAART.sqlStore.controller
 			//create the database file in the application storage folder
 			var dbFilePath:String = File.applicationStorageDirectory.resolvePath(IHAART_DB_FILE).nativePath;
 			dbFilePath = dbFilePath.replace("/data/data", "/storage/sdcard0");
+			DebuggingTools.taggedTrace("dbFilePath");
+
+			try {
+				dbFile = new File(dbFilePath);
+			}
+			catch (error:Error) {
+				logger.error("    Error in opening SQL Store: " +
+				error.message +
+				" ---- " +
+				error.getStackTrace());
+			}
+
 			dbFile = new File(dbFilePath);
 
 			if (dbFile.exists)
@@ -71,7 +85,7 @@ package collaboRhythm.iHAART.sqlStore.controller
 			}
 			else
 			{
-				logger.info("    Error opening local SQLStore file: " + dbFilePath);
+				logger.error("    Error opening local SQLStore file: " + dbFilePath);
 			}
 
 			initialize();
@@ -100,17 +114,17 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:SQLError)
 				{
-					logger.info("    SQLError in SQLStoreController.initialize(USERS_TABLE): " +
+					logger.error("    SQLError in initialize(USERS_TABLE): " +
 					error.message +
 					" ---- " +
 					error.details);
 				}
-				logger.info("  Table " + USERS_TABLE + " created: " + create.text);
+				logger.debug("  Table " + USERS_TABLE + " created: " + create.text);
 			}
 
 			if (!tableExists(MEDICATIONS_TABLE))
 			{
-				create.text = "CREATE TABLE " + MEDICATIONS_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'user_id' INTEGER, 'med_name_dose_route' TEXT, 'med_start_time' TEXT, 'med_end_time' TEXT, 'med_instructions' TEXT)";
+				create.text = "CREATE TABLE " + MEDICATIONS_TABLE + " (id INTEGER PRIMARY KEY AUTOINCREMENT, 'user_id' INTEGER, 'med_name' TEXT, 'med_dose_amount' INTEGER, 'med_dose_unit' TEXT, 'med_indication' TEXT, 'med_instructions' TEXT, 'med_start_time' TEXT, 'med_end_time' TEXT, 'med_img_source' TEXT)";
 
 				create.sqlConnection = sqlConnectionSync;
 				try
@@ -119,12 +133,12 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:SQLError)
 				{
-					logger.info("    SQLError in SQLStoreController.initialize(MEDICATIONS_TABLE): " +
+					logger.error("    SQLError in initialize(MEDICATIONS_TABLE): " +
 					error.message +
 					" ---- " +
 					error.details);
 				}
-				logger.info("  Table " + MEDICATIONS_TABLE + " created: " + create.text);
+				logger.debug("  Table " + MEDICATIONS_TABLE + " created: " + create.text);
 			}
 
 			if (!tableExists(ADHERENCE_TABLE))
@@ -141,12 +155,12 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:SQLError)
 				{
-					logger.info("    SQLError in SQLStoreController.initialize(ADHERENCE_TABLE): " +
+					logger.error("    SQLError in initialize(ADHERENCE_TABLE): " +
 					error.message +
 					" ---- " +
 					error.details);
 				}
-				logger.info("  Table " + ADHERENCE_TABLE + " created: " + create.text);
+				logger.debug("  Table " + ADHERENCE_TABLE + " created: " + create.text);
 			}
 
 			if (!tableExists(NOTIFICATIONS_TABLE))
@@ -161,12 +175,12 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:SQLError)
 				{
-					logger.info("    SQLError in SQLStoreController.initialize(NOTIFICATIONS_TABLE): " +
+					logger.error("    SQLError in initialize(NOTIFICATIONS_TABLE): " +
 					error.message +
 					" ---- " +
 					error.details);
 				}
-				logger.info("  Table " + NOTIFICATIONS_TABLE + " created: " + create.text);
+				logger.debug("  Table " + NOTIFICATIONS_TABLE + " created: " + create.text);
 			}
 		}
 
@@ -177,7 +191,7 @@ package collaboRhythm.iHAART.sqlStore.controller
 			medData['user_id'] = userID;
 			deleteData(SQLStoreController.MEDICATIONS_TABLE, "user_id", userID);
 			var newID:Number = insertData(SQLStoreController.MEDICATIONS_TABLE, medData);
-			DebuggingTools.myTraceFunction("syncMeds with newID = " + newID);
+			DebuggingTools.taggedTrace("syncMeds with newID = " + newID);
 			return newID;
 		}
 
@@ -199,13 +213,16 @@ package collaboRhythm.iHAART.sqlStore.controller
 			}
 			catch (error:SQLError)
 			{
-				logger.info("    SQLError in SQLStoreController.getMedDataForUserAccount: " +
+				logger.error("    SQLError in getMedDataForUserAccount: " +
 				error.message +
 				" ---- " +
 				error.details);
 			}
 
-			logger.info("  Select from SQL Store query:  " + select.text);
+			if (LOG_QUERIES)
+			{
+				logger.debug("  Select from SQL Store query:  " + select.text);
+			}
 
 			var result:SQLResult = select.getResult();
 
@@ -215,8 +232,8 @@ package collaboRhythm.iHAART.sqlStore.controller
 				{
 					for (var key:String in result.data[rowInd])
 					{
-						DebuggingTools.myTraceFunction(key);
-						DebuggingTools.myTraceFunction(result.data[rowInd][key].toString());
+						DebuggingTools.taggedTrace(key);
+						DebuggingTools.taggedTrace(result.data[rowInd][key].toString());
 					}
 				}
 			}
@@ -302,19 +319,22 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:SQLError)
 				{
-					logger.info("    SQLError in SQLStoreController.getMedDataForUserAccount: " +
+					logger.error("    SQLError in getMedDataForUserAccount: " +
 					error.message +
 					" ---- " +
 					error.details);
 				}
 
-				logger.info("  Select from SQL Store query:  " + select.text);
+				if (LOG_QUERIES)
+				{
+					logger.debug("  Select from SQL Store query:  " + select.text);
+				}
 
 				var result:SQLResult = select.getResult();
 
 			}
 			else {
-				logger.info("    Error in SQLStoreController.getMedDataForUserAccount: no user found for account " + accountString);
+				logger.error("    Error in getMedDataForUserAccount: no user found for account " + accountString);
 			}
 
 			return result;
@@ -346,12 +366,12 @@ package collaboRhythm.iHAART.sqlStore.controller
 			}
 			catch (error:SQLError)
 			{
-				logger.info("    SQLError in SQLStoreController.clearAllDataFromTable(" + tableName + "): " +
+				logger.error("    SQLError in clearAllDataFromTable(" + tableName + "): " +
 				error.message +
 				" ---- " +
 				error.details);
 			}
-			logger.info("  Table " + tableName + " deleted");
+			logger.debug("  Table " + tableName + " deleted");
 		}
 
 		private function getFieldValue(tableName:String,
@@ -380,14 +400,14 @@ package collaboRhythm.iHAART.sqlStore.controller
 			}
 			catch (error:SQLError)
 			{
-				logger.info("    SQLError in SQLStoreController.getField(): " +
+				logger.error("    SQLError in getField(): " +
 				error.message +
 				" ---- " +
 				error.details);
 			}
 
 			var result = select.getResult();
-			if (result != null)
+			if (result != null && result.data != null)
 			{
 				return result.data[0][fieldColumn];
 			}
@@ -426,7 +446,7 @@ package collaboRhythm.iHAART.sqlStore.controller
 			}
 			catch (error:SQLError)
 			{
-				logger.info("    SQLError in SQLStoreController.updateData(): " +
+				logger.error("    SQLError in updateData(): " +
 				error.message +
 				" ---- " +
 				error.details);
@@ -434,7 +454,10 @@ package collaboRhythm.iHAART.sqlStore.controller
 
 			// get the primary key
 			var result:SQLResult = update.getResult();
-			logger.info("  Update SQL Store query:  " + update.text + "\n  Rows affected: " + result.rowsAffected);
+			if (LOG_QUERIES)
+			{
+				logger.debug("  Update SQL Store query:  " + update.text + "\n  Rows affected: " + result.rowsAffected);
+			}
 			return result.rowsAffected;
 		}
 
@@ -475,7 +498,7 @@ package collaboRhythm.iHAART.sqlStore.controller
 			}
 			catch (error:SQLError)
 			{
-				logger.info("    SQLError in SQLStoreController.insertData(): " +
+				logger.error("    SQLError in insertData(): " +
 				error.message +
 				" ---- " +
 				error.details);
@@ -483,7 +506,10 @@ package collaboRhythm.iHAART.sqlStore.controller
 
 			// get the primary key
 			var result:SQLResult = insert.getResult();
-			logger.info("  Insert into SQL Store query:  " + insert.text + "\n  Rows affected: " + result.rowsAffected);
+			if (LOG_QUERIES)
+			{
+				logger.debug("  Insert into SQL Store query:  " + insert.text + "\n  Rows affected: " + result.rowsAffected);
+			}
 			return result.lastInsertRowID;
 		}
 
@@ -511,12 +537,15 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:SQLError)
 				{
-					logger.info("    SQLError in SQLStoreController.deleteData(): " +
+					logger.error("    SQLError in deleteData(): " +
 					error.message +
 					" ---- " +
 					error.details);
 				}
-				logger.info("  Delete SQL Store query: " + deleteStmt.text + "\n  Rows affected: " + result.rowsAffected);
+				if (LOG_QUERIES)
+				{
+					logger.debug("  Delete SQL Store query: " + deleteStmt.text + "\n  Rows affected: " + result.rowsAffected);
+				}
 			}
 		}
 
@@ -542,7 +571,7 @@ package collaboRhythm.iHAART.sqlStore.controller
 					{
 						if (table.name.toLowerCase() == tableName.toLowerCase())
 						{
-							logger.info("  Table " + tableName + " exists");
+							logger.debug("  Table " + tableName + " exists");
 							return true;
 						}
 					}
@@ -550,13 +579,13 @@ package collaboRhythm.iHAART.sqlStore.controller
 			}
 			catch (error:SQLError)
 			{
-				logger.info("    SQLError in SQLStoreController.tableExists(): " +
+				logger.error("    SQLError in tableExists(): " +
 						error.message +
 						" ---- " +
 						error.details);
 			}
 
-			logger.info("  Table " + tableName + " does not exist");
+			logger.debug("  Table " + tableName + " does not exist");
 			return false;
 
 		}
@@ -575,10 +604,10 @@ package collaboRhythm.iHAART.sqlStore.controller
 					//create the database file in the application storage folder
 					dbFile = new File(dbFilePath);
 					if (!dbFile.exists) {
-						logger.info("  Creating SQL Store: " + dbFilePath);
+						logger.debug("  Creating SQL Store: " + dbFilePath);
 					}
 					else {
-						logger.info("  Opening SQL Store: " + dbFilePath);
+						logger.debug("  Opening SQL Store: " + dbFilePath);
 					}
 					_sqlConnectionSync.open(dbFile, SQLMode.CREATE);
 
@@ -586,7 +615,7 @@ package collaboRhythm.iHAART.sqlStore.controller
 				}
 				catch (error:Error)
 				{
-					logger.info("    SQLError in SQLStoreController.getSQLConnectionSync(): " +
+					logger.error("    SQLError in getSQLConnectionSync(): " +
 							error.message);
 				}
 				return _sqlConnectionSync;
@@ -600,10 +629,10 @@ package collaboRhythm.iHAART.sqlStore.controller
 					}
 					catch (error:Error)
 					{
-						logger.info("    SQLError in SQLStoreController.getSQLConnectionSync(): " +
+						logger.error("    SQLError in getSQLConnectionSync(): " +
 								error.message);
 					}
-					logger.info("  Opening SQL Store: " + dbFilePath);
+					logger.debug("  Opening SQL Store: " + dbFilePath);
 				}
 				return _sqlConnectionSync;
 			}

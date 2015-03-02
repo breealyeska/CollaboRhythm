@@ -136,7 +136,7 @@ You should have received a copy of the GNU General Public License along with iHA
 	<!-- The icon the system uses for the application. For at least one resolution,
 	specify the path to a PNG file included in the AIR package. Optional. -->
 	<icon>
-		<image128x128>assets/images/icons/iHAART_icon_rev2_128x128.png</image128x128>
+		<image128x128>assets/images/icons/ihaart_icon_rev2_128x128.png</image128x128>
 	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
@@ -223,9 +223,9 @@ You should have received a copy of the GNU General Public License along with iHA
 
 	<extensions>
 		<extensionID>com.adobe.Vibration</extensionID>
-		<extensionID>CollaboRhythm.ANE.ApplicationMessaging</extensionID>
-		<extensionID>com.alyeska.shared.ane.gcm.GCMPush</extensionID>
-		<extensionID>com.alyeska.shared.ane.alarm.Alarm</extensionID>
+		<extensionID>com.alyeska.shared.ane.GCMPush</extensionID>
+		<extensionID>com.alyeska.shared.ane.AlarmExt</extensionID>
+		<extensionID>com.alyeska.shared.ane.IHAARTExt</extensionID>
 	</extensions>
 
 	<android>
@@ -257,11 +257,10 @@ You should have received a copy of the GNU General Public License along with iHA
 		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 		<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
-
+		<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21"/>
 		<application android:enabled="true"
 						android:process="air.CollaboRhythm.Tablet"
-						android:hardwareAccelerated="true"
-						android:debuggable="true">
+						android:hardwareAccelerated="true">
 
 			<service android:name="com.alyeska.shared.ane.gcm.freInterface.GCMIntentService" />
 			<receiver android:name="com.alyeska.shared.ane.gcm.freInterface.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
@@ -299,6 +298,10 @@ You should have received a copy of the GNU General Public License along with iHA
 					<data android:scheme="collaborhythm"/>
 				</intent-filter>
 			</activity>
+
+			<activity android:name="com.alyeska.shared.ane.iHAART.freInterface.ProgressActivity" android:theme="@style/TranslucentNoActionBar"/> <!-- android:theme="@android:style/Theme.Translucent" -->
+			<activity android:name="com.alyeska.shared.ane.iHAART.freInterface.PasscodeActivity" android:theme="@android:style/Theme.Holo.Light" android:background="@drawable/splash_ab_66_00"/> <!-- android:theme="@android:style/Theme.Translucent" -->
+			<activity android:name="com.alyeska.shared.ane.iHAART.freInterface.ClockActivity" android:theme="@android:style/Theme.Holo.Light" android:background="@drawable/splash_ab_66_00"/> <!-- android:theme="@android:style/Theme.Translucent" android:theme="@android:style/Theme.Holo.Light" -->
 
 		</application>
 	</manifest>
