@@ -44,11 +44,11 @@ You should have received a copy of the GNU General Public License along with iHA
 		</exec>
 	</target>
 
-	<target name="all_in_one_ane"
+	<target name="ihaart_ext_all_in_one_ane"
 			description="Generates new ANE and deletes current log and db">
 
-		<echo>Executing ANEUtilities.sh allInOne</echo>
-		<exec executable="/Users/breezy/scripts/ANEUtilities.sh">
+		<echo>Executing IHAARTANEUtilities.sh allInOne</echo>
+		<exec executable="/Users/breezy/scripts/IHAARTANEUtilities.sh">
 			<arg value="allInOne"/>
 		</exec>
 
@@ -125,6 +125,35 @@ You should have received a copy of the GNU General Public License along with iHA
 		<exec executable="/bin/bash">
 			<!--<arg value="rm -rf ${APP_HOME_DIR}/out/production"/>-->
 		</exec>
+	</target>
+
+	<target name="set_up_device_directories"
+			description="Creates directories on mobile device">
+
+		<exec executable="${ADB}">
+			<arg value="shell"/>
+			<arg value="mkdir"/>
+			<arg value="${collaboRhythm.tablet-device-root}"/>
+		</exec>
+
+		<exec executable="${ADB}">
+			<arg value="shell"/>
+			<arg value="mkdir"/>
+			<arg value="${collaboRhythm.tablet-device}"/>
+		</exec>
+
+		<exec executable="${ADB}">
+			<arg value="shell"/>
+			<arg value="mkdir"/>
+			<arg value="${collaboRhythm.tablet-device.local-store}"/>
+		</exec>
+
+		<exec executable="${ADB}">
+			<arg value="shell"/>
+			<arg value="mkdir"/>
+			<arg value="${collaboRhythm.tablet-device.pluginsPath}"/>
+		</exec>
+
 	</target>
 
 		<target name="deploy_user_settings"
