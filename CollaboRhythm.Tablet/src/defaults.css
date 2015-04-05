@@ -90,9 +90,13 @@ global
 	fontFamily: MyriadProEmbedded;
 }
 
-s|Label, s|RichText, s|RichEditableText
+s|Label, s|RichText
 {
 	fontFamily: MyriadProEmbeddedCFF;
+}
+
+s|RichEditableText {
+	fontFamily: MyriadProEmbedded;
 }
 
 s|TextInput
