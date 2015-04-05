@@ -42,16 +42,6 @@
 			var scheduleItemOccurrenceReportingViewAdapter:IHealthActionListViewAdapter = scheduleModel.healthActionListViewAdapterFactory.createScheduledHealthActionViewAdapter(_scheduleItemOccurrence,
 					scheduleModel);
 
-//			if (settings.iHAARTOnly)
-//			{
-//				var dispatcher:IHAARTEventDispatcher = new IHAARTEventDispatcher();
-//				dispatcher.dispatchEvent(new IHAARTEvent(IHAARTEvent.SCHEDULE_LOADED,
-//						settings.gcmAccount,
-//						null,
-//						false,
-//						false));
-//			}
-
 			if (scheduleItemOccurrenceReportingViewAdapter)
 			{
 				var customView:IVisualElement = scheduleItemOccurrenceReportingViewAdapter.createCustomView();
